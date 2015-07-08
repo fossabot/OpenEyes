@@ -110,4 +110,11 @@ return array(
 		'class_name' => 'OphLeEpatientletter',
 		'support_services' => 0,
 	),
+	'event_type14' => array(
+		'id' => 1013,
+		'name' => 'Visual Fields',
+		'event_group_id' => 1,
+		'class_name' => 'OphInVisualfields',
+		'support_services' => 0,
+	),
 );

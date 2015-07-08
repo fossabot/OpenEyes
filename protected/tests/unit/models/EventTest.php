@@ -318,6 +318,7 @@ class EventTest extends CDbTestCase
 
 	public function testHasPDF_Event_True()
 	{
+		$this->markTestSkipped('Function being tested has been disabled temporarily (about 8 months ago)');
 		Yii::app()->assetManager->basePath = Yii::app()->basePath."/assets";
 	 
 		$event = $this->event('event1');
@@ -342,6 +343,7 @@ class EventTest extends CDbTestCase
 
 	public function testHasPDF_Event_False()
 	{
+		$this->markTestSkipped('Function being tested has been disabled temporarily (about 8 months ago)');
 		Yii::app()->assetManager->basePath = Yii::app()->basePath."/assets";
 
 		$event = $this->event('event1');
@@ -351,6 +353,7 @@ class EventTest extends CDbTestCase
 
 	public function testHasPDF_Other_True()
 	{
+		$this->markTestSkipped('Function being tested has been disabled temporarily (about 8 months ago)');
 		Yii::app()->assetManager->basePath = Yii::app()->basePath."/assets";
 	
 		$event = $this->event('event1');
@@ -375,6 +378,7 @@ class EventTest extends CDbTestCase
 
 	public function testHasPDF_Other_False()
 	{
+		$this->markTestSkipped('Function being tested has been disabled temporarily (about 8 months ago)');
 		Yii::app()->assetManager->basePath = Yii::app()->basePath."/assets";
 
 		$event = $this->event('event1');

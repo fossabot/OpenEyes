@@ -53,7 +53,16 @@ class OEMigrationTest extends CDbTestCase
 			Yii::app()->db->createCommand("delete from et_ophcocorrespondence_letter")->query();
 		}
 		if (Yii::app()->db->schema->getTable('et_ophtroperationbooking_diagnosis')) {
+			Yii::app()->db->createCommand("delete from et_ophciexamination_anteriorsegment_cct")->execute();
+			Yii::app()->db->createCommand("delete from event_issue")->execute();
+			Yii::app()->db->createCommand("delete from ophtroperationbooking_scheduleope_patientunavail")->execute();
+			Yii::app()->db->createCommand("delete from et_ophtroperationbooking_scheduleope")->execute();
+			Yii::app()->db->createCommand("delete from ophciexamination_further_findings_assignment")->execute();
+			Yii::app()->db->createCommand("delete from et_ophciexamination_further_findings")->execute();
+			Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_date_letter_sent")->execute();
 			Yii::app()->db->createCommand("delete from et_ophtroperationbooking_diagnosis")->execute();
+			Yii::app()->db->createCommand("delete from ophciexamination_diagnosis")->execute();
+			Yii::app()->db->createCommand("delete from et_ophciexamination_diagnoses;")->execute();
 			Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_booking")->execute();
 			Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_procedures_procedures")->execute();
 			Yii::app()->db->createCommand("delete from et_ophtroperationbooking_operation")->execute();
@@ -219,7 +228,6 @@ class OEMigrationTest extends CDbTestCase
 	 * @description generic function to compare fixture data with database result set
 	 * @return void
 	 */
-
 	private function compareFixtureWithResultSet($fixture, $resultSet){
 		$resultArr = array();
 
@@ -245,7 +253,7 @@ class OEMigrationTest extends CDbTestCase
 		unset($this->oeMigration);
 
 		if ($this->Consolidation) {
-			$this->eraseDirectory(getcwd()."/../migrations/data/$this->Consolidation");
+			$this->eraseDirectory(getcwd()."/protected/migrations/data/$this->Consolidation");
 			$this->Consolidation = null;
 		}
 	}

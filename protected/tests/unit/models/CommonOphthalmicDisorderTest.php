@@ -92,8 +92,9 @@ class CommonOphthalmicDisorderTest extends CDbTestCase
 		$expected = array(
 			'id' => 'ID',
 			'disorder_id' => 'Disorder',
-			'subspecialty_id' => 'Subspecialty',
 			'finding_id' => 'Finding',
+			'subspecialty_id' => 'Subspecialty',
+			'group_id' => 'Group',
 			'alternate_disorder_id' => 'Alternate Disorder'
 		);
 

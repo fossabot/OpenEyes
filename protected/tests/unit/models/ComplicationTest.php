@@ -52,6 +52,7 @@ class ComplicationTest extends CDbTestCase
 	 */
 	public function testRules()
 	{
+		$this->model->name = 'test';
 		$this->assertTrue($this->model->validate());
 		$this->assertEmpty($this->model->errors);
 	}

@@ -27,7 +27,7 @@ return array(
 		'last_name' => 'Jones',
 		'dob' => '1970-01-01',
 		'gender' => 'M',
-		'hos_num' => 12345,
+		'hos_num' => '0012345',
 		'nhs_num' => 54321,
 		'practice_id' => 1,
 		'address_id' => 1,

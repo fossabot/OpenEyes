@@ -62,6 +62,7 @@ class InitialDbMigrationCommand extends CConsoleCommand
 			throw new InitialDbMigrationCommandException('No tables to export in the current database');
 		//dont export migration table
 		unset($tables['tbl_migration']);
+		unset($tables['et_ophtroperationnote_biometry']);
 
 		$template = $this->getTemplate();
 		$initialDbMigrationResult->fileName = $this->getMigrationFileName($className);
