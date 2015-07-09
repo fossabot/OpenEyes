@@ -211,22 +211,13 @@ class EventTypeTest extends CDbTestCase
 
 	public function testGetEventTypeInUseList()
 	{
-		$list = array();
-
-		foreach ($this->event_types as $event_type) {
-			if (rand(0,1) == 0) {
-				$list[$event_type['id']] = $event_type['name'];
-			}
-		}
-
-		foreach ($list as $event_type_id => $event_name) {
-			Yii::app()->db->createCommand()->insert('event',array(
-				'episode_id' => 1,
-				'event_type_id' => $event_type_id,
-				'created_user_id' => 1,
-				'last_modified_user_id' => 1,
-			));
-		}
+		$list = array(
+			1003 => 'Consent form 2',
+			1007 => 'Correspondence 2',
+			1002 => 'Examination 2',
+			1012 => 'Legacy letters',
+			1001 => 'Operation booking 2'
+		);
 
 		$this->assertEquals($list, EventType::model()->getEventTypeInUseList());
 	}
