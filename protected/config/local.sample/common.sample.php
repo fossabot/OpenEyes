@@ -86,7 +86,6 @@ $config = array(
 		'OphCiExamination' => array( 'class' => '\OEModule\OphCiExamination\OphCiExaminationModule', ),
 		'OphCoCorrespondence',
 		'OphCiPhasing',
-		'OphCoTherapyapplication',
 		'OphDrPrescription',
 		'OphOuAnaestheticsatisfactionaudits',
 		'OphTrConsent',
@@ -96,7 +95,8 @@ $config = array(
 		'OphTrLaser',
 		'PatientTicketing' => array( 'class' => '\OEModule\PatientTicketing\PatientTicketingModule', ),
 		'OphInVisualfields',
-		'OphInBiometry'
+		'OphInBiometry',
+		'OphCoTherapyapplication',
 	),
 
 	'params'=>array(
