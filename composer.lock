@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "12802ce9d5a7754814f08de424fa3c85",
+    "hash": "eaf53a07f11f050145e91a7bb209888e",
     "packages": [
         {
             "name": "openeyes/eyedraw",
@@ -192,16 +192,16 @@
         },
         {
             "name": "openeyes/oph-in-visualfields",
-            "version": "dev-master",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphInVisualfields.git",
-                "reference": "81995c7cfca3b189c261b2c28d8b51ac62241c77"
+                "reference": "6f8ded05835bff65b178a6a12261cbefc0227b1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphInVisualfields/zipball/81995c7cfca3b189c261b2c28d8b51ac62241c77",
-                "reference": "81995c7cfca3b189c261b2c28d8b51ac62241c77",
+                "url": "https://api.github.com/repos/openeyes/OphInVisualfields/zipball/6f8ded05835bff65b178a6a12261cbefc0227b1d",
+                "reference": "6f8ded05835bff65b178a6a12261cbefc0227b1d",
                 "shasum": ""
             },
             "require": {
@@ -210,7 +210,7 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module capable of communicating with Visual Fields machine to import images",
-            "time": "2015-04-21 15:01:39"
+            "time": "2015-07-10 13:36:34"
         },
         {
             "name": "openeyes/oph-ou-anaestheticsatisfactionaudit",
@@ -306,12 +306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphTrOperationbooking.git",
-                "reference": "43a3cf53cfd138c8dedad66db02c9328b20d5069"
+                "reference": "9fe4a71d3122ec749303e7e1e8279568e11ea32d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphTrOperationbooking/zipball/43a3cf53cfd138c8dedad66db02c9328b20d5069",
-                "reference": "43a3cf53cfd138c8dedad66db02c9328b20d5069",
+                "url": "https://api.github.com/repos/openeyes/OphTrOperationbooking/zipball/9fe4a71d3122ec749303e7e1e8279568e11ea32d",
+                "reference": "9fe4a71d3122ec749303e7e1e8279568e11ea32d",
                 "shasum": ""
             },
             "require": {
@@ -320,7 +320,7 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module for booking operations in OpenEyes",
-            "time": "2015-07-10 14:49:06"
+            "time": "2015-07-13 10:39:10"
         },
         {
             "name": "openeyes/oph-tr-operationnote",
@@ -1771,12 +1771,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "8cd1dbe6963a84d5155d77dd782d286613e570ac"
+                "reference": "44adc6f25592c6990409607c95537f577861f9b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/8cd1dbe6963a84d5155d77dd782d286613e570ac",
-                "reference": "8cd1dbe6963a84d5155d77dd782d286613e570ac",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/44adc6f25592c6990409607c95537f577861f9b1",
+                "reference": "44adc6f25592c6990409607c95537f577861f9b1",
                 "shasum": ""
             },
             "require": {
@@ -1829,7 +1829,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2015-07-01 15:25:33"
+            "time": "2015-07-13 05:06:53"
         },
         {
             "name": "kherge/version",
@@ -1880,12 +1880,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "6dd76b944d42d7b27bb3d09cd0f6fa88a80817f5"
+                "reference": "328d66f13fc62018192a7d38281e6bbc09f5b798"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6dd76b944d42d7b27bb3d09cd0f6fa88a80817f5",
-                "reference": "6dd76b944d42d7b27bb3d09cd0f6fa88a80817f5",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/328d66f13fc62018192a7d38281e6bbc09f5b798",
+                "reference": "328d66f13fc62018192a7d38281e6bbc09f5b798",
                 "shasum": ""
             },
             "require": {
@@ -1922,7 +1922,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14.x-dev"
+                    "dev-master": "1.15.x-dev"
                 }
             },
             "autoload": {
@@ -1948,7 +1948,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-07-05 21:09:41"
+            "time": "2015-07-13 10:06:01"
         },
         {
             "name": "nikic/php-parser",
