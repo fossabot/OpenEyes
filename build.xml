@@ -228,7 +228,7 @@
     <target name="phpunit"
             depends="prepare,composer,migrate,migrate-modules"
             description="Run unit tests with PHPUnit">
-        <exec executable="${toolsdir}phpunit" failonerror="false">
+        <exec executable="${toolsdir}phpunit">
             <arg value="--configuration"/>
             <arg path="${basedir}/protected/tests/phpunit_ci.xml"/>
         </exec>
