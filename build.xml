@@ -233,5 +233,4 @@
             <arg path="${basedir}/protected/tests/phpunit_ci.xml"/>
         </exec>
     </target>
-
 </project>
