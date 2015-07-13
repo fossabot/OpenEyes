@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="OpenEyes" default="build">
+
     <property name="toolsdir" value="${basedir}/bin/"/>
     <property name="prefer" value="dist"/>
     <property name="dockerName" value="docker"/>
