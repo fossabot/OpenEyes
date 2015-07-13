@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eaf53a07f11f050145e91a7bb209888e",
+    "hash": "a627eb67792a48138b25a6ecf8bc76fc",
     "packages": [
         {
             "name": "openeyes/eyedraw",
@@ -126,16 +126,16 @@
         },
         {
             "name": "openeyes/oph-co-therapyapplication",
-            "version": "dev-master",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphCoTherapyapplication.git",
-                "reference": "e3edb3b2b2700b64418fd3f26ca1a95680c1dc52"
+                "reference": "aa0ea7b96c952310293cae7151234ff140266f6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphCoTherapyapplication/zipball/e3edb3b2b2700b64418fd3f26ca1a95680c1dc52",
-                "reference": "e3edb3b2b2700b64418fd3f26ca1a95680c1dc52",
+                "url": "https://api.github.com/repos/openeyes/OphCoTherapyapplication/zipball/aa0ea7b96c952310293cae7151234ff140266f6e",
+                "reference": "aa0ea7b96c952310293cae7151234ff140266f6e",
                 "shasum": ""
             },
             "require": {
@@ -144,7 +144,7 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Generates applications for therapy for patients within OpenEyes",
-            "time": "2015-03-05 15:28:50"
+            "time": "2015-07-13 13:48:37"
         },
         {
             "name": "openeyes/oph-dr-prescription",
