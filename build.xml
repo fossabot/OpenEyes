@@ -167,7 +167,7 @@
             <arg path="${basedir}/protected" />
             <arg value="text" />
             <arg path="${basedir}/build/phpmd.xml" />
-            <arg value="--exclude ${basedir}/protected/tests/*,${basedir}/protected/migrations/*,${basedir}/protected/yii/*,${basedir}/protected/runtime/*" />
+            <arg value="--exclude ${basedir}/protected/tests/*,${basedir}/protected/migrations/*,${basedir}/protected/yii/*,${basedir}/protected/runtime/*,${basedir}/vendor/*" />
         </exec>
     </target>
 
@@ -180,14 +180,14 @@
             <arg path="${basedir}/build/phpmd.xml" />
             <arg value="--reportfile" />
             <arg path="${basedir}/build/logs/pmd.xml" />
-            <arg value="--exclude ${basedir}/protected/tests/*,${basedir}/protected/migrations/*,${basedir}/protected/yii/*,${basedir}/protected/runtime/*" />
+            <arg value="--exclude ${basedir}/protected/tests/*,${basedir}/protected/migrations/*,${basedir}/protected/yii/*,${basedir}/protected/runtime/*,${basedir}/vendor/*" />
         </exec>
     </target>
 
-    <target name="phpcs,composer"
+    <target name="phpcs"
             description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcs">
-            <arg value="--standard=${toolsdir}/ruleset.xml" />
+            <arg value="--standard=${basedir}/build/ruleset.xml" />
             <arg value="--extensions=php" />
             <arg value="--ignore=autoload.php" />
             <arg path="${basedir}/protected" />
@@ -195,12 +195,12 @@
     </target>
 
     <target name="phpcs-ci"
-            depends="prepare,composer"
+            depends="prepare, composer"
             description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment.">
         <exec executable="${toolsdir}phpcs" output="/dev/null">
             <arg value="--report=checkstyle" />
             <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
-            <arg value="--standard=${toolsdir}/ruleset.xml" />
+            <arg value="--standard=${basedir}/build/ruleset.xml" />
             <arg value="--extensions=php" />
             <arg value="--ignore=autoload.php" />
             <arg path="${basedir}/protected" />
