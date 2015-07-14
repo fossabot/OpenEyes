@@ -71,7 +71,7 @@
 
     <!-- This task is used for creating a docker container with the DB in it so that unit tests which access it can
     do so without conflicting with each other. For that purporse it should only be run as part of an automated build task-->
-    <target name="docker" description="Run up a docker container with the DB in it for unit testing against">
+    <target name="docker" description="Run up a docker container with the DB in it for unit testing against" depends="prepare">
         <exec executable="/bin/bash" failonerror="true">
             <arg value="-c" />
             <arg value="${toolsdir}spin_up_docker_db.sh '${dockerName}'" />
@@ -227,7 +227,8 @@
     <target name="phpunit"
             depends="prepare,composer,migrate,migrate-modules"
             description="Run unit tests with PHPUnit">
-        <exec executable="${toolsdir}phpunit">
+        <exec executable="${toolsdir}phpunit" failonerror="true">
+            <arg value="--stop-on-failure"/>
             <arg value="--configuration"/>
             <arg path="${basedir}/protected/tests/phpunit_ci.xml"/>
         </exec>

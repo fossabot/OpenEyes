@@ -306,12 +306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphTrOperationbooking.git",
-                "reference": "9fe4a71d3122ec749303e7e1e8279568e11ea32d"
+                "reference": "2d69a769ff1abca4d9e6ca5ee7cd3955f05634f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphTrOperationbooking/zipball/9fe4a71d3122ec749303e7e1e8279568e11ea32d",
-                "reference": "9fe4a71d3122ec749303e7e1e8279568e11ea32d",
+                "url": "https://api.github.com/repos/openeyes/OphTrOperationbooking/zipball/2d69a769ff1abca4d9e6ca5ee7cd3955f05634f2",
+                "reference": "2d69a769ff1abca4d9e6ca5ee7cd3955f05634f2",
                 "shasum": ""
             },
             "require": {
@@ -320,7 +320,7 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module for booking operations in OpenEyes",
-            "time": "2015-07-13 10:39:10"
+            "time": "2015-07-14 11:02:21"
         },
         {
             "name": "openeyes/oph-tr-operationnote",
@@ -1771,12 +1771,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "44adc6f25592c6990409607c95537f577861f9b1"
+                "reference": "70a03b47f2ea1d3a6734257bc2b5c4072de024d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/44adc6f25592c6990409607c95537f577861f9b1",
-                "reference": "44adc6f25592c6990409607c95537f577861f9b1",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/70a03b47f2ea1d3a6734257bc2b5c4072de024d2",
+                "reference": "70a03b47f2ea1d3a6734257bc2b5c4072de024d2",
                 "shasum": ""
             },
             "require": {
@@ -1829,7 +1829,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2015-07-13 05:06:53"
+            "time": "2015-07-14 02:09:43"
         },
         {
             "name": "kherge/version",
@@ -1880,12 +1880,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "328d66f13fc62018192a7d38281e6bbc09f5b798"
+                "reference": "c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/328d66f13fc62018192a7d38281e6bbc09f5b798",
-                "reference": "328d66f13fc62018192a7d38281e6bbc09f5b798",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4",
+                "reference": "c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4",
                 "shasum": ""
             },
             "require": {
@@ -1948,7 +1948,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-07-13 10:06:01"
+            "time": "2015-07-14 09:27:59"
         },
         {
             "name": "nikic/php-parser",
