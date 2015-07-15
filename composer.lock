@@ -1771,12 +1771,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "70a03b47f2ea1d3a6734257bc2b5c4072de024d2"
+                "reference": "34ca930d9fbfb439ae8d3b87ca046b914e190295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/70a03b47f2ea1d3a6734257bc2b5c4072de024d2",
-                "reference": "70a03b47f2ea1d3a6734257bc2b5c4072de024d2",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/34ca930d9fbfb439ae8d3b87ca046b914e190295",
+                "reference": "34ca930d9fbfb439ae8d3b87ca046b914e190295",
                 "shasum": ""
             },
             "require": {
@@ -1797,8 +1797,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "JsonSchema": "src/"
+                "psr-4": {
+                    "JsonSchema\\": "src/JsonSchema/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1829,7 +1829,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2015-07-14 02:09:43"
+            "time": "2015-07-14 16:34:54"
         },
         {
             "name": "kherge/version",

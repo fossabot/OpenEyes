@@ -210,7 +210,7 @@
     <target name="phpcpd"
             description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcpd">
-            <arg path="${basedir}/src" />
+            <arg path="${basedir}/protected" />
         </exec>
     </target>
 
