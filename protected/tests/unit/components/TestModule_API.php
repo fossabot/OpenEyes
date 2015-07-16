@@ -1,4 +1,6 @@
 <?php
+namespace RandomNamespace\Test;
+
 /**
  * (C) OpenEyes Foundation, 2014
  * This file is part of OpenEyes.
@@ -13,12 +15,8 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-namespace BaseEventTypeElementTestNS\models {
+// Stub BaseAPI for BaseAPITest
 
-    class BaseEventTypeElementTestNS extends \BaseEventTypeElement
-    {
-        public function __construct()
-        {
-        }
-    }
+class TestModule_API extends \BaseAPI
+{
 }

@@ -13,7 +13,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'HelperTestNS.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'NamespacedElement.php';
 
 class HelperTest extends CTestCase
 {

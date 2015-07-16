@@ -13,7 +13,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-require_once dirname(__FILE__) . '/NamespacedBaseAPI.php';
+require_once dirname(__FILE__) . '/TestModule_API.php';
 
 class BaseAPITest extends CDbTestCase
 {

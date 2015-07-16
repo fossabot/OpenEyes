@@ -1,5 +1,4 @@
 <?php
-
 /**
  * (C) OpenEyes Foundation, 2014
  * This file is part of OpenEyes.
@@ -13,11 +12,13 @@
  * @copyright Copyright (C) 2013, OpenEyes Foundation
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
-namespace HelperTestNS\models {
-    class HelperTestNS extends \BaseEventTypeElement
+
+namespace BaseEventTypeElementTestNS\models;
+
+class BaseEventNamespacedElement extends \BaseEventTypeElement
+{
+    public function __construct()
     {
-        public function __construct()
-        {
-        }
     }
 }
+

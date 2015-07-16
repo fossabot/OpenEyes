@@ -18,7 +18,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseEventTypeElementTestNS.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseEventNamespacedElement.php';
 
 class BaseEventTypeElementTest extends CDbTestCase
 {
@@ -171,8 +171,8 @@ class BaseEventTypeElementTest extends CDbTestCase
         $r = new ReflectionClass($test);
         $this->assertEquals($r->getShortName(), $test->getDefaultView());
 
-        $ns_test = new BaseEventTypeElementTestNS\models\NamespacedElement();
-        $this->assertEquals('NamespacedElement', $ns_test->getDefaultView());
+        $ns_test = new BaseEventTypeElementTestNS\models\BaseEventNamespacedElement();
+        $this->assertEquals('BaseEventNamespacedElement', $ns_test->getDefaultView());
     }
 
     /**
