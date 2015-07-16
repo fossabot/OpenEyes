@@ -18,46 +18,46 @@
  */
 class RequiredIfFieldValidator extends CValidator
 {
-	public $field;
-	public $value;
+    public $field;
+    public $value;
 
-	public $relation = null;
+    public $relation = null;
 
-	public $message = "{attribute} cannot be blank";
+    public $message = "{attribute} cannot be blank";
 
-	public function validateAttribute($object, $attribute)
-	{
-		if ($this->relation) {
-			$related = $object->{$this->relation};
-			if (is_array($related)) {
-				$required = false;
-				foreach ($related as $item) {
-					if ($item->{$this->field} == $this->value) {
-						$required = true;
-						break;
-					}
-				}
-			} else {
-				$required = ($this->expand($related,$this->field) == $this->value);
-			}
-		} else {
-			$required = ($this->expand($object,$this->field) == $this->value);
-		}
+    public function validateAttribute($object, $attribute)
+    {
+        if ($this->relation) {
+            $related = $object->{$this->relation};
+            if (is_array($related)) {
+                $required = false;
+                foreach ($related as $item) {
+                    if ($item->{$this->field} == $this->value) {
+                        $required = true;
+                        break;
+                    }
+                }
+            } else {
+                $required = ($this->expand($related, $this->field) == $this->value);
+            }
+        } else {
+            $required = ($this->expand($object, $this->field) == $this->value);
+        }
 
-		if ($required && $this->isEmpty($object->$attribute,true)) {
-			$this->addError($object, $attribute, $this->message);
-		}
-	}
+        if ($required && $this->isEmpty($object->$attribute, true)) {
+            $this->addError($object, $attribute, $this->message);
+        }
+    }
 
-	public function expand($object, $attribute)
-	{
-		if ($pos = strpos($attribute,'.')) {
-			$first = substr($attribute,0,$pos);
-			$second = substr($attribute,$pos+1,strlen($attribute));
+    public function expand($object, $attribute)
+    {
+        if ($pos = strpos($attribute, '.')) {
+            $first = substr($attribute, 0, $pos);
+            $second = substr($attribute, $pos+1, strlen($attribute));
 
-			return $this->expand($object->$first, $second);
-		}
+            return $this->expand($object->$first, $second);
+        }
 
-		return $object->$attribute;
-	}
+        return $object->$attribute;
+    }
 }

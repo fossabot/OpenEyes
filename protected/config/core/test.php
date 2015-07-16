@@ -20,33 +20,33 @@
 Yii::setPathOfAlias('yiitests', Yii::getPathOfAlias('system') . '/../tests/framework');
 
 return array(
-	'name' => 'OpenEyes Test',
-	'import' => array(
-		'application.modules.admin.controllers.*',
-		'application.components.*',
-		'system.cli.commands.*',
-		'system..db.schema.*',
-		'system.test.CDbFixtureManager',
-		'yiitests.validators.*'
-	),
-	'components' => array(
-		'fixture' => array(
-			'class' => 'DbFixtureManager',
-		),
-		'db' => array(
-			'class'=> 'OEDbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=openeyestest',
-			'username' => 'oe',
-			'password' => '_OE_TESTDB_PASSWORD_',
-		),
-		'dbTestNotConnecting' => array(
-			'class'=> 'CDbConnection',
-			'connectionString' => 'mysql:host=notArealDB;dbname=openeyestest',
-			'username' => 'oe',
-			'password' => '_OE_TESTDB_PASSWORD_',
-		),
-	),
-	'params' => array(
-		'rest_test_base_url' => 'http://localhost/api',
-	),
+    'name' => 'OpenEyes Test',
+    'import' => array(
+        'application.modules.admin.controllers.*',
+        'application.components.*',
+        'system.cli.commands.*',
+        'system..db.schema.*',
+        'system.test.CDbFixtureManager',
+        'yiitests.validators.*'
+    ),
+    'components' => array(
+        'fixture' => array(
+            'class' => 'DbFixtureManager',
+        ),
+        'db' => array(
+            'class'=> 'OEDbConnection',
+            'connectionString' => 'mysql:host=localhost;dbname=openeyestest',
+            'username' => 'oe',
+            'password' => '_OE_TESTDB_PASSWORD_',
+        ),
+        'dbTestNotConnecting' => array(
+            'class'=> 'CDbConnection',
+            'connectionString' => 'mysql:host=notArealDB;dbname=openeyestest',
+            'username' => 'oe',
+            'password' => '_OE_TESTDB_PASSWORD_',
+        ),
+    ),
+    'params' => array(
+        'rest_test_base_url' => 'http://localhost/api',
+    ),
 );

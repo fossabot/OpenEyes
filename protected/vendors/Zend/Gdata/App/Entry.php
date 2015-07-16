@@ -67,7 +67,6 @@ require_once 'Zend/Gdata/App/Extension/Control.php';
  */
 class Zend_Gdata_App_Entry extends Zend_Gdata_App_FeedEntryParent
 {
-
     /**
      * Root XML element for Atom entries.
      *
@@ -265,8 +264,9 @@ class Zend_Gdata_App_Entry extends Zend_Gdata_App_FeedEntryParent
         try {
             $result = $this->service->importUrl($uri, $className, $extraHeaders);
         } catch (Zend_Gdata_App_HttpException $e) {
-            if ($e->getResponse()->getStatus() != '304')
+            if ($e->getResponse()->getStatus() != '304') {
                 throw $e;
+            }
         }
 
         return $result;
@@ -385,5 +385,4 @@ class Zend_Gdata_App_Entry extends Zend_Gdata_App_FeedEntryParent
         $this->_control = $value;
         return $this;
     }
-
 }

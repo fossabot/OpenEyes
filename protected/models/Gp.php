@@ -30,159 +30,159 @@
  */
 class Gp extends BaseActiveRecordVersioned
 {
-	const UNKNOWN_SALUTATION = 'Doctor';
-	const UNKNOWN_NAME = 'The General Practitioner';
+    const UNKNOWN_SALUTATION = 'Doctor';
+    const UNKNOWN_NAME = 'The General Practitioner';
 
-	public $use_pas = TRUE;
+    public $use_pas = true;
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Gp the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Gp the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * Suppress PAS integration
-	 * @return Gp
-	 */
-	public function noPas()
-	{
-		// Clone to avoid singleton problems with use_pas flag
-		$model = clone $this;
-		$model->use_pas = FALSE;
-		return $model;
-	}
+    /**
+     * Suppress PAS integration
+     * @return Gp
+     */
+    public function noPas()
+    {
+        // Clone to avoid singleton problems with use_pas flag
+        $model = clone $this;
+        $model->use_pas = false;
+        return $model;
+    }
 
-	public function behaviors()
-	{
-		return array(
-			'ContactBehavior' => array(
-				'class' => 'application.behaviors.ContactBehavior',
-			),
-		);
-	}
+    public function behaviors()
+    {
+        return array(
+            'ContactBehavior' => array(
+                'class' => 'application.behaviors.ContactBehavior',
+            ),
+        );
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'gp';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'gp';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('obj_prof, nat_id', 'required'),
-			array('obj_prof, nat_id', 'length', 'max'=>20),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, obj_prof, nat_id', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('obj_prof, nat_id', 'required'),
+            array('obj_prof, nat_id', 'length', 'max'=>20),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('id, obj_prof, nat_id', 'safe', 'on'=>'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'obj_prof' => 'Obj Prof',
-			'nat_id' => 'Nat',
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'id' => 'ID',
+            'obj_prof' => 'Obj Prof',
+            'nat_id' => 'Nat',
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('obj_prof',$this->obj_prof,true);
-		$criteria->compare('nat_id',$this->nat_id,true);
+        $criteria->compare('id', $this->id);
+        $criteria->compare('obj_prof', $this->obj_prof, true);
+        $criteria->compare('nat_id', $this->nat_id, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
-	/**
-	* Pass through use_pas flag to allow pas supression
-	* @see CActiveRecord::instantiate()
-	*/
-	protected function instantiate($attributes)
-	{
-			$model = parent::instantiate($attributes);
-			$model->use_pas = $this->use_pas;
-			return $model;
-	}
+    /**
+    * Pass through use_pas flag to allow pas supression
+    * @see CActiveRecord::instantiate()
+    */
+    protected function instantiate($attributes)
+    {
+        $model = parent::instantiate($attributes);
+        $model->use_pas = $this->use_pas;
+        return $model;
+    }
 
-	/**
-	 * Raise event to allow external data sources to update gp
-	 * @see CActiveRecord::afterFind()
-	 */
-	protected function afterFind()
-	{
-		parent::afterFind();
-		Yii::app()->event->dispatch('gp_after_find', array('gp' => $this));
-	}
+    /**
+     * Raise event to allow external data sources to update gp
+     * @see CActiveRecord::afterFind()
+     */
+    protected function afterFind()
+    {
+        parent::afterFind();
+        Yii::app()->event->dispatch('gp_after_find', array('gp' => $this));
+    }
 
-	public function getLetterAddress($params=array())
-	{
-		if (!isset($params['patient'])) {
-			throw new Exception("Patient must be passed for GP contacts.");
-		}
+    public function getLetterAddress($params=array())
+    {
+        if (!isset($params['patient'])) {
+            throw new Exception("Patient must be passed for GP contacts.");
+        }
 
-		$contact = $address = null;
+        $contact = $address = null;
 
-		if ($params['patient']->practice) {
-			if (@$params['contact']) {
-				$contactRelation = $params['contact'];
-				$contact = $params['patient']->practice->$contactRelation;
-			} else {
-				$contact = $params['patient']->practice->contact;
-			}
+        if ($params['patient']->practice) {
+            if (@$params['contact']) {
+                $contactRelation = $params['contact'];
+                $contact = $params['patient']->practice->$contactRelation;
+            } else {
+                $contact = $params['patient']->practice->contact;
+            }
 
-			$address = $contact->address;
-		}
+            $address = $contact->address;
+        }
 
-		return $this->formatLetterAddress($contact, $address, $params);
-	}
+        return $this->formatLetterAddress($contact, $address, $params);
+    }
 
-	public function getPrefix()
-	{
-		return 'GP';
-	}
+    public function getPrefix()
+    {
+        return 'GP';
+    }
 
-	public function getCorrespondenceName()
-	{
-		return $this->contact->fullName;
-	}
+    public function getCorrespondenceName()
+    {
+        return $this->contact->fullName;
+    }
 }

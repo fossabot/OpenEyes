@@ -44,7 +44,6 @@ require_once('Zend/Gdata/Query.php');
  */
 class Zend_Gdata_YouTube_VideoQuery extends Zend_Gdata_Query
 {
-
     /**
      * Create Gdata_YouTube_VideoQuery object
      */
@@ -124,7 +123,7 @@ class Zend_Gdata_YouTube_VideoQuery extends Zend_Gdata_Query
      */
     public function setLocation($value)
     {
-        switch($value) {
+        switch ($value) {
             case null:
                 unset($this->_params['location']);
             default:
@@ -136,7 +135,7 @@ class Zend_Gdata_YouTube_VideoQuery extends Zend_Gdata_Query
                         'URL parameter');
                 }
 
-                foreach($parameters as $param) {
+                foreach ($parameters as $param) {
                     $temp = trim($param);
                     // strip off the optional exclamation mark for numeric check
                     if (substr($temp, -1) == '!') {
@@ -176,7 +175,7 @@ class Zend_Gdata_YouTube_VideoQuery extends Zend_Gdata_Query
      */
     public function setLocationRadius($value)
     {
-        switch($value) {
+        switch ($value) {
             case null:
                 unset($this->_params['location-radius']);
             default:
@@ -461,7 +460,7 @@ class Zend_Gdata_YouTube_VideoQuery extends Zend_Gdata_Query
                 continue;
             }
 
-            switch($name) {
+            switch ($name) {
                 case 'location-radius':
                     if ($majorProtocolVersion == 1) {
                         require_once 'Zend/Gdata/App/VersionException.php';
@@ -504,7 +503,6 @@ class Zend_Gdata_YouTube_VideoQuery extends Zend_Gdata_Query
             }
 
             $queryArray[] = urlencode($name) . '=' . urlencode($value);
-
         }
         if (count($queryArray) > 0) {
             return '?' . implode('&', $queryArray);
@@ -536,5 +534,4 @@ class Zend_Gdata_YouTube_VideoQuery extends Zend_Gdata_Query
             $minorProtocolVersion);
         return $url;
     }
-
 }

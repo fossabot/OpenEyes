@@ -99,8 +99,11 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
     protected function __construct(Zend_Ldap_Dn $dn, array $data, $fromDataSource, Zend_Ldap $ldap = null)
     {
         parent::__construct($dn, $data, $fromDataSource);
-        if (!is_null($ldap)) $this->attachLdap($ldap);
-        else $this->detachLdap();
+        if (!is_null($ldap)) {
+            $this->attachLdap($ldap);
+        } else {
+            $this->detachLdap();
+        }
     }
 
     /**
@@ -142,8 +145,9 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
              */
             require_once 'Zend/Ldap/Exception.php';
             throw new Zend_Ldap_Exception(null, 'No LDAP connection specified.', Zend_Ldap_Exception::LDAP_OTHER);
+        } else {
+            return $this->_ldap;
         }
-        else return $this->_ldap;
     }
 
     /**
@@ -238,7 +242,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
     {
         if (is_string($dn) || is_array($dn)) {
             $dn = Zend_Ldap_Dn::factory($dn);
-        } else if ($dn instanceof Zend_Ldap_Dn) {
+        } elseif ($dn instanceof Zend_Ldap_Dn) {
             $dn = clone $dn;
         } else {
             /**
@@ -265,7 +269,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
     {
         if (is_string($dn) || is_array($dn)) {
             $dn = Zend_Ldap_Dn::factory($dn);
-        } else if ($dn instanceof Zend_Ldap_Dn) {
+        } elseif ($dn instanceof Zend_Ldap_Dn) {
             $dn = clone $dn;
         } else {
             /**
@@ -301,7 +305,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
         }
         if (is_string($data['dn']) || is_array($data['dn'])) {
             $dn = Zend_Ldap_Dn::factory($data['dn']);
-        } else if ($data['dn'] instanceof Zend_Ldap_Dn) {
+        } elseif ($data['dn'] instanceof Zend_Ldap_Dn) {
             $dn = clone $data['dn'];
         } else {
             /**
@@ -398,7 +402,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
     {
         if ($this->isNew() || $this->willBeDeleted()) {
             return false;
-        } else if ($this->_newDn !== null) {
+        } elseif ($this->_newDn !== null) {
             return ($this->_dn != $this->_newDn);
         } else {
             return false;
@@ -595,7 +599,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
         foreach ($this->_currentData as $key => $value) {
             if (!array_key_exists($key, $this->_originalData) && !empty($value)) {
                 $changed[$key] = $value;
-            } else if ($this->_originalData[$key] !== $this->_currentData[$key]) {
+            } elseif ($this->_originalData[$key] !== $this->_currentData[$key]) {
                 $changed[$key] = $value;
             }
         }
@@ -618,9 +622,9 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
         foreach ($this->_currentData as $key => $value) {
             if (!array_key_exists($key, $this->_originalData) && !empty($value)) {
                 $changes['add'][$key] = $value;
-            } else if (count($this->_originalData[$key]) === 0 && !empty($value)) {
+            } elseif (count($this->_originalData[$key]) === 0 && !empty($value)) {
                 $changes['add'][$key] = $value;
-            } else if ($this->_originalData[$key] !== $this->_currentData[$key]) {
+            } elseif ($this->_originalData[$key] !== $this->_currentData[$key]) {
                 if (empty($value)) {
                     $changes['delete'][$key] = $value;
                 } else {
@@ -800,21 +804,21 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
              */
             require_once 'Zend/Ldap/Exception.php';
             throw new Zend_Ldap_Exception(null, 'DN cannot be changed.');
-        }
-        else if (array_key_exists($name, $rdn)) {
+        } elseif (array_key_exists($name, $rdn)) {
             /**
              * @see Zend_Ldap_Exception
              */
             require_once 'Zend/Ldap/Exception.php';
             throw new Zend_Ldap_Exception(null, 'Cannot change attribute because it\'s part of the RDN');
-        } else if (in_array($name, self::$_systemAttributes)) {
+        } elseif (in_array($name, self::$_systemAttributes)) {
             /**
              * @see Zend_Ldap_Exception
              */
             require_once 'Zend/Ldap/Exception.php';
             throw new Zend_Ldap_Exception(null, 'Cannot change attribute because it\'s read-only');
+        } else {
+            return true;
         }
-        else return true;
     }
 
     /**

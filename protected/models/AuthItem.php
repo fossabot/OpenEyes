@@ -19,8 +19,8 @@
 
 class AuthItem extends BaseActiveRecord
 {
-	public function tableName()
-	{
-		return 'authitem';
-	}
+    public function tableName()
+    {
+        return 'authitem';
+    }
 }

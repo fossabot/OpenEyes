@@ -19,18 +19,18 @@
 
 class FormActions extends BaseFieldWidget
 {
-	public $buttonOptions = array();
+    public $buttonOptions = array();
 
-	public $defaultButtonOptions = array(
-		'submit' => 'Save',
-		'cancel' => 'Cancel',
-		'delete' => false
-	);
+    public $defaultButtonOptions = array(
+        'submit' => 'Save',
+        'cancel' => 'Cancel',
+        'delete' => false
+    );
 
-	public function init()
-	{
-		$this->buttonOptions = array_merge($this->defaultButtonOptions, $this->buttonOptions);
+    public function init()
+    {
+        $this->buttonOptions = array_merge($this->defaultButtonOptions, $this->buttonOptions);
 
-		return parent::init();
-	}
+        return parent::init();
+    }
 }

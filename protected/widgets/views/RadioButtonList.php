@@ -19,61 +19,92 @@
 ?>
 
 
-<?php if (@$htmlOptions['nowrapper']) {?>
+<?php if (@$htmlOptions['nowrapper']) {
+    ?>
 
-	<?php if (!$no_element) {?>
+	<?php if (!$no_element) {
+    ?>
 		<input type="hidden" value="" name="<?php echo CHtml::modelName($element)?>[<?php echo $field?>]">
-	<?php }?>
+	<?php 
+}
+    ?>
 
-	<?php foreach ($data as $id => $data_value) {?>
+	<?php foreach ($data as $id => $data_value) {
+    ?>
 		<?php
-			$options = array('value' => $id, "id" => CHtml::modelName($element). '_' . $field . '_' . $id);
+            $options = array('value' => $id, "id" => CHtml::modelName($element). '_' . $field . '_' . $id);
 
-			if (@$htmlOptions['options'] && array_key_exists($id, @$htmlOptions['options'])) {
-				foreach ($htmlOptions['options'][$id] as $k => $v) {
-					$options[$k] = $v;
-				}
-			}?>
+    if (@$htmlOptions['options'] && array_key_exists($id, @$htmlOptions['options'])) {
+        foreach ($htmlOptions['options'][$id] as $k => $v) {
+            $options[$k] = $v;
+        }
+    }
+    ?>
 			<label class="inline highlight">
-				<?php echo CHtml::radioButton($name, (!is_null($value) && $value == $id) && (!is_string($value) || $value!=""), $options); ?>
+				<?php echo CHtml::radioButton($name, (!is_null($value) && $value == $id) && (!is_string($value) || $value!=""), $options);
+    ?>
 		 		<?php echo CHtml::encode($data_value)?>
 	 		</label>
-	<?php }?>
+	<?php 
+}
+    ?>
 
-<?php } else {?>
+<?php 
+} else {
+    ?>
 
-	<fieldset id="<?php echo CHtml::modelName($element). '_' . $field?>" class="row field-row"<?php if ($hidden) {?> style="display: none;"<?php }?>>
+	<fieldset id="<?php echo CHtml::modelName($element). '_' . $field?>" class="row field-row"<?php if ($hidden) {
+    ?> style="display: none;"<?php 
+}
+    ?>>
 		<?php	// Added hidden input below to enforce posting of current form element name.
-				// When using radio or checkboxes if no value is selected then nothing is posted
-				// not triggereing server side validation.
-		?>
-		<legend class="large-<?php echo $layoutColumns['label'];?> column"><?php if (!$label_above) {?><?php echo CHtml::encode($element->getAttributeLabel($field)); ?>:<?php }?></legend>
-		<?php if (!$no_element) {?>
+                // When using radio or checkboxes if no value is selected then nothing is posted
+                // not triggereing server side validation.
+        ?>
+		<legend class="large-<?php echo $layoutColumns['label'];
+    ?> column"><?php if (!$label_above) {
+    ?><?php echo CHtml::encode($element->getAttributeLabel($field));
+    ?>:<?php 
+}
+    ?></legend>
+		<?php if (!$no_element) {
+    ?>
 			<input type="hidden" value="" name="<?php echo CHtml::modelName($element)?>[<?php echo $field?>]">
-		<?php }?>
-		<div class="large-<?php echo $layoutColumns['field'];?> column end">
-			<?php $i=0; ?>
-			<?php if ($label_above) {?>
+		<?php 
+}
+    ?>
+		<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+			<?php $i=0;
+    ?>
+			<?php if ($label_above) {
+    ?>
 				<label for="">
 					<?php echo CHtml::encode($element->getAttributeLabel($field))?>
 				</label>
-			<?php }?>
-			<?php foreach ($data as $id => $data_value) {?>
+			<?php 
+}
+    ?>
+			<?php foreach ($data as $id => $data_value) {
+    ?>
 				<label class="inline highlight">
 					<?php
-						$options = array('value' => $id, "id" => CHtml::modelName($element). '_' . $field . '_' . $id);
+                        $options = array('value' => $id, "id" => CHtml::modelName($element). '_' . $field . '_' . $id);
 
-						if (@$htmlOptions['options'] && array_key_exists($id, @$htmlOptions['options'])) {
-							foreach ($htmlOptions['options'][$id] as $k => $v) {
-								$options[$k] = $v;
-							}
-						}
+    if (@$htmlOptions['options'] && array_key_exists($id, @$htmlOptions['options'])) {
+        foreach ($htmlOptions['options'][$id] as $k => $v) {
+            $options[$k] = $v;
+        }
+    }
 
-						echo CHtml::radioButton($name, (!is_null($value) && $value == $id) && (!is_string($value) || $value!=""), $options);
-					?>
+    echo CHtml::radioButton($name, (!is_null($value) && $value == $id) && (!is_string($value) || $value!=""), $options);
+    ?>
 					<?php echo CHtml::encode($data_value)?>
 				</label>
-			<?php }?>
+			<?php 
+}
+    ?>
 		</div>
 	</fieldset>
-<?php }?>
+<?php 
+}?>

@@ -17,34 +17,34 @@ namespace services;
 
 class ValidationFailure extends ServiceException
 {
-	public $httpStatus = 422;
+    public $httpStatus = 422;
 
-	protected $errors;
+    protected $errors;
 
-	/**
-	 * @param string $message
-	 * @param array $errors
-	 */
-	public function __construct($message, array $errors)
-	{
-		$this->errors = $errors;
-		parent::__construct($message);
-	}
+    /**
+     * @param string $message
+     * @param array $errors
+     */
+    public function __construct($message, array $errors)
+    {
+        $this->errors = $errors;
+        parent::__construct($message);
+    }
 
-	public function toFhirOutcome()
-	{
-		$issues = array();
-		foreach ($this->errors as $attr => $errors) {
-			foreach ($errors as $error) {
-				$issues[] = new FhirOutcomeIssue(
-					array(
-						'severity' => \FhirValueSet::ISSUESEVERITY_ERROR,
-						'type' => \FhirValueSet::ISSUETYPE_INVALID_VALUE,  // Ideally we'd also support INVALID_REQUIRED, but Yii doesn't make that easy for us
-						'details' => $error,
-					)
-				);
-			}
-		}
-		return new FhirOutcome(array('issues' => $issues));
-	}
+    public function toFhirOutcome()
+    {
+        $issues = array();
+        foreach ($this->errors as $attr => $errors) {
+            foreach ($errors as $error) {
+                $issues[] = new FhirOutcomeIssue(
+                    array(
+                        'severity' => \FhirValueSet::ISSUESEVERITY_ERROR,
+                        'type' => \FhirValueSet::ISSUETYPE_INVALID_VALUE,  // Ideally we'd also support INVALID_REQUIRED, but Yii doesn't make that easy for us
+                        'details' => $error,
+                    )
+                );
+            }
+        }
+        return new FhirOutcome(array('issues' => $issues));
+    }
 }

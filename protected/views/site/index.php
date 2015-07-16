@@ -36,14 +36,14 @@
 		<?php $this->renderPartial('//base/_messages'); ?>
 
 		<?php
-			$this->beginWidget('CActiveForm', array(
-				'id' => 'search-form',
-				'focus' => '#query',
-				'action' => Yii::app()->createUrl('site/search'),
-				'htmlOptions' => array(
-					'class' => 'form panel search'
-				)
-			));?>
+            $this->beginWidget('CActiveForm', array(
+                'id' => 'search-form',
+                'focus' => '#query',
+                'action' => Yii::app()->createUrl('site/search'),
+                'htmlOptions' => array(
+                    'class' => 'form panel search'
+                )
+            ));?>
 			<div class="row">
 				<div class="large-9 column">
 					<?php echo CHtml::textField('query', '', array('autocomplete' => Yii::app()->params['html_autocomplete'], 'class' => 'large', 'placeholder' => 'Enter search...')); ?>

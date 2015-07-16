@@ -18,29 +18,29 @@
  */
 
 return array(
-	'procedure1' => array(
-		'term' => 'Foobar Procedure',
-		'short_format' => 'FUB',
-		'snomed_code' => '12345',
-		'snomed_term' => 'Blah',
-		'aliases' => 'wstfgl,barfoo',
-		'default_duration' => 60,
-		'unbooked' => 0,
-	),
-	'procedure2' => array(
-		'term' => 'Test Procedure',
-		'short_format' => 'TP',
-		'snomed_code' => '67890',
-		'snomed_term' => 'Bleh',
-		'default_duration' => 20,
-		'unbooked' => 1,
-	),
-	'procedure3' => array(
-		'term' => 'Test Procedure 2',
-		'short_format' => 'PP',
-		'snomed_code' => '67891',
-		'snomed_term' => 'Blah',
-		'default_duration' => 23,
-		'unbooked' => 1,
-	)
+    'procedure1' => array(
+        'term' => 'Foobar Procedure',
+        'short_format' => 'FUB',
+        'snomed_code' => '12345',
+        'snomed_term' => 'Blah',
+        'aliases' => 'wstfgl,barfoo',
+        'default_duration' => 60,
+        'unbooked' => 0,
+    ),
+    'procedure2' => array(
+        'term' => 'Test Procedure',
+        'short_format' => 'TP',
+        'snomed_code' => '67890',
+        'snomed_term' => 'Bleh',
+        'default_duration' => 20,
+        'unbooked' => 1,
+    ),
+    'procedure3' => array(
+        'term' => 'Test Procedure 2',
+        'short_format' => 'PP',
+        'snomed_code' => '67891',
+        'snomed_term' => 'Blah',
+        'default_duration' => 23,
+        'unbooked' => 1,
+    )
 );

@@ -15,51 +15,57 @@
 
 class CleanupAddressesCommand extends CConsoleCommand
 {
-	const DUMP_FILE = 'orphaned_addresses.csv';
-	const BATCH_SIZE = 128;
+    const DUMP_FILE = 'orphaned_addresses.csv';
+    const BATCH_SIZE = 128;
 
-	public function getHelp()
-	{
-		return "Remove orphaned entries from the address table.\nThe data removed is dumped to a file named " . self::DUMP_FILE . ".\n";
-	}
+    public function getHelp()
+    {
+        return "Remove orphaned entries from the address table.\nThe data removed is dumped to a file named " . self::DUMP_FILE . ".\n";
+    }
 
-	public function run($args)
-	{
-		$f = fopen(self::DUMP_FILE, 'a+');
-		if (!$f) die("Failed to open " . self::DUMP_FILE . " for writing\n");
+    public function run($args)
+    {
+        $f = fopen(self::DUMP_FILE, 'a+');
+        if (!$f) {
+            die("Failed to open " . self::DUMP_FILE . " for writing\n");
+        }
 
-		$db = Yii::app()->db;
+        $db = Yii::app()->db;
 
-		$cmd = $db->createCommand()->select("a.*")
-			->from("address a")->leftJoin("contact c", "a.parent_class = 'Contact' and a.parent_id = c.id")
-			->where("c.id is null")->limit(self::BATCH_SIZE);
+        $cmd = $db->createCommand()->select("a.*")
+            ->from("address a")->leftJoin("contact c", "a.parent_class = 'Contact' and a.parent_id = c.id")
+            ->where("c.id is null")->limit(self::BATCH_SIZE);
 
-		while (1) {
-			$tx = $db->beginTransaction();
+        while (1) {
+            $tx = $db->beginTransaction();
 
-			if (!($rows = $cmd->queryAll())) {
-				$tx->commit();
-				break;
-			}
+            if (!($rows = $cmd->queryAll())) {
+                $tx->commit();
+                break;
+            }
 
-			print "Deleting " . count($rows) . " rows...\n";
+            print "Deleting " . count($rows) . " rows...\n";
 
-			$ids = array();
-			foreach ($rows as $row) {
-				if (!fputcsv($f, $row)) die("Failed to write CSV row\n");
+            $ids = array();
+            foreach ($rows as $row) {
+                if (!fputcsv($f, $row)) {
+                    die("Failed to write CSV row\n");
+                }
 
-				$ids[] = $row['id'];
-			}
-			if (!fflush($f)) die("Flush failed");
+                $ids[] = $row['id'];
+            }
+            if (!fflush($f)) {
+                die("Flush failed");
+            }
 
-			$db->createCommand()->delete("address", array("in", "id", $ids));
+            $db->createCommand()->delete("address", array("in", "id", $ids));
 
-			$tx->commit();
-			sleep(1);
-		}
+            $tx->commit();
+            sleep(1);
+        }
 
-		fclose($f);
+        fclose($f);
 
-		print "Done\n";
-	}
+        print "Done\n";
+    }
 }

@@ -27,15 +27,15 @@
  */
 class CommonOphthalmicDisorderGroup extends BaseActiveRecordVersioned
 {
-	public function tableName()
-	{
-		return 'common_ophthalmic_disorder_group';
-	}
+    public function tableName()
+    {
+        return 'common_ophthalmic_disorder_group';
+    }
 
-	public function rules()
-	{
-		return array(
-			array('name', 'required'),
-		);
-	}
+    public function rules()
+    {
+        return array(
+            array('name', 'required'),
+        );
+    }
 }

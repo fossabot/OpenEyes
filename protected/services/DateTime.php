@@ -15,15 +15,15 @@
 
 namespace services;
 
-class Date extends \DateTime implements FhirCompatible
+class DateTime extends \DateTime implements FhirCompatible
 {
-	static public function fromFhir($value)
-	{
-		return new self($value);
-	}
+    public static function fromFhir($value)
+    {
+        return new self($value);
+    }
 
-	public function toFhir()
-	{
-		return $this->format(DATE_RFC3339);
-	}
+    public function toFhir()
+    {
+        return $this->format(DATE_RFC3339);
+    }
 }

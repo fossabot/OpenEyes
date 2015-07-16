@@ -115,5 +115,4 @@ class Zend_Gdata_App_MediaEntry extends Zend_Gdata_App_Entry
         }
         return $this;
     }
-
 }

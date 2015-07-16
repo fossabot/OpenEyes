@@ -37,7 +37,6 @@ require_once 'Zend/Gdata/App/Extension/Link.php';
  */
 class Zend_Gdata_Books_Extension_BooksLink extends Zend_Gdata_App_Extension_Link
 {
-
     /**
      * Constructor for Zend_Gdata_Books_Extension_BooksLink which
      * Extends the base Link class with Books extensions
@@ -55,7 +54,4 @@ class Zend_Gdata_Books_Extension_BooksLink extends Zend_Gdata_App_Extension_Link
         $this->registerAllNamespaces(Zend_Gdata_Books::$namespaces);
         parent::__construct($href, $rel, $type, $hrefLang, $title, $length);
     }
-
-
 }
-

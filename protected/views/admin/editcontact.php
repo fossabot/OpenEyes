@@ -20,24 +20,24 @@
 ?>
 <div class="box admin">
 	<h2>Edit contact</h2>
-	<?php echo $this->renderPartial('_form_errors',array('errors'=>$errors))?>
+	<?php echo $this->renderPartial('_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'adminform',
-		'enableAjaxValidation'=>false,
-		'focus'=>'#contactname',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
-		<?php echo $form->textField($contact,'title', array('autocomplete'=>Yii::app()->params['html_autocomplete']), null, array('field' => 2))?>
-		<?php echo $form->textField($contact,'first_name',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'last_name',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'nick_name',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'primary_phone',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'qualifications',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->dropDownList($contact,'contact_label_id',CHtml::listData(ContactLabel::model()->active()->findAll(array('order'=>'name')),'id','name'),array('empty'=>'- None -'))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'adminform',
+        'enableAjaxValidation'=>false,
+        'focus'=>'#contactname',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
+		<?php echo $form->textField($contact, 'title', array('autocomplete'=>Yii::app()->params['html_autocomplete']), null, array('field' => 2))?>
+		<?php echo $form->textField($contact, 'first_name', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'last_name', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'nick_name', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'primary_phone', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'qualifications', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->dropDownList($contact, 'contact_label_id', CHtml::listData(ContactLabel::model()->active()->findAll(array('order'=>'name')), 'id', 'name'), array('empty'=>'- None -'))?>
 		<?php echo $form->formActions(array('cancel-uri' => '/admin/contacts'))?>
 	<?php $this->endWidget()?>
 </div>
@@ -55,13 +55,15 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($contact->locations as $i => $location) {?>
+                foreach ($contact->locations as $i => $location) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $location->id?>" data-uri="admin/contactLocation?location_id=<?php echo $location->id?>">
 						<td><?php echo $location->site_id ? 'Site' : 'Institution'?></td>
 						<td><?php echo $location->site_id ? $location->site->name : $location->institution->name?>&nbsp;</td>
 						<td><a href="#" class="removeLocation" rel="<?php echo $location->id?>">Remove</a></td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 			<tfoot class="pagination-container">
 				<tr>

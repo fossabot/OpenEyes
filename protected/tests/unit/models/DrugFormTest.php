@@ -19,68 +19,66 @@
  */
 class DrugFormTest extends CDbTestCase
 {
-	/**
-	 * @var DrugForm
-	 */
-	protected $model;
-	public $fixtures = array(
-		'drugforms' => 'DrugForm',
-	);
+    /**
+     * @var DrugForm
+     */
+    protected $model;
+    public $fixtures = array(
+        'drugforms' => 'DrugForm',
+    );
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new DrugForm;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new DrugForm;
+    }
 
-	/**
-	 * @covers DrugForm::model
-	 */
-	public function testModel()
-	{
+    /**
+     * @covers DrugForm::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('DrugForm', get_class(DrugForm::model()), 'Class name should match model.');
+    }
 
-		$this->assertEquals('DrugForm', get_class(DrugForm::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers DrugForm::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('drug_form', $this->model->tableName());
+    }
 
-	/**
-	 * @covers DrugForm::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('drug_form', $this->model->tableName());
-	}
+    /**
+     * @covers DrugForm::rules
+     */
+    public function testRules()
+    {
+        $this->assertTrue($this->drugforms('drugform1')->validate());
+        $this->assertEmpty($this->drugforms('drugform2')->errors);
+    }
 
-	/**
-	 * @covers DrugForm::rules
-	 */
-	public function testRules()
-	{
-		$this->assertTrue($this->drugforms('drugform1')->validate());
-		$this->assertEmpty($this->drugforms('drugform2')->errors);
-	}
+    /**
+     * @covers DrugForm::search
+     */
+    public function testSearch()
+    {
+        $this->model->setAttributes($this->drugforms('drugform1')->getAttributes());
+        $results = $this->model->search();
+        $data = $results->getData();
 
-	/**
-	 * @covers DrugForm::search
-	 */
-	public function testSearch()
-	{
-		$this->model->setAttributes($this->drugforms('drugform1')->getAttributes());
-		$results = $this->model->search();
-		$data = $results->getData();
-
-		$expectedKeys = array('drugform1');
-		$expectedResults = array();
-		if (!empty($expectedKeys)) {
-			foreach ($expectedKeys as $key) {
-				$expectedResults[] = $this->drugforms($key);
-			}
-		}
-		$this->assertEquals(1, $results->getItemCount());
-		$this->assertEquals($expectedResults, $data);
-	}
-
+        $expectedKeys = array('drugform1');
+        $expectedResults = array();
+        if (!empty($expectedKeys)) {
+            foreach ($expectedKeys as $key) {
+                $expectedResults[] = $this->drugforms($key);
+            }
+        }
+        $this->assertEquals(1, $results->getItemCount());
+        $this->assertEquals($expectedResults, $data);
+    }
 }

@@ -18,21 +18,31 @@
  */
 ?>
 <ul class="inline-list tabs event-actions">
-	<?php foreach ($this->event_tabs as $tab) { ?>
-	<li<?php if (@$tab['active']) { ?> class="selected"<?php } ?>>
-		<?php if (@$tab['href']) { ?>
+	<?php foreach ($this->event_tabs as $tab) {
+    ?>
+	<li<?php if (@$tab['active']) {
+    ?> class="selected"<?php 
+}
+    ?>>
+		<?php if (@$tab['href']) {
+    ?>
 			<a href="<?php echo $tab['href'] ?>"><?php echo $tab['label'] ?></a>
-		<?php } else { //FIXME: don't select?>
+		<?php 
+} else { //FIXME: don't select?>
 			<a href="#"><?php echo $tab['label'] ?></a>
-		<?php } ?>
+		<?php 
+}
+    ?>
 	</li>
-	<?php } ?>
+	<?php 
+} ?>
 </ul>
 
 <?php //this needs adding to SASS and doing properly when we decide on a solution OEM-295
-if(isset($this->event->eventType->name) && ($this->event->eventType->name === 'Examination')) {
-?>
+if (isset($this->event->eventType->name) && ($this->event->eventType->name === 'Examination')) {
+    ?>
 <div class="button-bar left">
 	<span width="22px" height="24px" style="font-size:21px; color:#152250; vertical-align: middle; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RIGHT</span>
 </div>
-<?php } ?>
+<?php 
+} ?>

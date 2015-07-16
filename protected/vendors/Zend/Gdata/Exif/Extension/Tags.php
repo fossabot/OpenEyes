@@ -92,7 +92,6 @@ require_once 'Zend/Gdata/Exif/Extension/Time.php';
  */
 class Zend_Gdata_Exif_Extension_Tags extends Zend_Gdata_Extension
 {
-
     protected $_rootNamespace = 'exif';
     protected $_rootElement = 'tags';
 
@@ -545,5 +544,4 @@ class Zend_Gdata_Exif_Extension_Tags extends Zend_Gdata_Extension
         $this->_time = $value;
         return $this;
     }
-
 }

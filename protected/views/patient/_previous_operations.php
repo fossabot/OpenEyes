@@ -36,14 +36,20 @@
 			<tr>
 				<th>Date</th>
 				<th>Operation</th>
-				<?php if ($this->checkAccess('OprnEditPreviousOperation')) { ?><th>Actions</th><?php } ?>
+				<?php if ($this->checkAccess('OprnEditPreviousOperation')) {
+    ?><th>Actions</th><?php 
+} ?>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($this->patient->previousOperations as $operation) {?>
+			<?php foreach ($this->patient->previousOperations as $operation) {
+    ?>
 				<tr>
 					<td><?php echo $operation->dateText?></td>
-					<td><?php if ($operation->side) { echo $operation->side->adjective.' ';}?><?php echo CHtml::encode($operation->operation)?></td>
+					<td><?php if ($operation->side) {
+    echo $operation->side->adjective.' ';
+}
+    ?><?php echo CHtml::encode($operation->operation)?></td>
 					<?php if ($this->checkAccess('OprnEditPreviousOperation')): ?>
 						<td>
 							<a href="#" class="editOperation" rel="<?php echo $operation->id?>">Edit</a>&nbsp;&nbsp;
@@ -51,11 +57,13 @@
 						</td>
 					<?php endif ?>
 				</tr>
-			<?php }?>
+			<?php 
+}?>
 			</tbody>
 		</table>
 
-		<?php if ($this->checkAccess('OprnEditPreviousOperation')) {?>
+		<?php if ($this->checkAccess('OprnEditPreviousOperation')) {
+    ?>
 			<div class="box-actions">
 				<button  id="btn-add_previous_operation" class="secondary small">
 					Add Previous ophthalmic surgery
@@ -65,16 +73,16 @@
 			<div id="add_previous_operation" style="display: none;">
 
 				<?php
-				$form = $this->beginWidget('FormLayout', array(
-						'id'=>'add-previous_operation',
-						'enableAjaxValidation'=>false,
-						'htmlOptions' => array('class'=>'form add-data'),
-						'action'=>array('patient/addPreviousOperation'),
-						'layoutColumns'=>array(
-							'label' => 3,
-							'field' => 9
-						),
-					))?>
+                $form = $this->beginWidget('FormLayout', array(
+                        'id'=>'add-previous_operation',
+                        'enableAjaxValidation'=>false,
+                        'htmlOptions' => array('class'=>'form add-data'),
+                        'action'=>array('patient/addPreviousOperation'),
+                        'layoutColumns'=>array(
+                            'label' => 3,
+                            'field' => 9
+                        ),
+                    ))?>
 
 				<fieldset class="field-row">
 
@@ -84,38 +92,47 @@
 					<input type="hidden" name="patient_id" value="<?php echo $this->patient->id?>" />
 
 					<div class="field-row row">
-						<div class="<?php echo $form->columns('label');?>">
+						<div class="<?php echo $form->columns('label');
+    ?>">
 							<label for="common_previous_operation">Common operations:</label>
 						</div>
-						<div class="<?php echo $form->columns('field');?>">
-							<?php echo CHtml::dropDownList('common_previous_operation','',CHtml::listData(CommonPreviousOperation::model()->findAll(array('order'=>'display_order asc')),'id','name'),array('empty'=>'- Select -'))?>
+						<div class="<?php echo $form->columns('field');
+    ?>">
+							<?php echo CHtml::dropDownList('common_previous_operation', '', CHtml::listData(CommonPreviousOperation::model()->findAll(array('order'=>'display_order asc')), 'id', 'name'), array('empty'=>'- Select -'))?>
 						</div>
 					</div>
 
 					<div class="field-row row">
-						<div class="<?php echo $form->columns('label');?>">
+						<div class="<?php echo $form->columns('label');
+    ?>">
 							<label for="previous_operation">Operation:</label>
 						</div>
-						<div class="<?php echo $form->columns('field');?>">
-							<?php echo CHtml::textField('previous_operation','',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+						<div class="<?php echo $form->columns('field');
+    ?>">
+							<?php echo CHtml::textField('previous_operation', '', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 						</div>
 					</div>
 
 					<fieldset class="row field-row">
-						<legend class="<?php echo $form->columns('label');?>">
+						<legend class="<?php echo $form->columns('label');
+    ?>">
 							Side:
 						</legend>
-						<div class="<?php echo $form->columns('field');?>">
+						<div class="<?php echo $form->columns('field');
+    ?>">
 							<label class="inline">
 								<input type="radio" name="previous_operation_side" class="previous_operation_side" value="" checked="checked" /> None
 							</label>
-							<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $eye) {?>
+							<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $eye) {
+    ?>
 								<label class="inline"><input type="radio" name="previous_operation_side" class="previous_operation_side" value="<?php echo $eye->id?>" /> <?php echo $eye->name?>	</label>
-							<?php }?>
+							<?php 
+}
+    ?>
 						</div>
 					</fieldset>
 
-					<?php $this->renderPartial('_fuzzy_date',array('class'=>'previousOperation'))?>
+					<?php $this->renderPartial('_fuzzy_date', array('class'=>'previousOperation'))?>
 
 					<div class="previous_operations_form_errors alert-box alert hide"></div>
 
@@ -131,7 +148,8 @@
 				</fieldset>
 				<?php $this->endWidget()?>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 	</div>
 </section>
 

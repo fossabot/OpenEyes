@@ -17,7 +17,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-abstract class PatientSummaryIdWidget extends CWidget {
-	public $patient;
-
+abstract class PatientSummaryIdWidget extends CWidget
+{
+    public $patient;
 }

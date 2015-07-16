@@ -42,7 +42,6 @@ require_once 'Zend/Gdata/Entry.php';
  */
 class Zend_Gdata_Extension_EntryLink extends Zend_Gdata_Extension
 {
-
     protected $_rootElement = 'entryLink';
     protected $_href = null;
     protected $_readOnly = null;
@@ -101,11 +100,9 @@ class Zend_Gdata_Extension_EntryLink extends Zend_Gdata_Extension
         case 'readOnly':
             if ($attribute->nodeValue == "true") {
                 $this->_readOnly = true;
-            }
-            else if ($attribute->nodeValue == "false") {
+            } elseif ($attribute->nodeValue == "false") {
                 $this->_readOnly = false;
-            }
-            else {
+            } else {
                 throw new Zend_Gdata_App_InvalidArgumentException("Expected 'true' or 'false' for gCal:selected#value.");
             }
             break;
@@ -163,5 +160,4 @@ class Zend_Gdata_Extension_EntryLink extends Zend_Gdata_Extension
         $this->_entry = $value;
         return $this;
     }
-
 }

@@ -43,7 +43,6 @@ require_once 'Zend/Gdata/App/FeedSourceParent.php';
 class Zend_Gdata_App_Feed extends Zend_Gdata_App_FeedSourceParent
         implements Iterator, ArrayAccess, Countable
 {
-
     /**
      * The root xml element of this data element
      *
@@ -348,5 +347,4 @@ class Zend_Gdata_App_Feed extends Zend_Gdata_App_FeedSourceParent
             $entry->setMinorProtocolVersion($value);
         }
     }
-
 }

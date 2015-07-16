@@ -22,29 +22,29 @@
  */
 class LinkPager extends CLinkPager
 {
-	/**
-	 * Inits Pager
-	 */
-	public function init()
-	{
-		parent::init();
-		$this->setHeaderToShowing();
-	}
+    /**
+     * Inits Pager
+     */
+    public function init()
+    {
+        parent::init();
+        $this->setHeaderToShowing();
+    }
 
-	/**
-	 * Sets the header to be our `showing...` string
-	 */
-	protected function setHeaderToShowing()
-	{
-		$page = $this->getCurrentPage() + 1; //0 indexed page so add one
-		$to = $this->pages->getPageSize() * $page;
-		if($to > $this->getItemCount()){
-			$to = $this->getItemCount();
-		}
-		$from = $page;
-		if($page > 1){
-			$from = (($page - 1) * $this->pages->getPageSize()) + 1;
-		}
-		$this->header = 'Showing '.$from.' to '.$to. ' of '.$this->getItemCount();
-	}
+    /**
+     * Sets the header to be our `showing...` string
+     */
+    protected function setHeaderToShowing()
+    {
+        $page = $this->getCurrentPage() + 1; //0 indexed page so add one
+        $to = $this->pages->getPageSize() * $page;
+        if ($to > $this->getItemCount()) {
+            $to = $this->getItemCount();
+        }
+        $from = $page;
+        if ($page > 1) {
+            $from = (($page - 1) * $this->pages->getPageSize()) + 1;
+        }
+        $this->header = 'Showing '.$from.' to '.$to. ' of '.$this->getItemCount();
+    }
 }

@@ -38,7 +38,6 @@ require_once 'Zend/Gdata/Extension.php';
  */
 class Zend_Gdata_Extension_Rating extends Zend_Gdata_Extension
 {
-
     protected $_rootElement = 'rating';
     protected $_min = null;
     protected $_max = null;
@@ -236,5 +235,4 @@ class Zend_Gdata_Extension_Rating extends Zend_Gdata_Extension
         $this->_value = $value;
         return $this;
     }
-
 }

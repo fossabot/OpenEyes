@@ -54,14 +54,16 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($location->patients as $i => $patient) {?>
+                foreach ($location->patients as $i => $patient) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $patient->id?>" data-uri="patient/view/<?php echo $patient->id?>">
 						<td><?php echo $patient->hos_num?>&nbsp;</td>
 						<td><?php echo $patient->title?>&nbsp;</td>
 						<td><?php echo $patient->first_name?>&nbsp;</td>
 						<td><?php echo $patient->last_name?>&nbsp;</td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 		</table>
 	</form>

@@ -19,14 +19,14 @@
 
 class MedicationDrugImportCommand extends CConsoleCommand
 {
-	public function getName()
-	{
-		return 'Medication Drug Import Command.';
-	}
+    public function getName()
+    {
+        return 'Medication Drug Import Command.';
+    }
 
-	public function getHelp()
-	{
-		return <<<EOH
+    public function getHelp()
+    {
+        return <<<EOH
 Import data from various different data sources into the Medication Drug model. Implemented initially to provide support
 for importing medication drugs from the DM+D dataset. Specifically, the XML vtm and vmp files.
 
@@ -45,26 +45,26 @@ Usage:
 ./yiic medicationdrugimport [options] import [datafile]
 
 EOH;
-	}
+    }
 
-	public $defaultAction = 'import';
+    public $defaultAction = 'import';
 
-	public $type = 'vtm';
-	public $external_source = 'dmd';
-	public $import_size = 20;
+    public $type = 'vtm';
+    public $external_source = 'dmd';
+    public $import_size = 20;
 
-	public function actionImport($args)
-	{
-		$filename = $args[0];
-		if (!$filename) {
-			$this->usageError('Import filename required');
-		}
+    public function actionImport($args)
+    {
+        $filename = $args[0];
+        if (!$filename) {
+            $this->usageError('Import filename required');
+        }
 
-		if (!file_exists($filename)) {
-			$this->usageError("Cannot find import file " . $filename);
-		}
+        if (!file_exists($filename)) {
+            $this->usageError("Cannot find import file " . $filename);
+        }
 
-		$mdi = new MedicationDrugImport;
-		$mdi->import($filename, $this->type, $this->external_source, $this->import_size);
-	}
+        $mdi = new MedicationDrugImport;
+        $mdi->import($filename, $this->type, $this->external_source, $this->import_size);
+    }
 }

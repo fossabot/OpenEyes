@@ -21,15 +21,15 @@
 	<h2><?php echo($firm->id ? 'Edit' : 'Add') ?> firm</h2>
 	<?php echo $this->renderPartial('_form_errors', array('errors' => $errors)) ?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id' => 'adminform',
-		'enableAjaxValidation' => false,
-		'focus' => '#username',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	)) ?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id' => 'adminform',
+        'enableAjaxValidation' => false,
+        'focus' => '#username',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    )) ?>
 	<?php echo $form->textField($firm, 'pas_code', array('autocomplete' => Yii::app()->params['html_autocomplete'])) ?>
 	<?php echo $form->textField($firm, 'name', array('autocomplete' => Yii::app()->params['html_autocomplete'])) ?>
 
@@ -39,8 +39,8 @@
 		</div>
 		<div class="large-5 column end">
 			<?php echo CHtml::dropDownList('Firm[subspecialty_id]',
-				$firm->serviceSubspecialtyAssignment ? $firm->serviceSubspecialtyAssignment->subspecialty_id : null,
-				CHtml::listData(Subspecialty::model()->findAll(array('order' => 'name')), 'id', 'name'), array('empty' => '- None -')) ?>
+                $firm->serviceSubspecialtyAssignment ? $firm->serviceSubspecialtyAssignment->subspecialty_id : null,
+                CHtml::listData(Subspecialty::model()->findAll(array('order' => 'name')), 'id', 'name'), array('empty' => '- None -')) ?>
 		</div>
 	</div>
 	<div id="div_Firm_consultant_id" class="row field-row">
@@ -49,7 +49,7 @@
 		</div>
 		<div class="large-5 column end">
 			<?php echo CHtml::dropDownList('Firm[consultant_id]', $firm->consultant_id,
-				CHtml::listData(User::model()->findAll(array('order' => 'first_name,last_name')), 'id', 'fullName'), array('empty' => '- None -')) ?>
+                CHtml::listData(User::model()->findAll(array('order' => 'first_name,last_name')), 'id', 'fullName'), array('empty' => '- None -')) ?>
 		</div>
 	</div>
 	<div id="div_Firm_consultant_id" class="row field-row">
@@ -67,10 +67,10 @@
 
 	<?php if (isset($siteSecretaries) && $siteSecretaries): ?>
 		<?php echo $this->renderPartial('application.modules.OphCoCorrespondence.views.admin.secretary.edit', array(
-				'errors' => array(),
-				'siteSecretaries' => $siteSecretaries
-			)
-		)
-		?>
+                'errors' => array(),
+                'siteSecretaries' => $siteSecretaries
+            )
+        )
+        ?>
 	<?php endif; ?>
 </div>

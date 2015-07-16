@@ -19,68 +19,67 @@
 
 class AutocompleteController extends BaseController
 {
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'roles' => array('OprnViewClinical'),
-			),
-		);
-	}
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'roles' => array('OprnViewClinical'),
+            ),
+        );
+    }
 
-	/**
-	 * Lists values for a given search term.
-	 */
-	public function actionSearch()
-	{
-		if (!isset($_GET['model'])) {
-			throw new CHttpException(400, 'model required');
-		}
-		$class_name = $_GET['model'];
-		if(!is_subclass_of($class_name, 'CActiveRecord')) {
-			throw new CHttpException(400, 'invalid model');
-		}
-		$model = $class_name::model();
-		if(!$model->canAutocomplete()) {
-			throw new CHttpException(400, 'model does not support autocomplete');
-		}
+    /**
+     * Lists values for a given search term.
+     */
+    public function actionSearch()
+    {
+        if (!isset($_GET['model'])) {
+            throw new CHttpException(400, 'model required');
+        }
+        $class_name = $_GET['model'];
+        if (!is_subclass_of($class_name, 'CActiveRecord')) {
+            throw new CHttpException(400, 'invalid model');
+        }
+        $model = $class_name::model();
+        if (!$model->canAutocomplete()) {
+            throw new CHttpException(400, 'model does not support autocomplete');
+        }
 
-		if (isset($_GET['field'])) {
-			if ($_GET['field'] && preg_match('/^[A-z]+$/', $_GET['field'])) {
-				$search_field = strtolower($_GET['field']);
-			} else {
-				throw new CHttpException(400, 'invalid field name');
-			}
-		} else {
-			$search_field = 'name';
-		}
+        if (isset($_GET['field'])) {
+            if ($_GET['field'] && preg_match('/^[A-z]+$/', $_GET['field'])) {
+                $search_field = strtolower($_GET['field']);
+            } else {
+                throw new CHttpException(400, 'invalid field name');
+            }
+        } else {
+            $search_field = 'name';
+        }
 
-		// Construct criteria
-		$criteria = new CDbCriteria();
-		$params = array();
-		if (isset($_GET['term']) && $term = $_GET['term']) {
-			$criteria->addCondition("LOWER($search_field) LIKE :term");
-			$params[':term'] = '%' . strtolower(strtr($term, array('%' => '\%'))) . '%';
-		}
-		$criteria->order = $search_field;
-		$criteria->limit = '50';
-		$criteria->params = $params;
+        // Construct criteria
+        $criteria = new CDbCriteria();
+        $params = array();
+        if (isset($_GET['term']) && $term = $_GET['term']) {
+            $criteria->addCondition("LOWER($search_field) LIKE :term");
+            $params[':term'] = '%' . strtolower(strtr($term, array('%' => '\%'))) . '%';
+        }
+        $criteria->order = $search_field;
+        $criteria->limit = '50';
+        $criteria->params = $params;
 
-		$records = $model->active()->findAll($criteria);
-		$return = array();
-		$fields = array(
-			'label' => $search_field,
-			'value' => $search_field,
-			'id' => 'id'
-		);
-		foreach ($records as $record) {
-			$return_row = array();
-			foreach($fields as $key => $value) {
-				$return_row[$key] = $record->$value;
-			}
-			$return[] = $return_row;
-		}
-		echo CJSON::encode($return);
-	}
-
+        $records = $model->active()->findAll($criteria);
+        $return = array();
+        $fields = array(
+            'label' => $search_field,
+            'value' => $search_field,
+            'id' => 'id'
+        );
+        foreach ($records as $record) {
+            $return_row = array();
+            foreach ($fields as $key => $value) {
+                $return_row[$key] = $record->$value;
+            }
+            $return[] = $return_row;
+        }
+        echo CJSON::encode($return);
+    }
 }

@@ -21,12 +21,12 @@
 	<div class="report-fields">
 		<h2>Diagnoses report</h2>
 		<?php
-		$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-			'id'=>'report-form',
-			'enableAjaxValidation'=>false,
-			'layoutColumns' => array('label'=>2,'field'=>10),
-			'action' => Yii::app()->createUrl('/report/downloadReport'),
-		))?>
+        $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+            'id'=>'report-form',
+            'enableAjaxValidation'=>false,
+            'layoutColumns' => array('label'=>2, 'field'=>10),
+            'action' => Yii::app()->createUrl('/report/downloadReport'),
+        ))?>
 
 		<input type="hidden" name="report-name" value="Diagnoses" />
 
@@ -38,13 +38,13 @@
 			</div>
 			<div class="large-2 column end">
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-					'name' => 'start_date',
-					'options' => array(
-						'showAnim' => 'fold',
-						'dateFormat' => Helper::NHS_DATE_FORMAT_JS
-					),
-					'value' => date('j M Y',strtotime('-1 year')),
-				))?>
+                    'name' => 'start_date',
+                    'options' => array(
+                        'showAnim' => 'fold',
+                        'dateFormat' => Helper::NHS_DATE_FORMAT_JS
+                    ),
+                    'value' => date('j M Y', strtotime('-1 year')),
+                ))?>
 			</div>
 		</div>
 
@@ -56,13 +56,13 @@
 			</div>
 			<div class="large-2 column end">
 				<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-					'name' => 'end_date',
-					'options' => array(
-						'showAnim' => 'fold',
-						'dateFormat' => Helper::NHS_DATE_FORMAT_JS
-					),
-					'value' => date('j M Y'),
-				))?>
+                    'name' => 'end_date',
+                    'options' => array(
+                        'showAnim' => 'fold',
+                        'dateFormat' => Helper::NHS_DATE_FORMAT_JS
+                    ),
+                    'value' => date('j M Y'),
+                ))?>
 			</div>
 		</div>
 
@@ -90,11 +90,11 @@
 		</div>
 
 		<?php $this->widget('application.widgets.DiagnosisSelection', array(
-				'field' => 'disorder_id',
-				'options' => CommonOphthalmicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
-				'layout' => 'minimal',
-				'callback' => 'Reports_AddDiagnosis',
-		))?>
+                'field' => 'disorder_id',
+                'options' => CommonOphthalmicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
+                'layout' => 'minimal',
+                'callback' => 'Reports_AddDiagnosis',
+        ))?>
 
 		<div class="row field-row">
 			<div class="large-2 column">

@@ -103,11 +103,11 @@ class <?php echo "$migrationName";?> extends CDbMigration
 				 * money: money/currency type
 				 */
 <?php
-	$lines = preg_split( '/\r\n|\r|\n/', "$elementFields" );
-	foreach ($lines as $line) {
-		echo "
+    $lines = preg_split('/\r\n|\r|\n/', "$elementFields");
+    foreach ($lines as $line) {
+        echo "
 				$line";
-	}
+    }
 ?>
 
 

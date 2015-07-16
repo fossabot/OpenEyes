@@ -19,37 +19,37 @@
 
 class Slider extends BaseFieldWidget
 {
-	public $min;
-	public $max;
-	public $step;
-	public $force_dp = false;
-	public $prefix_positive = false;
-	public $remap_values = false;
-	public $null;
-	public $value_display;
-	public $append = '';
-	public $width;
-	public $painScale;
+    public $min;
+    public $max;
+    public $step;
+    public $force_dp = false;
+    public $prefix_positive = false;
+    public $remap_values = false;
+    public $null;
+    public $value_display;
+    public $append = '';
+    public $width;
+    public $painScale;
 
-	public function init()
-	{
-		parent::init();
+    public function init()
+    {
+        parent::init();
 
-		if ($this->null) {
-			$this->max += 1;
+        if ($this->null) {
+            $this->max += 1;
 
-			if ($this->value === null) {
-				$this->value = 0;
-				$this->value_display = 'NR';
-			} else {
-				$this->value_display = $this->value++;
-			}
-		} else {
-			$this->value_display = $this->value;
-		}
+            if ($this->value === null) {
+                $this->value = 0;
+                $this->value_display = 'NR';
+            } else {
+                $this->value_display = $this->value++;
+            }
+        } else {
+            $this->value_display = $this->value;
+        }
 
-		if ($this->width && !preg_match('/[^0-9]/', $this->width)) {
-			$this->width .= 'px';
-		}
-	}
+        if ($this->width && !preg_match('/[^0-9]/', $this->width)) {
+            $this->width .= 'px';
+        }
+    }
 }

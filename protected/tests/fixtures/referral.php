@@ -18,37 +18,37 @@
  */
 
 return array(
-	'referral1' => array(
-		'id' => 1,
-		'refno' => 234,
-		'patient_id' => 1,
-		'referral_type_id' => 1,
-		'received_date' => date('Y-m-d', strtotime('-20 days')),
-		'referrer' => 'TEST'
-	),
-	'referral2' => array(
-			'id' => 2,
-			'refno' => 134,
-			'patient_id' => 2,
-			'referral_type_id' => 1,
-			'received_date' => date('Y-m-d', strtotime('-15 days')),
-			'referrer' => 'TEST'
-	),
-	'referral3' => array(
-			'id' => 3,
-			'refno' => 534,
-			'patient_id' => 1,
-			'referral_type_id' => 1,
-			'received_date' => date('Y-m-d', strtotime('-5 days')),
-			'referrer' => 'TEST'
-	),
-		'referral4' => array(
-				'id' => 4,
-				'refno' => 634,
-				'patient_id' => 1,
-				'referral_type_id' => 1,
-				'received_date' => date('Y-m-d', strtotime('-25 days')),
-				'closed_date' => date('Y-m-d', strtotime('-13 days')),
-				'referrer' => 'TEST'
-		),
+    'referral1' => array(
+        'id' => 1,
+        'refno' => 234,
+        'patient_id' => 1,
+        'referral_type_id' => 1,
+        'received_date' => date('Y-m-d', strtotime('-20 days')),
+        'referrer' => 'TEST'
+    ),
+    'referral2' => array(
+            'id' => 2,
+            'refno' => 134,
+            'patient_id' => 2,
+            'referral_type_id' => 1,
+            'received_date' => date('Y-m-d', strtotime('-15 days')),
+            'referrer' => 'TEST'
+    ),
+    'referral3' => array(
+            'id' => 3,
+            'refno' => 534,
+            'patient_id' => 1,
+            'referral_type_id' => 1,
+            'received_date' => date('Y-m-d', strtotime('-5 days')),
+            'referrer' => 'TEST'
+    ),
+        'referral4' => array(
+                'id' => 4,
+                'refno' => 634,
+                'patient_id' => 1,
+                'referral_type_id' => 1,
+                'received_date' => date('Y-m-d', strtotime('-25 days')),
+                'closed_date' => date('Y-m-d', strtotime('-13 days')),
+                'referrer' => 'TEST'
+        ),
 );

@@ -18,69 +18,71 @@
  */
 class AuthManager extends CDbAuthManager
 {
-	private $rulesets = array();
-	private $user_assignments = array();
+    private $rulesets = array();
+    private $user_assignments = array();
 
-	public function __construct()
-	{
-		$this->registerRuleset('core', new AuthRules);
+    public function __construct()
+    {
+        $this->registerRuleset('core', new AuthRules);
 
-	 	if (isset(Yii::app()->params['additional_rulesets'])) {
-			foreach (Yii::app()->params['additional_rulesets'] as $r) {
-				$this->registerRuleset($r['namespace'], new $r['class']);
-			}
-		}
-	}
+        if (isset(Yii::app()->params['additional_rulesets'])) {
+            foreach (Yii::app()->params['additional_rulesets'] as $r) {
+                $this->registerRuleset($r['namespace'], new $r['class']);
+            }
+        }
+    }
 
-	/**
-	 * @param string $bizRule
-	 * @param array $params
-	 * @param mixed $data
-	 * @return bool
-	 */
-	public function executeBizRule($bizRule, $params, $data)
-	{
-		if (!$bizRule) return true;
+    /**
+     * @param string $bizRule
+     * @param array $params
+     * @param mixed $data
+     * @return bool
+     */
+    public function executeBizRule($bizRule, $params, $data)
+    {
+        if (!$bizRule) {
+            return true;
+        }
 
-		$bits = explode('.', $bizRule, 2);
+        $bits = explode('.', $bizRule, 2);
 
-		if (count($bits) == 1) {
-			$namespace = 'core';
-			$rule = $bizRule;
-		} else {
-			$namespace = $bits[0];
-			$rule = $bits[1];
-		}
+        if (count($bits) == 1) {
+            $namespace = 'core';
+            $rule = $bizRule;
+        } else {
+            $namespace = $bits[0];
+            $rule = $bits[1];
+        }
 
-		if (!isset($this->rulesets[$namespace])) {
-			throw new Exception("Unknown ruleset '{$namespace}' for business rule '{$bizRule}'");
-		}
+        if (!isset($this->rulesets[$namespace])) {
+            throw new Exception("Unknown ruleset '{$namespace}' for business rule '{$bizRule}'");
+        }
 
-		$ruleSet = $this->rulesets[$namespace];
+        $ruleSet = $this->rulesets[$namespace];
 
-		if (!method_exists($ruleSet, $rule)) {
-			throw new Exception("Undefined business rule: '{$bizRule}'");
-		}
+        if (!method_exists($ruleSet, $rule)) {
+            throw new Exception("Undefined business rule: '{$bizRule}'");
+        }
 
-		unset($params['userId']);
+        unset($params['userId']);
 
-		return call_user_func_array(array($ruleSet, $rule), array_merge((array)$data, $params));
-	}
+        return call_user_func_array(array($ruleSet, $rule), array_merge((array)$data, $params));
+    }
 
-	/**
-	 * @param string $namespace Name of module
-	 * @param object $object Object on which the rule methods are defined
-	 */
-	public function registerRuleset($namespace, $ruleset)
-	{
-		$this->rulesets[$namespace] = $ruleset;
-	}
+    /**
+     * @param string $namespace Name of module
+     * @param object $object Object on which the rule methods are defined
+     */
+    public function registerRuleset($namespace, $ruleset)
+    {
+        $this->rulesets[$namespace] = $ruleset;
+    }
 
-	public function getAuthAssignments($user_id)
-	{
-		if (!isset($this->user_assignments[$user_id])) {
-			$this->user_assignments[$user_id] = parent::getAuthAssignments($user_id);
-		}
-		return $this->user_assignments[$user_id];
-	}
+    public function getAuthAssignments($user_id)
+    {
+        if (!isset($this->user_assignments[$user_id])) {
+            $this->user_assignments[$user_id] = parent::getAuthAssignments($user_id);
+        }
+        return $this->user_assignments[$user_id];
+    }
 }

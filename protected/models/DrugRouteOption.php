@@ -28,31 +28,31 @@
  */
 class DrugRouteOption extends BaseActiveRecordVersioned
 {
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'drug_route_option';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'drug_route_option';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-			array('drug_route_id, name', 'required'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+            array('drug_route_id, name', 'required'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-			'route' => array(self::BELONGS_TO, 'DrugRoute', 'drug_route_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            'route' => array(self::BELONGS_TO, 'DrugRoute', 'drug_route_id'),
+        );
+    }
 }

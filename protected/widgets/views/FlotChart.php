@@ -15,7 +15,7 @@
 
 Yii::app()->clientScript->registerPackage('flot');
 if ($this->legend_id) {
-	Yii::app()->clientScript->registerCss($this->legend_id, "#{$this->legend_id} .legendLabel { width: 100%; }");
+    Yii::app()->clientScript->registerCss($this->legend_id, "#{$this->legend_id} .legendLabel { width: 100%; }");
 }
 ?>
 <script type="text/javascript">

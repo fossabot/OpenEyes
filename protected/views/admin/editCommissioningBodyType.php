@@ -20,19 +20,19 @@
 ?>
 <div class="box admin">
 	<h2><?php echo $cbt->id ? 'Edit' : 'Add'?> commissioning body type</h2>
-	<?php echo $this->renderPartial('_form_errors',array('errors'=>$errors))?>
+	<?php echo $this->renderPartial('_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'adminform',
-		'enableAjaxValidation'=>false,
-		'focus'=>'#username',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
-		<?php echo $form->textField($cbt,'name',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($cbt,'shortname',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'adminform',
+        'enableAjaxValidation'=>false,
+        'focus'=>'#username',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
+		<?php echo $form->textField($cbt, 'name', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($cbt, 'shortname', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 		<?php echo $form->formActions(array('cancel-uri' => '/admin/commissioning_body_types'));?>
 	<?php $this->endWidget()?>
 </div>

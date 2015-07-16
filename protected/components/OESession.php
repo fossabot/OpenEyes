@@ -19,15 +19,13 @@
 
 class OESession extends CDbHttpSession
 {
-	public function writeSession($id,$data)
-	{
-		if($id==''){
-			//prevent the saving of blank ids into the user session table
-			return false;
-		}
-		else {
-			parent::writeSession($id,$data);
-		}
-	}
-
+    public function writeSession($id, $data)
+    {
+        if ($id=='') {
+            //prevent the saving of blank ids into the user session table
+            return false;
+        } else {
+            parent::writeSession($id, $data);
+        }
+    }
 }

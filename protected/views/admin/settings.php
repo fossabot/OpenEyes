@@ -24,12 +24,12 @@
 		</div>
 		<div class="large-4 column">
 			<?php
-			$form = $this->beginWidget('BaseEventTypeCActiveForm',array(
-				'id' => 'searchform',
-				'enableAjaxValidation' => false,
-				'focus' => '#search',
-				'action' => Yii::app()->createUrl('/admin/settings'),
-			))?>
+            $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+                'id' => 'searchform',
+                'enableAjaxValidation' => false,
+                'focus' => '#search',
+                'action' => Yii::app()->createUrl('/admin/settings'),
+            ))?>
 				<div class="row">
 					<div class="large-12 column">
 						<input type="text" name="search" id="search" placeholder="Enter search query..." value="<?php echo strip_tags(@$_POST['search'])?>" />
@@ -52,12 +52,14 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach (SettingMetadata::model()->findAll('element_type_id is null') as $metadata) {?>
+                foreach (SettingMetadata::model()->findAll('element_type_id is null') as $metadata) {
+                    ?>
 					<tr class="clickable" data-key="<?php echo $metadata->key?>">
 						<td><?php echo $metadata->name?></td>
 						<td><?php echo $metadata->getSettingName()?></td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 		</table>
 	</form>

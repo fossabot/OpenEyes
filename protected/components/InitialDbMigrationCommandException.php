@@ -19,5 +19,4 @@
 
 class InitialDbMigrationCommandException extends Exception
 {
-
 }

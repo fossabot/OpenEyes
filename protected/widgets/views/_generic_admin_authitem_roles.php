@@ -19,8 +19,8 @@
 
 $htmlOptions = @$disabled ? array('disabled' => 'disabled') : array();
 if (isset($params['empty'])) {
-	$htmlOptions['empty'] = $params['empty'];
+    $htmlOptions['empty'] = $params['empty'];
 }
 $value = $row ? $row->{$params['field']} : '';
-$data = AuthItem::model()->findAll(array('condition' => 'type=2','order' => 'name asc'));
-echo CHtml::dropDownList($params['field']."[$i]",$value,CHtml::listData($data,'name','name'),$htmlOptions);
+$data = AuthItem::model()->findAll(array('condition' => 'type=2', 'order' => 'name asc'));
+echo CHtml::dropDownList($params['field']."[$i]", $value, CHtml::listData($data, 'name', 'name'), $htmlOptions);

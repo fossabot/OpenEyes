@@ -19,259 +19,274 @@
 
 class OEMigrationTest extends CDbTestCase
 {
-	protected $oeMigration;
-	protected $fixturePath;
-	protected $Consolidation;
+    protected $oeMigration;
+    protected $fixturePath;
+    protected $Consolidation;
 
-	public $fixtures = array(
-		'event_type' => 'EventType',
-		'patient' => 'Patient',
-		'disorder' => 'Disorder',
-		'episode'=>'Episode',
-		'event'=>'Event',
-		'firm'=>'Firm',
-		'episode_status' => 'EpisodeStatus',
-	);
+    public $fixtures = array(
+        'event_type' => 'EventType',
+        'patient' => 'Patient',
+        'disorder' => 'Disorder',
+        'episode'=>'Episode',
+        'event'=>'Event',
+        'firm'=>'Firm',
+        'episode_status' => 'EpisodeStatus',
+    );
 
-	public function setUp(){
-		parent::setUp();
-		$this->oeMigration = new OEMigration();
-		$this->oeMigration->setVerbose(false);
-		$this->fixturePath = Yii::getPathOfAlias( 'application.tests.fixtures' );
-	}
+    public function setUp()
+    {
+        parent::setUp();
+        $this->oeMigration = new OEMigration();
+        $this->oeMigration->setVerbose(false);
+        $this->fixturePath = Yii::getPathOfAlias('application.tests.fixtures');
+    }
 
-	public function testInitialiseData()
-	{
-		$eventTypeResultSet = EventType::model()->findAll('id >= 1000');
+    public function testInitialiseData()
+    {
+        $eventTypeResultSet = EventType::model()->findAll('id >= 1000');
 
-		Yii::app()->db->createCommand("delete from episode_summary")->query();
-		Yii::app()->db->createCommand("delete from episode_summary_item")->query();
-		if (Yii::app()->db->schema->getTable('et_ophleepatientletter_epatientletter')) {
-			Yii::app()->db->createCommand("delete from et_ophleepatientletter_epatientletter")->query();
-		}
-		if (Yii::app()->db->schema->getTable('et_ophcocorrespondence_letter')) {
-			Yii::app()->db->createCommand("delete from et_ophcocorrespondence_letter")->query();
-		}
-		if (Yii::app()->db->schema->getTable('et_ophtroperationbooking_diagnosis')) {
-			Yii::app()->db->createCommand("delete from et_ophciexamination_anteriorsegment_cct")->execute();
-			Yii::app()->db->createCommand("delete from event_issue")->execute();
-			Yii::app()->db->createCommand("delete from ophtroperationbooking_scheduleope_patientunavail")->execute();
-			Yii::app()->db->createCommand("delete from et_ophtroperationbooking_scheduleope")->execute();
-			Yii::app()->db->createCommand("delete from ophciexamination_further_findings_assignment")->execute();
-			Yii::app()->db->createCommand("delete from et_ophciexamination_further_findings")->execute();
-			Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_date_letter_sent")->execute();
-			Yii::app()->db->createCommand("delete from et_ophtroperationbooking_diagnosis")->execute();
-			Yii::app()->db->createCommand("delete from ophciexamination_diagnosis")->execute();
-			Yii::app()->db->createCommand("delete from et_ophciexamination_diagnoses;")->execute();
-			Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_booking")->execute();
-			Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_procedures_procedures")->execute();
-			Yii::app()->db->createCommand("delete from et_ophtroperationbooking_operation")->execute();
-		}
-		if (Yii::app()->db->schema->getTable('et_ophtrconsent_procedure')) {
-			Yii::app()->db->createCommand("delete from ophtrconsent_procedure_procedures_procedures")->execute();
-			Yii::app()->db->createCommand("delete from et_ophtrconsent_procedure")->execute();
-		}
-		Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->query();
-		Yii::app()->db->createCommand("delete from event_type where id >= 1000 and parent_event_type_id is not null")->query();
-		Yii::app()->db->createCommand("delete from event_type where id >= 1000")->query();
+        Yii::app()->db->createCommand("delete from episode_summary")->query();
+        Yii::app()->db->createCommand("delete from episode_summary_item")->query();
+        if (Yii::app()->db->schema->getTable('et_ophleepatientletter_epatientletter')) {
+            Yii::app()->db->createCommand("delete from et_ophleepatientletter_epatientletter")->query();
+        }
+        if (Yii::app()->db->schema->getTable('et_ophcocorrespondence_letter')) {
+            Yii::app()->db->createCommand("delete from et_ophcocorrespondence_letter")->query();
+        }
+        if (Yii::app()->db->schema->getTable('et_ophtroperationbooking_diagnosis')) {
+            Yii::app()->db->createCommand("delete from et_ophciexamination_anteriorsegment_cct")->execute();
+            Yii::app()->db->createCommand("delete from event_issue")->execute();
+            Yii::app()->db->createCommand("delete from ophtroperationbooking_scheduleope_patientunavail")->execute();
+            Yii::app()->db->createCommand("delete from et_ophtroperationbooking_scheduleope")->execute();
+            Yii::app()->db->createCommand("delete from ophciexamination_further_findings_assignment")->execute();
+            Yii::app()->db->createCommand("delete from et_ophciexamination_further_findings")->execute();
+            Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_date_letter_sent")->execute();
+            Yii::app()->db->createCommand("delete from et_ophtroperationbooking_diagnosis")->execute();
+            Yii::app()->db->createCommand("delete from ophciexamination_diagnosis")->execute();
+            Yii::app()->db->createCommand("delete from et_ophciexamination_diagnoses;")->execute();
+            Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_booking")->execute();
+            Yii::app()->db->createCommand("delete from ophtroperationbooking_operation_procedures_procedures")->execute();
+            Yii::app()->db->createCommand("delete from et_ophtroperationbooking_operation")->execute();
+        }
+        if (Yii::app()->db->schema->getTable('et_ophtrconsent_procedure')) {
+            Yii::app()->db->createCommand("delete from ophtrconsent_procedure_procedures_procedures")->execute();
+            Yii::app()->db->createCommand("delete from et_ophtrconsent_procedure")->execute();
+        }
+        Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->query();
+        Yii::app()->db->createCommand("delete from event_type where id >= 1000 and parent_event_type_id is not null")->query();
+        Yii::app()->db->createCommand("delete from event_type where id >= 1000")->query();
 
-		ob_start();
-		$this->oeMigration->initialiseData($this->fixturePath,	null, 'oeMigrationData');
-		ob_end_clean();
-		$this->compareFixtureWithResultSet($this->event_type, $eventTypeResultSet);
+        ob_start();
+        $this->oeMigration->initialiseData($this->fixturePath,    null, 'oeMigrationData');
+        ob_end_clean();
+        $this->compareFixtureWithResultSet($this->event_type, $eventTypeResultSet);
 
-		EventType::model()->deleteAll('id >= 1000');
-	}
+        EventType::model()->deleteAll('id >= 1000');
+    }
 
-	/**
-	 * @depends testInitialiseData
-	 */
-	public function testInitialiseDataTestdata(){
-		$eventTypeResultSet = EventType::model()->findAll('id >= 1000');
+    /**
+     * @depends testInitialiseData
+     */
+    public function testInitialiseDataTestdata()
+    {
+        $eventTypeResultSet = EventType::model()->findAll('id >= 1000');
 
-		Yii::app()->db->createCommand("delete from episode_summary")->query();
-		Yii::app()->db->createCommand("delete from episode_summary_item")->query();
-		Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->query();
-		Yii::app()->db->createCommand("delete from event_type where id >= 1009")->query();
+        Yii::app()->db->createCommand("delete from episode_summary")->query();
+        Yii::app()->db->createCommand("delete from episode_summary_item")->query();
+        Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->query();
+        Yii::app()->db->createCommand("delete from event_type where id >= 1009")->query();
 
-		$this->oeMigration->setTestData(true);
+        $this->oeMigration->setTestData(true);
 
-		$this->assertNull($this->oeMigration->getCsvFiles());
+        $this->assertNull($this->oeMigration->getCsvFiles());
 
-		ob_start();
-		$this->oeMigration->initialiseData($this->fixturePath,	null, 'oeMigrationData');
-		ob_end_clean();
-		$this->compareFixtureWithResultSet($this->event_type, $eventTypeResultSet);
+        ob_start();
+        $this->oeMigration->initialiseData($this->fixturePath,    null, 'oeMigrationData');
+        ob_end_clean();
+        $this->compareFixtureWithResultSet($this->event_type, $eventTypeResultSet);
 
-		Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->execute();
-		EventType::model()->deleteAll('id >= 1000');
-		$this->assertGreaterThan(0, $this->oeMigration->getCsvFiles());
+        Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->execute();
+        EventType::model()->deleteAll('id >= 1000');
+        $this->assertGreaterThan(0, $this->oeMigration->getCsvFiles());
 
-		$expectedCsvArrayInTestMode = array(
-			$this->fixturePath . DIRECTORY_SEPARATOR . 'testdata' . DIRECTORY_SEPARATOR . 'oeMigrationData' . DIRECTORY_SEPARATOR . '01_episode.csv',
-			$this->fixturePath . DIRECTORY_SEPARATOR . 'testdata' . DIRECTORY_SEPARATOR . 'oeMigrationData' . DIRECTORY_SEPARATOR . '01_event_type.csv',
-			$this->fixturePath . DIRECTORY_SEPARATOR . 'testdata' . DIRECTORY_SEPARATOR . 'oeMigrationData' . DIRECTORY_SEPARATOR . '01_user.csv'
-		);
-		$this->assertEquals($expectedCsvArrayInTestMode , $this->oeMigration->getCsvFiles());
-	}
+        $expectedCsvArrayInTestMode = array(
+            $this->fixturePath . DIRECTORY_SEPARATOR . 'testdata' . DIRECTORY_SEPARATOR . 'oeMigrationData' . DIRECTORY_SEPARATOR . '01_episode.csv',
+            $this->fixturePath . DIRECTORY_SEPARATOR . 'testdata' . DIRECTORY_SEPARATOR . 'oeMigrationData' . DIRECTORY_SEPARATOR . '01_event_type.csv',
+            $this->fixturePath . DIRECTORY_SEPARATOR . 'testdata' . DIRECTORY_SEPARATOR . 'oeMigrationData' . DIRECTORY_SEPARATOR . '01_user.csv'
+        );
+        $this->assertEquals($expectedCsvArrayInTestMode, $this->oeMigration->getCsvFiles());
+    }
 
-	public function testGetMigrationPath(){
-		$path = $this->oeMigration->getMigrationPath();
-		$this->assertStringEndsWith('migrations', $path );
-		$this->oeMigration->setMigrationPath('system');
-		$wrongSavePath = $this->oeMigration->getMigrationPath();
-		$this->assertNotEquals( $path , $wrongSavePath );
-	}
+    public function testGetMigrationPath()
+    {
+        $path = $this->oeMigration->getMigrationPath();
+        $this->assertStringEndsWith('migrations', $path);
+        $this->oeMigration->setMigrationPath('system');
+        $wrongSavePath = $this->oeMigration->getMigrationPath();
+        $this->assertNotEquals($path, $wrongSavePath);
+    }
 
-	public function testExportDataCannotWriteFile(){
-		$tables = array();
-		$this->oeMigration->setMigrationPath('system.config');
-		$thisPath = $this->oeMigration->getMigrationPath();
-		$thisConsolidation = 'm'.gmdate('ymd_His').'_consolidation';
-		$this->setExpectedException('OEMigrationException','Migration folder is not writable/accessible: ' . $thisPath);
-		$result = $this->oeMigration->exportData($thisConsolidation , $tables);
-	}
+    public function testExportDataCannotWriteFile()
+    {
+        $tables = array();
+        $this->oeMigration->setMigrationPath('system.config');
+        $thisPath = $this->oeMigration->getMigrationPath();
+        $thisConsolidation = 'm'.gmdate('ymd_His').'_consolidation';
+        $this->setExpectedException('OEMigrationException', 'Migration folder is not writable/accessible: ' . $thisPath);
+        $result = $this->oeMigration->exportData($thisConsolidation, $tables);
+    }
 
-	public function testExportDataCannotExportNoTables(){
-		$tables = array();
-		$thisConsolidation = 'm'.gmdate('ymd_His').'_consolidation';
-		$this->setExpectedException('OEMigrationException','No tables to export in the current database');
-		$result = $this->oeMigration->exportData($thisConsolidation , $tables);
-	}
+    public function testExportDataCannotExportNoTables()
+    {
+        $tables = array();
+        $thisConsolidation = 'm'.gmdate('ymd_His').'_consolidation';
+        $this->setExpectedException('OEMigrationException', 'No tables to export in the current database');
+        $result = $this->oeMigration->exportData($thisConsolidation, $tables);
+    }
 
-	public function testExportDataNotCdbTableSchema(){
-		$tables = array('just an array, not' => 'CDbTableSchema');
-		$thisConsolidation = 'm'.gmdate('ymd_His').'_consolidation';
-		$this->setExpectedException('OEMigrationException','Not a CDbTableSchema child class');
-		$result = $this->oeMigration->exportData($thisConsolidation , $tables);
-	}
+    public function testExportDataNotCdbTableSchema()
+    {
+        $tables = array('just an array, not' => 'CDbTableSchema');
+        $thisConsolidation = 'm'.gmdate('ymd_His').'_consolidation';
+        $this->setExpectedException('OEMigrationException', 'Not a CDbTableSchema child class');
+        $result = $this->oeMigration->exportData($thisConsolidation, $tables);
+    }
 
-	public function testExportData(){
-		$tables = Yii::app()->db->schema->getTables();
-		$this->Consolidation = 'm'.gmdate('ymd_His').'_consolidation';
-		$result = $this->oeMigration->exportData($this->Consolidation, $tables);
-		$this->assertInstanceOf('OEMigrationResult', $result);
-		$this->assertTrue($result->result);
-		$this->assertGreaterThan(0 , count($result->tables ));
-		foreach($result->tables as $tableName => $tableTotalRows){
-			$this->assertInternalType('string' ,$tableName );
-			$this->assertGreaterThan(0 , strlen($tableName ));
-			$this->assertInternalType('int' , $tableTotalRows );
-		}
-	}
+    public function testExportData()
+    {
+        $tables = Yii::app()->db->schema->getTables();
+        $this->Consolidation = 'm'.gmdate('ymd_His').'_consolidation';
+        $result = $this->oeMigration->exportData($this->Consolidation, $tables);
+        $this->assertInstanceOf('OEMigrationResult', $result);
+        $this->assertTrue($result->result);
+        $this->assertGreaterThan(0, count($result->tables));
+        foreach ($result->tables as $tableName => $tableTotalRows) {
+            $this->assertInternalType('string', $tableName);
+            $this->assertGreaterThan(0, strlen($tableName));
+            $this->assertInternalType('int', $tableTotalRows);
+        }
+    }
 
-	public function testGetInsertId(){
-		$res = Yii::app()->db->createCommand("select max(id) as mx_id from event_type")->queryRow();
+    public function testGetInsertId()
+    {
+        $res = Yii::app()->db->createCommand("select max(id) as mx_id from event_type")->queryRow();
 
-		$insertRow = array('name' => 'TestEventType' , 'event_group_id' => '5', 'class_name' => 'OphTrTestclass' , 'support_services' => '0');
-		ob_start();
-		$this->oeMigration->insert('event_type' , $insertRow);
-		ob_end_clean();
-		$insertId = $this->oeMigration->getInsertId('event_type' );
-		$this->assertGreaterThan(0, $insertId);
-		$this->assertEquals($res['mx_id']+1, $insertId);
-	}
+        $insertRow = array('name' => 'TestEventType' , 'event_group_id' => '5', 'class_name' => 'OphTrTestclass' , 'support_services' => '0');
+        ob_start();
+        $this->oeMigration->insert('event_type', $insertRow);
+        ob_end_clean();
+        $insertId = $this->oeMigration->getInsertId('event_type');
+        $this->assertGreaterThan(0, $insertId);
+        $this->assertEquals($res['mx_id']+1, $insertId);
+    }
 
-	/**
-	 *  @expectedException OEMigrationException
-	 * @expectedExceptionMessage Table banzai does not exist
-	 */
-	public function testGetInsertIdUnknownTableThrowsException(){
-		$insertId = $this->oeMigration->getInsertId('banzai' );
-	}
+    /**
+     *  @expectedException OEMigrationException
+     * @expectedExceptionMessage Table banzai does not exist
+     */
+    public function testGetInsertIdUnknownTableThrowsException()
+    {
+        $insertId = $this->oeMigration->getInsertId('banzai');
+    }
 
-	public function testGetInsertIdWhenNoinsertReturnsZero(){
-		$insertId = $this->oeMigration->getInsertId('audit_ipaddr' );
-		$this->assertEquals(0,$insertId);
-	}
+    public function testGetInsertIdWhenNoinsertReturnsZero()
+    {
+        $insertId = $this->oeMigration->getInsertId('audit_ipaddr');
+        $this->assertEquals(0, $insertId);
+    }
 
-	public function testGetInsertIdNoIdColumnInTable(){
-		$insertId = $this->oeMigration->getInsertId('authassignment' );
-		$this->assertNull($insertId);
-	}
+    public function testGetInsertIdNoIdColumnInTable()
+    {
+        $insertId = $this->oeMigration->getInsertId('authassignment');
+        $this->assertNull($insertId);
+    }
 
-	/**
-	 * @depends testInitialiseData
-	 * @depends testGetInsertId
-	 */
-	public function testGetInsertReferentialObjectValue(){
-		Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->query();
-		Yii::app()->db->createCommand("delete from event_type where id >= 1009")->query();
-		$this->oeMigration->setTestData(true);
-		ob_start();
-		$this->oeMigration->initialiseData($this->fixturePath,	null, 'oeMigrationData');
-		ob_end_clean();
-		$episode_id = $this->oeMigration->getInsertReferentialObjectValue('episode', 1);
-		$this->assertGreaterThan(0, (int) $episode_id);
-		$this->assertequals(7, (int) $episode_id);
-		//lets try with strings
-		$episode_id2 = $this->oeMigration->getInsertReferentialObjectValue('episode', '1');
-		$this->assertGreaterThan(0, (int) $episode_id2);
-		$this->assertequals(7, (int) $episode_id2);
+    /**
+     * @depends testInitialiseData
+     * @depends testGetInsertId
+     */
+    public function testGetInsertReferentialObjectValue()
+    {
+        Yii::app()->db->createCommand("delete from event where event_type_id >= 1000")->query();
+        Yii::app()->db->createCommand("delete from event_type where id >= 1009")->query();
+        $this->oeMigration->setTestData(true);
+        ob_start();
+        $this->oeMigration->initialiseData($this->fixturePath,    null, 'oeMigrationData');
+        ob_end_clean();
+        $episode_id = $this->oeMigration->getInsertReferentialObjectValue('episode', 1);
+        $this->assertGreaterThan(0, (int) $episode_id);
+        $this->assertequals(7, (int) $episode_id);
+        //lets try with strings
+        $episode_id2 = $this->oeMigration->getInsertReferentialObjectValue('episode', '1');
+        $this->assertGreaterThan(0, (int) $episode_id2);
+        $this->assertequals(7, (int) $episode_id2);
 
-		$newOeMigration = new OEMigration();
-		$newOeMigration->setTestData(true);
-		ob_start();
-		$newOeMigration->initialiseData($this->fixturePath,	null, 'oeMigrationData2');
-		ob_end_clean();
-		$newEpisodeId = $newOeMigration->getInsertReferentialObjectValue('episode', 1);
-		$newEpisodeId2 = $newOeMigration->getInsertReferentialObjectValue('episode', 2);
-		$this->assertGreaterThan(0, (int) $newEpisodeId );
-		$this->assertequals(8, (int) $newEpisodeId );
-		$this->assertGreaterThan(0, (int) $newEpisodeId2 );
-		$this->assertequals(9, (int) $newEpisodeId2 );
-	}
+        $newOeMigration = new OEMigration();
+        $newOeMigration->setTestData(true);
+        ob_start();
+        $newOeMigration->initialiseData($this->fixturePath,    null, 'oeMigrationData2');
+        ob_end_clean();
+        $newEpisodeId = $newOeMigration->getInsertReferentialObjectValue('episode', 1);
+        $newEpisodeId2 = $newOeMigration->getInsertReferentialObjectValue('episode', 2);
+        $this->assertGreaterThan(0, (int) $newEpisodeId);
+        $this->assertequals(8, (int) $newEpisodeId);
+        $this->assertGreaterThan(0, (int) $newEpisodeId2);
+        $this->assertequals(9, (int) $newEpisodeId2);
+    }
 
-	/**
-	 * @param $fixture
-	 * @param $resultSet
-	 * @description generic function to compare fixture data with database result set
-	 * @return void
-	 */
-	private function compareFixtureWithResultSet($fixture, $resultSet){
-		$resultArr = array();
+    /**
+     * @param $fixture
+     * @param $resultSet
+     * @description generic function to compare fixture data with database result set
+     * @return void
+     */
+    private function compareFixtureWithResultSet($fixture, $resultSet)
+    {
+        $resultArr = array();
 
-		foreach($resultSet as $t)
-		{
-			$resultArr[$t->id] = $t->attributes;
-		}
+        foreach ($resultSet as $t) {
+            $resultArr[$t->id] = $t->attributes;
+        }
 
-		$this->assertCount(count($fixture), $resultArr);
+        $this->assertCount(count($fixture), $resultArr);
 
-		while($thisFixture = array_shift($fixture) ){
-			$thisRecord = @array_shift($resultArr);
+        while ($thisFixture = array_shift($fixture)) {
+            $thisRecord = @array_shift($resultArr);
 
-			//remove ids to compare results
-			unset($thisFixture['id']); unset($thisRecord['id']);
+            //remove ids to compare results
+            unset($thisFixture['id']);
+            unset($thisRecord['id']);
 
-			$this->assertCount(0 , array_diff( $thisFixture, $thisRecord ) , 'Somehow the fixture and db record are different, fixture: ' . var_export($thisFixture, true) .
-				' this record: ' .	var_export( $thisRecord, true)	);
-		}
-	}
+            $this->assertCount(0, array_diff($thisFixture, $thisRecord), 'Somehow the fixture and db record are different, fixture: ' . var_export($thisFixture, true) .
+                ' this record: ' .    var_export($thisRecord, true));
+        }
+    }
 
-	public function tearDown(){
-		unset($this->oeMigration);
+    public function tearDown()
+    {
+        unset($this->oeMigration);
 
-		if ($this->Consolidation) {
-			$this->eraseDirectory(getcwd()."/protected/migrations/data/$this->Consolidation");
-			$this->Consolidation = null;
-		}
-	}
+        if ($this->Consolidation) {
+            $this->eraseDirectory(getcwd()."/protected/migrations/data/$this->Consolidation");
+            $this->Consolidation = null;
+        }
+    }
 
-	public function eraseDirectory($path)
-	{
-		if ($dh = opendir($path)) {
-			$files = scandir($path);
-			foreach ($files  as $file) {
-				if($file != '.' && $file != '..' && is_file($path . DIRECTORY_SEPARATOR . $file)){
-					$fullFilePath = $path . DIRECTORY_SEPARATOR . $file ;
-					$fileRemoved = unlink($fullFilePath);
-					if(!$fileRemoved)
-						echo "\nCould not remove : " .$fullFilePath;
-				}
-			}
-			closedir($dh);
-			rmdir($path);
-		}
-	}
+    public function eraseDirectory($path)
+    {
+        if ($dh = opendir($path)) {
+            $files = scandir($path);
+            foreach ($files  as $file) {
+                if ($file != '.' && $file != '..' && is_file($path . DIRECTORY_SEPARATOR . $file)) {
+                    $fullFilePath = $path . DIRECTORY_SEPARATOR . $file ;
+                    $fileRemoved = unlink($fullFilePath);
+                    if (!$fileRemoved) {
+                        echo "\nCould not remove : " .$fullFilePath;
+                    }
+                }
+            }
+            closedir($dh);
+            rmdir($path);
+        }
+    }
 }

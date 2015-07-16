@@ -18,8 +18,9 @@
  */
 ?>
 <?php if ($cbs_by_type = $this->patient->getDistinctCommissioningBodiesByType()) {
-	foreach (CommissioningBodyType::model()->findAll() as $cbt) {
-		if (array_key_exists($cbt->id, $cbs_by_type)) { ?>
+    foreach (CommissioningBodyType::model()->findAll() as $cbt) {
+        if (array_key_exists($cbt->id, $cbs_by_type)) {
+            ?>
 			<section class="box patient-info js-toggle-container">
 				<h3 class="box-title"><?= $cbt->name ?>(s):</h3>
 				<a href="#" class="toggle-trigger toggle-hide js-toggle">
@@ -28,7 +29,8 @@
 					</span>
 				</a>
 				<div class="js-toggle-body">
-					<?php foreach ($cbs_by_type[$cbt->id] as $cb) { ?>
+					<?php foreach ($cbs_by_type[$cbt->id] as $cb) {
+    ?>
 						<div class="row data-row">
 							<div class="large-4 column">
 								<div class="data-label"><?= $cb->getTypeShortName() ?>:</div>
@@ -37,9 +39,16 @@
 								<div class="data-value"><?= $cb->name ?></div>
 							</div>
 						</div>
-					<?php } ?>
+					<?php 
+}
+            ?>
 				</div>
 			</section>
-		<?php }?>
-	<?php } ?>
-<?php } ?>
+		<?php 
+        }
+        ?>
+	<?php 
+    }
+    ?>
+<?php 
+} ?>

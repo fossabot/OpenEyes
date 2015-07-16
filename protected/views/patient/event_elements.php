@@ -21,25 +21,32 @@
 	<?php $this->renderOpenElements($this->action->id, $form)?>
 </div>
 
-<?php if (count($this->getOptionalElements())) {?>
+<?php if (count($this->getOptionalElements())) {
+    ?>
 	<section class="optional-elements">
 		<header class="optional-elements-header">
 			<h3 class="optional-elements-title">Optional Elements</h3>
-			<?php if (!@$disableOptionalElementActions) {?>
+			<?php if (!@$disableOptionalElementActions) {
+    ?>
 				<div class="optional-elements-actions">
 					<a href="#" class="add-all">
 						<span>Add all</span>
-						<img src="<?php echo Yii::app()->assetManager->createUrl('img/_elements/icons/event-optional/element-added.png');?>" alt="Add all" />
+						<img src="<?php echo Yii::app()->assetManager->createUrl('img/_elements/icons/event-optional/element-added.png');
+    ?>" alt="Add all" />
 					</a>
 					<a href="#" class="remove-all">
 						<span>Remove all</span>
-						<img src="<?php echo Yii::app()->assetManager->createUrl('img/_elements/icons/event-optional/element-remove.png');?>" alt="Remove all" />
+						<img src="<?php echo Yii::app()->assetManager->createUrl('img/_elements/icons/event-optional/element-remove.png');
+    ?>" alt="Remove all" />
 					</a>
 				</div>
-			<?php }?>
+			<?php 
+}
+    ?>
 		</header>
 		<ul class="optional-elements-list">
 			<?php $this->renderOptionalElements($this->action->id, $form)?>
 		</ul>
 	</section>
-<?php }?>
+<?php 
+}?>

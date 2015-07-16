@@ -38,9 +38,10 @@ abstract class MultiActiveRecord extends CActiveRecord
 
         if (!isset(self::$db[$dbName])) {
             if (Yii::app()->hasComponent($dbName) && (self::$db[$dbName]=Yii::app()->getComponent($dbName)) instanceof CDbConnection) {
-    			self::$db[$dbName]->setActive(true);
-            }else
-                throw new CDbException(Yii::t('yii','Active Record requires a "'.$dbName.'" CDbConnection application component.'));
+                self::$db[$dbName]->setActive(true);
+            } else {
+                throw new CDbException(Yii::t('yii', 'Active Record requires a "'.$dbName.'" CDbConnection application component.'));
+            }
         }
 
         return self::$db[$dbName];
@@ -55,10 +56,11 @@ abstract class MultiActiveRecord extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         if ($className===__CLASS__) {
-            if(version_compare(PHP_VERSION,'5.3',">"))
+            if (version_compare(PHP_VERSION, '5.3', ">")) {
                 $className=get_called_class();
-            else
+            } else {
                 throw new CException("You must define a static function 'model' in your models");
+            }
         }
         return parent::model($className);
     }
@@ -71,8 +73,8 @@ abstract class MultiActiveRecord extends CActiveRecord
     public function tableName()
     {
         $tableName=get_class($this);
-        $tableName=strtolower(substr($tableName,0,1)).substr($tableName,1);
-        $tableName=preg_replace_callback('/([A-Z])/',create_function('$matches','return "_".strtolower($matches[0]);'),$tableName);
+        $tableName=strtolower(substr($tableName, 0, 1)).substr($tableName, 1);
+        $tableName=preg_replace_callback('/([A-Z])/', create_function('$matches', 'return "_".strtolower($matches[0]);'), $tableName);
         return $tableName;
     }
     /**

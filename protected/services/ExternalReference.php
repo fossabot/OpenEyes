@@ -17,23 +17,23 @@ namespace services;
 
 class ExternalReference extends ResourceReference
 {
-	private $url;
+    private $url;
 
-	/**
-	 * @param string $url
-	 */
-	public function __construct($url)
-	{
-		$this->url = $url;
-	}
+    /**
+     * @param string $url
+     */
+    public function __construct($url)
+    {
+        $this->url = $url;
+    }
 
-	public function resolve()
-	{
-		throw new Exception("Not implemented");
-	}
+    public function resolve()
+    {
+        throw new Exception("Not implemented");
+    }
 
-	public function toFhir()
-	{
-		return (object)array("reference" => $this->url);
-	}
+    public function toFhir()
+    {
+        return (object)array("reference" => $this->url);
+    }
 }

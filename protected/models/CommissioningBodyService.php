@@ -31,127 +31,128 @@
  */
 class CommissioningBodyService extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return CommissioningBody the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return CommissioningBody the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'commissioning_body_service';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'commissioning_body_service';
+    }
 
-	public function behaviors() {
-		return array(
-			'ContactBehavior' => array(
-				'class' => 'application.behaviors.ContactBehavior',
-			),
-		);
-	}
+    public function behaviors()
+    {
+        return array(
+            'ContactBehavior' => array(
+                'class' => 'application.behaviors.ContactBehavior',
+            ),
+        );
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('name', 'required'),
-			array('name, code, commissioning_body_service_type_id, commissioning_body_id, contact_id', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('name', 'required'),
+            array('name, code, commissioning_body_service_type_id, commissioning_body_id, contact_id', 'safe'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('id, name', 'safe', 'on'=>'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
-			'type' => array(self::BELONGS_TO, 'CommissioningBodyServiceType', 'commissioning_body_service_type_id'),
-			// At this stage, there is a one to many relationship for bodies to services, but at some point in the future
-			// it may be necessary to update this to a many to many to relationship
-			'commissioning_body' => array(self::BELONGS_TO, 'CommissioningBody', 'commissioning_body_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
+            'type' => array(self::BELONGS_TO, 'CommissioningBodyServiceType', 'commissioning_body_service_type_id'),
+            // At this stage, there is a one to many relationship for bodies to services, but at some point in the future
+            // it may be necessary to update this to a many to many to relationship
+            'commissioning_body' => array(self::BELONGS_TO, 'CommissioningBody', 'commissioning_body_id'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'commissioning_body_id' => 'Commissioning body',
-			'commissioning_body_service_type_id' => 'Service type',
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'commissioning_body_id' => 'Commissioning body',
+            'commissioning_body_service_type_id' => 'Service type',
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('code',$this->code,true);
+        $criteria->compare('id', $this->id, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('code', $this->code, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
-	/**
-	 * Return the type short name for this service
-	 *
-	 * @return string
-	 */
-	public function getTypeShortName()
-	{
-		return $this->type ? $this->type->shortname : 'CBS';
-	}
+    /**
+     * Return the type short name for this service
+     *
+     * @return string
+     */
+    public function getTypeShortName()
+    {
+        return $this->type ? $this->type->shortname : 'CBS';
+    }
 
-	/**
-	 * Ensure we have a contact/address before returning
-	 *
-	 * @return Address|null
-	 */
-	public function getAddress()
-	{
-		if ($this->contact && $this->contact->address) {
-			return $this->contact->address;
-		}
-	}
+    /**
+     * Ensure we have a contact/address before returning
+     *
+     * @return Address|null
+     */
+    public function getAddress()
+    {
+        if ($this->contact && $this->contact->address) {
+            return $this->contact->address;
+        }
+    }
 
-	/**
-	 * Returns the appropriate name (first portion of address) for the service
-	 *
-	 * @return array
-	 */
-	public function getCorrespondenceName()
-	{
-		$cname = array($this->name);
-		if ($static_type_name = $this->type->correspondence_name) {
-			$cname[] = $static_type_name;
-		}
-		return $cname;
-	}
+    /**
+     * Returns the appropriate name (first portion of address) for the service
+     *
+     * @return array
+     */
+    public function getCorrespondenceName()
+    {
+        $cname = array($this->name);
+        if ($static_type_name = $this->type->correspondence_name) {
+            $cname[] = $static_type_name;
+        }
+        return $cname;
+    }
 }

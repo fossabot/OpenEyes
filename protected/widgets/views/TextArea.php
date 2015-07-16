@@ -17,30 +17,47 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-<?php if (!$nowrapper) {?>
-	<div id="div_<?php echo CHtml::modelName($element)?>_<?php echo $field?>" class="row field-row"<?php if ($hidden) echo 'style="display: none"'; ?>>
+<?php if (!$nowrapper) {
+    ?>
+	<div id="div_<?php echo CHtml::modelName($element)?>_<?php echo $field?>" class="row field-row"<?php if ($hidden) {
+    echo 'style="display: none"';
+}
+    ?>>
 		<div class="large-<?php echo $layoutColumns['label']?> column">
-			<label for="<?php echo CHtml::modelName($element)."_$field"?>"><?php if ($label) echo CHtml::encode($element->getAttributeLabel($field)).':'?></label>
+			<label for="<?php echo CHtml::modelName($element)."_$field"?>"><?php if ($label) {
+    echo CHtml::encode($element->getAttributeLabel($field)).':';
+}
+    ?></label>
 		</div>
 		<div class="large-<?php echo $layoutColumns['field']?> column end">
-	<?php }?>
+	<?php 
+}?>
 	<?php
-	$attr = array(
-		'id'=>CHtml::modelName($element).'_'.$field,
-		'name'=>CHtml::modelName($element).'['.$field.']',
-		'placeholder'=>@$htmlOptions['placeholder']
-	);
-	if ($rows) $attr['rows'] = $rows;
-	if ($cols) $attr['cols'] = $cols;
-	?>
+    $attr = array(
+        'id'=>CHtml::modelName($element).'_'.$field,
+        'name'=>CHtml::modelName($element).'['.$field.']',
+        'placeholder'=>@$htmlOptions['placeholder']
+    );
+    if ($rows) {
+        $attr['rows'] = $rows;
+    }
+    if ($cols) {
+        $attr['cols'] = $cols;
+    }
+    ?>
  	<textarea
 			<?php echo CHtml::renderAttributes(array_merge($htmlOptions, $attr));?>><?php echo CHtml::encode($value)?></textarea>
-		<?php if (!$nowrapper) {?>
-			<?php if ($button) {?>
+		<?php if (!$nowrapper) {
+    ?>
+			<?php if ($button) {
+    ?>
 				<button type="submit" class="<?php echo $button['colour']?> <?php echo $button['size']?>" id="<?php echo CHtml::modelName($element)?>_<?php echo $button['id']?>" name="<?php echo CHtml::modelName($element)?>_<?php echo $button['id']?>">
 					<?php echo $button['label']?>
 				</button>
-			<?php }?>
+			<?php 
+}
+    ?>
 		</div>
 	</div>
-<?php }?>
+<?php 
+}?>

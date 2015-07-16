@@ -19,202 +19,204 @@
 
 class AuditController extends BaseController
 {
-	/**
-	 * @var string the default layout for the views
-	 */
-	public $layout='//layouts/main';
+    /**
+     * @var string the default layout for the views
+     */
+    public $layout='//layouts/main';
 
-	public $items_per_page = 100;
+    public $items_per_page = 100;
 
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'roles' => array('OprnViewClinical'),
-			),
-		);
-	}
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'roles' => array('OprnViewClinical'),
+            ),
+        );
+    }
 
-	public function beforeAction($action)
-	{
-		$userid = Yii::app()->session['user']->id;
-		if (($userid != 2103)and($userid != 122)and($userid != 613)and($userid != 1330)and($userid != 1)) return false;
-		return parent::beforeAction($action);
-	}
+    public function beforeAction($action)
+    {
+        $userid = Yii::app()->session['user']->id;
+        if (($userid != 2103)and($userid != 122)and($userid != 613)and($userid != 1330)and($userid != 1)) {
+            return false;
+        }
+        return parent::beforeAction($action);
+    }
 
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
+    public function actionIndex()
+    {
+        $this->render('index');
+    }
 
-	public function actionSearch()
-	{
-		if (isset($_POST['page'])) {
-			$data = $this->getData($_POST['page']);
-		} else {
-			$data = $this->getData();
-		}
+    public function actionSearch()
+    {
+        if (isset($_POST['page'])) {
+            $data = $this->getData($_POST['page']);
+        } else {
+            $data = $this->getData();
+        }
 
-		Yii::app()->assetManager->registerScriptFile('js/audit.js');
-		$this->renderPartial('_list', array('data' => $data), false, true);
-		echo "<!-------------------------->";
-		$this->renderPartial('_pagination', array('data' => $data), false, true);
-	}
+        Yii::app()->assetManager->registerScriptFile('js/audit.js');
+        $this->renderPartial('_list', array('data' => $data), false, true);
+        echo "<!-------------------------->";
+        $this->renderPartial('_pagination', array('data' => $data), false, true);
+    }
 
-	public function criteria($count=false)
-	{
-		$criteria = new CDbCriteria;
+    public function criteria($count=false)
+    {
+        $criteria = new CDbCriteria;
 
-		if ($count) {
-			$criteria->select = 'count(*) as count';
-		}
+        if ($count) {
+            $criteria->select = 'count(*) as count';
+        }
 
-		if (@$_REQUEST['site_id']) {
-			$criteria->addCondition('site_id = :site_id');
-			$criteria->params[':site_id'] = $_REQUEST['site_id'];
-		}
+        if (@$_REQUEST['site_id']) {
+            $criteria->addCondition('site_id = :site_id');
+            $criteria->params[':site_id'] = $_REQUEST['site_id'];
+        }
 
-		if (@$_REQUEST['firm_id']) {
-			$firm = Firm::model()->findByPk($_REQUEST['firm_id']);
-			$firm_ids = array();
-			foreach (Firm::model()->findAll('name=?',array($firm->name)) as $firm) {
-				$firm_ids[] = $firm->id;
-			}
-			if (!empty($firm_ids)) {
-				$criteria->addInCondition('firm_id',$firm_ids);
-			}
-		}
+        if (@$_REQUEST['firm_id']) {
+            $firm = Firm::model()->findByPk($_REQUEST['firm_id']);
+            $firm_ids = array();
+            foreach (Firm::model()->findAll('name=?', array($firm->name)) as $firm) {
+                $firm_ids[] = $firm->id;
+            }
+            if (!empty($firm_ids)) {
+                $criteria->addInCondition('firm_id', $firm_ids);
+            }
+        }
 
-		if (@$_REQUEST['user']) {
-			$user_ids = array();
+        if (@$_REQUEST['user']) {
+            $user_ids = array();
 
-			$criteria2 = new CDbCriteria;
-			$criteria2->addCondition(array("active = :active"));
-			$criteria2->addCondition(array("LOWER(concat_ws(' ',first_name,last_name)) = :term"));
+            $criteria2 = new CDbCriteria;
+            $criteria2->addCondition(array("active = :active"));
+            $criteria2->addCondition(array("LOWER(concat_ws(' ',first_name,last_name)) = :term"));
 
-			$params[':active'] = 1;
-			$params[':term'] = strtolower($_REQUEST['user']);
+            $params[':active'] = 1;
+            $params[':term'] = strtolower($_REQUEST['user']);
 
-			$criteria2->params = $params;
+            $criteria2->params = $params;
 
-			foreach (User::model()->findAll($criteria2) as $user) {
-				$user_ids[] = $user->id;
-			}
+            foreach (User::model()->findAll($criteria2) as $user) {
+                $user_ids[] = $user->id;
+            }
 
-			$criteria->addInCondition('user_id',$user_ids);
-		}
+            $criteria->addInCondition('user_id', $user_ids);
+        }
 
-		if (@$_REQUEST['action']) {
-			$criteria->addCondition("action_id=:action_id");
-			$criteria->params[':action_id'] = $_REQUEST['action'];
-		}
+        if (@$_REQUEST['action']) {
+            $criteria->addCondition("action_id=:action_id");
+            $criteria->params[':action_id'] = $_REQUEST['action'];
+        }
 
-		if (@$_REQUEST['target_type']) {
-			$criteria->addCondition("type_id=:type_id");
-			$criteria->params[':type_id'] = $_REQUEST['target_type'];
-		}
+        if (@$_REQUEST['target_type']) {
+            $criteria->addCondition("type_id=:type_id");
+            $criteria->params[':type_id'] = $_REQUEST['target_type'];
+        }
 
-		if (@$_REQUEST['event_type_id']) {
-			$criteria->addCondition('event_type_id=:event_type_id');
-			$criteria->params[':event_type_id'] = $_REQUEST['event_type_id'];
-		}
+        if (@$_REQUEST['event_type_id']) {
+            $criteria->addCondition('event_type_id=:event_type_id');
+            $criteria->params[':event_type_id'] = $_REQUEST['event_type_id'];
+        }
 
-		if (@$_REQUEST['date_from']) {
-			$date_from = Helper::convertNHS2MySQL($_REQUEST['date_from']).' 00:00:00';
-			$criteria->addCondition("`t`.created_date >= :date_from");
-			$criteria->params[':date_from'] = $date_from;
-		}
+        if (@$_REQUEST['date_from']) {
+            $date_from = Helper::convertNHS2MySQL($_REQUEST['date_from']).' 00:00:00';
+            $criteria->addCondition("`t`.created_date >= :date_from");
+            $criteria->params[':date_from'] = $date_from;
+        }
 
-		if (@$_REQUEST['date_to']) {
-			$date_to = Helper::convertNHS2MySQL($_REQUEST['date_to']).' 23:59:59';
-			$criteria->addCondition("`t`.created_date <= :date_to");
-			$criteria->params[':date_to'] = $date_to;
-		}
+        if (@$_REQUEST['date_to']) {
+            $date_to = Helper::convertNHS2MySQL($_REQUEST['date_to']).' 23:59:59';
+            $criteria->addCondition("`t`.created_date <= :date_to");
+            $criteria->params[':date_to'] = $date_to;
+        }
 
-		if (@$_REQUEST['hos_num']) {
-			if ($patient = Patient::model()->find('hos_num=?',array($_REQUEST['hos_num']))) {
-				$criteria->addCondition('patient_id='.$patient->id);
-			} else {
-				if ($patient = Patient::model()->find('hos_num=?',array(str_pad($_REQUEST['hos_num'],7,'0',STR_PAD_LEFT)))) {
-					$criteria->addCondition('patient_id='.$patient->id);
-				} else {
-					$criteria->addCondition('patient_id=0');
-				}
-			}
-		}
+        if (@$_REQUEST['hos_num']) {
+            if ($patient = Patient::model()->find('hos_num=?', array($_REQUEST['hos_num']))) {
+                $criteria->addCondition('patient_id='.$patient->id);
+            } else {
+                if ($patient = Patient::model()->find('hos_num=?', array(str_pad($_REQUEST['hos_num'], 7, '0', STR_PAD_LEFT)))) {
+                    $criteria->addCondition('patient_id='.$patient->id);
+                } else {
+                    $criteria->addCondition('patient_id=0');
+                }
+            }
+        }
 
-		!($count) && $criteria->join = 'left join event on t.event_id = event.id left join event_type on event.event_type_id = event_type.id';
+        !($count) && $criteria->join = 'left join event on t.event_id = event.id left join event_type on event.event_type_id = event_type.id';
 
-		return $criteria;
-	}
+        return $criteria;
+    }
 
-	public function getData($page=1, $id=false)
-	{
-		$data = array();
+    public function getData($page=1, $id=false)
+    {
+        $data = array();
 
-		if ($_data = Audit::model()->with('event')->find($this->criteria(true))) {
-			$data['total_items'] = $_data->count;
-		} else {
-			$data['total_items'] = 0;
-		}
+        if ($_data = Audit::model()->with('event')->find($this->criteria(true))) {
+            $data['total_items'] = $_data->count;
+        } else {
+            $data['total_items'] = 0;
+        }
 
-		$criteria = $this->criteria();
+        $criteria = $this->criteria();
 
-		$criteria->order = 't.id desc';
-		$criteria->limit = $this->items_per_page;
-		if ($id) {
-			$criteria->addCondition('t.id > '.(integer) $id);
-		} else {
-			$criteria->offset = (($page-1) * $this->items_per_page);
-		}
+        $criteria->order = 't.id desc';
+        $criteria->limit = $this->items_per_page;
+        if ($id) {
+            $criteria->addCondition('t.id > '.(integer) $id);
+        } else {
+            $criteria->offset = (($page-1) * $this->items_per_page);
+        }
 
-		$data['items'] = Audit::model()->findAll($criteria);
-		$data['pages'] = ceil($data['total_items'] / $this->items_per_page);
-		if ($data['pages'] <1) {
-			$data['pages'] = 1;
-		}
-		if ($page > $data['pages']) {
-			$page = $data['pages'];
-		}
-		if (!$id) {
-			$data['page'] = $page;
-		}
+        $data['items'] = Audit::model()->findAll($criteria);
+        $data['pages'] = ceil($data['total_items'] / $this->items_per_page);
+        if ($data['pages'] <1) {
+            $data['pages'] = 1;
+        }
+        if ($page > $data['pages']) {
+            $page = $data['pages'];
+        }
+        if (!$id) {
+            $data['page'] = $page;
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	public function actionUpdateList()
-	{
-		if (!$audit = Audit::model()->findByPk(@$_GET['last_id'])) {
-			throw new Exception('Log entry not found: '.@$_GET['last_id']);
-		}
+    public function actionUpdateList()
+    {
+        if (!$audit = Audit::model()->findByPk(@$_GET['last_id'])) {
+            throw new Exception('Log entry not found: '.@$_GET['last_id']);
+        }
 
-		$this->renderPartial('_list_update', array('data' => $this->getData(null,$audit->id)), false, true);
-	}
+        $this->renderPartial('_list_update', array('data' => $this->getData(null, $audit->id)), false, true);
+    }
 
-	public function actionUsers()
-	{
-		$users = array();
+    public function actionUsers()
+    {
+        $users = array();
 
-		$criteria = new CDbCriteria;
+        $criteria = new CDbCriteria;
 
-		$criteria->addCondition(array("active = :active"));
-		$criteria->addCondition(array("LOWER(concat_ws(' ',first_name,last_name)) LIKE :term"));
+        $criteria->addCondition(array("active = :active"));
+        $criteria->addCondition(array("LOWER(concat_ws(' ',first_name,last_name)) LIKE :term"));
 
-		$params[':active'] = 1;
-		$params[':term'] = '%' . strtolower(strtr($_GET['term'], array('%' => '\%'))) . '%';
+        $params[':active'] = 1;
+        $params[':term'] = '%' . strtolower(strtr($_GET['term'], array('%' => '\%'))) . '%';
 
-		$criteria->params = $params;
-		$criteria->order = 'first_name, last_name';
+        $criteria->params = $params;
+        $criteria->order = 'first_name, last_name';
 
-		foreach (User::model()->findAll($criteria) as $user) {
-			if ($contact = $user->contact) {
-				if (!in_array(trim($contact->first_name.' '.$contact->last_name),$users)) {
-					$users[] = trim($contact->first_name.' '.$contact->last_name);
-				}
-			}
-		}
+        foreach (User::model()->findAll($criteria) as $user) {
+            if ($contact = $user->contact) {
+                if (!in_array(trim($contact->first_name.' '.$contact->last_name), $users)) {
+                    $users[] = trim($contact->first_name.' '.$contact->last_name);
+                }
+            }
+        }
 
-		echo json_encode($users);
-	}
+        echo json_encode($users);
+    }
 }

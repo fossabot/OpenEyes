@@ -19,101 +19,101 @@
 
 class ProcedureController extends BaseController
 {
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'roles' => array('OprnViewClinical'),
-			),
-		);
-	}
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'roles' => array('OprnViewClinical'),
+            ),
+        );
+    }
 
-	protected function beforeAction($action)
-	{
-		// Sample code to be used when RBAC is fully implemented.
+    protected function beforeAction($action)
+    {
+        // Sample code to be used when RBAC is fully implemented.
 //		if (!Yii::app()->user->checkAccess('admin')) {
 //			throw new CHttpException(403, 'You are not authorised to perform this action.');
 //		}
 
-		return parent::beforeAction($action);
-	}
+        return parent::beforeAction($action);
+    }
 
-	/**
-	 * Lists all disorders for a given search term.
-	 */
-	public function actionAutocomplete()
-	{
-		echo CJavaScript::jsonEncode(Procedure::getList($_GET['term'], @$_GET['restrict']));
-	}
+    /**
+     * Lists all disorders for a given search term.
+     */
+    public function actionAutocomplete()
+    {
+        echo CJavaScript::jsonEncode(Procedure::getList($_GET['term'], @$_GET['restrict']));
+    }
 
-	public function actionDetails()
-	{
-		if (!empty($_GET['name']) && ($proc = Procedure::model()->findByAttributes(array('term' => $_GET['name'])))) {
-			$this->renderPartial(
-				'_ajaxProcedure',
-				array(
-					'proc' => $proc,
-					'durations' => @$_GET['durations'],
-					'identifier' => @$_GET['identifier']
-				)
-			);
-		}
-	}
+    public function actionDetails()
+    {
+        if (!empty($_GET['name']) && ($proc = Procedure::model()->findByAttributes(array('term' => $_GET['name'])))) {
+            $this->renderPartial(
+                '_ajaxProcedure',
+                array(
+                    'proc' => $proc,
+                    'durations' => @$_GET['durations'],
+                    'identifier' => @$_GET['identifier']
+                )
+            );
+        }
+    }
 
-	public function actionList()
-	{
-		if (!empty($_POST['subsection'])) {
-			$criteria = new CDbCriteria;
-			$criteria->select = 't.id, term, short_format';
-			$criteria->join = 'LEFT JOIN proc_subspecialty_subsection_assignment pssa ON t.id = pssa.proc_id';
-			$criteria->compare('pssa.subspecialty_subsection_id', $_POST['subsection']);
-			$criteria->order = 'term asc';
+    public function actionList()
+    {
+        if (!empty($_POST['subsection'])) {
+            $criteria = new CDbCriteria;
+            $criteria->select = 't.id, term, short_format';
+            $criteria->join = 'LEFT JOIN proc_subspecialty_subsection_assignment pssa ON t.id = pssa.proc_id';
+            $criteria->compare('pssa.subspecialty_subsection_id', $_POST['subsection']);
+            $criteria->order = 'term asc';
 
-			$procedures = Procedure::model()->active()->findAll($criteria);
+            $procedures = Procedure::model()->active()->findAll($criteria);
 
-			$this->renderPartial('_procedureOptions', array('procedures' => $procedures), false, false);
-		}
-	}
+            $this->renderPartial('_procedureOptions', array('procedures' => $procedures), false, false);
+        }
+    }
 
-	public function actionBenefits($id)
-	{
-		if (!Procedure::model()->findByPk($id)) {
-			throw new Exception("Unknown procedure: $id");
-		}
+    public function actionBenefits($id)
+    {
+        if (!Procedure::model()->findByPk($id)) {
+            throw new Exception("Unknown procedure: $id");
+        }
 
-		$benefits = array();
+        $benefits = array();
 
-		foreach (Yii::app()->db->createCommand()
-			->select("b.name")
-			->from("benefit b")
-			->join("procedure_benefit pb","pb.benefit_id = b.id")
-			->where("pb.proc_id = $id and b.active = 1")
-			->order("b.name asc")
-			->queryAll() as $row) {
-			$benefits[] = $row['name'];
-		}
+        foreach (Yii::app()->db->createCommand()
+            ->select("b.name")
+            ->from("benefit b")
+            ->join("procedure_benefit pb", "pb.benefit_id = b.id")
+            ->where("pb.proc_id = $id and b.active = 1")
+            ->order("b.name asc")
+            ->queryAll() as $row) {
+            $benefits[] = $row['name'];
+        }
 
-		echo json_encode($benefits);
-	}
+        echo json_encode($benefits);
+    }
 
-	public function actionComplications($id)
-	{
-		if (!Procedure::model()->findByPk($id)) {
-			throw new Exception("Unknown procedure: $id");
-		}
+    public function actionComplications($id)
+    {
+        if (!Procedure::model()->findByPk($id)) {
+            throw new Exception("Unknown procedure: $id");
+        }
 
-		$complications = array();
+        $complications = array();
 
-		foreach (Yii::app()->db->createCommand()
-			->select("b.name")
-			->from("complication b")
-			->join("procedure_complication pb","pb.complication_id = b.id")
-			->where("pb.proc_id = $id and b.active = 1")
-			->order("b.name asc")
-			->queryAll() as $row) {
-			$complications[] = $row['name'];
-		}
+        foreach (Yii::app()->db->createCommand()
+            ->select("b.name")
+            ->from("complication b")
+            ->join("procedure_complication pb", "pb.complication_id = b.id")
+            ->where("pb.proc_id = $id and b.active = 1")
+            ->order("b.name asc")
+            ->queryAll() as $row) {
+            $complications[] = $row['name'];
+        }
 
-		echo json_encode($complications);
-	}
+        echo json_encode($complications);
+    }
 }

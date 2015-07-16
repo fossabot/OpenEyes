@@ -18,25 +18,25 @@
  */
 
 $config = array(
-	'name'=>'OpenEyes Console',
-	'import' => array(
-			'application.components.*',
-			'system.cli.commands.*',
-	),
-	'commandMap' => array(
-		'migrate' => array(
-			'class' => 'application.commands.OEMigrateCommand',
-			'migrationPath' => 'application.migrations',
-			'migrationTable' => 'tbl_migration',
-			'connectionID' => 'db'
-		),
-	),
+    'name'=>'OpenEyes Console',
+    'import' => array(
+            'application.components.*',
+            'system.cli.commands.*',
+    ),
+    'commandMap' => array(
+        'migrate' => array(
+            'class' => 'application.commands.OEMigrateCommand',
+            'migrationPath' => 'application.migrations',
+            'migrationTable' => 'tbl_migration',
+            'connectionID' => 'db'
+        ),
+    ),
 );
 
-if (preg_match('/\/protected\/modules\/deploy\/yiic$/',@$_SERVER['SCRIPT_FILENAME']) || preg_match('/\/protected\/modules\/deploy$/',@$_SERVER['PWD'])) {
-	$config['commandMap']['migrate']['class'] = 'MigrateCommand';
-	$config['commandMap']['migrate']['migrationPath'] = 'application.modules.deploy.migrations';
-	$config['commandMap']['migrate']['migrationTable'] = 'tbl_migration_deploy';
+if (preg_match('/\/protected\/modules\/deploy\/yiic$/', @$_SERVER['SCRIPT_FILENAME']) || preg_match('/\/protected\/modules\/deploy$/', @$_SERVER['PWD'])) {
+    $config['commandMap']['migrate']['class'] = 'MigrateCommand';
+    $config['commandMap']['migrate']['migrationPath'] = 'application.modules.deploy.migrations';
+    $config['commandMap']['migrate']['migrationTable'] = 'tbl_migration_deploy';
 }
 
 return $config;

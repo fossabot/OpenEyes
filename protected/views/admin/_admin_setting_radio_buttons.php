@@ -17,7 +17,9 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-<?php foreach (unserialize($metadata->data) as $key => $value) {?>
-	<?php echo CHtml::radioButton($metadata->key, $metadata->getSetting($metadata->key) == $key,array('value' => $key))?>
+<?php foreach (unserialize($metadata->data) as $key => $value) {
+    ?>
+	<?php echo CHtml::radioButton($metadata->key, $metadata->getSetting($metadata->key) == $key, array('value' => $key))?>
 	<?php echo CHtml::encode($value)?>
-<?php }?>
+<?php 
+}?>

@@ -22,26 +22,26 @@
  */
 class OEFuzzyDateValidatorNotFuture extends OEFuzzyDateValidator
 {
-	protected function validateCompleteDate()
-	{
-		if (strtotime($this->object->{$this->attribute}) > time()) {
-			$this->addError($this->object, $this->attribute, 'The date cannot be in the future');
-		}
-		parent::validateCompleteDate();
-	}
+    protected function validateCompleteDate()
+    {
+        if (strtotime($this->object->{$this->attribute}) > time()) {
+            $this->addError($this->object, $this->attribute, 'The date cannot be in the future');
+        }
+        parent::validateCompleteDate();
+    }
 
-	protected function validateFuzzyYear()
-	{
-		if ($this->year > date('Y')) {
-			$this->addError($this->object, $this->attribute, 'The date cannot be in the future');
-		}
-	}
+    protected function validateFuzzyYear()
+    {
+        if ($this->year > date('Y')) {
+            $this->addError($this->object, $this->attribute, 'The date cannot be in the future');
+        }
+    }
 
-	protected function validateFuzzyMonthYear()
-	{
-		if (strtotime($this->year."-".$this->month."-01") > time()) {
-			$this->addError($this->object, $this->attribute, 'The date cannot be in the future');
-		}
-		parent::validateFuzzyMonthYear();
-	}
+    protected function validateFuzzyMonthYear()
+    {
+        if (strtotime($this->year."-".$this->month."-01") > time()) {
+            $this->addError($this->object, $this->attribute, 'The date cannot be in the future');
+        }
+        parent::validateFuzzyMonthYear();
+    }
 }

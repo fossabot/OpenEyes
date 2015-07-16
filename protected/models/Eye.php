@@ -27,53 +27,53 @@
  */
 class Eye extends BaseActiveRecord
 {
-	const LEFT = 1;
-	const RIGHT = 2;
-	const BOTH = 3;
+    const LEFT = 1;
+    const RIGHT = 2;
+    const BOTH = 3;
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Eye the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Eye the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'eye';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'eye';
+    }
 
-	public function defaultScope()
-	{
-		return array('order' => $this->getTableAlias(true, false) . '.display_order');
-	}
+    public function defaultScope()
+    {
+        return array('order' => $this->getTableAlias(true, false) . '.display_order');
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+        );
+    }
 
-	public function getShortName()
-	{
-		return substr($this->name, 0, 1);
-	}
+    public function getShortName()
+    {
+        return substr($this->name, 0, 1);
+    }
 
-	public function getAdjective()
-	{
-		if ($this->id == Eye::BOTH) {
-			return 'Bilateral';
-		}
-		return $this->name;
-	}
+    public function getAdjective()
+    {
+        if ($this->id == Eye::BOTH) {
+            return 'Bilateral';
+        }
+        return $this->name;
+    }
 }

@@ -17,27 +17,27 @@ namespace services;
 
 class FhirBundleEntry extends DataObject
 {
-	/**
-	 * @param string url
-	 * @param Resource $resource
-	 * @return FhirBundleEntry
-	 */
-	static public function fromResource($url, Resource $resource)
-	{
-		return new self(
-			array(
-				'title' => $resource::getFhirType(),
-				'id' => $url,
-				'self' => $url . "/_history/{$resource->getVersionId()}",
-				'updated' => date(DATE_ATOM, $resource->getLastModified()),
-				'profile' => $resource->getOeFhirProfile(),
-				'resource' => $resource,
-			)
-		);
-	}
+    /**
+     * @param string url
+     * @param Resource $resource
+     * @return FhirBundleEntry
+     */
+    public static function fromResource($url, Resource $resource)
+    {
+        return new self(
+            array(
+                'title' => $resource::getFhirType(),
+                'id' => $url,
+                'self' => $url . "/_history/{$resource->getVersionId()}",
+                'updated' => date(DATE_ATOM, $resource->getLastModified()),
+                'profile' => $resource->getOeFhirProfile(),
+                'resource' => $resource,
+            )
+        );
+    }
 
-	public $title;
-	public $id;
-	public $updated;
-	public $resource;
+    public $title;
+    public $id;
+    public $updated;
+    public $resource;
 }

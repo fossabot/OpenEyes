@@ -33,8 +33,8 @@ $event_type = $event->eventType->name;
 			<strong><?php echo $this->patient->contact->fullName?></strong>
 			<br />
 			<?php echo $this->patient->getLetterAddress(array(
-				'delimiter' => '<br/>',
-			))?>
+                'delimiter' => '<br/>',
+            ))?>
 			<br />
 			<br />
 			Hospital No: <strong><?php echo $this->patient->hos_num ?></strong>

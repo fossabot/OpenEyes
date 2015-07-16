@@ -15,28 +15,28 @@
 
 class LookupTable extends CActiveRecordBehavior
 {
-	/*
-	 * Named scope for rows that are active
-	 */
-	public function active()
-	{
-		$this->owner->getDbCriteria()->compare($this->owner->getTableAlias(true) . '.active', 1);
-		return $this->owner;
-	}
+    /*
+     * Named scope for rows that are active
+     */
+    public function active()
+    {
+        $this->owner->getDbCriteria()->compare($this->owner->getTableAlias(true) . '.active', 1);
+        return $this->owner;
+    }
 
-	/*
-	 * Named scope for rows that are active or match the PK(s) given
-	 *
-	 * @param mixed $id PK
-	 */
-	public function activeOrPk($id)
-	{
-		$alias = $this->owner->getTableAlias(true);
+    /*
+     * Named scope for rows that are active or match the PK(s) given
+     *
+     * @param mixed $id PK
+     */
+    public function activeOrPk($id)
+    {
+        $alias = $this->owner->getTableAlias(true);
 
-		$crit = new CDbCriteria;
-		$crit->compare("{$alias}.active", 1);
-		$crit->compare($alias . "." . $this->owner->metadata->tableSchema->primaryKey, $id, false, 'OR');
-		$this->owner->getDbCriteria()->mergeWith($crit);
-		return $this->owner;
-	}
+        $crit = new CDbCriteria;
+        $crit->compare("{$alias}.active", 1);
+        $crit->compare($alias . "." . $this->owner->metadata->tableSchema->primaryKey, $id, false, 'OR');
+        $this->owner->getDbCriteria()->mergeWith($crit);
+        return $this->owner;
+    }
 }

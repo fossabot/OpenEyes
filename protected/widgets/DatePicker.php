@@ -19,47 +19,46 @@
 
 class DatePicker extends BaseFieldWidget
 {
-	public $name;
-	public $options = array();
+    public $name;
+    public $options = array();
 
-	public function run()
-	{
-		if (empty($_POST)) {
-			if ($this->element->{$this->field}) {
-				if (preg_match('/^[0-9]+ [a-zA-Z]+ [0-9]+$/',$this->element->{$this->field})) {
-					$this->value = $this->element->{$this->field};
-				} else {
-					$this->value = date('j M Y',strtotime($this->element->{$this->field}));
-				}
-			} else {
-				if (@$this->htmlOptions['null']) {
-					$this->value = null;
-				} else {
-					$this->value = date('j M Y');
-				}
-			}
-		} else {
-			if ($this->name) {
-				$this->value = $this->getPOSTValue($this->name);
-			} else {
-				$this->value = $_POST[get_class($this->element)][$this->field];
-			}
-		}
+    public function run()
+    {
+        if (empty($_POST)) {
+            if ($this->element->{$this->field}) {
+                if (preg_match('/^[0-9]+ [a-zA-Z]+ [0-9]+$/', $this->element->{$this->field})) {
+                    $this->value = $this->element->{$this->field};
+                } else {
+                    $this->value = date('j M Y', strtotime($this->element->{$this->field}));
+                }
+            } else {
+                if (@$this->htmlOptions['null']) {
+                    $this->value = null;
+                } else {
+                    $this->value = date('j M Y');
+                }
+            }
+        } else {
+            if ($this->name) {
+                $this->value = $this->getPOSTValue($this->name);
+            } else {
+                $this->value = $_POST[get_class($this->element)][$this->field];
+            }
+        }
 
-		parent::run();
-	}
+        parent::run();
+    }
 
-	public function getPOSTValue($name)
-	{
-		$data = $_POST;
-		foreach (explode('[',$name) as $i => $key) {
-			$lkup = $key;
-			if ($i > 0) {
-				$lkup = substr($key,0, -1);
-			}
-			$data = @$data[$lkup];
-		}
-		return $data;
-	}
-
+    public function getPOSTValue($name)
+    {
+        $data = $_POST;
+        foreach (explode('[', $name) as $i => $key) {
+            $lkup = $key;
+            if ($i > 0) {
+                $lkup = substr($key, 0, -1);
+            }
+            $data = @$data[$lkup];
+        }
+        return $data;
+    }
 }

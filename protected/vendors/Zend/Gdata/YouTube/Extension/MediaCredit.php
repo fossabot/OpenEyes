@@ -37,7 +37,6 @@ require_once 'Zend/Gdata/App/Extension.php';
  */
 class Zend_Gdata_YouTube_Extension_MediaCredit extends Zend_Gdata_Extension
 {
-
     protected $_rootElement = 'credit';
     protected $_rootNamespace = 'media';
 
@@ -185,5 +184,4 @@ class Zend_Gdata_YouTube_Extension_MediaCredit extends Zend_Gdata_Extension
         $this->_yttype = $value;
         return $this;
     }
-
 }

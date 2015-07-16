@@ -16,14 +16,14 @@
 $options = $route->getOptions($medication->option_id);
 
 if ($options) {
-	$this->widget(
-		'application.widgets.DropDownList',
-		array(
-			'layoutColumns' => array('label' => 3, 'field' => 9),
-			'element' => $medication,
-			'field' => 'option_id',
-			'data' => CHtml::listData($options, 'id', 'name'),
-			'htmlOptions' => array('name' => 'option_id', 'empty' => '- Select -'),
-		)
-	);
+    $this->widget(
+        'application.widgets.DropDownList',
+        array(
+            'layoutColumns' => array('label' => 3, 'field' => 9),
+            'element' => $medication,
+            'field' => 'option_id',
+            'data' => CHtml::listData($options, 'id', 'name'),
+            'htmlOptions' => array('name' => 'option_id', 'empty' => '- Select -'),
+        )
+    );
 }

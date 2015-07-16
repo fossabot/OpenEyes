@@ -38,7 +38,6 @@ require_once 'Zend/Gdata/Books/Extension/BooksLink.php';
 class Zend_Gdata_Books_Extension_PreviewLink extends
     Zend_Gdata_Books_Extension_BooksLink
 {
-
     /**
      * Constructor for Zend_Gdata_Books_Extension_PreviewLink which
      * Describes a preview link
@@ -56,5 +55,4 @@ class Zend_Gdata_Books_Extension_PreviewLink extends
         $this->registerAllNamespaces(Zend_Gdata_Books::$namespaces);
         parent::__construct($href, $rel, $type, $hrefLang, $title, $length);
     }
-
 }

@@ -27,43 +27,43 @@
  */
 class SiteSubspecialtyAnaestheticAgent extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return SiteSubspecialtyAnaestheticAgent the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return SiteSubspecialtyAnaestheticAgent the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'site_subspecialty_anaesthetic_agent';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'site_subspecialty_anaesthetic_agent';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-			'sites' => array(self::BELONGS_TO, 'Site', 'site_id'),
-			'subspecialties' => array(self::BELONGS_TO, 'Subspecialty', 'subspecialty_id'),
-			'agents' => array(self::BELONGS_TO, 'AnaestheticAgent', 'anaesthetic_agent_id')
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            'sites' => array(self::BELONGS_TO, 'Site', 'site_id'),
+            'subspecialties' => array(self::BELONGS_TO, 'Subspecialty', 'subspecialty_id'),
+            'agents' => array(self::BELONGS_TO, 'AnaestheticAgent', 'anaesthetic_agent_id')
+        );
+    }
 }

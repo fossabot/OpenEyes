@@ -17,12 +17,12 @@ namespace services;
 
 class Conflict extends ServiceException
 {
-	public $httpCode = 409;
+    public $httpCode = 409;
 
-	public function toFhirOutcome()
-	{
-		return FhirOutcome::singleIssue(
-			\FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_PROCESSING_CONFLICT, $this->message
-		);
-	}
+    public function toFhirOutcome()
+    {
+        return FhirOutcome::singleIssue(
+            \FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_PROCESSING_CONFLICT, $this->message
+        );
+    }
 }

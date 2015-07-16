@@ -19,19 +19,19 @@
 
 class SliderTable extends BaseFieldWidget
 {
-	public $min = 1;
-	public $max;
-	public $step = 1;
-	public $data;
+    public $min = 1;
+    public $max;
+    public $step = 1;
+    public $data;
 
-	public function init()
-	{
-		parent::init();
+    public function init()
+    {
+        parent::init();
 
-		$this->max = count($this->data) + 1;
+        $this->max = count($this->data) + 1;
 
-		if (!$this->value) {
-			$this->value = 1;
-		}
-	}
+        if (!$this->value) {
+            $this->value = 1;
+        }
+    }
 }

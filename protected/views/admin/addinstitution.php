@@ -20,27 +20,27 @@
 ?>
 <div class="box admin">
 	<h2>Add institution</h2>
-	<?php echo $this->renderPartial('_form_errors',array('errors'=>$errors))?>
+	<?php echo $this->renderPartial('_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'adminform',
-		'enableAjaxValidation'=>false,
-		'focus'=>'#username',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
-		<?php echo $form->textField($institution,'name',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($institution,'remote_id', array('autocomplete' => Yii::app()->params['html_autocomplete']), null, array('field' => 2))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'adminform',
+        'enableAjaxValidation'=>false,
+        'focus'=>'#username',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
+		<?php echo $form->textField($institution, 'name', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($institution, 'remote_id', array('autocomplete' => Yii::app()->params['html_autocomplete']), null, array('field' => 2))?>
 		<fieldset class="field-row">
 			<legend>Address</legend>
-			<?php echo $form->textField($address,'address1',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-			<?php echo $form->textField($address,'address2',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-			<?php echo $form->textField($address,'city',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-			<?php echo $form->textField($address,'county',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-			<?php echo $form->textField($address,'postcode',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
-			<?php echo $form->dropDownList($address,'country_id','Country')?>
+			<?php echo $form->textField($address, 'address1', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+			<?php echo $form->textField($address, 'address2', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+			<?php echo $form->textField($address, 'city', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+			<?php echo $form->textField($address, 'county', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+			<?php echo $form->textField($address, 'postcode', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+			<?php echo $form->dropDownList($address, 'country_id', 'Country')?>
 		</fieldset>
 		<?php echo $form->formActions(array('cancel-uri' => '/admin/institutions'));?>
 	<?php $this->endWidget()?>

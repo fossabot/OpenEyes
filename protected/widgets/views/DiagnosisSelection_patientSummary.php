@@ -18,7 +18,9 @@
  */
 ?>
 <div class="row field-row diagnosis-selection">
-	<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {?> hide<?php }?>">
+	<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {
+    ?> hide<?php 
+}?>">
 		<label for="<?php echo "{$class}_{$field}";?>">
 			<?php echo $label?>:
 		</label>
@@ -34,11 +36,11 @@
 		</div>
 		<div class="autocomplete-row">
 			<?php
-			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-					'name' => "{$class}[$field]",
-					'id' => "{$class}_{$field}_0",
-					'value'=>'',
-					'source'=>"js:function(request, response) {
+            $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                    'name' => "{$class}[$field]",
+                    'id' => "{$class}_{$field}_0",
+                    'value'=>'',
+                    'source'=>"js:function(request, response) {
 						".($loader ? "$('#".$loader."').show();" : "")."
 						$.ajax({
 							'url': '" . Yii::app()->createUrl('/disorder/autocomplete') . "',
@@ -51,9 +53,9 @@
 							}
 						});
 					}",
-					'options' => array(
-							'minLength'=>'3',
-							'select' => "js:function(event, ui) {
+                    'options' => array(
+                            'minLength'=>'3',
+                            'select' => "js:function(event, ui) {
 								$('#".$class."_".$field."_0').val('');
 								$('#".$class."_".$field."_enteredDiagnosisText').html('<strong>' + ui.item.value + '</strong>');
 								$('#".$class."_".$field."_enteredDiagnosisText').show();
@@ -61,12 +63,12 @@
 								$('#".$class."_".$field."').focus();
 								return false;
 							}",
-					),
-					'htmlOptions' => array(
-							'placeholder' => 'or type the first few characters of a diagnosis',
-					),
-			));
-			?>
+                    ),
+                    'htmlOptions' => array(
+                            'placeholder' => 'or type the first few characters of a diagnosis',
+                    ),
+            ));
+            ?>
 			<input type="hidden" name="<?php echo $class?>[<?php echo $field?>]"
 				id="<?php echo $class?>_<?php echo $field?>_savedDiagnosis" value="<?php echo $value?>" />
 		</div>

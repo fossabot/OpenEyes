@@ -19,16 +19,18 @@
 		<div class="large-8 large-centered column panel">
 			<ul class="inline-list tabs search">
 				<?php
-					$tabs[] = array(
-						'title' => 'OpenEyes search',
-						'url' => '/',
-						'position' => 0,
-					);
+                    $tabs[] = array(
+                        'title' => 'OpenEyes search',
+                        'url' => '/',
+                        'position' => 0,
+                    );
 
-					usort($tabs, function ($a, $b) { return ($a['position'] < $b['position']) ? -1 : 1; });
-				?>
+                    usort($tabs, function ($a, $b) { return ($a['position'] < $b['position']) ? -1 : 1; });
+                ?>
 				<?php foreach ($tabs as $tab): ?>
-					<li<?php if ($tab['url'] == Yii::app()->request->requestUri) echo ' class="selected"' ?> >
+					<li<?php if ($tab['url'] == Yii::app()->request->requestUri) {
+    echo ' class="selected"';
+} ?> >
 						<a href="<?= $tab['url'] ?>"><?= CHtml::encode($tab['title']) ?></a>
 					</li>
 				<?php endforeach ?>

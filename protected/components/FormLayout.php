@@ -19,51 +19,52 @@
 
 class FormLayout extends CActiveForm
 {
-	// The amount of columns for the labels and fields. These 'global' values should
-	// be merged into the widget options.
-	public $layoutColumns = array(
-		'label' => 2,
-		'field' => 10
-	);
+    // The amount of columns for the labels and fields. These 'global' values should
+    // be merged into the widget options.
+    public $layoutColumns = array(
+        'label' => 2,
+        'field' => 10
+    );
 
-	/**
-	 * Generates a CSS class that is used for the layout columns.
-	 * @param  mixed $key The column key ('label', or 'field') or column value (integer).
-	 * @return string      The CSS class.
-	 */
-	public function columns($key='label', $end=false) {
+    /**
+     * Generates a CSS class that is used for the layout columns.
+     * @param  mixed $key The column key ('label', or 'field') or column value (integer).
+     * @return string      The CSS class.
+     */
+    public function columns($key='label', $end=false)
+    {
+        if (is_int($key)) {
+            $className = 'large-'.(string)$key.' column';
+        } else {
+            $className = 'large-'.$this->layoutColumns[$key].' column';
+        }
 
-		if (is_int($key)) {
-			$className = 'large-'.(string)$key.' column';
-		} else {
-			$className = 'large-'.$this->layoutColumns[$key].' column';
-		}
+        if ($key === 'field') {
+            $end = true;
+        }
 
-		if ($key === 'field') {
-			$end = true;
-		}
+        if ($end) {
+            $className .= ' end';
+        }
 
-		if ($end) {
-			$className .= ' end';
-		}
+        return $className;
+    }
 
-		return $className;
-	}
+    /**
+     * We override this method so we can pass through the layoutColumns from the 'form'
+     * into the widget.
+     */
+    public function widget($className, $properties=array(), $captureOutput=false)
+    {
 
-	/**
-	 * We override this method so we can pass through the layoutColumns from the 'form'
-	 * into the widget.
-	 */
-	public function widget($className,$properties=array(),$captureOutput=false){
+        // We don't want to override the default layoutColumns with an empty array.
+        if (empty($properties['layoutColumns'])) {
+            unset($properties['layoutColumns']);
+        }
 
-		// We don't want to override the default layoutColumns with an empty array.
-		if (empty($properties['layoutColumns'])) {
-			unset($properties['layoutColumns']);
-		}
+        //override form layoutColumns with any properties set by the form controls
+        $properties['layoutColumns']=array_merge($this->layoutColumns, isset($properties['layoutColumns']) ? $properties['layoutColumns'] : array());
 
-		//override form layoutColumns with any properties set by the form controls
-		$properties['layoutColumns']=array_merge($this->layoutColumns,isset($properties['layoutColumns']) ? $properties['layoutColumns'] : array());
-
-		return parent::widget($className,$properties,$captureOutput);
-	}
+        return parent::widget($className, $properties, $captureOutput);
+    }
 }

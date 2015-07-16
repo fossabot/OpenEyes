@@ -19,24 +19,24 @@
 
 class DropDownListRow extends BaseFieldWidget
 {
-	public $fields;
-	public $datas;
-	public $values = array();
+    public $fields;
+    public $datas;
+    public $values = array();
 
-	public function init()
-	{
-		foreach ($this->fields as $i => $field) {
-			if (empty($_POST)) {
-				if (isset($this->element->$field)) {
-					$this->values[$i] = $this->element->$field;
-				}
-			} else {
-				$this->values[$i] = @$_POST[get_class($this->element)][$field];
-			}
+    public function init()
+    {
+        foreach ($this->fields as $i => $field) {
+            if (empty($_POST)) {
+                if (isset($this->element->$field)) {
+                    $this->values[$i] = $this->element->$field;
+                }
+            } else {
+                $this->values[$i] = @$_POST[get_class($this->element)][$field];
+            }
 
-			if ($this->element->hasAttribute($field) && isset($this->values[$i])) {
-				$this->element->{$field} = $this->values[$i];
-			}
-		}
-	}
+            if ($this->element->hasAttribute($field) && isset($this->values[$i])) {
+                $this->element->{$field} = $this->values[$i];
+            }
+        }
+    }
 }

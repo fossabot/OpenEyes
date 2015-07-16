@@ -17,23 +17,23 @@ namespace services;
 
 abstract class ResourceReference implements FhirCompatible
 {
-	/**
-	 * @param \StdClass $fhir_object
-	 * @return ResourceReference
-	 */
-	static public function fromFhir($fhir_object)
-	{
-		$url = $fhir_object->reference;
+    /**
+     * @param \StdClass $fhir_object
+     * @return ResourceReference
+     */
+    public static function fromFhir($fhir_object)
+    {
+        $url = $fhir_object->reference;
 
-		if (!preg_match('|([A-Za-z]+)/([0-9a-z.-]+)$|', $url, $m)) {
-			throw new ProcessingNotSupported("Unsupported FHIR resource reference: {$url}");
-		}
+        if (!preg_match('|([A-Za-z]+)/([0-9a-z.-]+)$|', $url, $m)) {
+            throw new ProcessingNotSupported("Unsupported FHIR resource reference: {$url}");
+        }
 
-		return \Yii::app()->service->fhirIdToReference($m[1], $m[2]);
-	}
+        return \Yii::app()->service->fhirIdToReference($m[1], $m[2]);
+    }
 
-	/**
-	 * @return Resource
-	 */
-	abstract public function resolve();
+    /**
+     * @return Resource
+     */
+    abstract public function resolve();
 }

@@ -15,156 +15,156 @@
 
 class ComponentStubGeneratorTest extends PHPUnit_Framework_TestCase
 {
-	private $stub;
+    private $stub;
 
-	public function setUp()
-	{
-		$this->stub = ComponentStubGenerator::generate(
-			'ComponentStubGeneratorTest_ExampleComponent',
-			array(
-				'normal_prop' => 'bar',
-				'magic_get_prop' => 'bar',
-				'get_method_prop' => 'bar',
-			)
-		);
-	}
+    public function setUp()
+    {
+        $this->stub = ComponentStubGenerator::generate(
+            'ComponentStubGeneratorTest_ExampleComponent',
+            array(
+                'normal_prop' => 'bar',
+                'magic_get_prop' => 'bar',
+                'get_method_prop' => 'bar',
+            )
+        );
+    }
 
-	public function testNormalProp()
-	{
-		$this->assertEquals('bar', $this->stub->normal_prop);
-	}
+    public function testNormalProp()
+    {
+        $this->assertEquals('bar', $this->stub->normal_prop);
+    }
 
-	public function testMagicGetProp()
-	{
-		$this->assertEquals('bar', $this->stub->magic_get_prop);
-	}
+    public function testMagicGetProp()
+    {
+        $this->assertEquals('bar', $this->stub->magic_get_prop);
+    }
 
-	public function testGetMethodProp_Direct()
-	{
-		$this->assertEquals('bar', $this->stub->get_method_prop);
-	}
+    public function testGetMethodProp_Direct()
+    {
+        $this->assertEquals('bar', $this->stub->get_method_prop);
+    }
 
-	public function testGetMethodProp_MethodCall()
-	{
-		$this->assertEquals('bar', $this->stub->getGet_method_prop());
-	}
+    public function testGetMethodProp_MethodCall()
+    {
+        $this->assertEquals('bar', $this->stub->getGet_method_prop());
+    }
 
-	public function testDontOverrideMethodsThatTakeArguments()
-	{
-		$this->stub->expects($this->any())->method('getNormal_prop')->will($this->returnArgument(0));
-		$this->assertEquals('foo', $this->stub->getNormal_prop('foo'));
-	}
+    public function testDontOverrideMethodsThatTakeArguments()
+    {
+        $this->stub->expects($this->any())->method('getNormal_prop')->will($this->returnArgument(0));
+        $this->assertEquals('foo', $this->stub->getNormal_prop('foo'));
+    }
 
-	public function testChangeNormalProp()
-	{
-		$this->stub->normal_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->normal_prop);
-	}
+    public function testChangeNormalProp()
+    {
+        $this->stub->normal_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->normal_prop);
+    }
 
-	public function testChangeMagicGetProp()
-	{
-		$this->stub->magic_get_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->magic_get_prop);
-	}
+    public function testChangeMagicGetProp()
+    {
+        $this->stub->magic_get_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->magic_get_prop);
+    }
 
-	public function testChangeGetMethodProp_GetDirect()
-	{
-		$this->stub->get_method_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->get_method_prop);
-	}
+    public function testChangeGetMethodProp_GetDirect()
+    {
+        $this->stub->get_method_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->get_method_prop);
+    }
 
-	public function testChangeGetMethodProp_GetWithMethodCall()
-	{
-		$this->stub->get_method_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->getGet_method_prop());
-	}
+    public function testChangeGetMethodProp_GetWithMethodCall()
+    {
+        $this->stub->get_method_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->getGet_method_prop());
+    }
 
-	public function testAddNormalProp()
-	{
-		$this->stub->other_normal_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->other_normal_prop);
-	}
+    public function testAddNormalProp()
+    {
+        $this->stub->other_normal_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->other_normal_prop);
+    }
 
-	public function testAddMagicGetProp()
-	{
-		$this->stub->other_magic_get_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->other_magic_get_prop);
-	}
+    public function testAddMagicGetProp()
+    {
+        $this->stub->other_magic_get_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->other_magic_get_prop);
+    }
 
-	public function testAddGetMethodProp_GetDirect()
-	{
-		$this->stub->other_get_method_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->other_get_method_prop);
-	}
+    public function testAddGetMethodProp_GetDirect()
+    {
+        $this->stub->other_get_method_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->other_get_method_prop);
+    }
 
-	public function testAddGetMethodProp_GetWithMethodCall()
-	{
-		$this->stub->other_get_method_prop = 'baz';
-		$this->assertEquals('baz', $this->stub->getOther_get_method_prop());
-	}
+    public function testAddGetMethodProp_GetWithMethodCall()
+    {
+        $this->stub->other_get_method_prop = 'baz';
+        $this->assertEquals('baz', $this->stub->getOther_get_method_prop());
+    }
 
-	public function testIsset_NormalProp()
-	{
-		$this->assertTrue(isset($this->stub->normal_prop));
-	}
+    public function testIsset_NormalProp()
+    {
+        $this->assertTrue(isset($this->stub->normal_prop));
+    }
 
-	public function testIsset_MagicGetProp()
-	{
-		$this->assertTrue(isset($this->stub->magic_get_prop));
-	}
+    public function testIsset_MagicGetProp()
+    {
+        $this->assertTrue(isset($this->stub->magic_get_prop));
+    }
 
-	public function testIsset_GetMethodProp()
-	{
-		$this->assertTrue(isset($this->stub->get_method_prop));
-	}
+    public function testIsset_GetMethodProp()
+    {
+        $this->assertTrue(isset($this->stub->get_method_prop));
+    }
 
-	public function testIsset_AddedNormalProp()
-	{
-		$this->stub->other_normal_prop = 'baz';
-		$this->assertTrue(isset($this->stub->other_normal_prop));
-	}
+    public function testIsset_AddedNormalProp()
+    {
+        $this->stub->other_normal_prop = 'baz';
+        $this->assertTrue(isset($this->stub->other_normal_prop));
+    }
 
-	public function testIsset_AddedMagicGetProp()
-	{
-		$this->stub->other_magic_get_prop = 'baz';
-		$this->assertTrue(isset($this->stub->other_magic_get_prop));
-	}
+    public function testIsset_AddedMagicGetProp()
+    {
+        $this->stub->other_magic_get_prop = 'baz';
+        $this->assertTrue(isset($this->stub->other_magic_get_prop));
+    }
 
-	public function testIsset_AddedGetMethodProp()
-	{
-		$this->stub->other_get_method_prop = 'baz';
-		$this->assertTrue(isset($this->stub->other_get_method_prop));
-	}
+    public function testIsset_AddedGetMethodProp()
+    {
+        $this->stub->other_get_method_prop = 'baz';
+        $this->assertTrue(isset($this->stub->other_get_method_prop));
+    }
 }
 
 class ComponentStubGeneratorTest_ExampleComponent extends CComponent
 {
-	public $normal_prop = 'foo';
-	public $other_normal_prop = 'foo';
+    public $normal_prop = 'foo';
+    public $other_normal_prop = 'foo';
 
-	public function __get($name)
-	{
-		if ($name == 'magic_get_prop' || $name == 'other_magic_get_prop') {
-			return 'foo';
-		}
-		return parent::__get($name);
-	}
+    public function __get($name)
+    {
+        if ($name == 'magic_get_prop' || $name == 'other_magic_get_prop') {
+            return 'foo';
+        }
+        return parent::__get($name);
+    }
 
-	public function getGet_method_prop()
-	{
-		return 'foo';
-	}
+    public function getGet_method_prop()
+    {
+        return 'foo';
+    }
 
-	public function getOther_get_method_prop()
-	{
-		return 'foo';
-	}
+    public function getOther_get_method_prop()
+    {
+        return 'foo';
+    }
 
-	/**
-	 * Not actually a property getter because it takes an argument
-	 */
-	public function getNormal_prop($a)
-	{
-		return $a;
-	}
+    /**
+     * Not actually a property getter because it takes an argument
+     */
+    public function getNormal_prop($a)
+    {
+        return $a;
+    }
 }

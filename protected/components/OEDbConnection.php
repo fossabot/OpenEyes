@@ -19,26 +19,26 @@
 
 class OEDbConnection extends CDbConnection
 {
-	public function beginTransaction()
-	{
-		if (Yii::app()->params['enable_transactions']) {
-			return parent::beginTransaction();
-		} else {
-			$stub = new OETransactionStub;
-			return $stub;
-		}
-	}
+    public function beginTransaction()
+    {
+        if (Yii::app()->params['enable_transactions']) {
+            return parent::beginTransaction();
+        } else {
+            $stub = new OETransactionStub;
+            return $stub;
+        }
+    }
 
-	/**
-	 * Begin a transaction if there is not already one in progress
-	 */
-	public function beginInternalTransaction()
-	{
-		if ($this->getCurrentTransaction()) {
-			$stub = new OETransactionStub;
-			return $stub;
-		} else {
-			return $this->beginTransaction();
-		}
-	}
+    /**
+     * Begin a transaction if there is not already one in progress
+     */
+    public function beginInternalTransaction()
+    {
+        if ($this->getCurrentTransaction()) {
+            $stub = new OETransactionStub;
+            return $stub;
+        } else {
+            return $this->beginTransaction();
+        }
+    }
 }

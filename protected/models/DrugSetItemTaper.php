@@ -29,71 +29,70 @@
  */
 class DrugSetItemTaper extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return DrugSetItemTaper the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return DrugSetItemTaper the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'drug_set_item_taper';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'drug_set_item_taper';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-				array('item_id', 'required'),
-				array('dose, frequency_id, duration_id', 'safe'),
-				array('id, dose, item_id, frequency_id, duration_id', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+                array('item_id', 'required'),
+                array('dose, frequency_id, duration_id', 'safe'),
+                array('id, dose, item_id, frequency_id, duration_id', 'safe', 'on'=>'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-				'item' => array(self::BELONGS_TO, 'DrugSetItem', 'item_id'),
-				'frequency' => array(self::BELONGS_TO, 'DrugFrequency', 'frequency_id'),
-				'duration' => array(self::BELONGS_TO, 'DrugDuration', 'duration_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+                'item' => array(self::BELONGS_TO, 'DrugSetItem', 'item_id'),
+                'frequency' => array(self::BELONGS_TO, 'DrugFrequency', 'frequency_id'),
+                'duration' => array(self::BELONGS_TO, 'DrugDuration', 'duration_id'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('item_id',$this->item_id,true);
-		$criteria->compare('dose',$this->dose,true);
-		$criteria->compare('frequency_id',$this->frequency_id,true);
-		$criteria->compare('duration_id',$this->duration_id,true);
-		return new CActiveDataProvider(get_class($this), array(
-				'criteria'=>$criteria,
-		));
-	}
-
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        $criteria=new CDbCriteria;
+        $criteria->compare('id', $this->id, true);
+        $criteria->compare('item_id', $this->item_id, true);
+        $criteria->compare('dose', $this->dose, true);
+        $criteria->compare('frequency_id', $this->frequency_id, true);
+        $criteria->compare('duration_id', $this->duration_id, true);
+        return new CActiveDataProvider(get_class($this), array(
+                'criteria'=>$criteria,
+        ));
+    }
 }

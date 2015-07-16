@@ -75,7 +75,6 @@ require_once 'Zend/Gdata/YouTube/Extension/Uploaded.php';
  */
 class Zend_Gdata_YouTube_Extension_MediaGroup extends Zend_Gdata_Media_Extension_MediaGroup
 {
-
     protected $_rootElement = 'group';
     protected $_rootNamespace = 'media';
 

@@ -17,25 +17,50 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-<?php if (!@$htmlOptions['nowrapper']) {?>
+<?php if (!@$htmlOptions['nowrapper']) {
+    ?>
 	<div id="div_<?php echo $id?>" class="row field-row">
-		<div class="large-<?php echo $layoutColumns['label'];?> column">
-			<?php if (!@$htmlOptions['nolabel']) {?>
+		<div class="large-<?php echo $layoutColumns['label'];
+    ?> column">
+			<?php if (!@$htmlOptions['nolabel']) {
+    ?>
 				<label for="<?php echo $id?>"></label>
-			<?php }?>
+			<?php 
+}
+    ?>
 		</div>
 
-		<div class="large-<?php echo $layoutColumns['field'];?> column end">
-<?php }?>
-		<select id="<?php echo $id?>"<?php if (@$htmlOptions['class']) {?> class="<?php echo $htmlOptions['class']?>"<?php }?><?php if (@$htmlOptions['disabled']) {?> disabled="disabled"<?php }?><?php if (@$htmlOptions['title']) {?> title="<?php echo $htmlOptions['title']?>"<?php }?>>
-			<?php if (isset($htmlOptions['empty'])) {?>
+		<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+<?php 
+}?>
+		<select id="<?php echo $id?>"<?php if (@$htmlOptions['class']) {
+    ?> class="<?php echo $htmlOptions['class']?>"<?php 
+}?><?php if (@$htmlOptions['disabled']) {
+    ?> disabled="disabled"<?php 
+}?><?php if (@$htmlOptions['title']) {
+    ?> title="<?php echo $htmlOptions['title']?>"<?php 
+}?>>
+			<?php if (isset($htmlOptions['empty'])) {
+    ?>
 				<option value="" data-order="0"><?php echo $htmlOptions['empty']?></option>
-			<?php }?>
-			<?php $order= 1; foreach ($data as $id => $option) {?>
-				<option value="<?php echo $id?>"<?php if(@$htmlOptions['display_order']){echo ' data-order="' . $htmlOptions['display_order'][$id] . '" ';}?><?php if ($id == $selected_value) {?> selected="selected"<?php }?>><?php echo CHtml::encode($option)?></option>
-			<?php $order++;}?>
+			<?php 
+}?>
+			<?php $order= 1; foreach ($data as $id => $option) {
+     ?>
+				<option value="<?php echo $id?>"<?php if (@$htmlOptions['display_order']) {
+    echo ' data-order="' . $htmlOptions['display_order'][$id] . '" ';
+}
+     ?><?php if ($id == $selected_value) {
+    ?> selected="selected"<?php 
+}
+     ?>><?php echo CHtml::encode($option)?></option>
+			<?php $order++;
+ }?>
 		</select>
-		<?php if (!@$htmlOptions['nowrapper']) {?>
+		<?php if (!@$htmlOptions['nowrapper']) {
+    ?>
 		</div>
 	</div>
-<?php }?>
+<?php 
+}?>

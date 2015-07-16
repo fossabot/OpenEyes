@@ -31,200 +31,197 @@
  */
 class Practice extends BaseActiveRecordVersioned
 {
-	public $use_pas = TRUE;
+    public $use_pas = true;
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Practice the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Practice the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * Suppress PAS integration
-	 * @return Practice
-	 */
-	public function noPas()
-	{
-		// Clone to avoid singleton problems with use_pas flag
-		$model = clone $this;
-		$model->use_pas = FALSE;
-		return $model;
-	}
+    /**
+     * Suppress PAS integration
+     * @return Practice
+     */
+    public function noPas()
+    {
+        // Clone to avoid singleton problems with use_pas flag
+        $model = clone $this;
+        $model->use_pas = false;
+        return $model;
+    }
 
-	public function behaviors()
-	{
-		return array(
-			'ContactBehavior' => array(
-				'class' => 'application.behaviors.ContactBehavior',
-			),
-		);
-	}
+    public function behaviors()
+    {
+        return array(
+            'ContactBehavior' => array(
+                'class' => 'application.behaviors.ContactBehavior',
+            ),
+        );
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'practice';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'practice';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-			array('code', 'required'),
-			array('phone, contact_id', 'safe'),
-			array('id, code', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+            array('code', 'required'),
+            array('phone, contact_id', 'safe'),
+            array('id, code', 'safe', 'on'=>'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-			'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
-			'commissioningbodyassigments' => array(self::HAS_MANY, 'CommissioningBodyPracticeAssignment', 'practice_id'),
-			'commissioningbodies' => array(self::MANY_MANY, 'CommissioningBody', 'commissioning_body_practice_assignment(practice_id, commissioning_body_id)'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
+            'commissioningbodyassigments' => array(self::HAS_MANY, 'CommissioningBodyPracticeAssignment', 'practice_id'),
+            'commissioningbodies' => array(self::MANY_MANY, 'CommissioningBody', 'commissioning_body_practice_assignment(practice_id, commissioning_body_id)'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'code' => 'Code',
-			'phone' => 'Phone',
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'id' => 'ID',
+            'code' => 'Code',
+            'phone' => 'Phone',
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('code',$this->code,true);
-		$criteria->compare('phone',$this->phone,true);
+        $criteria->compare('id', $this->id, true);
+        $criteria->compare('code', $this->code, true);
+        $criteria->compare('phone', $this->phone, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
-	/**
-	* Pass through use_pas flag to allow pas supression
-	* @see CActiveRecord::instantiate()
-	*/
-	protected function instantiate($attributes)
-	{
-			$model = parent::instantiate($attributes);
-			$model->use_pas = $this->use_pas;
-			return $model;
-	}
+    /**
+    * Pass through use_pas flag to allow pas supression
+    * @see CActiveRecord::instantiate()
+    */
+    protected function instantiate($attributes)
+    {
+        $model = parent::instantiate($attributes);
+        $model->use_pas = $this->use_pas;
+        return $model;
+    }
 
-	/**
-	 * Raise event to allow external data sources to update practice
-	 * @see CActiveRecord::afterFind()
-	 */
-	protected function afterFind()
-	{
-		parent::afterFind();
-		Yii::app()->event->dispatch('practice_after_find', array('practice' => $this));
-	}
+    /**
+     * Raise event to allow external data sources to update practice
+     * @see CActiveRecord::afterFind()
+     */
+    protected function afterFind()
+    {
+        parent::afterFind();
+        Yii::app()->event->dispatch('practice_after_find', array('practice' => $this));
+    }
 
-	/**
-	 * get the CommissioningBody of the CommissioningBodyType $type
-	 * currently assumes there would only ever be one commissioning body of a given type
-	 *
-	 * @param CommissioningBodyType $type
-	 * @return CommissioningBody
-	 */
-	public function getCommissioningBodyOfType($type)
-	{
-		foreach ($this->commissioningbodies as $body) {
-			if ($body->type->id == $type->id) {
-				return $body;
-			}
-		}
-	}
+    /**
+     * get the CommissioningBody of the CommissioningBodyType $type
+     * currently assumes there would only ever be one commissioning body of a given type
+     *
+     * @param CommissioningBodyType $type
+     * @return CommissioningBody
+     */
+    public function getCommissioningBodyOfType($type)
+    {
+        foreach ($this->commissioningbodies as $body) {
+            if ($body->type->id == $type->id) {
+                return $body;
+            }
+        }
+    }
 
-	public function getCorrespondenceName()
-	{
-		return Gp::UNKNOWN_NAME;
-	}
+    public function getCorrespondenceName()
+    {
+        return Gp::UNKNOWN_NAME;
+    }
 
-	public function getSalutationName()
-	{
-		return Gp::UNKNOWN_SALUTATION;
-	}
+    public function getSalutationName()
+    {
+        return Gp::UNKNOWN_SALUTATION;
+    }
 
-	/**
-	 * Delete commissioning body assignments for referential integrity
-	 * Note if patients are assigned to the practice, there will still be
-	 * a referential integrity error and the delete will fail
-	 *
-	 * @return bool
-	 */
-	protected function beforeDelete()
-	{
-		if (parent::beforeDelete()) {
-			foreach ($this->commissioningbodyassigments as $cba) {
-				$cba->delete();
-			}
-			return true;
-		}
-	}
+    /**
+     * Delete commissioning body assignments for referential integrity
+     * Note if patients are assigned to the practice, there will still be
+     * a referential integrity error and the delete will fail
+     *
+     * @return bool
+     */
+    protected function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            foreach ($this->commissioningbodyassigments as $cba) {
+                $cba->delete();
+            }
+            return true;
+        }
+    }
 
-	/**
-	 * Extend parent behaviour to enforce a transaction so that we don't lose commissioning
-	 * body assignments if the delete fails part way through.
-	 *
-	 * @return bool
-	 * @throws Exception
-	 */
-	public function delete()
-	{
-		// perform this process in a transaction if one has not been created
-		$transaction = Yii::app()->db->getCurrentTransaction() === null
-			? Yii::app()->db->beginTransaction()
-			: false;
+    /**
+     * Extend parent behaviour to enforce a transaction so that we don't lose commissioning
+     * body assignments if the delete fails part way through.
+     *
+     * @return bool
+     * @throws Exception
+     */
+    public function delete()
+    {
+        // perform this process in a transaction if one has not been created
+        $transaction = Yii::app()->db->getCurrentTransaction() === null
+            ? Yii::app()->db->beginTransaction()
+            : false;
 
-		try {
-			if (parent::delete()) {
-				if ($transaction) {
-					$transaction->commit();
-				}
-				return true;
-			}
-			else {
-				if ($transaction) {
-					$transaction->rollback();
-				}
-				return false;
-			}
-		}
-		catch (Exception $e) {
-			if ($transaction) {
-				$transaction->rollback();
-			}
-			throw $e;
-		}
-
-	}
+        try {
+            if (parent::delete()) {
+                if ($transaction) {
+                    $transaction->commit();
+                }
+                return true;
+            } else {
+                if ($transaction) {
+                    $transaction->rollback();
+                }
+                return false;
+            }
+        } catch (Exception $e) {
+            if ($transaction) {
+                $transaction->rollback();
+            }
+            throw $e;
+        }
+    }
 }

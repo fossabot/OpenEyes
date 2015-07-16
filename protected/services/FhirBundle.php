@@ -17,35 +17,35 @@ namespace services;
 
 class FhirBundle extends DataObject
 {
-	/**
-	 * @param string $title
-	 * @param string $self_url
-	 * @param string $base_url
-	 * @param Resource[] $resources Indexed by URL
-	 */
-	static public function create($title, $self_url, $base_url, array $resources)
-	{
-		$bundle = new self(
-			array(
-				'title' => $title,
-				'id' => 'urn:uuid:' . \Helper::generateUuid(),
-				'self_url' => $self_url,
-				'base_url' => $base_url,
-				'updated' => date(DATE_ATOM),
-			)
-		);
+    /**
+     * @param string $title
+     * @param string $self_url
+     * @param string $base_url
+     * @param Resource[] $resources Indexed by URL
+     */
+    public static function create($title, $self_url, $base_url, array $resources)
+    {
+        $bundle = new self(
+            array(
+                'title' => $title,
+                'id' => 'urn:uuid:' . \Helper::generateUuid(),
+                'self_url' => $self_url,
+                'base_url' => $base_url,
+                'updated' => date(DATE_ATOM),
+            )
+        );
 
-		foreach ($resources as $url => $resource) {
-			$bundle->entries[] = FhirBundleEntry::fromResource($url, $resource);
-		}
+        foreach ($resources as $url => $resource) {
+            $bundle->entries[] = FhirBundleEntry::fromResource($url, $resource);
+        }
 
-		return $bundle;
-	}
+        return $bundle;
+    }
 
-	public $title;
-	public $id;
-	public $self_url;
-	public $base_url;
-	public $updated;
-	public $entries = array();
+    public $title;
+    public $id;
+    public $self_url;
+    public $base_url;
+    public $updated;
+    public $entries = array();
 }

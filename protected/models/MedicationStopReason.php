@@ -15,22 +15,22 @@
 
 class MedicationStopReason extends BaseActiveRecordVersioned
 {
-	public function tableName()
-	{
-		return 'medication_stop_reason';
-	}
+    public function tableName()
+    {
+        return 'medication_stop_reason';
+    }
 
-	public function rules()
-	{
-		return array(
-			array('name, display_order, active', 'safe'),
-		);
-	}
+    public function rules()
+    {
+        return array(
+            array('name, display_order, active', 'safe'),
+        );
+    }
 
-	public function behaviors()
-	{
-		return array(
-			'LookupTable' => 'LookupTable',
-		);
-	}
+    public function behaviors()
+    {
+        return array(
+            'LookupTable' => 'LookupTable',
+        );
+    }
 }

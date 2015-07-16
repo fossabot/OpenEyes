@@ -30,7 +30,7 @@
 // Register javascript to mirror changes in element name to table name
 $class = get_class($model);
 $subspecialtyCode = strtolower(Yii::app()->params['subspecialtyCode']);
-Yii::app()->clientScript->registerScript('gii.model',"
+Yii::app()->clientScript->registerScript('gii.model', "
 $('#{$class}_tableName').change(function(){
 	$(this).data('changed',$(this).val()!='');
 });
@@ -67,44 +67,44 @@ $('.form .row.model-class').toggle($('#{$class}_elementName').val().substring($(
 
 // Migration script generation
 if ($model->level == $model::CREATE_MIGRATION) {
-	// Element name
-	echo '
+    // Element name
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'elementName');
-	echo $form->textField($model,'elementName', array('size'=>65));
-	echo '
+    echo "\t".$form->labelEx($model, 'elementName');
+    echo $form->textField($model, 'elementName', array('size'=>65));
+    echo '
 		<div class="tooltip">
 			The root name of the new element
 		</div>';
-	echo $form->error($model,'elementName');
-	echo '
+    echo $form->error($model, 'elementName');
+    echo '
 	</div>
 	';
 
-	// Migration path
-	echo '
+    // Migration path
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'migrationPath');
-	echo $form->textField($model,'migrationPath', array('size'=>65, 'value'=>'application.migrations'));
-	echo '
+    echo "\t".$form->labelEx($model, 'migrationPath');
+    echo $form->textField($model, 'migrationPath', array('size'=>65, 'value'=>'application.migrations'));
+    echo '
 	<div class="tooltip">
 		The directory that the new migration scripts will be generated in.
 		The default location for OpenEyes elements is <code>application.migrations</code>.
 	</div>';
-	echo $form->error($model,'migrationPath');
-	echo '
+    echo $form->error($model, 'migrationPath');
+    echo '
 	</div>
 	';
 
-	// Element table fields
-	echo '
+    // Element table fields
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'elementFields');
-	echo $form->textArea($model,'elementFields', array('style'=>'width: 344px; height: 150px;'));
-	echo '
+    echo "\t".$form->labelEx($model, 'elementFields');
+    echo $form->textArea($model, 'elementFields', array('style'=>'width: 344px; height: 150px;'));
+    echo '
 	<div class="tooltip">
 		A text block describing the fields required for the element.
 		In order to ensure RDMS independence, use the following datatypes</br></br>
@@ -195,113 +195,113 @@ if ($model->level == $model::CREATE_MIGRATION) {
 			</tbody>
 		</table>
 	</div>';
-	echo $form->error($model,'elementFields');
-	echo '
+    echo $form->error($model, 'elementFields');
+    echo '
 	</div>
 	';
 
-	// Table name
-	echo '
+    // Table name
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'tableName');
-	echo $form->textField($model,'tableName', array('size'=>65));
-	echo '
+    echo "\t".$form->labelEx($model, 'tableName');
+    echo $form->textField($model, 'tableName', array('size'=>65));
+    echo '
 		<div class="tooltip">
 			The table name that a new element model should be generated for
 			(e.g. <code>element_oph_example</code>).
 		</div>';
-	echo $form->error($model,'tableName');
-	echo '
+    echo $form->error($model, 'tableName');
+    echo '
 	</div>
 	';
 }
 
 // Model and view files creation
 if ($model->level == $model::CREATE_FILES) {
-	// Reset button
-	echo '
+    // Reset button
+    echo '
 	<div class="buttons">
 		<input name="reset" type="submit" title="Click in case of error to start again" value="Reset" />
 	</div>
 	';
 
-	// Class name
-	echo '
+    // Class name
+    echo '
 	<div class="row model-class">
 	';
-	echo "\t".$form->label($model,'modelClass',array('required'=>true));
-	echo $form->textField($model,'modelClass', array('size'=>65));
-	echo '
+    echo "\t".$form->label($model, 'modelClass', array('required'=>true));
+    echo $form->textField($model, 'modelClass', array('size'=>65));
+    echo '
 		<div class="tooltip">
 			The name of the model class to be generated (e.g. <code>ElementOphExample</code>).
 		</div>';
-	echo $form->error($model,'modelClass');
-	echo '
+    echo $form->error($model, 'modelClass');
+    echo '
 	</div>
 	';
 
-	// Base class
-	echo '
+    // Base class
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'baseClass');
-	echo $form->textField($model,'baseClass',array('size'=>65));
-	echo '
+    echo "\t".$form->labelEx($model, 'baseClass');
+    echo $form->textField($model, 'baseClass', array('size'=>65));
+    echo '
 		<div class="tooltip">
 			The name of the super class. The default super class for
 			OpenEyes elements is <code>BaseElement</code>.
 		</div>';
-	echo $form->error($model,'baseClass');
-	echo '
+    echo $form->error($model, 'baseClass');
+    echo '
 	</div>
 	';
 
-	// Model path
-	echo '
+    // Model path
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'modelPath');
-	echo $form->textField($model,'modelPath', array('size'=>65));
-	echo '
+    echo "\t".$form->labelEx($model, 'modelPath');
+    echo $form->textField($model, 'modelPath', array('size'=>65));
+    echo '
 		<div class="tooltip">
 			The directory that the new model class file should be generated in.
 			The default location for OpenEyes elements is <code>application.models.elements</code>.
 		</div>';
-	echo $form->error($model,'modelPath');
-	echo '
+    echo $form->error($model, 'modelPath');
+    echo '
 	</div>
 	';
 
-	// Controller class
-	echo '
+    // Controller class
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'controllerClass');
-	echo $form->textField($model,'controllerClass',array('size'=>65));
-	echo '
+    echo "\t".$form->labelEx($model, 'controllerClass');
+    echo $form->textField($model, 'controllerClass', array('size'=>65));
+    echo '
 		<div class="tooltip">
 			CRUD controllers should be named after
 			the model class name that they are dealing with
 		</div>';
-	echo $form->error($model,'controllerClass');
-	echo '
+    echo $form->error($model, 'controllerClass');
+    echo '
 	</div>
 	';
 
-	//Base controller class
-	echo '
+    //Base controller class
+    echo '
 	<div class="row">
 	';
-	echo "\t".$form->labelEx($model,'baseControllerClass');
-	echo $form->textField($model,'baseControllerClass',array('size'=>65));
-	echo '
+    echo "\t".$form->labelEx($model, 'baseControllerClass');
+    echo $form->textField($model, 'baseControllerClass', array('size'=>65));
+    echo '
 		<div class="tooltip">
 			This is the class that the new CRUD controller class will extend from.
 			Please make sure the class exists and can be autoloaded.
 		</div>';
-	echo $form->error($model,'baseControllerClass');
-	echo '
+    echo $form->error($model, 'baseControllerClass');
+    echo '
 	</div>
 	';
 }

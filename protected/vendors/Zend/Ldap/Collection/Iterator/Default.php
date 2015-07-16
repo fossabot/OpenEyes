@@ -105,10 +105,10 @@ class Zend_Ldap_Collection_Iterator_Default implements Zend_Ldap_Collection_Iter
     {
         $isClosed = false;
         if (is_resource($this->_resultId)) {
-             $isClosed = @ldap_free_result($this->_resultId);
-             $this->_resultId = null;
-             $this->_currentDn = null;
-             $this->_current = null;
+            $isClosed = @ldap_free_result($this->_resultId);
+            $this->_resultId = null;
+            $this->_currentDn = null;
+            $this->_current = null;
         }
         return $isClosed;
     }
@@ -143,14 +143,15 @@ class Zend_Ldap_Collection_Iterator_Default implements Zend_Ldap_Collection_Iter
      */
     public function current()
     {
-        if (!is_resource($this->_current) || !is_string($this->_currentDn)) return null;
+        if (!is_resource($this->_current) || !is_string($this->_currentDn)) {
+            return null;
+        }
 
         $entry = array('dn' => $this->_currentDn);
         $ber_identifier = null;
         $name = @ldap_first_attribute($this->_ldap->getResource(), $this->_current,
             $ber_identifier);
-        while ($name)
-        {
+        while ($name) {
             $data = @ldap_get_values_len($this->_ldap->getResource(), $this->_current, $name);
             unset($data['count']);
             $entry[strtolower($name)] = $data;
@@ -180,7 +181,9 @@ class Zend_Ldap_Collection_Iterator_Default implements Zend_Ldap_Collection_Iter
      */
     public function next()
     {
-        if (!is_resource($this->_current)) return;
+        if (!is_resource($this->_current)) {
+            return;
+        }
         $this->_current = @ldap_next_entry($this->_ldap->getResource(), $this->_current);
         /**
          * @see Zend_Ldap_Exception
@@ -191,8 +194,8 @@ class Zend_Ldap_Collection_Iterator_Default implements Zend_Ldap_Collection_Iter
             if ($code === Zend_Ldap_Exception::LDAP_SIZELIMIT_EXCEEDED) {
                 // we have reached the size limit enforced by the server
                 return;
-            } else if ($code > Zend_Ldap_Exception::LDAP_SUCCESS) {
-                 throw new Zend_Ldap_Exception($this->_ldap, 'getting next entry (' . $msg . ')');
+            } elseif ($code > Zend_Ldap_Exception::LDAP_SUCCESS) {
+                throw new Zend_Ldap_Exception($this->_ldap, 'getting next entry (' . $msg . ')');
             }
         }
         $this->_storeCurrentDn();
@@ -206,7 +209,9 @@ class Zend_Ldap_Collection_Iterator_Default implements Zend_Ldap_Collection_Iter
      */
     public function rewind()
     {
-        if (!is_resource($this->_resultId)) return;
+        if (!is_resource($this->_resultId)) {
+            return;
+        }
         $this->_current = @ldap_first_entry($this->_ldap->getResource(), $this->_resultId);
         /**
          * @see Zend_Ldap_Exception
@@ -249,5 +254,4 @@ class Zend_Ldap_Collection_Iterator_Default implements Zend_Ldap_Collection_Iter
     {
         return (is_resource($this->_current) && is_string($this->_currentDn));
     }
-
 }

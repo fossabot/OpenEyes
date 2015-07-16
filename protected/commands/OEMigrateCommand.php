@@ -19,15 +19,15 @@
 
 class OEMigrateCommand extends MigrateCommand
 {
-	public $testdata = false;
+    public $testdata = false;
 
-	protected function instantiateMigration($class)
-	{
-		$migration = parent::instantiateMigration($class);
-		if($this->testdata && $migration instanceof OEMigration){
-			$migration->setTestData(true);
-			echo "\nRunning in testdata mode";
-		}
-		return $migration;
-	}
+    protected function instantiateMigration($class)
+    {
+        $migration = parent::instantiateMigration($class);
+        if ($this->testdata && $migration instanceof OEMigration) {
+            $migration->setTestData(true);
+            echo "\nRunning in testdata mode";
+        }
+        return $migration;
+    }
 }

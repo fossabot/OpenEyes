@@ -19,67 +19,66 @@
  */
 class DrugDurationTest extends CDbTestCase
 {
+    /**
+     * @var DrugDuration
+     */
+    public $model;
+    public $fixtures = array(
+        'drugduration' => 'DrugDuration',
+    );
 
-	/**
-	 * @var DrugDuration
-	 */
-	public $model;
-	public $fixtures = array(
-		'drugduration' => 'DrugDuration',
-	);
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new DrugDuration;
+    }
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new DrugDuration;
-	}
+    /**
+     * @covers DrugDuration::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('DrugDuration', get_class(DrugDuration::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers DrugDuration::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('DrugDuration', get_class(DrugDuration::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers DrugDuration::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('drug_duration', $this->model->tableName());
+    }
 
-	/**
-	 * @covers DrugDuration::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('drug_duration', $this->model->tableName());
-	}
+    /**
+     * @covers DrugDuration::rules
+     */
+    public function testRules()
+    {
+        $this->assertTrue($this->drugduration('drugduration1')->validate());
+        $this->assertEmpty($this->drugduration('drugduration1')->errors);
+    }
 
-	/**
-	 * @covers DrugDuration::rules
-	 */
-	public function testRules()
-	{
-		$this->assertTrue($this->drugduration('drugduration1')->validate());
-		$this->assertEmpty($this->drugduration('drugduration1')->errors);
-	}
+    /**
+     * @covers DrugDuration::search
+     */
+    public function testSearch()
+    {
+        $this->model->setAttributes($this->drugduration('drugduration1')->getAttributes());
+        $results = $this->model->search();
+        $data = $results->getData();
 
-	/**
-	 * @covers DrugDuration::search
-	 */
-	public function testSearch()
-	{
-		$this->model->setAttributes($this->drugduration('drugduration1')->getAttributes());
-		$results = $this->model->search();
-		$data = $results->getData();
-
-		$expectedKeys = array('drugduration1');
-		$expectedResults = array();
-		if (!empty($expectedKeys)) {
-			foreach ($expectedKeys as $key) {
-				$expectedResults[] = $this->drugduration($key);
-			}
-		}
-		$this->assertEquals(1, $results->getItemCount());
-		$this->assertEquals($expectedResults, $data);
-	}
+        $expectedKeys = array('drugduration1');
+        $expectedResults = array();
+        if (!empty($expectedKeys)) {
+            foreach ($expectedKeys as $key) {
+                $expectedResults[] = $this->drugduration($key);
+            }
+        }
+        $this->assertEquals(1, $results->getItemCount());
+        $this->assertEquals($expectedResults, $data);
+    }
 }

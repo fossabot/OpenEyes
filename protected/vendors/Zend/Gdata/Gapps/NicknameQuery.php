@@ -42,7 +42,6 @@ require_once('Zend/Gdata/Gapps/Query.php');
  */
 class Zend_Gdata_Gapps_NicknameQuery extends Zend_Gdata_Gapps_Query
 {
-
     /**
      * If not null, indicates the name of the nickname entry which
      * should be returned by this query.
@@ -110,8 +109,7 @@ class Zend_Gdata_Gapps_NicknameQuery extends Zend_Gdata_Gapps_Query
     {
         if ($value !== null) {
             $this->_params['username'] = $value;
-        }
-        else {
+        } else {
             unset($this->_params['username']);
         }
     }
@@ -173,7 +171,6 @@ class Zend_Gdata_Gapps_NicknameQuery extends Zend_Gdata_Gapps_Query
      */
     public function getQueryUrl()
     {
-
         $uri = $this->getBaseUrl();
         $uri .= Zend_Gdata_Gapps::APPS_NICKNAME_PATH;
         if ($this->_nickname !== null) {
@@ -182,5 +179,4 @@ class Zend_Gdata_Gapps_NicknameQuery extends Zend_Gdata_Gapps_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
-
 }

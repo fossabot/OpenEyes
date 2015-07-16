@@ -18,39 +18,39 @@
  */
 class VisualiseRbacCommand extends CConsoleCommand
 {
-	public function run()
-	{
-		echo "digraph authitems {\n\trankdir=LR;\n\tnode [style=filled color=black];\n";
+    public function run()
+    {
+        echo "digraph authitems {\n\trankdir=LR;\n\tnode [style=filled color=black];\n";
 
-		$authMan = Yii::app()->authManager;
+        $authMan = Yii::app()->authManager;
 
-		foreach ($authMan->authItems as $item) {
-			switch ($item->type) {
-				case 0:
-					$colour = 'red';
-					break;
-				case 1:
-					$colour = 'orange';
-					break;
-				case 2:
-					$colour = 'green';
-					break;
-				default:
-					throw new Exception("Unrecognised authitem type: {$item->type}");
-			}
+        foreach ($authMan->authItems as $item) {
+            switch ($item->type) {
+                case 0:
+                    $colour = 'red';
+                    break;
+                case 1:
+                    $colour = 'orange';
+                    break;
+                case 2:
+                    $colour = 'green';
+                    break;
+                default:
+                    throw new Exception("Unrecognised authitem type: {$item->type}");
+            }
 
-			$name = $this->quote($item->name);
-			echo "\t{$name} [fillcolor={$colour}];\n";
-			foreach ($authMan->getItemChildren($item->name) as $child) {
-				echo "\t{$name} -> " . $this->quote($child->name) . ";\n";
-			}
-		}
+            $name = $this->quote($item->name);
+            echo "\t{$name} [fillcolor={$colour}];\n";
+            foreach ($authMan->getItemChildren($item->name) as $child) {
+                echo "\t{$name} -> " . $this->quote($child->name) . ";\n";
+            }
+        }
 
-		echo "}\n";
-	}
+        echo "}\n";
+    }
 
-	protected function quote($name)
-	{
-		return '"' . addslashes($name) . '"';
-	}
+    protected function quote($name)
+    {
+        return '"' . addslashes($name) . '"';
+    }
 }

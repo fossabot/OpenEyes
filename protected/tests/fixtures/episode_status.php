@@ -29,34 +29,34 @@
 
  */
 return array(
-	 'episodestatus1' => array(
-		  'id' => 1,
-		  'name' => 'New',
-		  'order' => 1,
-	 ),
-	 'episodestatus2' => array(
-		  'id' => 2,
-		  'name' => 'Under investigation' ,
-		  'order' => 2,
-	 ),
-	 'episodestatus3' => array(
-		  'id' => 3,
-		  'name' => 'Listed/booked',
-		  'order' => 3,
-	 ),
-	 'episodestatus4' => array(
-		  'id' => 4,
-		  'name' => 'Post-op',
-		  'order' => 4,
-	 ),
-	 'episodestatus5' => array(
-		  'id' => 5,
-		  'name' => 'Follow-up',
-		  'order' => 5,
-	 ),
-	 'episodestatus6' => array(
-		  'id' => 6,
-		  'name' => 'Discharged',
-		  'order' => 6,
-	 ),
+     'episodestatus1' => array(
+          'id' => 1,
+          'name' => 'New',
+          'order' => 1,
+     ),
+     'episodestatus2' => array(
+          'id' => 2,
+          'name' => 'Under investigation' ,
+          'order' => 2,
+     ),
+     'episodestatus3' => array(
+          'id' => 3,
+          'name' => 'Listed/booked',
+          'order' => 3,
+     ),
+     'episodestatus4' => array(
+          'id' => 4,
+          'name' => 'Post-op',
+          'order' => 4,
+     ),
+     'episodestatus5' => array(
+          'id' => 5,
+          'name' => 'Follow-up',
+          'order' => 5,
+     ),
+     'episodestatus6' => array(
+          'id' => 6,
+          'name' => 'Discharged',
+          'order' => 6,
+     ),
 );

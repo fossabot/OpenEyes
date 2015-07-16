@@ -19,33 +19,34 @@
  */
 class AnaestheticDeliveryTest extends PHPUnit_Framework_TestCase
 {
-	/**
-	 * @var AddressType
-	 */
-	public $model;
+    /**
+     * @var AddressType
+     */
+    public $model;
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp() {
-		parent::setUp();
-		$this->model = new AnaestheticDelivery;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new AnaestheticDelivery;
+    }
 
-	/**
-	 * @covers AnaestheticAgent::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('AnaestheticDelivery', get_class(AnaestheticDelivery::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers AnaestheticAgent::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('AnaestheticDelivery', get_class(AnaestheticDelivery::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers AnaestheticAgent::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('anaesthetic_delivery', $this->model->tableName());
-	}
+    /**
+     * @covers AnaestheticAgent::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('anaesthetic_delivery', $this->model->tableName());
+    }
 }

@@ -33,7 +33,8 @@ $warnings = $this->patient->getWarnings($clinical);
 
 		<?php $this->renderPartial('//base/_messages'); ?>
 
-		<?php if ($this->patient->contact->address && !$this->patient->contact->address->isCurrent()) {?>
+		<?php if ($this->patient->contact->address && !$this->patient->contact->address->isCurrent()) {
+    ?>
 			<div class="row">
 				<div class="large-12 column">
 					<div id="no-current-address-error" class="alert-box alert with-icon">
@@ -41,19 +42,24 @@ $warnings = $this->patient->getWarnings($clinical);
 					</div>
 				</div>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 
-		<?php if ($this->patient->isDeceased()) {?>
+		<?php if ($this->patient->isDeceased()) {
+    ?>
 			<div clas="row">
 				<div class="large-12 column">
 					<div id="deceased-notice" class="alert-box alert with-icon">
-						This patient is deceased (<?php echo $this->patient->NHSDate('date_of_death'); ?>)
+						This patient is deceased (<?php echo $this->patient->NHSDate('date_of_death');
+    ?>)
 					</div>
 				</div>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 
-		<?php if (!$this->patient->practice || !$this->patient->practice->contact->address) {?>
+		<?php if (!$this->patient->practice || !$this->patient->practice->contact->address) {
+    ?>
 			<div class="row">
 				<div class="large-12 column">
 					<div id="no-practice-address" class="alert-box alert with-icon">
@@ -61,20 +67,26 @@ $warnings = $this->patient->getWarnings($clinical);
 					</div>
 				</div>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 
-		<?php if ($warnings) { ?>
+		<?php if ($warnings) {
+    ?>
 			<div class="row">
 				<div class="large-12 column">
 					<div class="alert-box patient with-icon">
-						<?php foreach ($warnings as $warn) {?>
-							<strong><?php echo $warn['long_msg']; ?></strong>
+						<?php foreach ($warnings as $warn) {
+    ?>
+							<strong><?php echo $warn['long_msg'];
+    ?></strong>
 							- <?php echo $warn['details'];
-						}?>
+}
+    ?>
 					</div>
 				</div>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 
 		<?php $this->renderPartial('//patient/_patient_alerts')?>
 		</div>
@@ -90,7 +102,9 @@ $warnings = $this->patient->getWarnings($clinical);
 						<div class="large-3 column">
 							<?= CHtml::beginForm($refresh_url) ?>
 								<input type="hidden" name="patient_id" value="<?= $this->patient->id ?>">
-								<button class="small <?php if ($last_updated > (time() - 300)) echo " disabled" ?>">Refresh</button>
+								<button class="small <?php if ($last_updated > (time() - 300)) {
+    echo " disabled";
+} ?>">Refresh</button>
 							<?= CHtml::endForm() ?>
 						</div>
 					</div>
@@ -103,16 +117,18 @@ $warnings = $this->patient->getWarnings($clinical);
 			<?php $this->renderPartial('_patient_contacts')?>
 		</div>
 		<div class="large-6 column" id="patient-summary-form-container">
-			<?php if ($this->checkAccess('OprnViewClinical')) {?>
-				<?php $this->renderPartial('_patient_episodes',array(
-					'episodes' => $episodes,
-					'ordered_episodes' => $ordered_episodes,
-					'legacyepisodes' => $legacyepisodes,
-					'episodes_open' => $episodes_open,
-					'episodes_closed' => $episodes_closed,
-					'firm' => $firm,
-				))?>
-			<?php }?>
+			<?php if ($this->checkAccess('OprnViewClinical')) {
+    ?>
+				<?php $this->renderPartial('_patient_episodes', array(
+                    'episodes' => $episodes,
+                    'ordered_episodes' => $ordered_episodes,
+                    'legacyepisodes' => $legacyepisodes,
+                    'episodes_open' => $episodes_open,
+                    'episodes_closed' => $episodes_closed,
+                    'firm' => $firm,
+                ))?>
+			<?php 
+}?>
 		</div>
 	</div>
 </div>

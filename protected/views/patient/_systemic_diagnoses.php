@@ -37,23 +37,31 @@
 			<tr>
 				<th>Date</th>
 				<th>Diagnosis</th>
-				<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) { ?><th>Actions</th><?php } ?>
+				<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) {
+    ?><th>Actions</th><?php 
+} ?>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($this->patient->systemicDiagnoses as $diagnosis) {?>
+			<?php foreach ($this->patient->systemicDiagnoses as $diagnosis) {
+    ?>
 				<tr>
 					<td><?php echo $diagnosis->dateText?></td>
 					<td><?php echo $diagnosis->eye ? $diagnosis->eye->adjective : ''?> <?php echo $diagnosis->disorder->term?></td>
-					<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) { ?>
+					<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) {
+    ?>
 						<td><a href="#" class="removeDiagnosis" rel="<?php echo $diagnosis->id?>">Remove</a></td>
-					<?php } ?>
+					<?php 
+}
+    ?>
 				</tr>
-			<?php }?>
+			<?php 
+}?>
 			</tbody>
 		</table>
 
-		<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) { ?>
+		<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) {
+    ?>
 			<div class="box-actions">
 				<button id="btn-add_new_systemic_diagnosis" class="secondary small">
 					Add Systemic Diagnosis
@@ -63,35 +71,37 @@
 			<div id="add_new_systemic_diagnosis" style="display: none;">
 
 				<?php
-				$form = $this->beginWidget('FormLayout', array(
-						'id'=>'add-systemic-diagnosis',
-						'enableAjaxValidation'=>false,
-						'action'=>array('patient/adddiagnosis'),
-						'layoutColumns'=>array(
-							'label' => 3,
-							'field' => 9
-						),
-						'htmlOptions'=>array(
-							'class' => 'form add-data'
-						)
-					))?>
+                $form = $this->beginWidget('FormLayout', array(
+                        'id'=>'add-systemic-diagnosis',
+                        'enableAjaxValidation'=>false,
+                        'action'=>array('patient/adddiagnosis'),
+                        'layoutColumns'=>array(
+                            'label' => 3,
+                            'field' => 9
+                        ),
+                        'htmlOptions'=>array(
+                            'class' => 'form add-data'
+                        )
+                    ))?>
 
 				<fieldset class="field-row">
 
 					<legend><strong>Add Systemic diagnosis</strong></legend>
 
-					<?php $form->widget('application.widgets.DiagnosisSelection',array(
-							'field' => 'systemic_disorder_id',
-							'label' => 'Diagnosis',
-							'options' => CommonSystemicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
-							'restrict' => 'systemic',
-							'default' => false,
-							'layout' => 'patientSummary',
-							'loader' => 'add_systemic_diagnosis_loader',
-						))?>
+					<?php $form->widget('application.widgets.DiagnosisSelection', array(
+                            'field' => 'systemic_disorder_id',
+                            'label' => 'Diagnosis',
+                            'options' => CommonSystemicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
+                            'restrict' => 'systemic',
+                            'default' => false,
+                            'layout' => 'patientSummary',
+                            'loader' => 'add_systemic_diagnosis_loader',
+                        ))?>
 
 					<div class="row field-row hide" id="add_systemic_diagnosis_loader">
-						<p class="large-offset-<?php echo $form->layoutColumns['label'];?> large-<?php echo $form->layoutColumns['field'];?> column end">
+						<p class="large-offset-<?php echo $form->layoutColumns['label'];
+    ?> large-<?php echo $form->layoutColumns['field'];
+    ?> column end">
 							<img class="loader" src="<?php echo Yii::app()->assetManager->createUrl('img/ajax-loader.gif')?>" />
 								searching...
 						</p>
@@ -100,22 +110,27 @@
 					<input type="hidden" name="patient_id" value="<?php echo $this->patient->id?>" />
 
 					<fieldset class="diagnosis_eye row field-row">
-						<legend class="<?php echo $form->columns('label');?>">
+						<legend class="<?php echo $form->columns('label');
+    ?>">
 							Side:
 						</legend>
-						<div class="<?php echo $form->columns('field');?>">
+						<div class="<?php echo $form->columns('field');
+    ?>">
 							<label class="inline">
 								<input type="radio" name="diagnosis_eye" class="diagnosis_eye" value="" checked="checked" /> None
 							</label>
-							<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $eye) {?>
+							<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $eye) {
+    ?>
 								<label class="inline">
 									<input type="radio" name="diagnosis_eye" class="diagnosis_eye" value="<?php echo $eye->id?>" /> <?php echo $eye->name?>
 								</label>
-							<?php }?>
+							<?php 
+}
+    ?>
 						</div>
 					</fieldset>
 
-					<?php $this->renderPartial('_fuzzy_date', array('form'=>$form,'label'=>'Date diagnosed'))?>
+					<?php $this->renderPartial('_fuzzy_date', array('form'=>$form, 'label'=>'Date diagnosed'))?>
 
 					<div class="systemic_diagnoses_form_errors alert-box alert hide"></div>
 
@@ -133,11 +148,13 @@
 				<?php $this->endWidget()?>
 
 			</div>
-		<?php } ?>
+		<?php 
+} ?>
 	</div>
 
 </section>
-<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) { ?>
+<?php if ($this->checkAccess('OprnEditSystemicDiagnosis')) {
+    ?>
 	<script type="text/javascript">
 		$('#btn-add_new_systemic_diagnosis').click(function() {
 			$('#add_new_systemic_diagnosis').slideToggle('fast');
@@ -173,4 +190,5 @@
 			return false;
 		});
 	</script>
-<?php } ?>
+<?php 
+} ?>

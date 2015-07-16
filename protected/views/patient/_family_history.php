@@ -34,26 +34,37 @@ Yii::app()->assetManager->registerScriptFile('js/family_history.js');
 	</header>
 	<div class="js-toggle-body">
 
-		<p class="family-history-status-none" <?php if (!$this->patient->no_family_history_date) { echo 'style="display: none;"'; }?>>Patient has no known family history</p>
+		<p class="family-history-status-none" <?php if (!$this->patient->no_family_history_date) {
+    echo 'style="display: none;"';
+}?>>Patient has no known family history</p>
 
-		<p class="family-history-status-unknown"  <?php if (!empty($this->patient->familyHistory) || $this->patient->no_family_history_date) { echo 'style="display: none;"'; }?>>Patient family history is unknown</p>
+		<p class="family-history-status-unknown"  <?php if (!empty($this->patient->familyHistory) || $this->patient->no_family_history_date) {
+    echo 'style="display: none;"';
+}?>>Patient family history is unknown</p>
 
-		<table id="currentFamilyHistory" class="plain patient-data" <?php if (empty($this->patient->familyHistory)) { echo 'style="display: none;"'; }?>>
+		<table id="currentFamilyHistory" class="plain patient-data" <?php if (empty($this->patient->familyHistory)) {
+    echo 'style="display: none;"';
+}?>>
 			<thead>
 			<tr>
 				<th>Relative</th>
 				<th>Side</th>
 				<th>Condition</th>
 				<th>Comments</th>
-				<?php if ($this->checkAccess('OprnEditFamilyHistory')) { ?><th>Actions</th><?php } ?>
+				<?php if ($this->checkAccess('OprnEditFamilyHistory')) {
+    ?><th>Actions</th><?php 
+} ?>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($this->patient->familyHistory as $history) {?>
+			<?php foreach ($this->patient->familyHistory as $history) {
+    ?>
 				<tr>
-					<td class="relative" data-relativeId="<?= $history->relative_id ?>"><?php echo $history->getRelativeName(); ?></td>
+					<td class="relative" data-relativeId="<?= $history->relative_id ?>"><?php echo $history->getRelativeName();
+    ?></td>
 					<td class="side"><?php echo $history->side->name?></td>
-					<td class="condition" data-conditionId="<?= $history->condition_id ?>"><?php echo $history->getConditionName(); ?></td>
+					<td class="condition" data-conditionId="<?= $history->condition_id ?>"><?php echo $history->getConditionName();
+    ?></td>
 					<td class="comments"><?php echo CHtml::encode($history->comments)?></td>
 					<?php if ($this->checkAccess('OprnEditFamilyHistory')): ?>
 						<td>
@@ -62,12 +73,14 @@ Yii::app()->assetManager->registerScriptFile('js/family_history.js');
 						</td>
 					<?php endif ?>
 				</tr>
-			<?php }?>
+			<?php 
+}?>
 			</tbody>
 		</table>
 
 
-		<?php if ($this->checkAccess('OprnEditFamilyHistory')) { ?>
+		<?php if ($this->checkAccess('OprnEditFamilyHistory')) {
+    ?>
 			<div class="box-actions">
 				<button id="btn-add_family_history" class="secondary small">
 					Add Family History
@@ -76,16 +89,16 @@ Yii::app()->assetManager->registerScriptFile('js/family_history.js');
 			<div id="add_family_history" style="display: none;">
 
 				<?php
-				$form = $this->beginWidget('FormLayout', array(
-					'id'=>'add-family_history',
-					'enableAjaxValidation'=>false,
-					'htmlOptions' => array('class'=>'sliding form add-data'),
-					'action'=>array('patient/addFamilyHistory'),
-					'layoutColumns'=>array(
-						'label' => 3,
-						'field' => 9
-					),
-				))?>
+                $form = $this->beginWidget('FormLayout', array(
+                    'id'=>'add-family_history',
+                    'enableAjaxValidation'=>false,
+                    'htmlOptions' => array('class'=>'sliding form add-data'),
+                    'action'=>array('patient/addFamilyHistory'),
+                    'layoutColumns'=>array(
+                        'label' => 3,
+                        'field' => 9
+                    ),
+                ))?>
 
 					<fieldset class="field-row">
 
@@ -94,90 +107,111 @@ Yii::app()->assetManager->registerScriptFile('js/family_history.js');
 						<input type="hidden" name="edit_family_history_id" id="edit_family_history_id" value="" />
 						<input type="hidden" name="patient_id" value="<?php echo $this->patient->id?>" />
 
-						<div class="family-history-confirm-no field-row row" <?php if (!empty($this->patient->familyHistory)) { echo 'style="display: none;"'; }?>>
+						<div class="family-history-confirm-no field-row row" <?php if (!empty($this->patient->familyHistory)) {
+    echo 'style="display: none;"';
+}
+    ?>>
 						<div class="familyHistory">
-							<div class="<?php echo $form->columns('label');?>">
+							<div class="<?php echo $form->columns('label');
+    ?>">
 								<label for="no_family_history">Confirm patient has no family history:</label>
 							</div>
-							<div class="<?php echo $form->columns('field');?>">
-								<?php echo CHtml::checkBox('no_family_history', $this->patient->no_family_history_date ? true : false); ?>
+							<div class="<?php echo $form->columns('field');
+    ?>">
+								<?php echo CHtml::checkBox('no_family_history', $this->patient->no_family_history_date ? true : false);
+    ?>
 							</div>
 						</div>
 						</div>
 
-						<div class="family_history_field field-row" <?php if ($this->patient->no_family_history_date) { echo 'style="display: none;"'; }?>>
+						<div class="family_history_field field-row" <?php if ($this->patient->no_family_history_date) {
+    echo 'style="display: none;"';
+}
+    ?>>
 
 						<div class="field-row row">
-							<div class="<?php echo $form->columns('label');?>">
+							<div class="<?php echo $form->columns('label');
+    ?>">
 								<label for="relative_id">Relative:</label>
 							</div>
-							<div class="<?php echo $form->columns('field');?>">
+							<div class="<?php echo $form->columns('field');
+    ?>">
 								<?php
-								$relatives = FamilyHistoryRelative::model()->findAll(array('order'=>'display_order'));
-								$relatives_opts = array(
-										'options' => array(),
-										'empty'=>'- select -',
-								);
-								foreach ($relatives as $rel) {
-									$relatives_opts['options'][$rel->id] = array('data-other' => $rel->is_other ? '1' : '0');
-								}
-								echo CHtml::dropDownList('relative_id','',CHtml::listData($relatives,'id','name'),$relatives_opts)
-								?>
+                                $relatives = FamilyHistoryRelative::model()->findAll(array('order'=>'display_order'));
+    $relatives_opts = array(
+                                        'options' => array(),
+                                        'empty'=>'- select -',
+                                );
+    foreach ($relatives as $rel) {
+        $relatives_opts['options'][$rel->id] = array('data-other' => $rel->is_other ? '1' : '0');
+    }
+    echo CHtml::dropDownList('relative_id', '', CHtml::listData($relatives, 'id', 'name'), $relatives_opts)
+                                ?>
 							</div>
 						</div>
 
 						<div class="field-row row hidden" id="family-history-o-rel-wrapper">
-							<div class="<?php echo $form->columns('label');?>">
+							<div class="<?php echo $form->columns('label');
+    ?>">
 								<label for="comments">Other Relative:</label>
 							</div>
-							<div class="<?php echo $form->columns('field');?>">
-								<?php echo CHtml::textField('other_relative','',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+							<div class="<?php echo $form->columns('field');
+    ?>">
+								<?php echo CHtml::textField('other_relative', '', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 							</div>
 						</div>
 
 						<div class="field-row row">
-							<div class="<?php echo $form->columns('label');?>">
+							<div class="<?php echo $form->columns('label');
+    ?>">
 								<label for="side_id">Side:</label>
 							</div>
-							<div class="<?php echo $form->columns('field');?>">
-								<?php echo CHtml::dropDownList('side_id','',CHtml::listData(FamilyHistorySide::model()->findAll(array('order'=>'display_order')),'id','name'))?>
+							<div class="<?php echo $form->columns('field');
+    ?>">
+								<?php echo CHtml::dropDownList('side_id', '', CHtml::listData(FamilyHistorySide::model()->findAll(array('order'=>'display_order')), 'id', 'name'))?>
 							</div>
 						</div>
 
 						<div class="field-row row">
-							<div class="<?php echo $form->columns('label');?>">
+							<div class="<?php echo $form->columns('label');
+    ?>">
 								<label for="condition_id">Condition:</label>
 							</div>
-							<div class="<?php echo $form->columns('field');?>">
+							<div class="<?php echo $form->columns('field');
+    ?>">
 								<?php
-								$conditions = FamilyHistoryCondition::model()->findAll(array('order'=>'display_order'));
-								$conditions_opts = array(
-										'options' => array(),
-										'empty'=>'- select -',
-								);
-								foreach ($conditions as $con) {
-									$conditions_opts['options'][$con->id] = array('data-other' => $con->is_other ? '1' : '0');
-								}
-								echo CHtml::dropDownList('condition_id','',CHtml::listData($conditions,'id','name'),$conditions_opts);
-								?>
+                                $conditions = FamilyHistoryCondition::model()->findAll(array('order'=>'display_order'));
+    $conditions_opts = array(
+                                        'options' => array(),
+                                        'empty'=>'- select -',
+                                );
+    foreach ($conditions as $con) {
+        $conditions_opts['options'][$con->id] = array('data-other' => $con->is_other ? '1' : '0');
+    }
+    echo CHtml::dropDownList('condition_id', '', CHtml::listData($conditions, 'id', 'name'), $conditions_opts);
+    ?>
 							</div>
 						</div>
 
 						<div class="field-row row hidden" id="family-history-o-con-wrapper">
-							<div class="<?php echo $form->columns('label');?>">
+							<div class="<?php echo $form->columns('label');
+    ?>">
 								<label for="comments">Other Condition:</label>
 							</div>
-							<div class="<?php echo $form->columns('field');?>">
-								<?php echo CHtml::textField('other_condition','',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+							<div class="<?php echo $form->columns('field');
+    ?>">
+								<?php echo CHtml::textField('other_condition', '', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 							</div>
 						</div>
 
 						<div class="field-row row">
-							<div class="<?php echo $form->columns('label');?>">
+							<div class="<?php echo $form->columns('label');
+    ?>">
 								<label for="comments">Comments:</label>
 							</div>
-							<div class="<?php echo $form->columns('field');?>">
-								<?php echo CHtml::textField('comments','',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+							<div class="<?php echo $form->columns('field');
+    ?>">
+								<?php echo CHtml::textField('comments', '', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 							</div>
 						</div>
 
@@ -196,7 +230,8 @@ Yii::app()->assetManager->registerScriptFile('js/family_history.js');
 					</fieldset>
 				<?php $this->endWidget()?>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 	</div>
 </section>
 

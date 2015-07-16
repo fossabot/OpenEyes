@@ -22,64 +22,64 @@
  */
 class OEFuzzyDateValidator extends CValidator
 {
-	/**
-	 * Validate a fuzzy date attribute
-	 *
-	 * Dates must be in the format (yyyy-mm-dd). mm and dd can be 00 to indicate the level of fuzziness of the date
-	 *
-	 * @param CModel $object the object being validated
-	 * @param string $attribute the attribute being validated
-	 */
+    /**
+     * Validate a fuzzy date attribute
+     *
+     * Dates must be in the format (yyyy-mm-dd). mm and dd can be 00 to indicate the level of fuzziness of the date
+     *
+     * @param CModel $object the object being validated
+     * @param string $attribute the attribute being validated
+     */
 
-	protected $object;
-	protected $attribute;
-	protected $year;
-	protected $month;
-	protected $day;
+    protected $object;
+    protected $attribute;
+    protected $year;
+    protected $month;
+    protected $day;
 
-	public function validateAttribute($object, $attribute)
-	{
-		$dt = $object->$attribute;
+    public function validateAttribute($object, $attribute)
+    {
+        $dt = $object->$attribute;
 
-		$this->year = (integer) substr($dt,0,4);
-		$this->month = (integer) substr($dt,5,2);
-		$this->day = (integer) substr($dt,8,2);
-		$this->object = $object;
-		$this->attribute = $attribute;
+        $this->year = (integer) substr($dt, 0, 4);
+        $this->month = (integer) substr($dt, 5, 2);
+        $this->day = (integer) substr($dt, 8, 2);
+        $this->object = $object;
+        $this->attribute = $attribute;
 
 
-		if ($this->day > 0 && !$this->month > 0)  {
-			$this->addError($object, $attribute, 'Month is required if day is provided');
-		}
+        if ($this->day > 0 && !$this->month > 0) {
+            $this->addError($object, $attribute, 'Month is required if day is provided');
+        }
 
-		if($this->month > 0 && (!$this->year > 0)) {
-			$this->addError($object, $attribute, 'Year is required if month is provided');
-		}
+        if ($this->month > 0 && (!$this->year > 0)) {
+            $this->addError($object, $attribute, 'Year is required if month is provided');
+        }
 
-		if ($this->day > 0 && $this->month > 0 && $this->year > 0) {
-			$this->validateCompleteDate();
-		} else if ($this->month > 0 && $this->year > 0) {
-			$this->validateFuzzyMonthYear();
-		}	else if ($this->year > 0) {
-			$this->validateFuzzyYear();
-		}
-	}
+        if ($this->day > 0 && $this->month > 0 && $this->year > 0) {
+            $this->validateCompleteDate();
+        } elseif ($this->month > 0 && $this->year > 0) {
+            $this->validateFuzzyMonthYear();
+        } elseif ($this->year > 0) {
+            $this->validateFuzzyYear();
+        }
+    }
 
-	protected function validateCompleteDate()
-	{
-		if (!checkdate($this->month, $this->day, $this->year)) {
-			$this->addError($this->object, $this->attribute, 'This is not a valid date');
-		}
-	}
+    protected function validateCompleteDate()
+    {
+        if (!checkdate($this->month, $this->day, $this->year)) {
+            $this->addError($this->object, $this->attribute, 'This is not a valid date');
+        }
+    }
 
-	protected function validateFuzzyMonthYear()
-	{
-		if ($this->month > 12) {
-			$this->addError($this->object, $this->attribute, 'Invalid month value');
-		}
-	}
+    protected function validateFuzzyMonthYear()
+    {
+        if ($this->month > 12) {
+            $this->addError($this->object, $this->attribute, 'Invalid month value');
+        }
+    }
 
-	protected function validateFuzzyYear()
-	{
-	}
+    protected function validateFuzzyYear()
+    {
+    }
 }

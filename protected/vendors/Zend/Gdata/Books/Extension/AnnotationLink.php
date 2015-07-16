@@ -38,7 +38,6 @@ require_once 'Zend/Gdata/Books/Extension/BooksLink.php';
 class Zend_Gdata_Books_Extension_AnnotationLink extends
     Zend_Gdata_Books_Extension_BooksLink
 {
-
     /**
      * Constructor for Zend_Gdata_Books_Extension_AnnotationLink which
      * Describes an annotation link
@@ -58,6 +57,4 @@ class Zend_Gdata_Books_Extension_AnnotationLink extends
         $this->registerAllNamespaces(Zend_Gdata_Books::$namespaces);
         parent::__construct($href, $rel, $type, $hrefLang, $title, $length);
     }
-
 }
-

@@ -30,12 +30,14 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach (ImportSource::model()->findAll(array('order'=>'name')) as $i => $source) {?>
+                foreach (ImportSource::model()->findAll(array('order'=>'name')) as $i => $source) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $source->id?>" data-uri="admin/editdatasource/<?php echo $source->id?>">
 						<td><input type="checkbox" name="source[]" value="<?php echo $source->id?>" class="sources" /></td>
 						<td><?php echo $source->name?>&nbsp;</td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 			<tfoot>
 				<td colspan="2">

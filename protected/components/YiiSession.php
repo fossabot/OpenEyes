@@ -19,19 +19,19 @@
 
 class YiiSession
 {
-	public static function get($index)
-	{
-		return Yii::app()->session[$index];
-	}
+    public static function get($index)
+    {
+        return Yii::app()->session[$index];
+    }
 
-	public static function set($index, $data, $data2='NODATAWASSENT')
-	{
-		if ($data2 != 'NODATAWASSENT') {
-			$d = Yii::app()->session[$index];
-			$d[$data] = $data2;
-			Yii::app()->session[$index] = $d;
-		} else {
-			Yii::app()->session[$index] = $data;
-		}
-	}
+    public static function set($index, $data, $data2='NODATAWASSENT')
+    {
+        if ($data2 != 'NODATAWASSENT') {
+            $d = Yii::app()->session[$index];
+            $d[$data] = $data2;
+            Yii::app()->session[$index] = $d;
+        } else {
+            Yii::app()->session[$index] = $data;
+        }
+    }
 }

@@ -18,32 +18,32 @@
  */
 class FhirResponse
 {
-	private $code;
-	private $value;
+    private $code;
+    private $value;
 
-	/**
-	 * @param int $code
-	 * @param StdClass $value
-	 */
-	public function __construct($code, $value = null)
-	{
-		$this->code = $code;
-		$this->value = $value;
-	}
+    /**
+     * @param int $code
+     * @param StdClass $value
+     */
+    public function __construct($code, $value = null)
+    {
+        $this->code = $code;
+        $this->value = $value;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getCode()
-	{
-		return $this->code;
-	}
+    /**
+     * @return int
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
 
-	/**
-	 * @return StdClass|null
-	 */
-	public function getValue()
-	{
-		return $this->value;
-	}
+    /**
+     * @return StdClass|null
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
 }

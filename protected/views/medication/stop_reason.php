@@ -14,11 +14,11 @@
  */
 
 $form->widget(
-	'application.widgets.DropDownList',
-	array(
-		'element' => $medication,
-		'field' => 'stop_reason_id',
-		'data' => CHtml::listData(MedicationStopReason::model()->activeOrPk(@$medication->stop_reason->id)->findAll(array('order'=>'name asc')),'id','name'),
-		'htmlOptions' => array('name' => 'stop_reason_id', 'empty' => '- Select -')
-	)
+    'application.widgets.DropDownList',
+    array(
+        'element' => $medication,
+        'field' => 'stop_reason_id',
+        'data' => CHtml::listData(MedicationStopReason::model()->activeOrPk(@$medication->stop_reason->id)->findAll(array('order'=>'name asc')), 'id', 'name'),
+        'htmlOptions' => array('name' => 'stop_reason_id', 'empty' => '- Select -')
+    )
 );

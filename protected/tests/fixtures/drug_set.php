@@ -33,54 +33,54 @@
 
  */
 return array(
-	 'drugset1' => array(
-		  'id' => 1,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 16
-	 ),
-	 'drugset2' => array(
-		  'id' => 2,
-		  'name' => 'Follow up',
-		  'subspecialty_id' => 16
-	 ),
-	 'drugset3' => array(
-		  'id' => 3,
-		  'name' => 'Pressure',
-		  'subspecialty_id' => 16
-	 ),
-	 'drugset4' => array(
-		  'id' => 4,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 1
-	 ),
-	 'drugset5' => array(
-		  'id' => 5,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 2
-	 ),
-	 'drugset6' => array(
-		  'id' => 6,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 3
-	 ),
-	 'drugset7' => array(
-		  'id' => 7,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 4
-	 ),
-	 'drugset8' => array(
-		  'id' => 8,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 5
-	 ),
-	 'drugset9' => array(
-		  'id' => 9,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 6
-	 ),
-	 'drugset10' => array(
-		  'id' => 10,
-		  'name' => 'Post op',
-		  'subspecialty_id' => 7
-	 ),
+     'drugset1' => array(
+          'id' => 1,
+          'name' => 'Post op',
+          'subspecialty_id' => 16
+     ),
+     'drugset2' => array(
+          'id' => 2,
+          'name' => 'Follow up',
+          'subspecialty_id' => 16
+     ),
+     'drugset3' => array(
+          'id' => 3,
+          'name' => 'Pressure',
+          'subspecialty_id' => 16
+     ),
+     'drugset4' => array(
+          'id' => 4,
+          'name' => 'Post op',
+          'subspecialty_id' => 1
+     ),
+     'drugset5' => array(
+          'id' => 5,
+          'name' => 'Post op',
+          'subspecialty_id' => 2
+     ),
+     'drugset6' => array(
+          'id' => 6,
+          'name' => 'Post op',
+          'subspecialty_id' => 3
+     ),
+     'drugset7' => array(
+          'id' => 7,
+          'name' => 'Post op',
+          'subspecialty_id' => 4
+     ),
+     'drugset8' => array(
+          'id' => 8,
+          'name' => 'Post op',
+          'subspecialty_id' => 5
+     ),
+     'drugset9' => array(
+          'id' => 9,
+          'name' => 'Post op',
+          'subspecialty_id' => 6
+     ),
+     'drugset10' => array(
+          'id' => 10,
+          'name' => 'Post op',
+          'subspecialty_id' => 7
+     ),
 );

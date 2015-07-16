@@ -1,5 +1,6 @@
 <?php
 namespace RandomNamespace\Test;
+
 /**
  * (C) OpenEyes Foundation, 2014
  * This file is part of OpenEyes.
@@ -16,6 +17,6 @@ namespace RandomNamespace\Test;
 
 // Stub BaseAPI for BaseAPITest
 
-class TestModule_API extends \BaseAPI {
-
+class NamespacedBaseAPI extends \BaseAPI
+{
 }

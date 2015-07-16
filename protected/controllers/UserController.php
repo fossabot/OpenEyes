@@ -15,32 +15,32 @@
 
 class UserController extends BaseController
 {
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'actions' => array('autoComplete'),
-				'roles' => array('OprnViewClinical'),
-			),
-		);
-	}
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('autoComplete'),
+                'roles' => array('OprnViewClinical'),
+            ),
+        );
+    }
 
-	public function actionAutoComplete($term)
-	{
-		$crit = new CDbCriteria;
-		$crit->compare('first_name', $term, true);
-		$crit->compare('last_name', $term, true, 'OR');
-		$crit->compare('active', true);
-		$crit->order = 'last_name,first_name';
+    public function actionAutoComplete($term)
+    {
+        $crit = new CDbCriteria;
+        $crit->compare('first_name', $term, true);
+        $crit->compare('last_name', $term, true, 'OR');
+        $crit->compare('active', true);
+        $crit->order = 'last_name,first_name';
 
-		$results = array();
-		foreach (User::model()->findAll($crit) as $user) {
-			$results[] = array(
-				'id' => $user->id,
-				'value' => $user->getReversedFullName(),
-			);
-		}
+        $results = array();
+        foreach (User::model()->findAll($crit) as $user) {
+            $results[] = array(
+                'id' => $user->id,
+                'value' => $user->getReversedFullName(),
+            );
+        }
 
-		print json_encode($results);
-	}
+        print json_encode($results);
+    }
 }

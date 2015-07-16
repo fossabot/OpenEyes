@@ -29,43 +29,42 @@
  */
 class MedicationAdherence extends BaseActiveRecordVersioned
 {
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'medication_adherence';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'medication_adherence';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-			array('patient_id, medication_adherence_level_id, comments', 'safe'),
-			array('patient_id, medication_adherence_level_id', 'required'),
-			array('comments', 'default', 'setOnEmpty' => true, 'value' => null),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+            array('patient_id, medication_adherence_level_id, comments', 'safe'),
+            array('patient_id, medication_adherence_level_id', 'required'),
+            array('comments', 'default', 'setOnEmpty' => true, 'value' => null),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-			'patient' => array(self::BELONGS_TO, 'Patient', 'id'),
-			'level' => array(self::BELONGS_TO, 'MedicationAdherenceLevel', 'medication_adherence_level_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            'patient' => array(self::BELONGS_TO, 'Patient', 'id'),
+            'level' => array(self::BELONGS_TO, 'MedicationAdherenceLevel', 'medication_adherence_level_id'),
+        );
+    }
 
-	public function attributeLabels()
-	{
-		return array(
-			'medication_adherence_level_id' => 'Adherence Level',
-			'comments' => 'Comments',
-		);
-	}
-
+    public function attributeLabels()
+    {
+        return array(
+            'medication_adherence_level_id' => 'Adherence Level',
+            'comments' => 'Comments',
+        );
+    }
 }

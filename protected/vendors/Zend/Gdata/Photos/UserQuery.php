@@ -42,7 +42,6 @@ require_once('Zend/Gdata/Gapps/Query.php');
  */
 class Zend_Gdata_Photos_UserQuery extends Zend_Gdata_Query
 {
-
     /**
      * Indicates the format of data returned in Atom feeds. Can be either
      * 'api' or 'base'. Default value is 'api'.
@@ -351,5 +350,4 @@ class Zend_Gdata_Photos_UserQuery extends Zend_Gdata_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
-
 }

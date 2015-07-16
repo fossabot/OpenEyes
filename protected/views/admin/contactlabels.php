@@ -30,20 +30,22 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($contactlabels as $i => $contactlabel) {?>
+                foreach ($contactlabels as $i => $contactlabel) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $contactlabel->id?>" data-uri="admin/editContactLabel/<?php echo $contactlabel->id?>">
 						<td><?php echo $contactlabel->id?></td>
 						<td><?php echo $contactlabel->name?>&nbsp;</td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 			<tfoot class="pagination-container">
 				<tr>
 					<td colspan="2">
 						<?php echo EventAction::button('Add', 'add', null, array('class' => 'small'))->toHtml()?>
-						<?php echo $this->renderPartial('_pagination',array(
-							'pagination' => $pagination
-						))?>
+						<?php echo $this->renderPartial('_pagination', array(
+                            'pagination' => $pagination
+                        ))?>
 					</td>
 				</tr>
 			</tfoot>

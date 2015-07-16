@@ -33,37 +33,51 @@ Yii::app()->assetManager->registerScriptFile('js/allergies.js');
 	</header>
 	<div class="js-toggle-body">
 
-		<p class="allergy-status-unknown" <?php if (!(empty($this->patient->allergyAssignments)) || $this->patient->no_allergies_date) { echo 'style="display: none;"'; }?>>Patient allergy status is unknown</p>
+		<p class="allergy-status-unknown" <?php if (!(empty($this->patient->allergyAssignments)) || $this->patient->no_allergies_date) {
+    echo 'style="display: none;"';
+}?>>Patient allergy status is unknown</p>
 
-		<p class="allergy-status-none" <?php if (!$this->patient->no_allergies_date) { echo 'style="display: none;"'; }?>>Patient has no known allergies</p>
+		<p class="allergy-status-none" <?php if (!$this->patient->no_allergies_date) {
+    echo 'style="display: none;"';
+}?>>Patient has no known allergies</p>
 
-		<table class="plain patient-data" id="currentAllergies" <?php if (empty($this->patient->allergyAssignments)) { echo 'style="display: none;"'; }?>>
+		<table class="plain patient-data" id="currentAllergies" <?php if (empty($this->patient->allergyAssignments)) {
+    echo 'style="display: none;"';
+}?>>
 			<thead>
 			<tr>
 				<th>Allergies</th>
 				<th>Comments</th>
-				<?php if ($this->checkAccess('OprnEditAllergy')) { ?><th>Actions</th><?php } ?>
+				<?php if ($this->checkAccess('OprnEditAllergy')) {
+    ?><th>Actions</th><?php 
+} ?>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($this->patient->allergyAssignments as $aa) { ?>
+			<?php foreach ($this->patient->allergyAssignments as $aa) {
+    ?>
 				<tr data-assignment-id="<?= $aa->id ?>" data-allergy-id="<?= $aa->allergy->id ?>" data-allergy-name="<?= $aa->allergy->name ?>">
 					<td><?= CHtml::encode($aa->name) ?></td>
 					<td><?= CHtml::encode($aa->comments) ?></td>
-					<?php if ($this->checkAccess('OprnEditAllergy')) { ?>
+					<?php if ($this->checkAccess('OprnEditAllergy')) {
+    ?>
 						<td>
 							<a href="#" rel="<?php echo $aa->id?>" class="small removeAllergy">
 								Remove
 							</a>
 						</td>
-					<?php } ?>
+					<?php 
+}
+    ?>
 				</tr>
-			<?php } ?>
+			<?php 
+} ?>
 			</tbody>
 		</table>
 		<?php
 
-		if ($this->checkAccess('OprnEditAllergy')) { ?>
+        if ($this->checkAccess('OprnEditAllergy')) {
+            ?>
 			<div class="box-actions">
 				<button id="btn-add_allergy" class="secondary small">
 					Edit
@@ -72,24 +86,30 @@ Yii::app()->assetManager->registerScriptFile('js/allergies.js');
 
 			<div id="add_allergy" style="display: none;">
 				<?php
-				$form = $this->beginWidget('FormLayout', array(
-					'id'=>'add-allergy',
-					'enableAjaxValidation'=>false,
-					'htmlOptions' => array('class'=>'form add-data'),
-					'action'=>array('patient/addAllergy'),
-					'layoutColumns'=>array(
-						'label' => 3,
-						'field' => 9
-					),
-				))?>
+                $form = $this->beginWidget('FormLayout', array(
+                    'id'=>'add-allergy',
+                    'enableAjaxValidation'=>false,
+                    'htmlOptions' => array('class'=>'form add-data'),
+                    'action'=>array('patient/addAllergy'),
+                    'layoutColumns'=>array(
+                        'label' => 3,
+                        'field' => 9
+                    ),
+                ))?>
 
-				<div class="allergies_confirm_no field-row row" <?php if ($this->patient->hasAllergyStatus() && !$this->patient->no_allergies_date) { echo 'style="display: none;"'; }?>>
+				<div class="allergies_confirm_no field-row row" <?php if ($this->patient->hasAllergyStatus() && !$this->patient->no_allergies_date) {
+    echo 'style="display: none;"';
+}
+            ?>>
 					<div class="allergies">
-						<div class="<?php echo $form->columns('label');?>">
+						<div class="<?php echo $form->columns('label');
+            ?>">
 							<label for="no_allergies">Confirm patient has no allergies:</label>
 						</div>
-						<div class="<?php echo $form->columns('field');?>">
-							<?php echo CHtml::checkBox('no_allergies', $this->patient->no_allergies_date ? true : false); ?>
+						<div class="<?php echo $form->columns('field');
+            ?>">
+							<?php echo CHtml::checkBox('no_allergies', $this->patient->no_allergies_date ? true : false);
+            ?>
 						</div>
 					</div>
 				</div>
@@ -97,28 +117,41 @@ Yii::app()->assetManager->registerScriptFile('js/allergies.js');
 				<input type="hidden" name="edit_allergy_id" id="edit_allergy_id" value="" />
 				<input type="hidden" name="patient_id" value="<?php echo $this->patient->id?>" />
 
-				<div class="row field-row allergy_field" <?php if ($this->patient->no_allergies_date) { echo 'style="display: none;"'; }?>>
-					<div class="<?php echo $form->columns('label');?>">
+				<div class="row field-row allergy_field" <?php if ($this->patient->no_allergies_date) {
+    echo 'style="display: none;"';
+}
+            ?>>
+					<div class="<?php echo $form->columns('label');
+            ?>">
 						<label for="allergy_id">Add allergy:</label>
 					</div>
-					<div class="<?php echo $form->columns('field');?>">
+					<div class="<?php echo $form->columns('field');
+            ?>">
 						<?php echo CHtml::dropDownList('allergy_id', null, CHtml::listData($this->allergyList(), 'id', 'name'), array('empty' => '-- Select --'))?>
 					</div>
 				</div>
 				<div id="allergy_other" class="row field-row hidden">
-					<div class="<?php echo $form->columns('label');?>">
+					<div class="<?php echo $form->columns('label');
+            ?>">
 						<label for="allergy_id">Other allergy:</label>
 					</div>
-					<div class="<?php echo $form->columns('field');?>">
-						<?= CHtml::textField('other','',array('autocomplete'=>Yii::app()->params['html_autocomplete'])); ?>
+					<div class="<?php echo $form->columns('field');
+            ?>">
+						<?= CHtml::textField('other', '', array('autocomplete'=>Yii::app()->params['html_autocomplete']));
+            ?>
 					</div>
 				</div>
-				<div class="field-row row allergy_field" <?php if ($this->patient->no_allergies_date) { echo 'style="display: none;"'; }?>>
-					<div class="<?php echo $form->columns('label');?>">
+				<div class="field-row row allergy_field" <?php if ($this->patient->no_allergies_date) {
+    echo 'style="display: none;"';
+}
+            ?>>
+					<div class="<?php echo $form->columns('label');
+            ?>">
 						<label for="comments">Comments:</label>
 					</div>
-					<div class="<?php echo $form->columns('field');?>">
-						<?php echo CHtml::textField('comments','',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+					<div class="<?php echo $form->columns('field');
+            ?>">
+						<?php echo CHtml::textField('comments', '', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 					</div>
 				</div>
 
@@ -130,11 +163,13 @@ Yii::app()->assetManager->registerScriptFile('js/allergies.js');
 
 				<?php $this->endWidget()?>
 			</div>
-		<?php }?>
+		<?php 
+        }?>
 	</div>
 </section>
 
-<?php if (BaseController::checkAccess('OprnEditAllergy')) { ?>
+<?php if (BaseController::checkAccess('OprnEditAllergy')) {
+    ?>
 
 	<!-- Confirm deletion dialog -->
 	<div id="confirm_remove_allergy_dialog" title="Confirm remove allergy" style="display: none;">
@@ -153,4 +188,5 @@ Yii::app()->assetManager->registerScriptFile('js/allergies.js');
 			</div>
 		</div>
 	</div>
-<?php } ?>
+<?php 
+} ?>

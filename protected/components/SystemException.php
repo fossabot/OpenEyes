@@ -19,5 +19,4 @@
 
 class SystemException extends Exception
 {
-
 }

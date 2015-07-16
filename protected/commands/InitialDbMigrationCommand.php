@@ -22,7 +22,7 @@
 How to consolidate
 
 1) make sure you have the latest structure and data files up to the release you are consolidating to, for instance release 1.4.0
-	run "./yiic migrate" will update to the latest migration in this release.
+    run "./yiic migrate" will update to the latest migration in this release.
 
 2) Run "./yiic initialisedbmigration"
 This takes the current db status and data and prepares migration file/data structure that will recreate the database status as it is at that current moment
@@ -42,98 +42,107 @@ But an helper has been created and it is available in the DevTools project https
 
 class InitialDbMigrationCommand extends CConsoleCommand
 {
-	public $migrationPath = 'application.migrations';
-	public $oeMigration = null;
-	private $dbSchema;
+    public $migrationPath = 'application.migrations';
+    public $oeMigration = null;
+    private $dbSchema;
 
-	public function run($args = null) {
-		Yii::app()->cache->flush();
+    public function run($args = null)
+    {
+        Yii::app()->cache->flush();
 
-		$className = 'consolidation';
-		$this->oeMigration = $this->getOeMigration();
-		$migrPath = $this->oeMigration->getMigrationPath() ;
-		$tables = $this->getDbSchema()->getTables();
-		$initialDbMigrationResult = new InitialDbMigrationResult();
+        $className = 'consolidation';
+        $this->oeMigration = $this->getOeMigration();
+        $migrPath = $this->oeMigration->getMigrationPath() ;
+        $tables = $this->getDbSchema()->getTables();
+        $initialDbMigrationResult = new InitialDbMigrationResult();
 
-		if(!is_writable($migrPath))
-			throw new InitialDbMigrationCommandException('Migration folder is not writable/accessible');
+        if (!is_writable($migrPath)) {
+            throw new InitialDbMigrationCommandException('Migration folder is not writable/accessible');
+        }
 
-		if(!is_array($tables) || count($tables)==0)
-			throw new InitialDbMigrationCommandException('No tables to export in the current database');
-		//dont export migration table
-		unset($tables['tbl_migration']);
-		unset($tables['et_ophtroperationnote_biometry']);
+        if (!is_array($tables) || count($tables)==0) {
+            throw new InitialDbMigrationCommandException('No tables to export in the current database');
+        }
+        //dont export migration table
+        unset($tables['tbl_migration']);
+        unset($tables['et_ophtroperationnote_biometry']);
 
-		$template = $this->getTemplate();
-		$initialDbMigrationResult->fileName = $this->getMigrationFileName($className);
+        $template = $this->getTemplate();
+        $initialDbMigrationResult->fileName = $this->getMigrationFileName($className);
 
-		$migrateCreateTables = $this->getUpCreateTablesStatements($tables);
-		$lastMigration = $this->getLatestMigration();
-		$content=strtr($this->getTemplate(), array(
-			'{LastMigration}' => $lastMigration,
-			'{ClassName}'=> $initialDbMigrationResult->fileName,
-			'{ClassCreateTables}'=> $migrateCreateTables,
-		));
+        $migrateCreateTables = $this->getUpCreateTablesStatements($tables);
+        $lastMigration = $this->getLatestMigration();
+        $content=strtr($this->getTemplate(), array(
+            '{LastMigration}' => $lastMigration,
+            '{ClassName}'=> $initialDbMigrationResult->fileName,
+            '{ClassCreateTables}'=> $migrateCreateTables,
+        ));
 
-		$fileFullPath = $migrPath . DIRECTORY_SEPARATOR . $initialDbMigrationResult->fileName . '.php';
-		$writeFile = file_put_contents($fileFullPath, $content);
+        $fileFullPath = $migrPath . DIRECTORY_SEPARATOR . $initialDbMigrationResult->fileName . '.php';
+        $writeFile = file_put_contents($fileFullPath, $content);
 
-		//table structure migration file is generated, lets trigger the data export now
-		$initialDbMigrationResult->tables =
-			$this->oeMigration->exportData($initialDbMigrationResult->fileName, $tables)->tables;
+        //table structure migration file is generated, lets trigger the data export now
+        $initialDbMigrationResult->tables =
+            $this->oeMigration->exportData($initialDbMigrationResult->fileName, $tables)->tables;
 
-		if( $writeFile !== false  && is_file($fileFullPath) ){
-			$initialDbMigrationResult->result = true;
-			//echo "New migration created successfully :" . $writeFile .".\n JSON Result: " . json_encode($initialDbMigrationResult ) . "\n";
-		}
+        if ($writeFile !== false  && is_file($fileFullPath)) {
+            $initialDbMigrationResult->result = true;
+            //echo "New migration created successfully :" . $writeFile .".\n JSON Result: " . json_encode($initialDbMigrationResult ) . "\n";
+        }
 
-		return $initialDbMigrationResult;
-	}
+        return $initialDbMigrationResult;
+    }
 
-	private function getUpCreateTablesStatements($tables){
-		$addForeignKeys = '';
-		$result = "public function createTables()\n\t\t{\n";
-		$result .= '			$this->execute("SET foreign_key_checks = 0");' . "\n";
-		foreach ($tables as $table) {
-			if( !is_subclass_of($table,'CDbTableSchema'))
-				throw new InitialDbMigrationCommandException('Table is not of type CDbTableSchema, instead : ' . get_class( $table));
-			//exclude migrations table
-			if($table->name == 'tbl_migration'){
-				//var_dump($tables);die();
-				unset($tables[$table->name]);
-				continue;
-			}
+    private function getUpCreateTablesStatements($tables)
+    {
+        $addForeignKeys = '';
+        $result = "public function createTables()\n\t\t{\n";
+        $result .= '			$this->execute("SET foreign_key_checks = 0");' . "\n";
+        foreach ($tables as $table) {
+            if (!is_subclass_of($table, 'CDbTableSchema')) {
+                throw new InitialDbMigrationCommandException('Table is not of type CDbTableSchema, instead : ' . get_class($table));
+            }
+            //exclude migrations table
+            if ($table->name == 'tbl_migration') {
+                //var_dump($tables);die();
+                unset($tables[$table->name]);
+                continue;
+            }
 
-			$createTable = Yii::app()->db->createCommand('SHOW CREATE TABLE ' . $table->name . ' ;')->queryRow(true);
+            $createTable = Yii::app()->db->createCommand('SHOW CREATE TABLE ' . $table->name . ' ;')->queryRow(true);
 
-			if(!isset($createTable["Create Table"]))
-				throw new InitialDbMigrationCommandException('Show Create Table errors. $createTable array was : ' . var_export($createTable, true));
-			$createTableStm = $createTable["Create Table"];
-			$createTableStm = str_replace(array('ENGINE' , "\n"), array("\nENGINE", "\n\t\t\t\t" ), $createTableStm);
-			$result .= '			$this->execute("' . $createTableStm .  "\"\n\t\t\t);\n\n";
+            if (!isset($createTable["Create Table"])) {
+                throw new InitialDbMigrationCommandException('Show Create Table errors. $createTable array was : ' . var_export($createTable, true));
+            }
+            $createTableStm = $createTable["Create Table"];
+            $createTableStm = str_replace(array('ENGINE', "\n"), array("\nENGINE", "\n\t\t\t\t" ), $createTableStm);
+            $result .= '			$this->execute("' . $createTableStm .  "\"\n\t\t\t);\n\n";
+        }
+        $result .= "\t\t\t" . '$this->initialiseData($this->getMigrationPath());' . "\n";
+        $result .= '			$this->execute("SET foreign_key_checks = 1");' . "\n";
+        $result .= "\t}\n\n";
+        return $result;
+    }
 
-		}
-		$result .= "\t\t\t" . '$this->initialiseData($this->getMigrationPath());' . "\n";
-		$result .= '			$this->execute("SET foreign_key_checks = 1");' . "\n";
-		$result .= "\t}\n\n";
-		return $result;
-	}
+    public function getDbSchema()
+    {
+        if (!isset($this->dbSchema)) {
+            $this->dbSchema = Yii::app()->db->schema;
+        }
+        return $this->dbSchema;
+    }
 
-	public function getDbSchema(){
-		if(!isset($this->dbSchema)){
-			$this->dbSchema = Yii::app()->db->schema;
-		}
-		return $this->dbSchema;
-	}
+    public function setDbSchema(CDbSchema $schema)
+    {
+        if (is_null($schema)) {
+            $schema =  Yii::app()->db->schema;
+        }
+        $this->dbSchema = $schema;
+    }
 
-	public function setDbSchema(CDbSchema $schema){
-		if(is_null($schema))
-			$schema =  Yii::app()->db->schema;
-		$this->dbSchema = $schema;
-	}
-
-	public function getTemplate(){
-		return <<<'EOD'
+    public function getTemplate()
+    {
+        return <<<'EOD'
 <?php
 
 	class {ClassName} extends OEMigration
@@ -181,25 +190,28 @@ class InitialDbMigrationCommand extends CConsoleCommand
 
 	}
 EOD;
-	}
+    }
 
-	private function getMigrationFileName($name){
-		return $name='m'.gmdate('ymd_His').'_'.$name ;
-	}
+    private function getMigrationFileName($name)
+    {
+        return $name='m'.gmdate('ymd_His').'_'.$name ;
+    }
 
-	private function getOeMigration(){
-		if($this->oeMigration === null ){
-			return new OEMigration();
-		}
-		return $this->oeMigration;
-	}
+    private function getOeMigration()
+    {
+        if ($this->oeMigration === null) {
+            return new OEMigration();
+        }
+        return $this->oeMigration;
+    }
 
-	/**
-	 * @return mixed - either the name of the lastest migration or false
-	 */
-	private function getLatestMigration(){
-		//select version from tbl_migration order by 1 desc limit 1
-		return $existing_migrations = Yii::app()->db
-			->createCommand("SELECT version FROM tbl_migration ORDER BY 1 DESC LIMIT 1")->queryScalar();
-	}
+    /**
+     * @return mixed - either the name of the lastest migration or false
+     */
+    private function getLatestMigration()
+    {
+        //select version from tbl_migration order by 1 desc limit 1
+        return $existing_migrations = Yii::app()->db
+            ->createCommand("SELECT version FROM tbl_migration ORDER BY 1 DESC LIMIT 1")->queryScalar();
+    }
 }

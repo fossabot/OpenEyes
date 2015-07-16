@@ -25,12 +25,12 @@
 		</div>
 		<div class="large-4 column">
 			<?php
-			$form = $this->beginWidget('BaseEventTypeCActiveForm',array(
-				'id' => 'searchform',
-				'enableAjaxValidation' => false,
-				'focus' => '#search',
-				'action' => Yii::app()->createUrl('/admin/users'),
-			))?>
+            $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+                'id' => 'searchform',
+                'enableAjaxValidation' => false,
+                'focus' => '#search',
+                'action' => Yii::app()->createUrl('/admin/users'),
+            ))?>
 				<div class="row">
 					<div class="large-12 column">
 						<input type="text" autocomplete="<?php echo Yii::app()->params['html_autocomplete']?>" name="search" id="search" placeholder="Enter search query..." value="<?php echo strip_tags(@$_POST['search'])?>" />
@@ -57,7 +57,8 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($users as $i => $user) {?>
+                foreach ($users as $i => $user) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $user->id?>" data-uri="admin/editUser/<?php echo $user->id?>">
 						<td><input type="checkbox" name="users[]" value="<?php echo $user->id?>" /></td>
 						<td><?php echo $user->id?></td>
@@ -67,25 +68,26 @@
 						<td><?php echo $user->last_name?></td>
 						<td><?php echo $user->is_doctor ? 'Yes' : 'No'?></td>
 						<td><?php
-							$roles = CHtml::listData($user->roles, 'name', 'name');
-							if ($roles) {
-								echo CHtml::encode(implode(', ', $roles));
-							} else {
-								echo "-";
-							}
-						?></td>
+                            $roles = CHtml::listData($user->roles, 'name', 'name');
+                    if ($roles) {
+                        echo CHtml::encode(implode(', ', $roles));
+                    } else {
+                        echo "-";
+                    }
+                    ?></td>
 						<td><?php echo $user->active ? 'Yes' : 'No'?></td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 			<tfoot class="pagination-container">
 				<tr>
 					<td colspan="9">
 						<?php echo EventAction::button('Add', 'add', null, array('class' => 'small'))->toHtml()?>
 						<?php echo EventAction::button('Delete', 'delete', null, array('class' => 'small'))->toHtml()?>
-						<?php echo $this->renderPartial('_pagination',array(
-							'pagination' => $pagination
-						))?>
+						<?php echo $this->renderPartial('_pagination', array(
+                            'pagination' => $pagination
+                        ))?>
 					</td>
 				</tr>
 			</tfoot>

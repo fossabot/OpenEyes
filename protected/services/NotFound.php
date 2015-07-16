@@ -17,12 +17,12 @@ namespace services;
 
 class NotFound extends ServiceException
 {
-	public $httpStatus = 404;
+    public $httpStatus = 404;
 
-	public function toFhirOutcome()
-	{
-		return FhirOutcome::singleIssue(
-			\FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_PROCESSING_NOT_FOUND, $this->message
-		);
-	}
+    public function toFhirOutcome()
+    {
+        return FhirOutcome::singleIssue(
+            \FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_PROCESSING_NOT_FOUND, $this->message
+        );
+    }
 }

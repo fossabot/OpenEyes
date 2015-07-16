@@ -18,25 +18,32 @@
  */
 
 if (empty($episodes)) {
-	echo 'No episodes.';
+    echo 'No episodes.';
 } else {
-	foreach ($episodes as $episode) { ?>
+    foreach ($episodes as $episode) {
+        ?>
 		<div class="episode">
 			<div class="title">
-				<input type="hidden" name="episode-id" value="<?php echo $episode->id; ?>" />
-				<span class="date"><?php echo $episode->NHSDate('start_date'); ?></span> - <?php
-				echo CHtml::encode($episode->firm->serviceSubspecialtyAssignment->subspecialty->name); ?></div>
+				<input type="hidden" name="episode-id" value="<?php echo $episode->id;
+        ?>" />
+				<span class="date"><?php echo $episode->NHSDate('start_date');
+        ?></span> - <?php
+                echo CHtml::encode($episode->firm->serviceSubspecialtyAssignment->subspecialty->name);
+        ?></div>
 			<ul class="events">
 		<?php
-				foreach ($episode->events as $event) { ?>
+                foreach ($episode->events as $event) {
+                    ?>
 				<li><?php
-				$text = '<span class="type">' . ucfirst($event->eventType->name) .
-					'</span><span class="date"> ' . $event->NHSDate('created_date') .
-					'</span>';
-				echo CHtml::link($text, array('clinical/view', 'id'=>$event->id));
-				} ?>
+                $text = '<span class="type">' . ucfirst($event->eventType->name) .
+                    '</span><span class="date"> ' . $event->NHSDate('created_date') .
+                    '</span>';
+                    echo CHtml::link($text, array('clinical/view', 'id'=>$event->id));
+                }
+        ?>
 			</ul>
 			<div class="footer"></div>
 		</div>
-	<?php }
+	<?php 
+    }
 }?>

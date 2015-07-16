@@ -28,139 +28,139 @@
  */
 class ContactLocation extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return ContactLocation the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return ContactLocation the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'contact_location';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'contact_location';
+    }
 
-	public function behaviors()
-	{
-		return array(
-			'ContactBehavior' => array(
-				'class' => 'application.behaviors.ContactBehavior',
-			),
-		);
-	}
+    public function behaviors()
+    {
+        return array(
+            'ContactBehavior' => array(
+                'class' => 'application.behaviors.ContactBehavior',
+            ),
+        );
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('id', 'safe', 'on'=>'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
-			'site' => array(self::BELONGS_TO, 'Site', 'site_id'),
-			'institution' => array(self::BELONGS_TO, 'Institution', 'institution_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'contact' => array(self::BELONGS_TO, 'Contact', 'contact_id'),
+            'site' => array(self::BELONGS_TO, 'Site', 'site_id'),
+            'institution' => array(self::BELONGS_TO, 'Institution', 'institution_id'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute locations (name=>location)
-	 */
-	public function attributeLocations()
-	{
-		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-		);
-	}
+    /**
+     * @return array customized attribute locations (name=>location)
+     */
+    public function attributeLocations()
+    {
+        return array(
+            'id' => 'ID',
+            'name' => 'Name',
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that should not be searched.
-		$criteria=new CDbCriteria;
-		$criteria->compare('id',$this->id,true);
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that should not be searched.
+        $criteria=new CDbCriteria;
+        $criteria->compare('id', $this->id, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
-	/**
-	 * @return string
-	 */
-	public function __toString()
-	{
-		$object = $this->site ? $this->site : $this->institution;
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $object = $this->site ? $this->site : $this->institution;
 
-		$return = $object->name;
+        $return = $object->name;
 
-		if ($object->contact && $object->contact->address) {
-			$return .= ', '.$object->contact->address->address1.', '.$object->contact->address->city;
-		}
+        if ($object->contact && $object->contact->address) {
+            $return .= ', '.$object->contact->address->address1.', '.$object->contact->address->city;
+        }
 
-		return $return;
-	}
+        return $return;
+    }
 
-	/**
-	 * gets a letter address for this contact location.
-	 * 
-	 * @param unknown $params
-	 * @return array() - address elements
-	 */
-	public function getLetterAddress($params=array())
-	{
-		$owner = $this->site ? $this->site : $this->institution;
-		if (@$params['contact']) {
-			$contactRelation = @$params['contact'];
-			$contact = $owner->$contactRelation;
-		} else {
-			$contact = $owner->contact;
-		}
+    /**
+     * gets a letter address for this contact location.
+     * 
+     * @param unknown $params
+     * @return array() - address elements
+     */
+    public function getLetterAddress($params=array())
+    {
+        $owner = $this->site ? $this->site : $this->institution;
+        if (@$params['contact']) {
+            $contactRelation = @$params['contact'];
+            $contact = $owner->$contactRelation;
+        } else {
+            $contact = $owner->contact;
+        }
 
-		$address = $contact->address;
+        $address = $contact->address;
 
-		$res = $this->formatLetterAddress($this->contact, $address, $params);
-		return $res;
-	}
+        $res = $this->formatLetterAddress($this->contact, $address, $params);
+        return $res;
+    }
 
-	public function getLetterArray($include_country)
-	{
-		$address = $this->site ? $this->site->contact->address : $this->institution->contact->address;
-		$name = $this->site ? $this->site->correspondenceName : $this->institution->name;
-		if (!is_array($name)) {
-			$name = array($name);
-		}
-		return array_merge($name,$address->getLetterArray($include_country));
-	}
+    public function getLetterArray($include_country)
+    {
+        $address = $this->site ? $this->site->contact->address : $this->institution->contact->address;
+        $name = $this->site ? $this->site->correspondenceName : $this->institution->name;
+        if (!is_array($name)) {
+            $name = array($name);
+        }
+        return array_merge($name, $address->getLetterArray($include_country));
+    }
 
-	public function getPatients()
-	{
-		$criteria = new CDbCriteria;
-		$criteria->join = "join patient_contact_assignment on patient_contact_assignment.patient_id = `t`.id";
-		$criteria->compare("location_id",$this->id);
-		$criteria->order = 'hos_num asc';
+    public function getPatients()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->join = "join patient_contact_assignment on patient_contact_assignment.patient_id = `t`.id";
+        $criteria->compare("location_id", $this->id);
+        $criteria->order = 'hos_num asc';
 
-		return Patient::model()->findAll($criteria);
-	}
+        return Patient::model()->findAll($criteria);
+    }
 }

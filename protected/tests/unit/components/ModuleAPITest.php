@@ -15,43 +15,43 @@
 
 class ModuleAPITest extends CDbTestCase
 {
-	protected $orig_modules;
-	protected $test_event_type;
+    protected $orig_modules;
+    protected $test_event_type;
 
-	public $fixtures = array(
-			'event_types' => 'EventType',
-			'event_groups' => 'EventGroup'
-	);
+    public $fixtures = array(
+            'event_types' => 'EventType',
+            'event_groups' => 'EventGroup'
+    );
 
-	public function setUp()
-	{
-		parent::setUp();
-		$this->orig_modules = Yii::app()->getModules();
-		Yii::app()->setModules(array('TestModule' => array('class' => 'ModuleAPITestNS\TestModule')));
-		Yii::setPathOfAlias('ModuleAPITestNS', __DIR__ . '/ModuleAPITest');
-		Yii::setPathOfAlias('application.modules.TestModule.components', __DIR__ . '/ModuleAPITest/components');
-		// create temporary event type for testing
-		$event_type = new EventType();
-		$event_type->name = 'Test Module';
-		$event_type->class_name = 'TestModule';
-		$event_type->event_group_id = 1;
-		$event_type->noVersion()->save();
-		$this->test_event_type = $event_type;
-	}
-	public function tearDown()
-	{
-		parent::tearDown();
-		Yii::app()->setModules($this->orig_modules);
-		Yii::setPathOfAlias('ModuleAPITestNS', null);
-		Yii::setPathOfAlias('application.modules.TestModule.components', null);
-		if ($this->test_event_type) {
-			$this->test_event_type->noVersion()->delete();
-		}
-	}
+    public function setUp()
+    {
+        parent::setUp();
+        $this->orig_modules = Yii::app()->getModules();
+        Yii::app()->setModules(array('TestModule' => array('class' => 'ModuleAPITestNS\TestModule')));
+        Yii::setPathOfAlias('ModuleAPITestNS', __DIR__ . '/ModuleAPITest');
+        Yii::setPathOfAlias('application.modules.TestModule.components', __DIR__ . '/ModuleAPITest/components');
+        // create temporary event type for testing
+        $event_type = new EventType();
+        $event_type->name = 'Test Module';
+        $event_type->class_name = 'TestModule';
+        $event_type->event_group_id = 1;
+        $event_type->noVersion()->save();
+        $this->test_event_type = $event_type;
+    }
+    public function tearDown()
+    {
+        parent::tearDown();
+        Yii::app()->setModules($this->orig_modules);
+        Yii::setPathOfAlias('ModuleAPITestNS', null);
+        Yii::setPathOfAlias('application.modules.TestModule.components', null);
+        if ($this->test_event_type) {
+            $this->test_event_type->noVersion()->delete();
+        }
+    }
 
-	public function testget()
-	{
-		$res =  Yii::app()->moduleAPI->get('TestModule');
-		$this->assertEquals('ModuleAPITestNS\components\TestModule_API',get_class($res));
-	}
+    public function testget()
+    {
+        $res =  Yii::app()->moduleAPI->get('TestModule');
+        $this->assertEquals('ModuleAPITestNS\components\TestModule_API', get_class($res));
+    }
 }

@@ -15,9 +15,10 @@
 
 namespace BaseEventTypeElementTestNS\models {
 
-	class NamespacedElement extends \BaseEventTypeElement
-	{
-		public function __construct()
-		{}
-	}
+    class BaseEventTypeElementTestNS extends \BaseEventTypeElement
+    {
+        public function __construct()
+        {
+        }
+    }
 }

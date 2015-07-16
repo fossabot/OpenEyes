@@ -14,7 +14,7 @@
  */
 
 return array(
-	'cfh' => array(
-		'name' => 'Connecting for Health',
-	),
+    'cfh' => array(
+        'name' => 'Connecting for Health',
+    ),
 );

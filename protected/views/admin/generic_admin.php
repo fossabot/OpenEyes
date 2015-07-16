@@ -20,11 +20,14 @@
 
 <?php
 if (!@$options['get_row']) {
-	$this->renderPartial('//base/_messages') ?>
+    $this->renderPartial('//base/_messages') ?>
 	<div class="box admin">
 		<h2><?php echo $title?></h2>
-<?php }
+<?php 
+}
 $this->widget('GenericAdmin', array_merge(array('model' => $model, 'items' => $items, 'errors' => $errors), $options)); ?>
-<?php	if (!@$options['get_row']) { ?>
+<?php	if (!@$options['get_row']) {
+    ?>
 	</div>
-<?php }
+<?php 
+}

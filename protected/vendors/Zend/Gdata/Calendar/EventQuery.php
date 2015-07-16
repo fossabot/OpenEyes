@@ -44,7 +44,6 @@ require_once('Zend/Gdata/Query.php');
  */
 class Zend_Gdata_Calendar_EventQuery extends Zend_Gdata_Query
 {
-
     const CALENDAR_FEED_URI = 'https://www.google.com/calendar/feeds';
 
     /**
@@ -487,5 +486,4 @@ class Zend_Gdata_Calendar_EventQuery extends Zend_Gdata_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
-
 }

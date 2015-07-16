@@ -217,7 +217,6 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 
         $message->setChildren(array());
         $this->streamToMime($messageStream, $message);
-
     }
 
     /**

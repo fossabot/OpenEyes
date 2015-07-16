@@ -20,18 +20,18 @@
 ?>
 <div class="box admin">
 	<h2>Add contact label</h2>
-	<?php echo $this->renderPartial('_form_errors',array('errors'=>$errors))?>
+	<?php echo $this->renderPartial('_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'addContactLabelForm',
-		'enableAjaxValidation'=>false,
-		'focus'=>'#ContactLabel_name',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
-		<?php echo $form->textField($contactlabel,'name',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'addContactLabelForm',
+        'enableAjaxValidation'=>false,
+        'focus'=>'#ContactLabel_name',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
+		<?php echo $form->textField($contactlabel, 'name', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 		<?php echo $form->formActions()?>
 	<?php $this->endWidget()?>
 </div>

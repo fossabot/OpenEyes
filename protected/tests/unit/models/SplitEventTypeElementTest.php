@@ -24,18 +24,19 @@ class SplitEventTypeElementTest extends CDbTestCase
      */
     protected $object;
 
-	public $fixtures = array(
-		'eye'	=> 'Eye',
-	);
+    public $fixtures = array(
+        'eye'    => 'Eye',
+    );
 
-	public static function setUpBeforeClass(){
-		Yii::app()->db->createCommand()->createTable('split_element_test', array('id' => 'pk',
+    public static function setUpBeforeClass()
+    {
+        Yii::app()->db->createCommand()->createTable('split_element_test', array('id' => 'pk',
             'title' => 'string NOT NULL',
             'eye_id' => 'int(10) unsigned NOT NULL',
-			' CONSTRAINT `split_eye_id_fk` FOREIGN KEY (`eye_id`) REFERENCES `eye` (`id`)')
-		);
-		parent::setUpBeforeClass();
-	}
+            ' CONSTRAINT `split_eye_id_fk` FOREIGN KEY (`eye_id`) REFERENCES `eye` (`id`)')
+        );
+        parent::setUpBeforeClass();
+    }
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -43,8 +44,8 @@ class SplitEventTypeElementTest extends CDbTestCase
      */
     protected function setUp()
     {
-		parent::setUp();
-		$this->object = new SplitEventTypeElementMock();
+        parent::setUp();
+        $this->object = new SplitEventTypeElementMock();
     }
 
     /**
@@ -60,8 +61,8 @@ class SplitEventTypeElementTest extends CDbTestCase
      */
     public function testHasLeft()
     {
-		$this->object->eye = $this->eye('eyeLeft');
-		$this->assertTrue( $this->object->hasLeft() );
+        $this->object->eye = $this->eye('eyeLeft');
+        $this->assertTrue($this->object->hasLeft());
     }
 
     /**
@@ -69,8 +70,8 @@ class SplitEventTypeElementTest extends CDbTestCase
      */
     public function testHasRight()
     {
-		$this->object->eye = $this->eye('eyeRight');
-		$this->assertTrue( $this->object->hasRight() );
+        $this->object->eye = $this->eye('eyeRight');
+        $this->assertTrue($this->object->hasRight());
     }
 
     /**
@@ -78,13 +79,13 @@ class SplitEventTypeElementTest extends CDbTestCase
      */
     public function testSetDefaultOptions()
     {
-		$this->object->eye = $this->eye('eyeBoth');
-		$this->object->setDefaultOptions();
-		//var_dump($this->object);
-		$this->assertEquals('NoName',$this->object->left_name);
-		$this->assertEquals('NoName',$this->object->right_name);
-		$this->assertEquals(0,$this->object->left_number);
-		$this->assertEquals(0,$this->object->right_number);
+        $this->object->eye = $this->eye('eyeBoth');
+        $this->object->setDefaultOptions();
+        //var_dump($this->object);
+        $this->assertEquals('NoName', $this->object->left_name);
+        $this->assertEquals('NoName', $this->object->right_name);
+        $this->assertEquals(0, $this->object->left_number);
+        $this->assertEquals(0, $this->object->right_number);
     }
 
     /**
@@ -93,33 +94,34 @@ class SplitEventTypeElementTest extends CDbTestCase
      */
     public function testSetUpdateOptions()
     {
-		$this->object->eye = $this->eye('eyeLeft');
-		$this->object->setUpdateOptions();
-		$this->assertEquals('NoName',$this->object->right_name);
-		$this->assertEquals(0,$this->object->right_number);
+        $this->object->eye = $this->eye('eyeLeft');
+        $this->object->setUpdateOptions();
+        $this->assertEquals('NoName', $this->object->right_name);
+        $this->assertEquals(0, $this->object->right_number);
     }
 
-	public static function tearDownAfterClass(){
-		Yii::app()->db->createCommand()->dropTable('split_element_test');
-		parent::tearDownAfterClass();
-	}
+    public static function tearDownAfterClass()
+    {
+        Yii::app()->db->createCommand()->dropTable('split_element_test');
+        parent::tearDownAfterClass();
+    }
 }
 
-class SplitEventTypeElementMock extends SplitEventTypeElement{
+class SplitEventTypeElementMock extends SplitEventTypeElement
+{
+    public $eye, $left_name, $right_name, $left_number, $right_number;
 
-	public $eye, $left_name, $right_name, $left_number, $right_number;
+    public function tableName()
+    {
+        return 'split_element_test';
+    }
 
-	public function tableName()
-	{
-		return 'split_element_test';
-	}
-
-	public function sidedFields()
-	{
-		return array('name', 'number');
-	}
-	public function sidedDefaults()
-	{
-		return array('name'=>'NoName', 'number'=>0);
-	}
+    public function sidedFields()
+    {
+        return array('name', 'number');
+    }
+    public function sidedDefaults()
+    {
+        return array('name'=>'NoName', 'number'=>0);
+    }
 }

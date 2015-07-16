@@ -19,19 +19,19 @@
 
 ?>
 <div class="box admin">
-	<h2><?php echo ($source->id ? 'Edit' : 'Add')?> data source</h2>
-	<?php echo $this->renderPartial('_form_errors',array('errors'=>$errors))?>
+	<h2><?php echo($source->id ? 'Edit' : 'Add')?> data source</h2>
+	<?php echo $this->renderPartial('_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'adminform',
-		'enableAjaxValidation'=>false,
-		'focus'=>'#ImportSource_name',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
-		<?php echo $form->textField($source,'name',array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'adminform',
+        'enableAjaxValidation'=>false,
+        'focus'=>'#ImportSource_name',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
+		<?php echo $form->textField($source, 'name', array('autocomplete'=>Yii::app()->params['html_autocomplete']))?>
 		<?php echo $form->formActions(array('cancel-uri' => '/admin/datasources'));?>
 	<?php $this->endWidget()?>
 </div>

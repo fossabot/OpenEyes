@@ -19,70 +19,67 @@
  */
 class BenefitTest extends CDbTestCase
 {
+    /**
+     * @var Benefit
+     */
+    protected $model;
 
-	/**
-	 * @var Benefit
-	 */
-	protected $model;
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        $this->model = new Benefit;
+    }
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		$this->model = new Benefit;
-	}
+    /**
+     * Tears down the fixture, for example, closes a network connection.
+     * This method is called after a test is executed.
+     */
+    protected function tearDown()
+    {
+    }
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 */
-	protected function tearDown()
-	{
+    /**
+     * @covers Benefit::model
+     * @todo   Implement testModel().
+     */
+    public function testModel()
+    {
+        $this->assertEquals('Benefit', get_class(Benefit::model()), 'Class name should match model.');
+    }
 
-	}
+    /**
+     * @covers Benefit::tableName
+     * @todo   Implement testTableName().
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('benefit', $this->model->tableName());
+    }
 
-	/**
-	 * @covers Benefit::model
-	 * @todo   Implement testModel().
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('Benefit', get_class(Benefit::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers AuditTrail::rules
+     * @todo   Implement testRules().
+     */
+    public function testRules()
+    {
+        $this->model->name = 'test';
+        $this->assertTrue($this->model->validate());
+        $this->assertEmpty($this->model->errors);
+    }
 
-	/**
-	 * @covers Benefit::tableName
-	 * @todo   Implement testTableName().
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('benefit', $this->model->tableName());
-	}
+    /**
+     * @covers Benefit::relations
+     * @todo   Implement testRelations().
+     */
+    public function testRelations()
+    {
 
-	/**
-	 * @covers AuditTrail::rules
-	 * @todo   Implement testRules().
-	 */
-	public function testRules()
-	{
-		$this->model->name = 'test';
-		$this->assertTrue($this->model->validate());
-		$this->assertEmpty($this->model->errors);
-	}
-
-	/**
-	 * @covers Benefit::relations
-	 * @todo   Implement testRelations().
-	 */
-	public function testRelations()
-	{
-
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet.'
-		);
-	}
-
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
 }

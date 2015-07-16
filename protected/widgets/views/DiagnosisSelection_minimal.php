@@ -19,75 +19,112 @@
 ?>
 <?php $class_field = "{$class}_{$field}"; ?>
 
-<?php if (!$nowrapper) {?>
+<?php if (!$nowrapper) {
+    ?>
 	<div class="row field-row diagnosis-selection">
-		<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {?> hide<?php }?>">
-			<label for="<?php echo $class_field ;?>">Diagnosis:</label>
+		<div class="large-<?php echo $layoutColumns['label'];
+    ?> column<?php if (!$label) {
+    ?> hide<?php 
+}
+    ?>">
+			<label for="<?php echo $class_field ;
+    ?>">Diagnosis:</label>
 		</div>
-		<div class="large-<?php echo $layoutColumns['field'];?> column end">
-<?php }?>
+		<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+<?php 
+}?>
 			<?php
-			$list_options = array('empty' => 'Select a commonly used diagnosis');
+            $list_options = array('empty' => 'Select a commonly used diagnosis');
 
-			if ($secondary_to) {
-				$list_options['options'] = array();
-				foreach ($secondary_to as $id => $lst) {
-					if (count($lst)) {
-						$list_options['options'][$id] = array();
-					}
-					$data = array();
-					$second_order = 1;
-					foreach ($lst as $sid => $term) {
-						$data[] = array('id' => $sid, 'term' => $term, 'order' => $second_order++);
-					}
-					$list_options['options'][$id]['data-secondary-to'] = CJSON::encode($data);
-				}
-			}
+            if ($secondary_to) {
+                $list_options['options'] = array();
+                foreach ($secondary_to as $id => $lst) {
+                    if (count($lst)) {
+                        $list_options['options'][$id] = array();
+                    }
+                    $data = array();
+                    $second_order = 1;
+                    foreach ($lst as $sid => $term) {
+                        $data[] = array('id' => $sid, 'term' => $term, 'order' => $second_order++);
+                    }
+                    $list_options['options'][$id]['data-secondary-to'] = CJSON::encode($data);
+                }
+            }
 
-			$order = 1;
-			foreach ($options as $i => $opt) {
-				$list_options['options'][$i]['data-order'] = $order++;
-			}
-			?>
+            $order = 1;
+            foreach ($options as $i => $opt) {
+                $list_options['options'][$i]['data-order'] = $order++;
+            }
+            ?>
 			<?php echo !empty($options) ? CHtml::dropDownList("{$class}[$field]", '', $options, $list_options) : ""?>
-<?php if (!$nowrapper) {?>
+<?php if (!$nowrapper) {
+    ?>
 		</div>
 	</div>
-<?php }?>
+<?php 
+}?>
 
-	<?php if ($secondary_to) {?>
-		<?php if (!$nowrapper) {?>
+	<?php if ($secondary_to) {
+    ?>
+		<?php if (!$nowrapper) {
+    ?>
 			<div id="div_<?php echo "{$class_field}_secondary_to"?>" class="row field-row hidden">
-				<?php if (!$nowrapper) {?>
-					<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {?> hide<?php }?>">
-						<label for="<?php echo "{$class_field}_secondary_to";?>">Associated diagnosis:</label>
+				<?php if (!$nowrapper) {
+    ?>
+					<div class="large-<?php echo $layoutColumns['label'];
+    ?> column<?php if (!$label) {
+    ?> hide<?php 
+}
+    ?>">
+						<label for="<?php echo "{$class_field}_secondary_to";
+    ?>">Associated diagnosis:</label>
 					</div>
-				<?php }?>
-				<div class="large-<?php echo $layoutColumns['field'];?> column end">
-		<?php }?>
+				<?php 
+}
+    ?>
+				<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+		<?php 
+}
+    ?>
 				<?php echo CHtml::dropDownList("{$class}[{$field}_secondary_to]", '', array(), array())?>
-		<?php if (!$nowrapper) {?>
+		<?php if (!$nowrapper) {
+    ?>
 				</div>
 			</div>
-		<?php }?>
-	<?php }?>
+		<?php 
+}
+    ?>
+	<?php 
+}?>
 
-	<?php if (!$nowrapper) {?>
+	<?php if (!$nowrapper) {
+    ?>
 		<div class="row field-row">
-			<?php if (!$nowrapper) {?>
-				<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {?> hide<?php }?>">
+			<?php if (!$nowrapper) {
+    ?>
+				<div class="large-<?php echo $layoutColumns['label'];
+    ?> column<?php if (!$label) {
+    ?> hide<?php 
+}
+    ?>">
 					<label></label>
 				</div>
-			<?php }?>
-			<div class="large-<?php echo $layoutColumns['field'];?> column end">
-	<?php }?>
+			<?php 
+}
+    ?>
+			<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+	<?php 
+}?>
 			<div class="autocomplete-row" id="div_<?php echo "{$class}_{$field}_autocomplete_row"?>">
 				<?php
-				$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-						'name' => "{$class}[$field]",
-						'id' => "{$class_field}_0",
-						'value'=>'',
-						'source'=>"js:function(request, response) {
+                $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                        'name' => "{$class}[$field]",
+                        'id' => "{$class_field}_0",
+                        'value'=>'',
+                        'source'=>"js:function(request, response) {
 							$.ajax({
 								'url': '" . Yii::app()->createUrl('/disorder/autocomplete') . "',
 								'type':'GET',
@@ -113,9 +150,9 @@
 								}
 							});
 						}",
-						'options' => array(
-								'minLength'=>'3',
-								'select' => "js:function(event, ui) {
+                        'options' => array(
+                                'minLength'=>'3',
+                                'select' => "js:function(event, ui) {
 
 									if ($('#DiagnosisSelection_disorder_id_secondary_to').is(':visible')) {
 										var primary_selected = $('#{$class_field}').children('option:selected');
@@ -132,17 +169,19 @@
 									});
 									return false;
 								}",
-						),
-						'htmlOptions' => array(
-								'placeholder' => $placeholder,
-						),
-				));
-				?>
+                        ),
+                        'htmlOptions' => array(
+                                'placeholder' => $placeholder,
+                        ),
+                ));
+                ?>
 			</div>
-	<?php if (!$nowrapper) {?>
+	<?php if (!$nowrapper) {
+    ?>
 			</div>
 		</div>
-	<?php }?>
+	<?php 
+}?>
 <script type="text/javascript">
 	function updatePrimaryList(disorder, secondary_to) {
 		var html = '<option value="'+disorder.id+'" data-order="'+disorder.order+'"';
@@ -171,7 +210,8 @@
 		$('#<?= $class_field ?> option').eq(1).before($(none));
 	}
 
-	<?php if ($secondary_to) {?>
+	<?php if ($secondary_to) {
+    ?>
 	function updateSecondaryList(data, include_none) {
 		var options = '<option value="">- Please Select -</option>';
 		if (include_none) {
@@ -208,13 +248,16 @@
 			$('#<?php echo $class?>_<?php echo $field?>').val('');
 		}
 	});
-	<?php }?>
+	<?php 
+}?>
 
-	<?php if ($secondary_to || $callback) {?>
+	<?php if ($secondary_to || $callback) {
+    ?>
 		$('#<?php echo $class?>_<?php echo $field?>').change(function() {
 			if ($(this).children('option:selected').val()) {
 				var selected = $(this).children('option:selected');
-				<?php if ($secondary_to) {?>
+				<?php if ($secondary_to) {
+    ?>
 					if (selected.data('secondary-to')) {
 						updateSecondaryList(selected.data('secondary-to'), selected.val() != 'NONE');
 						$('#div_<?= "{$class_field}_secondary_to"?>').show();
@@ -225,16 +268,21 @@
 						selected.remove();
 						$('#<?= $class_field ?>').val('');
 					}
-				<?php } else {?>
+				<?php 
+} else {
+    ?>
 					<?php echo $callback?>(selected.val(), selected.text());
 					selected.remove();
 					$('#<?= $class_field ?>').val('');
-				<?php }?>
+				<?php 
+}
+    ?>
 			}
 			else {
 				// reset form
 				$('#div_<?= "{$class_field}_secondary_to"?>').hide();
 			}
 		});
-	<?php }?>
+	<?php 
+}?>
 </script>

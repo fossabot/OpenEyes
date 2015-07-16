@@ -62,7 +62,6 @@ require_once 'Zend/Gdata/App/Extension/Subtitle.php';
  */
 abstract class Zend_Gdata_App_FeedSourceParent extends Zend_Gdata_App_FeedEntryParent
 {
-
     /**
      * The classname for individual feed elements.
      *
@@ -263,5 +262,4 @@ abstract class Zend_Gdata_App_FeedSourceParent extends Zend_Gdata_App_FeedEntryP
         $this->_subtitle = $value;
         return $this;
     }
-
 }

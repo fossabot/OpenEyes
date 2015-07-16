@@ -28,34 +28,34 @@
   +----+-------+---------------+-----------------------+---------------------+-----------------+---------------------+
  */
 return array(
-	 'drugrouteoption1' => array(
-		  'id' => 1,
-		  'name' => 'Left',
-		  'drug_route_id' => 1
-	 ),
-	 'drugrouteoption2' => array(
-		  'id' => 2,
-		  'name' => 'Right',
-		  'drug_route_id' => 1
-	 ),
-	 'drugrouteoption3' => array(
-		  'id' => 3,
-		  'name' => 'Both',
-		  'drug_route_id' => 1
-	 ),
-	 'drugrouteoption4' => array(
-		  'id' => 4,
-		  'name' => 'Left',
-		  'drug_route_id' => 6
-	 ),
-	 'drugrouteoption5' => array(
-		  'id' => 5,
-		  'name' => 'Right',
-		  'drug_route_id' => 6
-	 ),
-	 'drugrouteoption6' => array(
-		  'id' => 6,
-		  'name' => 'Both',
-		  'drug_route_id' => 6
-	 ),
+     'drugrouteoption1' => array(
+          'id' => 1,
+          'name' => 'Left',
+          'drug_route_id' => 1
+     ),
+     'drugrouteoption2' => array(
+          'id' => 2,
+          'name' => 'Right',
+          'drug_route_id' => 1
+     ),
+     'drugrouteoption3' => array(
+          'id' => 3,
+          'name' => 'Both',
+          'drug_route_id' => 1
+     ),
+     'drugrouteoption4' => array(
+          'id' => 4,
+          'name' => 'Left',
+          'drug_route_id' => 6
+     ),
+     'drugrouteoption5' => array(
+          'id' => 5,
+          'name' => 'Right',
+          'drug_route_id' => 6
+     ),
+     'drugrouteoption6' => array(
+          'id' => 6,
+          'name' => 'Both',
+          'drug_route_id' => 6
+     ),
 );

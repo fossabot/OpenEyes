@@ -14,8 +14,8 @@
  */
 
 return array(
-	array(
-		'user_id' => 4,
-		'service_id' => 1,
-	),
+    array(
+        'user_id' => 4,
+        'service_id' => 1,
+    ),
 );

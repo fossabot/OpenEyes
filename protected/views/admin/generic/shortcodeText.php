@@ -34,7 +34,7 @@
 				</label>
 			</div>
 			<div class="large-6 column end">
-				<?php echo CHtml::dropDownList('shortcode','',CHtml::listData(PatientShortcode::model()->findAll(array('order' => 'description asc')),'code','description'),array('empty' => '- Select -'))?>
+				<?php echo CHtml::dropDownList('shortcode', '', CHtml::listData(PatientShortcode::model()->findAll(array('order' => 'description asc')), 'code', 'description'), array('empty' => '- Select -'))?>
 			</div>
 		</div>
 	</div>

@@ -15,9 +15,9 @@
 
 class FhirTestCase extends RestTestCase
 {
-	static protected $schema = 'tests/api/schema/fhir-atom-single.xsd';
-	static protected $namespaces = array(
-		'atom' => 'http://www.w3.org/2005/Atom',
-		'fhir' => 'http://hl7.org/fhir',
-	);
+    protected static $schema = 'tests/api/schema/fhir-atom-single.xsd';
+    protected static $namespaces = array(
+        'atom' => 'http://www.w3.org/2005/Atom',
+        'fhir' => 'http://hl7.org/fhir',
+    );
 }

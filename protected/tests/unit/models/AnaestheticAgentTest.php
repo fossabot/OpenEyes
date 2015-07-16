@@ -19,34 +19,34 @@
  */
 class AnaestheticAgentTest extends CDbTestCase
 {
-	/**
-	 * @var AddressType
-	 */
-	public $model;
+    /**
+     * @var AddressType
+     */
+    public $model;
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new AnaestheticAgent;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new AnaestheticAgent;
+    }
 
-	/**
-	 * @covers AnaestheticAgent::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('AnaestheticAgent', get_class(AnaestheticAgent::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers AnaestheticAgent::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('AnaestheticAgent', get_class(AnaestheticAgent::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers AnaestheticAgent::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('anaesthetic_agent', $this->model->tableName());
-	}
+    /**
+     * @covers AnaestheticAgent::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('anaesthetic_agent', $this->model->tableName());
+    }
 }

@@ -15,60 +15,60 @@
 
 class MeasurementReferenceTest extends CDbTestCase
 {
-	public $fixtures = array(
-		'ep' => 'Episode',
-		'ev' => 'Event',
-		'ref' => 'MeasurementReference',
-		'pm' => 'PatientMeasurement',
-	);
+    public $fixtures = array(
+        'ep' => 'Episode',
+        'ev' => 'Event',
+        'ref' => 'MeasurementReference',
+        'pm' => 'PatientMeasurement',
+    );
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Measurement reference already exists from episode
-	 */
-	public function testDuplicateForEpisode()
-	{
-		$ref = new MeasurementReference;
-		$ref->patient_measurement_id = $this->pm('height')->id;
-		$ref->episode_id = 1;
-		$ref->save();
-	}
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Measurement reference already exists from episode
+     */
+    public function testDuplicateForEpisode()
+    {
+        $ref = new MeasurementReference;
+        $ref->patient_measurement_id = $this->pm('height')->id;
+        $ref->episode_id = 1;
+        $ref->save();
+    }
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Measurement reference already exists from event
-	 */
-	public function testDuplicateForEvent()
-	{
-		$ref = new MeasurementReference;
-		$ref->patient_measurement_id = $this->pm('height')->id;
-		$ref->event_id = 1;
-		$ref->save();
-	}
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Measurement reference already exists from event
+     */
+    public function testDuplicateForEvent()
+    {
+        $ref = new MeasurementReference;
+        $ref->patient_measurement_id = $this->pm('height')->id;
+        $ref->event_id = 1;
+        $ref->save();
+    }
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Origin reference already exists
-	 */
-	public function testOriginAlreadyExists()
-	{
-		$ref = new MeasurementReference;
-		$ref->patient_measurement_id = $this->pm('height')->id;
-		$ref->episode_id = 2;
-		$ref->origin = true;
-		$ref->save();
-	}
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Origin reference already exists
+     */
+    public function testOriginAlreadyExists()
+    {
+        $ref = new MeasurementReference;
+        $ref->patient_measurement_id = $this->pm('height')->id;
+        $ref->episode_id = 2;
+        $ref->origin = true;
+        $ref->save();
+    }
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage Measurement references cannot reference both an episode and an event
-	 */
-	public function testEpisodeIdAndEventIdSet()
-	{
-		$ref = new MeasurementReference;
-		$ref->patient_measurement_id = $this->pm('height')->id;
-		$ref->episode_id = 2;
-		$ref->event_id = 2;
-		$ref->save();
-	}
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Measurement references cannot reference both an episode and an event
+     */
+    public function testEpisodeIdAndEventIdSet()
+    {
+        $ref = new MeasurementReference;
+        $ref->patient_measurement_id = $this->pm('height')->id;
+        $ref->episode_id = 2;
+        $ref->event_id = 2;
+        $ref->save();
+    }
 }

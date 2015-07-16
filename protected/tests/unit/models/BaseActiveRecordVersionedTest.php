@@ -15,13 +15,13 @@
 
 class BaseActiveRecordVersionedTest extends CDbTestCase
 {
-	public $fixures = array(
-		'drug' => 'Drug',
-	);
+    public $fixures = array(
+        'drug' => 'Drug',
+    );
 
-	public function testPositionalParams()
-	{
-		Drug::model()->updateAll(array('name' => 'foo'), 'id = ?', array(1));
-		$this->assertEquals('foo', Drug::model()->findByPk(1)->name);
-	}
+    public function testPositionalParams()
+    {
+        Drug::model()->updateAll(array('name' => 'foo'), 'id = ?', array(1));
+        $this->assertEquals('foo', Drug::model()->findByPk(1)->name);
+    }
 }

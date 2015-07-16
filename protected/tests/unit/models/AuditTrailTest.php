@@ -19,63 +19,63 @@
  */
 class AuditTrailTest extends CDbTestCase
 {
-	/**
-	 * @var AddressType
-	 */
-	public $model;
-	public $fixtures = array(
-		'audittrail' => 'AuditTrail',
-	);
+    /**
+     * @var AddressType
+     */
+    public $model;
+    public $fixtures = array(
+        'audittrail' => 'AuditTrail',
+    );
 
-	public function dataProvider_Search()
-	{
-		return array(
-			array(array(), array('audittrail1')),
-		);
-	}
+    public function dataProvider_Search()
+    {
+        return array(
+            array(array(), array('audittrail1')),
+        );
+    }
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new AuditTrail;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new AuditTrail;
+    }
 
-	/**
-	 * @covers AuditTrail::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('AuditTrail', get_class(AuditTrail::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers AuditTrail::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('AuditTrail', get_class(AuditTrail::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers AuditTrail::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('tbl_audit_trail', $this->model->tableName());
-	}
+    /**
+     * @covers AuditTrail::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('tbl_audit_trail', $this->model->tableName());
+    }
 
-	/**
-	 * @dataProvider dataProvider_Search
-	 */
-	public function testSearch_WithValidTerms_ReturnsExpectedResults($searchTerms, $expectedKeys)
-	{
-		$audit = new AuditTrail;
-		$audit->setAttributes($searchTerms);
-		$results = $audit->search();
-		$data = $results->getData();
+    /**
+     * @dataProvider dataProvider_Search
+     */
+    public function testSearch_WithValidTerms_ReturnsExpectedResults($searchTerms, $expectedKeys)
+    {
+        $audit = new AuditTrail;
+        $audit->setAttributes($searchTerms);
+        $results = $audit->search();
+        $data = $results->getData();
 
-		$expectedResults = array();
-		if (!empty($expectedKeys)) {
-			foreach ($expectedKeys as $key) {
-				$expectedResults[] = $this->audittrail($key);
-			}
-		}
-		$this->assertEquals($expectedResults, $data);
-	}
+        $expectedResults = array();
+        if (!empty($expectedKeys)) {
+            foreach ($expectedKeys as $key) {
+                $expectedResults[] = $this->audittrail($key);
+            }
+        }
+        $this->assertEquals($expectedResults, $data);
+    }
 }

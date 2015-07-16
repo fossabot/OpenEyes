@@ -15,26 +15,27 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-class FindingTest extends CDbTestCase {
-	public $fixtures = array(
-		'finding' => '\Finding',
-		'findingsSubspecAssignment' => ':findings_subspec_assignment',
-		'subspecialty' => '\Subspecialty'
-	);
+class FindingTest extends CDbTestCase
+{
+    public $fixtures = array(
+        'finding' => '\Finding',
+        'findingsSubspecAssignment' => ':findings_subspec_assignment',
+        'subspecialty' => '\Subspecialty'
+    );
 
-	protected function setUp() {
-		parent::setUp();
-	}
+    protected function setUp()
+    {
+        parent::setUp();
+    }
 
-	public function testBySubspecialty()
-	{
-		$findingsBySubspecialty = \Finding::model()->bySubspecialty($this->subspecialty('subspecialty1'))->findAll();
+    public function testBySubspecialty()
+    {
+        $findingsBySubspecialty = \Finding::model()->bySubspecialty($this->subspecialty('subspecialty1'))->findAll();
 
-		$this->assertCount(3, $findingsBySubspecialty);
+        $this->assertCount(3, $findingsBySubspecialty);
 
-		foreach($findingsBySubspecialty as $findingsBySubspecialty){
-			$this->assertNotEquals('Not active option', $findingsBySubspecialty->name);
-		}
-	}
-
+        foreach ($findingsBySubspecialty as $findingsBySubspecialty) {
+            $this->assertNotEquals('Not active option', $findingsBySubspecialty->name);
+        }
+    }
 }

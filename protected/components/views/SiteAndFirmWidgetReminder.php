@@ -19,17 +19,17 @@
 ?>
 <?php
 $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-		'id' => 'site-and-firm-dialog',
-		'options' => array(
-			'title' => $this->title,
-			'dialogClass' => 'dialog',
-			'autoOpen' => true,
-			'modal' => true,
-			'draggable' => false,
-			'resizable' => false,
-			'width' => 450,
-		),
-	));
+        'id' => 'site-and-firm-dialog',
+        'options' => array(
+            'title' => $this->title,
+            'dialogClass' => 'dialog',
+            'autoOpen' => true,
+            'modal' => true,
+            'draggable' => false,
+            'resizable' => false,
+            'width' => 450,
+        ),
+    ));
 ?>
 	<p>
 		You haven't set your site and firm selections yet.	Doing so will restrict the site and firm dropdowns to the sites and firms that you work in.

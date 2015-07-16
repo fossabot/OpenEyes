@@ -19,23 +19,23 @@
 
 class ReportController extends BaseReportController
 {
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'actions' => array('index', 'diagnoses', 'runReport', 'downloadReport'),
-				'roles' => array('admin','OprnGenerateReport'),
-			)
-		);
-	}
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index', 'diagnoses', 'runReport', 'downloadReport'),
+                'roles' => array('admin','OprnGenerateReport'),
+            )
+        );
+    }
 
-	public function actionIndex()
-	{
-		$this->redirect(array('diagnoses'));
-	}
+    public function actionIndex()
+    {
+        $this->redirect(array('diagnoses'));
+    }
 
-	public function actionDiagnoses()
-	{
-		$this->render('diagnoses');
-	}
+    public function actionDiagnoses()
+    {
+        $this->render('diagnoses');
+    }
 }

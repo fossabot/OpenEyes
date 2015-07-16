@@ -39,171 +39,171 @@
  */
 class Address extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Address the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Address the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'address';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'address';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
         return array(
-			array('address1, city, postcode', 'required'),
-			array('address1, address2, city, county', 'length', 'max' => 255),
-			array('postcode', 'length', 'max' => 10),
-			array('email', 'length', 'max' => 255),
-			array('country_id, type, date_start, date_end', 'safe'),
-			array('id, address1, address2, city, postcode, county, email, country_id, type, date_start, date_end', 'safe', 'on' => 'search'),
-		);
-	}
+            array('address1, city, postcode', 'required'),
+            array('address1, address2, city, county', 'length', 'max' => 255),
+            array('postcode', 'length', 'max' => 10),
+            array('email', 'length', 'max' => 255),
+            array('country_id, type, date_start, date_end', 'safe'),
+            array('id, address1, address2, city, postcode, county, email, country_id, type, date_start, date_end', 'safe', 'on' => 'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-			'country' => array(self::BELONGS_TO, 'Country', 'country_id'),
-			'type' => array(self::BELONGS_TO, 'AddressType', 'address_type_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            'country' => array(self::BELONGS_TO, 'Country', 'country_id'),
+            'type' => array(self::BELONGS_TO, 'AddressType', 'address_type_id'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'address1' => 'Address1',
-			'address2' => 'Address2',
-			'city' => 'City',
-			'postcode' => 'Postcode',
-			'county' => 'County',
-			'country_id' => 'Country',
-			'email' => 'Email',
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'id' => 'ID',
+            'address1' => 'Address1',
+            'address2' => 'Address2',
+            'city' => 'City',
+            'postcode' => 'Postcode',
+            'county' => 'County',
+            'country_id' => 'Country',
+            'email' => 'Email',
+        );
+    }
 
-	/**
-	 * Is this a current address (not expired or in the future)?
-	 * @return boolean
-	 */
-	public function isCurrent()
-	{
-		return (!$this->date_start || strtotime($this->date_start) <= time()) && (!$this->date_end || strtotime($this->date_end) >= time());
-	}
+    /**
+     * Is this a current address (not expired or in the future)?
+     * @return boolean
+     */
+    public function isCurrent()
+    {
+        return (!$this->date_start || strtotime($this->date_start) <= time()) && (!$this->date_end || strtotime($this->date_end) >= time());
+    }
 
-	/**
-	 * @param bool $include_country
-	 * @return string Address as formatted HTML (<br/> separated)
-	 */
-	public function getLetterHtml($include_country=true) {
-		return implode('<br />', $this->getLetterArray($include_country));
-	}
+    /**
+     * @param bool $include_country
+     * @return string Address as formatted HTML (<br/> separated)
+     */
+    public function getLetterHtml($include_country=true)
+    {
+        return implode('<br />', $this->getLetterArray($include_country));
+    }
 
-	/**
-	 * @param bool $include_country
-	 * @return string Address as text (, separated)
-	 */
-	public function getLetterLine($include_country=true)
-	{
-		return implode(', ', $this->getLetterArray($include_country));
-	}
+    /**
+     * @param bool $include_country
+     * @return string Address as text (, separated)
+     */
+    public function getLetterLine($include_country=true)
+    {
+        return implode(', ', $this->getLetterArray($include_country));
+    }
 
-	/**
-	 * @return string First line of address in a dropdown friendly form
-	 */
-	public function getSummary()
-	{
-		return str_replace("\n", ', ', $this->address1);
-	}
+    /**
+     * @return string First line of address in a dropdown friendly form
+     */
+    public function getSummary()
+    {
+        return str_replace("\n", ', ', $this->address1);
+    }
 
-	/**
-	 * @return array Address as an array
-	 */
-	public function getLetterArray($include_country=true, $name=false)
-	{
-		$address = array();
+    /**
+     * @return array Address as an array
+     */
+    public function getLetterArray($include_country=true, $name=false)
+    {
+        $address = array();
 
-		if ($name) {
-			$address[] = $name;
-		}
+        if ($name) {
+            $address[] = $name;
+        }
 
-		foreach (array('address1', 'address2', 'city', 'county', 'postcode') as $field) {
-			if (!empty($this->$field) && trim($this->$field) != ',') {
-				$line = $this->$field;
-				if ($field == 'address1') {
-					$line = str_replace(',', '', $line);
-					foreach (explode("\n",$line) as $part) {
-						$address[] = $part;
-					}
-				} else {
-					$address[] = $line;
-				}
-			}
-		}
+        foreach (array('address1', 'address2', 'city', 'county', 'postcode') as $field) {
+            if (!empty($this->$field) && trim($this->$field) != ',') {
+                $line = $this->$field;
+                if ($field == 'address1') {
+                    $line = str_replace(',', '', $line);
+                    foreach (explode("\n", $line) as $part) {
+                        $address[] = $part;
+                    }
+                } else {
+                    $address[] = $line;
+                }
+            }
+        }
 
-		if ($include_country) {
-			if (!empty($this->country->name)) {
-				$site = Site::model()->findByPk(Yii::app()->session['selected_site_id']);
-				if (!$site || ($site->institution->contact->address->country_id != $this->country_id)) {
-					$address[] = $this->country->name;
-				}
-			}
-		}
-		return $address;
-	}
+        if ($include_country) {
+            if (!empty($this->country->name)) {
+                $site = Site::model()->findByPk(Yii::app()->session['selected_site_id']);
+                if (!$site || ($site->institution->contact->address->country_id != $this->country_id)) {
+                    $address[] = $this->country->name;
+                }
+            }
+        }
+        return $address;
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('address1',$this->address1,true);
-		$criteria->compare('address2',$this->address2,true);
-		$criteria->compare('city',$this->city,true);
-		$criteria->compare('postcode',$this->postcode,true);
-		$criteria->compare('county',$this->county,true);
-		$criteria->compare('country_id',$this->country_id,true);
-		$criteria->compare('email',$this->email,true);
+        $criteria->compare('id', $this->id, true);
+        $criteria->compare('address1', $this->address1, true);
+        $criteria->compare('address2', $this->address2, true);
+        $criteria->compare('city', $this->city, true);
+        $criteria->compare('postcode', $this->postcode, true);
+        $criteria->compare('county', $this->county, true);
+        $criteria->compare('country_id', $this->country_id, true);
+        $criteria->compare('email', $this->email, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
-	public function beforeSave()
-	{
-		if (parent::beforeSave()) {
-			if ($this->isNewRecord && !$this->address_type_id) {
-				// make correspondence the default address type
-				$this->address_type_id = AddressType::CORRESPOND;
-			}
-			return true;
-		}
-		return false;
-	}
+    public function beforeSave()
+    {
+        if (parent::beforeSave()) {
+            if ($this->isNewRecord && !$this->address_type_id) {
+                // make correspondence the default address type
+                $this->address_type_id = AddressType::CORRESPOND;
+            }
+            return true;
+        }
+        return false;
+    }
 }

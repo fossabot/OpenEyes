@@ -18,23 +18,23 @@
  */
 class SelectionHelper
 {
-	/**
-	 * Get list data for the specified model class in the same format as CHtml::listData
-	 *
-	 * @param string $class
-	 * @param scalar $value
-	 * @return array
-	 */
-	static public function listData($class, $value = null)
-	{
-		$lookup = $class::model();
+    /**
+     * Get list data for the specified model class in the same format as CHtml::listData
+     *
+     * @param string $class
+     * @param scalar $value
+     * @return array
+     */
+    public static function listData($class, $value = null)
+    {
+        $lookup = $class::model();
 
-		if ($lookup->asa('LookupTable')) {
-			$lookup->activeOrPk($value);
-		}
-		return CHtml::listData(
-			$lookup->cache(60)->with($lookup::SELECTION_WITH)->findAll(array('order' => $lookup::SELECTION_ORDER)),
-			'id', method_exists($lookup, 'getSelectionLabel') ? 'selectionLabel' : $lookup::SELECTION_LABEL_FIELD
-		);
-	}
+        if ($lookup->asa('LookupTable')) {
+            $lookup->activeOrPk($value);
+        }
+        return CHtml::listData(
+            $lookup->cache(60)->with($lookup::SELECTION_WITH)->findAll(array('order' => $lookup::SELECTION_ORDER)),
+            'id', method_exists($lookup, 'getSelectionLabel') ? 'selectionLabel' : $lookup::SELECTION_LABEL_FIELD
+        );
+    }
 }

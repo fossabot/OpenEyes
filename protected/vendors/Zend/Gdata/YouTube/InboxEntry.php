@@ -58,7 +58,6 @@ require_once 'Zend/Gdata/YouTube/Extension/Description.php';
  */
 class Zend_Gdata_YouTube_InboxEntry extends Zend_Gdata_Media_Entry
 {
-
     protected $_entryClassName = 'Zend_Gdata_YouTube_InboxEntry';
 
     /**
@@ -276,6 +275,4 @@ class Zend_Gdata_YouTube_InboxEntry extends Zend_Gdata_Media_Entry
         $this->_statistics = $statistics;
         return $this;
     }
-
-
 }

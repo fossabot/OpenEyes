@@ -15,122 +15,122 @@
 
 class FieldImagesTest extends CDbTestCase
 {
-	private $yiiMock;
-	private $assetManagerMock;
-	public function setUp()
-	{
-		$this->getFixtureManager()->dbConnection->createCommand(
-			"create temporary table test_field_images_table (id int unsigned primary key, field varchar(63)) engine=innodb"
-		)->execute();
+    private $yiiMock;
+    private $assetManagerMock;
+    public function setUp()
+    {
+        $this->getFixtureManager()->dbConnection->createCommand(
+            "create temporary table test_field_images_table (id int unsigned primary key, field varchar(63)) engine=innodb"
+        )->execute();
 
-		$this->getFixtureManager()->dbConnection->commandBuilder->createMultipleInsertCommand(
-			'test_field_images_table',
-			array(
-				array('id' => 1, 'field' => 'foo'),
-				array('id' => 2, 'field' => 'bar'),
-				array('id' => 3, 'field' => 'baz'),
-				array('id' => 4, 'field' => 'qux'),
-			)
-		)->execute();
+        $this->getFixtureManager()->dbConnection->commandBuilder->createMultipleInsertCommand(
+            'test_field_images_table',
+            array(
+                array('id' => 1, 'field' => 'foo'),
+                array('id' => 2, 'field' => 'bar'),
+                array('id' => 3, 'field' => 'baz'),
+                array('id' => 4, 'field' => 'qux'),
+            )
+        )->execute();
 
-		 //mocking Yii static method to fetch paths
-		$this->yiiMock = $this->getMockClass(
-			'CFileHelper',          // name of class to mock
-			array('findFiles') // list of methods to mock
-		);
+         //mocking Yii static method to fetch paths
+        $this->yiiMock = $this->getMockClass(
+            'CFileHelper',          // name of class to mock
+            array('findFiles') // list of methods to mock
+        );
 
-		$this->assetManagerMock =$this->getMock('AssetManager');
-		// Configure the stub.
-		$this->assetManagerMock->expects($this->any())
-			->method('getPublishedPathOfAlias')
-			->will($this->returnValue(''));
-	}
+        $this->assetManagerMock =$this->getMock('AssetManager');
+        // Configure the stub.
+        $this->assetManagerMock->expects($this->any())
+            ->method('getPublishedPathOfAlias')
+            ->will($this->returnValue(''));
+    }
 
-	public function tearDown()
-	{
-		$this->getFixtureManager()->dbConnection->createCommand("drop temporary table test_field_images_table")->execute();
-	}
+    public function tearDown()
+    {
+        $this->getFixtureManager()->dbConnection->createCommand("drop temporary table test_field_images_table")->execute();
+    }
 
-	/**
-	 * @expectedException     FieldImagesException
-	 */
-	public function testGetFieldImagesExceptionWhenFieldImagesMethodNotExist()
-	{
-		$results = FiledImagesExceptionTest_TestClass::model()
-			->getFieldImages();
-		$this->assertNull( $results);
-	}
+    /**
+     * @expectedException     FieldImagesException
+     */
+    public function testGetFieldImagesExceptionWhenFieldImagesMethodNotExist()
+    {
+        $results = FiledImagesExceptionTest_TestClass::model()
+            ->getFieldImages();
+        $this->assertNull($results);
+    }
 
-	public function testGetFieldImagesNotPresent()
-	{
-		$yiiMock = $this->yiiMock;
-		$yiiMock::staticExpects($this->any())
-			->method('findFiles')
-			->will($this->returnValue( array() ));
+    public function testGetFieldImagesNotPresent()
+    {
+        $yiiMock = $this->yiiMock;
+        $yiiMock::staticExpects($this->any())
+            ->method('findFiles')
+            ->will($this->returnValue(array()));
 
-		$results = FiledImagesTest_TestClass::model()
-			->getFieldImages( $yiiMock, $this->assetManagerMock);
-		$this->assertEmpty( $results);
-	}
+        $results = FiledImagesTest_TestClass::model()
+            ->getFieldImages($yiiMock, $this->assetManagerMock);
+        $this->assertEmpty($results);
+    }
 
-	public function testGetFieldImages()
-	{
-		$yiiMock = $this->yiiMock;
-		$yiiMock::staticExpects($this->any())
-			->method('findFiles')
-			->will($this->returnValue(
-				array('somepath/somefile.jpg', 'somepath/FiledImagesTest_TestClass-field-3.jpg'
-				, 'somepath/FiledImagesTest_TestClass-field-5.jpg')
-			)
-		);
+    public function testGetFieldImages()
+    {
+        $yiiMock = $this->yiiMock;
+        $yiiMock::staticExpects($this->any())
+            ->method('findFiles')
+            ->will($this->returnValue(
+                array('somepath/somefile.jpg', 'somepath/FiledImagesTest_TestClass-field-3.jpg', 'somepath/FiledImagesTest_TestClass-field-5.jpg')
+            )
+        );
 
-		$results = FiledImagesTest_TestClass::model()
-			->getFieldImages( $yiiMock, $this->assetManagerMock);
-		$this->assertInternalType('array',$results);
-		$this->assertEquals(2, count($results) );
-		$this->assertTrue(isset($results['3']));
-		$this->assertTrue(isset($results['5']));
-		$this->assertEquals(DIRECTORY_SEPARATOR.'FiledImagesTest_TestClass-field-3.jpg', $results['3']);
-		$this->assertEquals(DIRECTORY_SEPARATOR.'FiledImagesTest_TestClass-field-5.jpg', $results['5']);
-	}
+        $results = FiledImagesTest_TestClass::model()
+            ->getFieldImages($yiiMock, $this->assetManagerMock);
+        $this->assertInternalType('array', $results);
+        $this->assertEquals(2, count($results));
+        $this->assertTrue(isset($results['3']));
+        $this->assertTrue(isset($results['5']));
+        $this->assertEquals(DIRECTORY_SEPARATOR.'FiledImagesTest_TestClass-field-3.jpg', $results['3']);
+        $this->assertEquals(DIRECTORY_SEPARATOR.'FiledImagesTest_TestClass-field-5.jpg', $results['5']);
+    }
 }
 
 class FiledImagesTest_TestClass extends BaseActiveRecord
 {
-	public function tableName()
-	{
-		return 'test_field_images_table';
-	}
+    public function tableName()
+    {
+        return 'test_field_images_table';
+    }
 
-	public function behaviors()
-	{
-		return array('FieldImages'=>'FieldImages');
-	}
+    public function behaviors()
+    {
+        return array('FieldImages'=>'FieldImages');
+    }
 
-	public function defaultScope()
-	{
-		return array('order' => 'id');
-	}
+    public function defaultScope()
+    {
+        return array('order' => 'id');
+    }
 
-	public function fieldImages(){
-		return array('field');
-	}
+    public function fieldImages()
+    {
+        return array('field');
+    }
 }
 
 class FiledImagesExceptionTest_TestClass extends BaseActiveRecord
 {
-	public function tableName()
-	{
-		return 'test_field_images_table';
-	}
+    public function tableName()
+    {
+        return 'test_field_images_table';
+    }
 
-	public function behaviors()
-	{
-		return array('FieldImages'=>'FieldImages');
-	}
+    public function behaviors()
+    {
+        return array('FieldImages'=>'FieldImages');
+    }
 
-	public function defaultScope()
-	{
-		return array('order' => 'id');
-	}
+    public function defaultScope()
+    {
+        return array('order' => 'id');
+    }
 }

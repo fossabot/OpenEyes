@@ -43,7 +43,6 @@ require_once 'Zend/Gdata/App.php';
  */
 class Zend_Gdata extends Zend_Gdata_App
 {
-
     /**
      * Service name for use with Google's authentication mechanisms
      *
@@ -232,10 +231,9 @@ class Zend_Gdata extends Zend_Gdata_App
         $client = parent::getHttpClient();
         if ($client->getClientLoginToken() ||
             $client->getAuthSubToken()) {
-                return true;
+            return true;
         }
 
         return false;
     }
-
 }

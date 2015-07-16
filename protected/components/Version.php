@@ -15,11 +15,11 @@
 
 class Version extends CApplicationComponent
 {
-	/**
-	 * @return string
-	 */
-	public function getCoreVersion()
-	{
-		return trim(file_get_contents(Yii::app()->basePath . DIRECTORY_SEPARATOR . 'version.txt'));
-	}
+    /**
+     * @return string
+     */
+    public function getCoreVersion()
+    {
+        return trim(file_get_contents(Yii::app()->basePath . DIRECTORY_SEPARATOR . 'version.txt'));
+    }
 }

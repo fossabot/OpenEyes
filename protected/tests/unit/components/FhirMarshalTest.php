@@ -15,96 +15,96 @@
 
 class FhirMarshalTest extends PHPUnit_Framework_TestCase
 {
-	static private $use_errors;
+    private static $use_errors;
 
-	static public function setUpBeforeClass()
-	{
-		self::$use_errors = libxml_use_internal_errors(true);
-	}
+    public static function setUpBeforeClass()
+    {
+        self::$use_errors = libxml_use_internal_errors(true);
+    }
 
-	static public function tearDownAfterClass()
-	{
-		libxml_use_internal_errors(self::$use_errors);
-	}
+    public static function tearDownAfterClass()
+    {
+        libxml_use_internal_errors(self::$use_errors);
+    }
 
-	private $marshal;
+    private $marshal;
 
-	public function setUp()
-	{
-		$this->marshal = new FhirMarshal;
-	}
+    public function setUp()
+    {
+        $this->marshal = new FhirMarshal;
+    }
 
-	public function testIsStandardType_True()
-	{
-		$this->assertTrue($this->marshal->isStandardType('Patient'));
-	}
+    public function testIsStandardType_True()
+    {
+        $this->assertTrue($this->marshal->isStandardType('Patient'));
+    }
 
-	public function testIsStandardType_False()
-	{
-		$this->assertFalse($this->marshal->isStandardType('Armadillo'));
-	}
+    public function testIsStandardType_False()
+    {
+        $this->assertFalse($this->marshal->isStandardType('Armadillo'));
+    }
 
-	public function xmlDataProvider()
-	{
-		$data = array();
+    public function xmlDataProvider()
+    {
+        $data = array();
 
-		foreach (glob(__DIR__ . '/' . __CLASS__ . '/*.xml') as $xml_path) {
-			preg_match('|([^/]+)\.xml$|', $xml_path, $m);
-			$name = $m[1];
+        foreach (glob(__DIR__ . '/' . __CLASS__ . '/*.xml') as $xml_path) {
+            preg_match('|([^/]+)\.xml$|', $xml_path, $m);
+            $name = $m[1];
 
-			$json_path = __DIR__ . '/' . __CLASS__ . "/{$name}.json";
+            $json_path = __DIR__ . '/' . __CLASS__ . "/{$name}.json";
 
-			$data[] = array(
-				$name,
-				file_get_contents($xml_path),
-				file_get_contents($json_path),
-			);
-		}
+            $data[] = array(
+                $name,
+                file_get_contents($xml_path),
+                file_get_contents($json_path),
+            );
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	/**
-	 * @dataProvider xmlDataProvider
-	 */
-	public function testXmlToJson($name, $xml, $json)
-	{
-		$expected = $this->marshal->parseJson($json);
-		$this->assertEquals($expected, $this->marshal->parseXml($xml));
-	}
+    /**
+     * @dataProvider xmlDataProvider
+     */
+    public function testXmlToJson($name, $xml, $json)
+    {
+        $expected = $this->marshal->parseJson($json);
+        $this->assertEquals($expected, $this->marshal->parseXml($xml));
+    }
 
-	public function testParseXml_Malformed()
-	{
-		$this->assertEquals(null, $this->marshal->parseXml('>'));
-	}
+    public function testParseXml_Malformed()
+    {
+        $this->assertEquals(null, $this->marshal->parseXml('>'));
+    }
 
-	/**
-	 * @dataProvider xmlDataProvider
-	 */
-	public function testJsonToXml($name, $xml, $json)
-	{
-		$actual = $this->marshal->renderXml($this->marshal->parseJson($json));
-		$this->assertXmlStringEqualsXmlString($xml, $actual);
-	}
+    /**
+     * @dataProvider xmlDataProvider
+     */
+    public function testJsonToXml($name, $xml, $json)
+    {
+        $actual = $this->marshal->renderXml($this->marshal->parseJson($json));
+        $this->assertXmlStringEqualsXmlString($xml, $actual);
+    }
 
-	public function testRenderXml_NonContiguousArrays()
-	{
-		$res = (object)array(
-			"resourceType" => "Foo",
-			"foo" => array(
-				0 => "zero",
-				1 => "one",
-				5 => "five",
-			),
-			"_foo" => array(
-				1 => (object)array("id" => "bar"),
-				2 => (object)array("id" => "baz"),
-				4 => (object)array("id" => "qux"),
-			),
-		);
+    public function testRenderXml_NonContiguousArrays()
+    {
+        $res = (object)array(
+            "resourceType" => "Foo",
+            "foo" => array(
+                0 => "zero",
+                1 => "one",
+                5 => "five",
+            ),
+            "_foo" => array(
+                1 => (object)array("id" => "bar"),
+                2 => (object)array("id" => "baz"),
+                4 => (object)array("id" => "qux"),
+            ),
+        );
 
-		$expected = '<?xml version="1.0" encoding="utf-8"?><Foo xmlns="http://hl7.org/fhir"><foo value="zero" id="bar"/><foo value="one" id="baz"/><foo value="five" id="qux"/></Foo>';
+        $expected = '<?xml version="1.0" encoding="utf-8"?><Foo xmlns="http://hl7.org/fhir"><foo value="zero" id="bar"/><foo value="one" id="baz"/><foo value="five" id="qux"/></Foo>';
 
-		$this->assertXmlStringEqualsXmlString($expected, $this->marshal->renderXml($res));
-	}
+        $this->assertXmlStringEqualsXmlString($expected, $this->marshal->renderXml($res));
+    }
 }

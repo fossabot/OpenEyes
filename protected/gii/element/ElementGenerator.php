@@ -32,5 +32,5 @@
  */
 class ElementGenerator extends CCodeGenerator
 {
-	public $codeModel = 'application.gii.element.ElementCode';
+    public $codeModel = 'application.gii.element.ElementCode';
 }

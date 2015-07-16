@@ -1,4 +1,5 @@
-<?php if (Yii::app()->params['google_analytics_account']) {?>
+<?php if (Yii::app()->params['google_analytics_account']) {
+    ?>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', '<?php echo Yii::app()->params['google_analytics_account']?>']);
@@ -9,4 +10,5 @@
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
-<?php }?>
+<?php 
+}?>

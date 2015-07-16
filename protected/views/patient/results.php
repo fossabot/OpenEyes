@@ -18,18 +18,18 @@
  */
 ?>
 <?php
-	$based_on = array();
-	if ($search_terms['last_name']) {
-		$based_on[] = 'LAST NAME: <strong>"'.$search_terms['last_name'].'"</strong>';
-	}
-	if ($search_terms['first_name']) {
-		$based_on[] = 'FIRST NAME: <strong>"'.$search_terms['first_name'].'"</strong>';
-	}
-	if ($search_terms['hos_num']) {
-		$based_on[] = 'HOSPITAL NUMBER: <strong>'.$search_terms['hos_num']."</strong>";
-	}
-	$based_on = implode(', ', $based_on);
-	?>
+    $based_on = array();
+    if ($search_terms['last_name']) {
+        $based_on[] = 'LAST NAME: <strong>"'.$search_terms['last_name'].'"</strong>';
+    }
+    if ($search_terms['first_name']) {
+        $based_on[] = 'FIRST NAME: <strong>"'.$search_terms['first_name'].'"</strong>';
+    }
+    if ($search_terms['hos_num']) {
+        $based_on[] = 'HOSPITAL NUMBER: <strong>'.$search_terms['hos_num']."</strong>";
+    }
+    $based_on = implode(', ', $based_on);
+    ?>
 <h1 class="badge">Search Results</h1>
 
 <div class="row">
@@ -47,12 +47,12 @@
 		<div class="box generic">
 
 			<?php
-				$from =($page_num * $items_per_page) + 1;
-				$to = ($page_num + 1) * $items_per_page;
-				if ($to > $total_items) {
-					$to = $total_items;
-				}
-			?>
+                $from =($page_num * $items_per_page) + 1;
+                $to = ($page_num + 1) * $items_per_page;
+                if ($to > $total_items) {
+                    $to = $total_items;
+                }
+            ?>
 			<h2>
 				Results. You are viewing patients <?php echo $from ?> - <?php echo $to ?> of <?php echo $total_items?>
 			</h2>
@@ -60,47 +60,61 @@
 			<table id="patient-grid" class="grid">
 				<thead>
 					<tr>
-						<?php foreach (array('Hospital Number','Title','First name','Last name','Date of birth','Gender','NHS number') as $i => $field) {?>
-						<th id="patient-grid_c<?php echo $i; ?>">
+						<?php foreach (array('Hospital Number', 'Title', 'First name', 'Last name', 'Date of birth', 'Gender', 'NHS number') as $i => $field) {
+    ?>
+						<th id="patient-grid_c<?php echo $i;
+    ?>">
 							<?php
-								$new_sort_dir = ($i == $sort_by) ? 1 - $sort_dir: 0;
-								echo CHtml::link($field,Yii::app()->createUrl('patient/search', $search_terms + array('sort_by' => $i, 'sort_dir' => $new_sort_dir, 'page_num' => $page_num)));
-							?>
+                                $new_sort_dir = ($i == $sort_by) ? 1 - $sort_dir: 0;
+    echo CHtml::link($field, Yii::app()->createUrl('patient/search', $search_terms + array('sort_by' => $i, 'sort_dir' => $new_sort_dir, 'page_num' => $page_num)));
+    ?>
 						</th>
-						<?php }?>
+						<?php 
+}?>
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($data_provider->getData() as $i => $result) {?>
+					<?php foreach ($data_provider->getData() as $i => $result) {
+    ?>
 					<tr id="r<?php echo $result->id?>" class="clickable">
 						<td><?php echo $result->hos_num?></td>
 						<td><?php echo $result->title?></td>
 						<td><?php echo $result->first_name?></td>
 						<td><?php echo $result->last_name?></td>
-						<td><?php echo date("d/m/Y", strtotime($result->dob));?></td>
+						<td><?php echo date("d/m/Y", strtotime($result->dob));
+    ?></td>
 						<td><?php echo $result->gender?></td>
 						<td><?php echo $result->nhsnum?></td>
 					</tr>
-					<?php }?>
+					<?php 
+}?>
 				</tbody>
 				<tfoot class="pagination-container">
 					<tr>
 						<td colspan="7">
 							<ul class="pagination patient-results right">
 								<li class="label">Viewing patients:</li>
-								<?php for ($i=0; $i < $pages; $i++) { ?>
+								<?php for ($i=0; $i < $pages; $i++) {
+    ?>
 									<?php
-										$current_page = ($i == $page_num);
-										$from = ($i * $items_per_page) + 1;
-										$to = ($i + 1) * $items_per_page;
-										if ($to > $total_items) {
-											$to = $total_items;
-										}
-									?>
-									<li class="<?php if ($current_page) { ?>current<?php } ?>">
-										<a href="<?php echo Yii::app()->createUrl('patient/search', $search_terms + array('page_num' => $i, 'sort_by' => $sort_by, 'sort_dir' => $sort_dir)); ?>"><?php echo $from; ?> - <?php echo $to; ?></a>
+                                        $current_page = ($i == $page_num);
+    $from = ($i * $items_per_page) + 1;
+    $to = ($i + 1) * $items_per_page;
+    if ($to > $total_items) {
+        $to = $total_items;
+    }
+    ?>
+									<li class="<?php if ($current_page) {
+    ?>current<?php 
+}
+    ?>">
+										<a href="<?php echo Yii::app()->createUrl('patient/search', $search_terms + array('page_num' => $i, 'sort_by' => $sort_by, 'sort_dir' => $sort_dir));
+    ?>"><?php echo $from;
+    ?> - <?php echo $to;
+    ?></a>
 									</li>
-								<?php } ?>
+								<?php 
+} ?>
 							</ul>
 						</td>
 					</tr>
@@ -112,7 +126,7 @@
 
 	<div class="large-3 column">
 		<div class="box generic">
-			<p><?php echo CHtml::link('Clear this search and <span class="highlight">start a new search.</span>',Yii::app()->baseUrl.'/')?></p>
+			<p><?php echo CHtml::link('Clear this search and <span class="highlight">start a new search.</span>', Yii::app()->baseUrl.'/')?></p>
 		</div>
 	</div>
 

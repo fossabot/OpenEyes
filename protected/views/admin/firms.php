@@ -40,7 +40,8 @@
 			</thead>
 			<tbody>
 			<?php
-			foreach ($firms as $i => $firm) { ?>
+            foreach ($firms as $i => $firm) {
+                ?>
 				<tr class="clickable" data-id="<?php echo $firm->id ?>"
 					data-uri="admin/editFirm/<?php echo $firm->id ?>">
 					<td><input type="checkbox" name="firms[]" value="<?php echo $firm->id ?>"/></td>
@@ -51,7 +52,8 @@
 					<td><?php echo(($firm->consultant) ? $firm->consultant->fullName : 'None') ?></td>
 					<td><?php echo(($firm->active) ? 'Active' : 'Inactive') ?></td>
 				</tr>
-			<?php } ?>
+			<?php 
+            } ?>
 			</tbody>
 			<tfoot class="pagination-container">
 			<tr>
@@ -59,8 +61,8 @@
 					<?php echo EventAction::button('Add', 'add', array(), array('class' => 'small'))->toHtml() ?>
 					<?php echo EventAction::button('Delete', 'delete', array(), array('class' => 'small'))->toHtml() ?>
 					<?php echo $this->renderPartial('_pagination', array(
-						'pagination' => $pagination
-					)) ?>
+                        'pagination' => $pagination
+                    )) ?>
 				</td>
 			</tr>
 			</tfoot>

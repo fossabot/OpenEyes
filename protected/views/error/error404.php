@@ -18,9 +18,9 @@
  */
 ?>
 <?php
-	$helpdesk_phone = Yii::app()->params['helpdesk_phone'];
-	$helpdesk_email = Yii::app()->params['helpdesk_email'];
-	$this->layout = '//layouts/error';
+    $helpdesk_phone = Yii::app()->params['helpdesk_phone'];
+    $helpdesk_email = Yii::app()->params['helpdesk_email'];
+    $this->layout = '//layouts/error';
 ?>
 
 <h2>Page not found</h2>

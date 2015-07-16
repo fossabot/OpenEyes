@@ -30,48 +30,48 @@
  *
  */
 
-class MedicationDrug extends BaseActiveRecordVersioned {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Drug the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+class MedicationDrug extends BaseActiveRecordVersioned
+{
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Drug the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'medication_drug';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'medication_drug';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-				array('name', 'required'),
-			array('external_code', 'safe'),
-			array('external_source', 'safe'),
-			array('aliases', 'safe')
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+                array('name', 'required'),
+            array('external_code', 'safe'),
+            array('external_source', 'safe'),
+            array('aliases', 'safe')
+        );
+    }
 
-	/**
-	 * @return array list of attribute labels
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'name' => 'Name',
-			'external_code' => 'Source Code',
-			'external_source' => 'Source',
-			'aliases' => 'Aliases'
-		);
-
-	}
+    /**
+     * @return array list of attribute labels
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'name' => 'Name',
+            'external_code' => 'Source Code',
+            'external_source' => 'Source',
+            'aliases' => 'Aliases'
+        );
+    }
 }

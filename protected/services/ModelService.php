@@ -20,156 +20,156 @@ namespace services;
  */
 abstract class ModelService extends InternalService
 {
-	/**
-	 * Default set of operations for a model service, override if required
-	 */
-	static protected $operations = array(self::OP_READ, self::OP_UPDATE, self::OP_CREATE);
+    /**
+     * Default set of operations for a model service, override if required
+     */
+    protected static $operations = array(self::OP_READ, self::OP_UPDATE, self::OP_CREATE);
 
-	/**
-	 * The primary model class for this service
-	 *
-	 * @var string
-	 */
-	static protected $primary_model;
+    /**
+     * The primary model class for this service
+     *
+     * @var string
+     */
+    protected static $primary_model;
 
-	static public function load(array $params = array())
-	{
-		$class = static::$primary_model;
-		return new static($class::model());
-	}
+    public static function load(array $params = array())
+    {
+        $class = static::$primary_model;
+        return new static($class::model());
+    }
 
-	protected $model;
+    protected $model;
 
-	/**
-	 * @param BaseActiveRecord $model
-	 */
-	public function __construct(\BaseActiveRecord $model)
-	{
-		$this->model = $model;
-	}
+    /**
+     * @param BaseActiveRecord $model
+     */
+    public function __construct(\BaseActiveRecord $model)
+    {
+        $this->model = $model;
+    }
 
-	/**
-	 * @param int $id
-	 * @return int
-	 */
-	public function getLastModified($id)
-	{
-		return strtotime($this->readModel($id)->last_modified_date);
-	}
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function getLastModified($id)
+    {
+        return strtotime($this->readModel($id)->last_modified_date);
+    }
 
-	/**
-	 * @param int $id
-	 * @return Resource
-	 */
-	public function read($id)
-	{
-		if (!$this->supportsOperation(self::OP_READ)) {
-			throw new ProcessingNotSupported("Read operation not supported");
-		}
+    /**
+     * @param int $id
+     * @return Resource
+     */
+    public function read($id)
+    {
+        if (!$this->supportsOperation(self::OP_READ)) {
+            throw new ProcessingNotSupported("Read operation not supported");
+        }
 
-		return $this->modelToResource($this->readModel($id));
-	}
+        return $this->modelToResource($this->readModel($id));
+    }
 
-	/**
-	 * @param int $id
-	 * @param Resource $resource
-	 */
-	public function update($id, Resource $resource)
-	{
-		if (!$this->supportsOperation(self::OP_UPDATE)) {
-			parent::update($id, $resource);
-		}
+    /**
+     * @param int $id
+     * @param Resource $resource
+     */
+    public function update($id, Resource $resource)
+    {
+        if (!$this->supportsOperation(self::OP_UPDATE)) {
+            parent::update($id, $resource);
+        }
 
-		if (!($model = $this->model->findByPk($id))) {
-			throw new NotFound(static::getServiceName() . " with ID '$id' not found");
-		}
-		$this->resourceToModel($resource, $model);
-	}
+        if (!($model = $this->model->findByPk($id))) {
+            throw new NotFound(static::getServiceName() . " with ID '$id' not found");
+        }
+        $this->resourceToModel($resource, $model);
+    }
 
-	/**
-	 * @param Resource $resource
-	 * @return int
-	 */
-	public function create(Resource $resource)
-	{
-		if (!$this->supportsOperation(self::OP_CREATE)) {
-			parent::create($resource);
-		}
+    /**
+     * @param Resource $resource
+     * @return int
+     */
+    public function create(Resource $resource)
+    {
+        if (!$this->supportsOperation(self::OP_CREATE)) {
+            parent::create($resource);
+        }
 
-		$class = static::$primary_model;
-		$model = new $class;
-		$this->resourceToModel($resource, $model);
-		return $model->id;
-	}
+        $class = static::$primary_model;
+        $model = new $class;
+        $this->resourceToModel($resource, $model);
+        return $model->id;
+    }
 
-	/**
-	 * @param int $id
-	 * @return BaseActiveRecord
-	 */
-	protected function readModel($id)
-	{
-		if (!($model = $this->model->findByPk($id))) {
-			throw new NotFound(static::getServiceName() . " with ID '$id' not found");
-		}
+    /**
+     * @param int $id
+     * @return BaseActiveRecord
+     */
+    protected function readModel($id)
+    {
+        if (!($model = $this->model->findByPk($id))) {
+            throw new NotFound(static::getServiceName() . " with ID '$id' not found");
+        }
 
-		return $model;
-	}
+        return $model;
+    }
 
-	/**
-	 * @param BaseActiveRecord $model
-	 * @return Resource
-	 */
-	protected function modelToResource($model)
-	{
-		$class = static::getResourceClass();
-		return new $class(array('id' => $model->id, 'last_modified' => strtotime($model->last_modified_date)));
-	}
+    /**
+     * @param BaseActiveRecord $model
+     * @return Resource
+     */
+    protected function modelToResource($model)
+    {
+        $class = static::getResourceClass();
+        return new $class(array('id' => $model->id, 'last_modified' => strtotime($model->last_modified_date)));
+    }
 
-	/**
-	 * @param Resource $resource
-	 * @param BaseActiveRecord $model
-	 */
-	protected function resourceToModel($resource, $model)
-	{
-		throw new ProcessingNotSupported("Can't write resources of type '" . get_class($resource) . "' to model layer");
-	}
+    /**
+     * @param Resource $resource
+     * @param BaseActiveRecord $model
+     */
+    protected function resourceToModel($resource, $model)
+    {
+        throw new ProcessingNotSupported("Can't write resources of type '" . get_class($resource) . "' to model layer");
+    }
 
-	/**
-	 * Get an instance of the model class to fill in with search details
-	 *
-	 * @return BaseActiveRecord
-	 */
-	protected function getSearchModel()
-	{
-		$class = static::$primary_model;
-		return new $class(null);
-	}
+    /**
+     * Get an instance of the model class to fill in with search details
+     *
+     * @return BaseActiveRecord
+     */
+    protected function getSearchModel()
+    {
+        $class = static::$primary_model;
+        return new $class(null);
+    }
 
-	/**
-	 * Get a list of resources from an AR data provider
-	 *
-	 * @param CActiveDataProvider $dataProvider
-	 * @return Resource[]
-	 */
-	protected function getResourcesFromDataProvider(\CActiveDataProvider $provider)
-	{
-		$class = static::getResourceClass();
-		$resources = array();
-		foreach ($provider->getData() as $model) {
-			$resources[] = $this->modelToResource($model);
-		}
-		return $resources;
-	}
+    /**
+     * Get a list of resources from an AR data provider
+     *
+     * @param CActiveDataProvider $dataProvider
+     * @return Resource[]
+     */
+    protected function getResourcesFromDataProvider(\CActiveDataProvider $provider)
+    {
+        $class = static::getResourceClass();
+        $resources = array();
+        foreach ($provider->getData() as $model) {
+            $resources[] = $this->modelToResource($model);
+        }
+        return $resources;
+    }
 
-	/*
-	 * Save model object and throw a service layer exception on failure
-	 *
-	 * @param BaseActiveRecord $model
-	 */
-	protected function saveModel(\BaseActiveRecord $model)
-	{
-		if (!$model->save()) {
-			throw new ValidationFailure("Validation failure on " . get_class($model), $model->errors);
-		}
-	}
+    /*
+     * Save model object and throw a service layer exception on failure
+     *
+     * @param BaseActiveRecord $model
+     */
+    protected function saveModel(\BaseActiveRecord $model)
+    {
+        if (!$model->save()) {
+            throw new ValidationFailure("Validation failure on " . get_class($model), $model->errors);
+        }
+    }
 }

@@ -34,44 +34,44 @@
 
  */
 return array(
-	 'drugtype1' => array(
-		  'id' => 1,
-		  'name' => 'Analgesic',
-	 ),
-	 'drugtype2' => array(
-		  'id' => 2,
-		  'name' => 'Antiamoebic',
-	 ),
-	 'drugtype3' => array(
-		  'id' => 3,
-		  'name' => 'Antibacterial',
-	 ),
-	 'drugtype4' => array(
-		  'id' => 4,
-		  'name' => 'Anticoagulant',
-	 ),
-	 'drugtype5' => array(
-		  'id' => 5,
-		  'name' => 'Antidiabetic',
-	 ),
-	 'drugtype6' => array(
-		  'id' => 6,
-		  'name' => 'Antiemetic',
-	 ),
-	 'drugtype7' => array(
-		  'id' => 7,
-		  'name' => 'Antifungal',
-	 ),
-	 'drugtype8' => array(
-		  'id' => 8,
-		  'name' => 'Antihistamine',
-	 ),
-	 'drugtype9' => array(
-		  'id' => 9,
-		  'name' => 'Antiseptic',
-	 ),
-	 'drugtype10' => array(
-		  'id' => 10,
-		  'name' => 'AntiVEGF',
-	 ),
+     'drugtype1' => array(
+          'id' => 1,
+          'name' => 'Analgesic',
+     ),
+     'drugtype2' => array(
+          'id' => 2,
+          'name' => 'Antiamoebic',
+     ),
+     'drugtype3' => array(
+          'id' => 3,
+          'name' => 'Antibacterial',
+     ),
+     'drugtype4' => array(
+          'id' => 4,
+          'name' => 'Anticoagulant',
+     ),
+     'drugtype5' => array(
+          'id' => 5,
+          'name' => 'Antidiabetic',
+     ),
+     'drugtype6' => array(
+          'id' => 6,
+          'name' => 'Antiemetic',
+     ),
+     'drugtype7' => array(
+          'id' => 7,
+          'name' => 'Antifungal',
+     ),
+     'drugtype8' => array(
+          'id' => 8,
+          'name' => 'Antihistamine',
+     ),
+     'drugtype9' => array(
+          'id' => 9,
+          'name' => 'Antiseptic',
+     ),
+     'drugtype10' => array(
+          'id' => 10,
+          'name' => 'AntiVEGF',
+     ),
 );

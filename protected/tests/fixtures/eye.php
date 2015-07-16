@@ -18,19 +18,19 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 return array(
-	'eyeLeft' => array(
-		'id' => 1,
-		'name' => 'Left',
-		'display_order' => 3,
-	),
-	'eyeRight' => array(
-		'id' => 2,
-		'name' => 'Right',
-		'display_order' => 1,
-	),
-	'eyeBoth' => array(
-		'id' => 3,
-		'name' => 'Both',
-		'display_order' => 2,
-	),
+    'eyeLeft' => array(
+        'id' => 1,
+        'name' => 'Left',
+        'display_order' => 3,
+    ),
+    'eyeRight' => array(
+        'id' => 2,
+        'name' => 'Right',
+        'display_order' => 1,
+    ),
+    'eyeBoth' => array(
+        'id' => 3,
+        'name' => 'Both',
+        'display_order' => 2,
+    ),
 );

@@ -18,12 +18,12 @@
  */
 
 return array(
-	'moorfields' => array(
-		'id' => 1,
-		'name' => 'Moorfields Eye Hospital',
-		'short_name' => 'Moorfields',
-		'source_id' => 1,
-		'remote_id' => 'foo',
-		'contact_id' => 1,
-	),
+    'moorfields' => array(
+        'id' => 1,
+        'name' => 'Moorfields Eye Hospital',
+        'short_name' => 'Moorfields',
+        'source_id' => 1,
+        'remote_id' => 'foo',
+        'contact_id' => 1,
+    ),
 );

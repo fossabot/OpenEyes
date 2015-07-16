@@ -23,22 +23,24 @@
 	<h2>Basic information</h2>
 
 	<?php $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id' => 'profile-form',
-		'enableAjaxValidation' => false,
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5,
-		)
-	))?>
+        'id' => 'profile-form',
+        'enableAjaxValidation' => false,
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5,
+        )
+    ))?>
 
-		<?php if (!Yii::app()->params['profile_user_can_edit']) {?>
+		<?php if (!Yii::app()->params['profile_user_can_edit']) {
+    ?>
 			<div class="alert-box alert">
 				User editing of basic information is administratively disabled.
 			</div>
-		<?php }?>
+		<?php 
+}?>
 
 		<?php $this->renderPartial('//base/_messages')?>
-		<?php $this->renderPartial('//elements/form_errors',array('errors'=>$errors))?>
+		<?php $this->renderPartial('//elements/form_errors', array('errors'=>$errors))?>
 
 		<?php echo $form->textField($user, 'title', array('autocomplete' => Yii::app()->params['html_autocomplete'], 'readonly' => !Yii::app()->params['profile_user_can_edit']), null, array('field' => 2));?>
 		<?php echo $form->textField($user, 'first_name', array('autocomplete' => Yii::app()->params['html_autocomplete'], 'readonly' => !Yii::app()->params['profile_user_can_edit']));?>
@@ -46,14 +48,16 @@
 		<?php echo $form->textField($user, 'email', array('autocomplete' => Yii::app()->params['html_autocomplete'], 'readonly' => !Yii::app()->params['profile_user_can_edit']));?>
 		<?php echo $form->textField($user, 'qualifications', array('autocomplete' => Yii::app()->params['html_autocomplete'], 'readonly' => !Yii::app()->params['profile_user_can_edit']));?>
 
-		<?php if (Yii::app()->params['profile_user_can_edit']) {?>
+		<?php if (Yii::app()->params['profile_user_can_edit']) {
+    ?>
 			<div class="row field-row">
 				<div class="large-5 large-offset-2 column">
 					<?php echo EventAction::button('Save', 'save')->toHtml()?>
 					<img class="loader" src="<?php echo Yii::app()->assetManager->createUrl('img/ajax-loader.gif')?>" alt="loading..." style="display: none;" />
 				</div>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 
 	<?php $this->endWidget()?>
 </div>

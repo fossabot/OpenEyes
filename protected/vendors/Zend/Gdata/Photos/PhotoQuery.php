@@ -42,7 +42,6 @@ require_once('Zend/Gdata/Photos/AlbumQuery.php');
  */
 class Zend_Gdata_Photos_PhotoQuery extends Zend_Gdata_Photos_AlbumQuery
 {
-
     /**
      * The ID of the photo to query for.
      *
@@ -94,5 +93,4 @@ class Zend_Gdata_Photos_PhotoQuery extends Zend_Gdata_Photos_AlbumQuery
         $uri .= $incomingUri;
         return parent::getQueryUrl($uri);
     }
-
 }

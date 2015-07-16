@@ -31,13 +31,13 @@
  */
 
 $form = $this->beginWidget('FormLayout', array(
-	'layoutColumns' => array('label' => 3, 'field' => 9)
+    'layoutColumns' => array('label' => 3, 'field' => 9)
 ));
 
 $adherence = $patient->adherence;
-if($adherence === null) {
-	$adherence = new MedicationAdherence;
-	$adherence->patient = $patient;
+if ($adherence === null) {
+    $adherence = new MedicationAdherence;
+    $adherence->patient = $patient;
 }
 
 ?>
@@ -47,12 +47,12 @@ if($adherence === null) {
 	<div class="row field-row">
 		<div class="<?= $form->columns('label') ?>"><label for="adherence">Adherence:</label></div>
 		<div class="<?= $form->columns('field') ?>"><?=
-			CHtml::activeDropDownList(
-				$adherence, 'level',
-				CHtml::listData(MedicationAdherenceLevel::model()->
-					findAll(array('order' => 'display_order')), 'id', 'name')
-			)
-			?></div>
+            CHtml::activeDropDownList(
+                $adherence, 'level',
+                CHtml::listData(MedicationAdherenceLevel::model()->
+                    findAll(array('order' => 'display_order')), 'id', 'name')
+            )
+            ?></div>
 	</div>
 	<div class="row field-row">
 		<div class="<?= $form->columns('label') ?>"><label for="adherence">Comments:</label></div>

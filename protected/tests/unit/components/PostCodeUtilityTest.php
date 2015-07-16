@@ -19,66 +19,72 @@
 
 class PostCodeUtilityTest extends CTestCase
 {
-	protected $postcodeUtility;
+    protected $postcodeUtility;
 
-	public function setUp(){
-		$this->postcodeUtility = new PostCodeUtility();
-	}
+    public function setUp()
+    {
+        $this->postcodeUtility = new PostCodeUtility();
+    }
 
-	public function testPostCodeUtility()
-	{
-		$this->assertInternalType('array', $this->postcodeUtility->towns);
-		$this->assertInternalType('array', $this->postcodeUtility->counties);
-	}
+    public function testPostCodeUtility()
+    {
+        $this->assertInternalType('array', $this->postcodeUtility->towns);
+        $this->assertInternalType('array', $this->postcodeUtility->counties);
+    }
 
-	public function testParsePostCode()
-	{
-		$this->assertFalse( $this->postcodeUtility->parsePostCode('notApostcode'));
-		$result = $this->postcodeUtility->parsePostCode('HP11 2LE');
-		$this->assertInternalType('array',$result);
-		$result = $this->postcodeUtility->parsePostCode('HP112LE');
-		$this->assertInternalType('array',$result);
-	}
+    public function testParsePostCode()
+    {
+        $this->assertFalse($this->postcodeUtility->parsePostCode('notApostcode'));
+        $result = $this->postcodeUtility->parsePostCode('HP11 2LE');
+        $this->assertInternalType('array', $result);
+        $result = $this->postcodeUtility->parsePostCode('HP112LE');
+        $this->assertInternalType('array', $result);
+    }
 
-	public function testTownForOuterPostcode(){
-		$result = $this->postcodeUtility->townForOuterPostCode('Nw10');
-		$this->assertInternalType('string', $result);
-		$result = $this->postcodeUtility->townForOuterPostCode('nW10');
-		$this->assertInternalType('string', $result);
-		$this->assertGreaterThan(0 , strlen($result));
-	}
+    public function testTownForOuterPostcode()
+    {
+        $result = $this->postcodeUtility->townForOuterPostCode('Nw10');
+        $this->assertInternalType('string', $result);
+        $result = $this->postcodeUtility->townForOuterPostCode('nW10');
+        $this->assertInternalType('string', $result);
+        $this->assertGreaterThan(0, strlen($result));
+    }
 
-	public function testTownForOuterWrongPostcode(){
-		$result = $this->postcodeUtility->townForOuterPostCode('ssss');
-		$this->assertNull( $result);
-	}
+    public function testTownForOuterWrongPostcode()
+    {
+        $result = $this->postcodeUtility->townForOuterPostCode('ssss');
+        $this->assertNull($result);
+    }
 
-	public function testCountyForOuterPostCode(){
-		$result = $this->postcodeUtility->countyForOuterPostCode('Nw10');
-		$this->assertInternalType('string', $result);
-		$this->assertGreaterThan(0 , strlen($result));
-	}
+    public function testCountyForOuterPostCode()
+    {
+        $result = $this->postcodeUtility->countyForOuterPostCode('Nw10');
+        $this->assertInternalType('string', $result);
+        $this->assertGreaterThan(0, strlen($result));
+    }
 
-	public function testCountyForOuterWrongPostCode(){
-		$result = $this->postcodeUtility->countyForOuterPostCode('ssss');
-		$this->assertNull( $result);
-	}
+    public function testCountyForOuterWrongPostCode()
+    {
+        $result = $this->postcodeUtility->countyForOuterPostCode('ssss');
+        $this->assertNull($result);
+    }
 
-	public function testIsTown(){
-		$this->assertTrue( $this->postcodeUtility->isTown('Glasgow'));
-		$this->assertTrue( $this->postcodeUtility->isTown('glasgow'));
-		$this->assertFalse( $this->postcodeUtility->isTown('Carrapipi'));
-	}
+    public function testIsTown()
+    {
+        $this->assertTrue($this->postcodeUtility->isTown('Glasgow'));
+        $this->assertTrue($this->postcodeUtility->isTown('glasgow'));
+        $this->assertFalse($this->postcodeUtility->isTown('Carrapipi'));
+    }
 
-	public function testIsCounty(){
-		$this->assertTrue( $this->postcodeUtility->isCounty('Wiltshire'));
-		$this->assertTrue( $this->postcodeUtility->isCounty('wiltshire'));
-		$this->assertFalse( $this->postcodeUtility->isCounty('Carrapipi'));
-	}
+    public function testIsCounty()
+    {
+        $this->assertTrue($this->postcodeUtility->isCounty('Wiltshire'));
+        $this->assertTrue($this->postcodeUtility->isCounty('wiltshire'));
+        $this->assertFalse($this->postcodeUtility->isCounty('Carrapipi'));
+    }
 
-	public function tearDown(){
-		unset($this->postcodeUtility);
-	}
-
+    public function tearDown()
+    {
+        unset($this->postcodeUtility);
+    }
 }
-
