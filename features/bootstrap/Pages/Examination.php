@@ -129,10 +129,10 @@ class Examination extends OpenEyesPage {
 					'css' => "#dilation_right input:first-child" 
 			),
 			'dilationTimeErrorLeft' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Dilation: Left treatment (1): Invalid treatment time')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Left treatment (1): Invalid treatment time')]" 
 			),
 			'dilationTimeErrorRight' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Dilation: Right treatment (1): Invalid treatment time')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Right treatment (1): Invalid treatment time')]" 
 			),
 			
 			'expandRefraction' => array (
@@ -628,22 +628,22 @@ class Examination extends OpenEyesPage {
 					'xpath' => "//*[@class='remove-all']" 
 			),
 			'removeAllValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Event: Cannot create an event without at least one element')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Cannot create an event without at least one element')]" 
 			),
 			'historyValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'History: Description cannot be blank')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Description cannot be blank')]"
 			),
 			'conclusionValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Conclusion: Description cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Description cannot be blank.')]" 
 			),
 			'investigationValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Investigation: Description cannot be blank when there are no child elements')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Description cannot be blank when there are no child elements')]" 
 			),
 			'dilationValidationErrorLeft' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Dilation: Left Treatments cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Left Treatments cannot be blank.')]" 
 			),
 			'dilationValidationErrorRight' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Dilation: Right Treatments cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Right Treatments cannot be blank.')]" 
 			),
 			'removeRefractionRightSide' => array (
 					'xpath' => "//*[@class='element-eye right-eye column side right']" 
@@ -1058,7 +1058,7 @@ class Examination extends OpenEyesPage {
 		$element->check ();
 	}
 	public function postOpRefractiveTarget($target) {
-		$this->getElement ( 'postOpRefractiveTarget' )->mouseOver ( $target );
+		$this->getElement ( 'postOpRefractiveTarget' )->setValue ( $target );
 		// THIS ISNT WORKING UNLESS WE HAVE A SLIDER MECHANISM FOR BEHAT
 	}
 	public function discussedWithPatientYes() {
@@ -1311,6 +1311,7 @@ class Examination extends OpenEyesPage {
 		;
 	}
 	public function saveExaminationAndConfirm() {
+		sleep(5);
 		$this->getElement ( 'saveExamination' )->click ();
 		
 		if ($this->hasExaminationSaved ()) {
@@ -1387,6 +1388,7 @@ class Examination extends OpenEyesPage {
 	}
 	public function historyValidationError() {
 		return ( bool ) $this->find ( 'xpath', $this->getElement ( 'historyValidationError' )->getXpath () );
+		//xpath needs changing
 	}
 	public function historyValidationCheck() {
 		if ($this->historyValidationError ()) {
@@ -1398,6 +1400,7 @@ class Examination extends OpenEyesPage {
 	public function conclusionValidationError() {
 		sleep ( 5 );
 		return ( bool ) $this->find ( 'xpath', $this->getElement ( 'conclusionValidationError' )->getXpath () );
+		//xpath needs changing
 		//$this->$homepage = $this->getPage ( 'Homepage' );
 		
 	}

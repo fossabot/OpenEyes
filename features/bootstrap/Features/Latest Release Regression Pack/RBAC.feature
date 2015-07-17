@@ -1,4 +1,4 @@
-@rbac @regression
+#@rbac @regression
 Feature: Open Eyes Login RBAC user levels
 @RBAC
 

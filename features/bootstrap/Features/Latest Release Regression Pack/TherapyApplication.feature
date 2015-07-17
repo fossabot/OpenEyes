@@ -1,4 +1,4 @@
-@therapy @regression
+#@therapy @regression
 Feature: Create New Therapy Application Event
 @TA
          Regression coverage of this event is approx 40%

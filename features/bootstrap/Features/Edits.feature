@@ -129,6 +129,7 @@ Feature: These tests set up Events, Edit and Delete them.
 
     And I delete the Last Event
 
+@EDITS_Route_3A
 Scenario: Route 3A: Login and create a Phasing Event
 
     Given I am on the OpenEyes "master" homepage

@@ -10,10 +10,12 @@ class PhasingContext extends PageObjectContext {
 	public function __construct(array $parameters) {
 	}
 	
+	
 	/**
-	 * @Then /^I choose a right eye Intraocular Pressure Instrument of "([^"]*)"$/
+	 * @Then /^I choose a right eye Intraocular Pressure Instrument  of "([^"]*)"$/
 	 */
-	public function RightEyeIntraocular($rightEye) {
+	public function iChooseARightEyeIntraocularPressureInstrumentOf($rightEye)
+	{
 		/**
 		 *
 		 * @var Phasing $phasing
@@ -83,10 +85,12 @@ class PhasingContext extends PageObjectContext {
 		$phasing->rightComments ( $comments );
 	}
 	
+	
 	/**
-	 * @Then /^I choose a left eye Intraocular Pressure Instrument of "([^"]*)"$/
+	 * @Then /^I choose a left eye Intraocular Pressure Instrument  of "([^"]*)"$/
 	 */
-	public function iChooseALeftEyeIntraocularPressureInstrumentOf($leftEye) {
+	public function iChooseALeftEyeIntraocularPressureInstrumentOf($leftEye)
+	{
 		/**
 		 *
 		 * @var Phasing $phasing

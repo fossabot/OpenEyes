@@ -1,8 +1,10 @@
 @scenario @regression
 Feature: Open Eyes Login and Patient Diagnosis Screen Template
+@SCENARIO
   In order to cover every possible route throughout the site
   As an automation tester
   I want to build a template with supporting code for each web page
+
 
   Scenario: Route 1A: Login and add an Allergy on Patient View Page for subsequent tests
 
@@ -25,7 +27,7 @@ Feature: Open Eyes Login and Patient Diagnosis Screen Template
 
     Then I Add a Previous Operation of "1"
     And I select that it affects Operation side "Left"
-    And I select a Previous Operation date of day "9" month "9" year "2012"
+    #And I select a Previous Operation date of day "9" month "9" year "2012"
     Then I save the new Previous Operation
 
     Then I edit the CVI Status "4"
@@ -86,6 +88,7 @@ Feature: Open Eyes Login and Patient Diagnosis Screen Template
 
     Then a check is made that the Allergy "Tetracycline" warning is displayed
 
+  @Scenario_Route_2A
   Scenario: Route 2A: Login and create a new Examination Event
             Create a Correspondence event including Findings from the Examination
 
@@ -150,7 +153,7 @@ Feature: Open Eyes Login and Patient Diagnosis Screen Template
     And I choose a Left Colour Vision of "1"
     And I choose A Left Colour Vision Value of "8"
     And I choose a Right Colour Vision of "2"
-    And I choose A Right Colour Vision Value of "4"
+    And I choose A Right Colour Vision Value of "17"
 
     Then I choose to expand the Visual Acuity section
     And I select a Visual Acuity of "2"
@@ -171,7 +174,8 @@ Feature: Open Eyes Login and Patient Diagnosis Screen Template
 
     Then a check is made that a left Axis degrees of "145" was entered
     Then a check is made that a right Axis degrees of "38" was entered
-
+    
+  @SCENARIO_2B
   Scenario: 2B Login and fill in a Correspondence
 
     Given I am on the OpenEyes "master" homepage
@@ -188,12 +192,12 @@ Feature: Open Eyes Login and Patient Diagnosis Screen Template
 
     Then I select Site ID "1"
     And I select Address Target "Gp1"
-    Then I choose a Macro of "site1"
+    #Then I choose a Macro of "site1"
 
-    And I select Clinic Date "7"
+    #And I select Clinic Date "7"
 
     Then I choose an Introduction of "site21"
-    And I add Findings of "examination1"
+    #And I add Findings of "examination1"
     And I choose a Diagnosis of "site541"
     Then I choose a Management of "site181"
     And I choose Drugs "site301"

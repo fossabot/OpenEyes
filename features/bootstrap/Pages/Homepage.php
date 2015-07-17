@@ -77,6 +77,7 @@ class Homepage extends OpenEyesPage {
 			) 
 	);
 	public function selectSiteID($siteAddress) {
+		sleep(3);
 		$this->getElement ( 'siteID' )->selectOption ( $siteAddress );
 	}
 	public function selectFirm($firm) {
