@@ -29,7 +29,7 @@ Feature: Create New Therapy Application Event
 
     Then I select a Right Treatment of "1"
 
-    Then I select a Left Treatment of "1"
+    #Then I select a Left Treatment of "1"
 
     Then I select Right Cerebrovascular accident Yes
 
@@ -38,7 +38,7 @@ Feature: Create New Therapy Application Event
     Then I select Right Myocardial infarction Yes
 
     And I select "Anderson Firm" for "Consultant"
-    And I select "Yes" for "Patient consents to share data"
+    And I select Yes for Patient consents to share data
 
     Then I select a Right Standard Intervention Exists of Yes
 
@@ -49,7 +49,7 @@ Feature: Create New Therapy Application Event
 
     And I add Right details of deviation of "Deviation Details Comment box"
 
-    Then I choose a Right reason for not using standard intervention of "1"
+    #Then I choose a Right reason for not using standard intervention of "1"
     Then I add Right How is the patient different to others of "How is the patient significantly different to others comments?"
     And I add Right How is the patient likely to gain benefit "How is the patient likely to gain more benefit than otherwise comments?"
 

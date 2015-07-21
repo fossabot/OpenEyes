@@ -208,7 +208,8 @@ Feature: Open Eyes Login and Patient Diagnosis Screen Template
     Given I add a New Enclosure of "Test Enclosure"
 
     Then I Save the Correspondence Draft and confirm it has been created successfully
-
+    
+  @Scenario_3B
   Scenario: 3B: Login and create a new Prescription. Check for Validation error upon Saving
             Site 1:Queens
             Firm 3:Anderson Glaucoma

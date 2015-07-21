@@ -21,7 +21,7 @@ Feature: Create New Intravitreal Event
     Then I expand the Cataract sidebar
     And I add a New Event "Intravitreal"
 
-    Then I select Add Left Side
+    Then I select Add Right Side
 
     Then I Save the Intravitreal injection
 
@@ -44,7 +44,7 @@ Feature: Create New Intravitreal Event
     And I add a New Event "Intravitreal"
 
 #    Then I remove the Right Side
-    Then I select Add Left Side
+    Then I select Add Right Side
     Then I choose Right Anaesthetic Type of Topical
     Then I choose Right Anaesthetic Type of LA
 
@@ -169,7 +169,8 @@ Feature: Create New Intravitreal Event
     And I select Left Complications "1"
 
     Then I Save the Intravitreal injection and confirm it has been created successfully
-
+  
+  @Intravitreal_Route_3
   Scenario: Route 3: Login and create a New Intravitreal Event
             Site 1:  Queens
             Firm 1:  Anderson Cataract
@@ -186,7 +187,9 @@ Feature: Create New Intravitreal Event
     Then I expand the Cataract sidebar
     And I add a New Event "Intravitreal"
 
-    Then I select Add Left Side
+    #Then I select Add Left Side
+    
+    Then I select Add Right Side
 
     Then I choose Right Anaesthetic Type of LA
 
@@ -255,7 +258,7 @@ Feature: Create New Intravitreal Event
     Then I expand the Medical Retinal sidebar
     And I add a New Event "Intravitreal"
 
-    Then I select Add Left Side
+    Then I select Add Right Side
     Then I choose Right Anaesthetic Type of Topical
 
     Then I choose Right Anaesthetic Delivery of Subconjunctival
@@ -325,7 +328,7 @@ Feature: Create New Intravitreal Event
     And I add a New Event "Intravitreal"
 
   #    Then I remove the Right Side
-    Then I select Add Left Side
+    Then I select Add Right Side
     Then I choose Right Anaesthetic Type of Topical
     Then I choose Right Anaesthetic Type of LA
 

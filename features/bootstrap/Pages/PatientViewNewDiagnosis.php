@@ -418,6 +418,7 @@ class PatientViewNewDiagnosis extends OpenEyesPage {
 		$this->scrollWindowToElement ( $element );
 		$element->click ();
 		$this->getSession ()->wait ( 1000 );
+		sleep(5);
 		$this->getElement ( 'selectAllergy' )->selectOption ( $allergy );
 		$this->getElement ( 'saveAllergy' )->click ();
 		$this->waitForElementDisplayNone ( '#add_allergy' );

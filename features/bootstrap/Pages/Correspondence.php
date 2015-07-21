@@ -55,13 +55,13 @@ class Correspondence extends OpenEyesPage {
 					'xpath' => "//*[@id='flash-success']" 
 			),
 			'letterBlankError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Letter: Address cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Address cannot be blank.')]" 
 			),
 			'letterSalutationBlankError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Letter: Salutation cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Salutation cannot be blank.')]" 
 			),
 			'letterBodyBlankError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Letter: Body cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Body cannot be blank.')]" 
 			) 
 	);
 	public function siteDropdown($site) {
@@ -130,6 +130,7 @@ class Correspondence extends OpenEyesPage {
 		}
 	}
 	protected function hasCorrespondenceErrorsDisplayed() {
+		sleep(5);
 		return ( bool ) $this->find ( 'xpath', $this->getElement ( 'letterBlankError' )->getXpath () ) && ( bool ) $this->find ( 'xpath', $this->getElement ( 'letterSalutationBlankError' )->getXpath () ) && ( bool ) $this->find ( 'xpath', $this->getElement ( 'letterBodyBlankError' )->getXpath () );
 	}
 	public function correspondenceMandatoryFieldsErrorValidation() {

@@ -61,28 +61,28 @@ class AnaestheticAudit extends OpenEyesPage
 					'xpath' => "//button[@id='et_deleteevent']" 
 			),
 			'anaesthetistValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Anaesthetist: Anaesthetist cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Anaesthetist cannot be blank.')]" 
 			),
 			'vitalRespiratoryValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Vital Signs: Respiratory Rate cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Respiratory Rate cannot be blank.')]" 
 			),
 			'vitalOxygenSaturationValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Vital Signs: Oxygen Saturation cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Oxygen Saturation cannot be blank.')]" 
 			),
 			'vitalSystolicBloodPressureValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Vital Signs: Systolic Blood Pressure cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Systolic Blood Pressure cannot be blank.')]" 
 			),
 			'vitalBodyTempValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Vital Signs: Body Temperature cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Body Temperature cannot be blank.')]" 
 			),
 			'vitalHeartRateValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Vital Signs: Heart Rate cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Heart Rate cannot be blank.')]" 
 			),
 			'vitalAVPUValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Vital Signs: Conscious Level AVPU cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Conscious Level AVPU cannot be blank.')]" 
 			),
 			'readyForDischargeValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Notes: Ready for discharge from recovery cannot be blank.')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Ready for discharge from recovery cannot be blank.')]" 
 			),
 			'deleteSuccess' => array (
 					'xpath' => "//*[contains(text(), 'An event was deleted, please ensure the episode status is still correct.')]" 

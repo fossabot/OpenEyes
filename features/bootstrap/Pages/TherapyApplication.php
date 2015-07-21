@@ -48,6 +48,9 @@ class TherapyApplication extends OpenEyesPage {
 			'cerebrovascularYes' => array (
 					'xpath' => "//*[@id='Element_OphCoTherapyapplication_RelativeContraindications_cerebrovascular_accident_1']" 
 			),
+			'patientconsentYes' => array (
+					'xpath' => "//*[@id='Element_OphCoTherapyapplication_MrServiceInformation_patient_sharedata_consent_1']"
+			),
 			'cerebrovascularNo' => array (
 					'xpath' => "//*[@id='Element_OphCoTherapyapplication_RelativeContraindications_cerebrovascular_accident_0']" 
 			),
@@ -313,34 +316,39 @@ class TherapyApplication extends OpenEyesPage {
 		$this->getElement ( 'calendarDate' )->click ();
 	}
 	public function RightCerebYes() {
-		$element = $this->getElement ( 'cerebrovascularYes' );
+		$element = $this->getElement ( 'cerebrovascularYes' )->doubleClick();
+		//$this->scrollWindowToElement ( $element );
+		//$element->click ();
+	}	
+	public function PatientConsentYes() {
+		$element = $this->getElement ( 'patientconsentYes' );
 		$this->scrollWindowToElement ( $element );
-		$element->check ();
+		$element->doubleClick();	
 	}
 	public function RightCerebNo() {
 		$element = $this->getElement ( 'cerebrovascularNo' );
 		$this->scrollWindowToElement ( $element );
-		$element->check ();
+		$element->click ();
 	}
 	public function RightIschaemicYes() {
 		$element = $this->getElement ( 'ischaemicYes' );
 		$this->scrollWindowToElement ( $element );
-		$element->check ();
+		$element->doubleClick();
 	}
 	public function RightIschaemicNo() {
 		$element = $this->getElement ( 'ischaemicNo' );
 		$this->scrollWindowToElement ( $element );
-		$element->check ();
+		$element->click ();
 	}
 	public function RightMyocardialYes() {
 		$element = $this->getElement ( 'myocardialYes' );
 		$this->scrollWindowToElement ( $element );
-		$element->click ();
+		$element->doubleClick();
 	}
 	public function RightMyocardialNo() {
 		$element = $this->getElement ( 'myocardialNo' );
 		$this->scrollWindowToElement ( $element );
-		$element->check ();
+		$element->click ();
 		;
 	}
 	public function RightIntendedSite($site) {
@@ -349,26 +357,26 @@ class TherapyApplication extends OpenEyesPage {
 		$element->setValue ( $site );
 	}
 	public function RightStandardExistsYes() {
-		$this->getElement ( 'standardExistsYes' )->check ();
+		$this->getElement ( 'standardExistsYes' )->click ();
 	}
 	public function RightStandardExistsNo() {
-		$this->getElement ( 'standardExistsNo' )->check ();
+		$this->getElement ( 'standardExistsNo' )->click ();
 	}
 	public function RightStandardIntervention($standard) {
 		$this->getElement ( 'standardIntervention' )->selectOption ( $standard );
 	}
 	public function RightStandardPreviousYes() {
-		$this->getElement ( 'standardPreviousYes' )->check ();
+		$this->getElement ( 'standardPreviousYes' )->click ();
 	}
 	public function RightStandardPreviousNo() {
-		$this->getElement ( 'standardPreviousNo' )->check ();
+		$this->getElement ( 'standardPreviousNo' )->click ();
 	}
 	public function RightStandardAdditional() {
-		$this->getElement ( 'standardAdditional' )->check ();
+		$this->getElement ( 'standardAdditional' )->click ();
 		// $this->getSession()->wait(3000);
 	}
 	public function RightStandardDeviation() {
-		$this->getElement ( 'standardDeviation' )->check ();
+		$this->getElement ( 'standardDeviation' )->click ();
 		// $this->getSession()->wait(3000);
 	}
 	public function RightAdditionalOrDeviationComments($details) {
@@ -384,10 +392,10 @@ class TherapyApplication extends OpenEyesPage {
 		$this->getElement ( 'patientMoreBenefit' )->setValue ( $comments );
 	}
 	public function RightPatientFactorsYes() {
-		$this->getElement ( 'patientFactorsYes' )->check ();
+		$this->getElement ( 'patientFactorsYes' )->click ();
 	}
 	public function RightPatientFactorsNo() {
-		$this->getElement ( 'patientFactorsNo' )->check ();
+		$this->getElement ( 'patientFactorsNo' )->click ();
 	}
 	public function RightPatientFactorDetails($comments) {
 		$this->getElement ( 'patientFactorDetails' )->setValue ( $comments );
@@ -399,28 +407,28 @@ class TherapyApplication extends OpenEyesPage {
 		$this->getElement ( 'anticipatedStartDate' )->selectOption ( $date );
 	}
 	public function LeftStandardExistsYes() {
-		$this->getElement ( 'leftstandardExistsYes' )->check ();
+		$this->getElement ( 'leftstandardExistsYes' )->doubleClick();
 	}
 	public function LeftStandardExistsNo() {
-		$this->getElement ( 'leftstandardExistsNo' )->check ();
+		$this->getElement ( 'leftstandardExistsNo' )->click ();
 		// TO CODE
 	}
 	public function LeftStandardIntervention($standard) {
 		$this->getElement ( 'leftstandardIntervention' )->selectOption ( $standard );
 	}
 	public function LeftStandardPreviousYes() {
-		$this->getElement ( 'leftstandardPreviousYes' )->check ();
+		$this->getElement ( 'leftstandardPreviousYes' )->click ();
 	}
 	public function LeftStandardPreviousNo() {
-		$this->getElement ( 'leftstandardPreviousNo' )->check ();
+		$this->getElement ( 'leftstandardPreviousNo' )->click ();
 		// TO CODE
 	}
 	public function LeftStandardAdditional() {
-		$this->getElement ( 'leftstandardAdditional' )->check ();
+		$this->getElement ( 'leftstandardAdditional' )->click ();
 		// $this->getSession()->wait(3000);
 	}
 	public function LeftStandardDeviation() {
-		$this->getElement ( 'leftstandardDeviation' )->check ();
+		$this->getElement ( 'leftstandardDeviation' )->click ();
 		// $this->getSession()->wait(3000);
 	}
 	public function LeftAdditionalOrDeviationComments($details) {
@@ -436,10 +444,10 @@ class TherapyApplication extends OpenEyesPage {
 		$this->getElement ( 'leftpatientMoreBenefit' )->setValue ( $comments );
 	}
 	public function LeftPatientFactorsYes() {
-		$this->getElement ( 'leftpatientFactorsYes' )->check ();
+		$this->getElement ( 'leftpatientFactorsYes' )->click ();
 	}
 	public function LeftPatientFactorsNo() {
-		$this->getElement ( 'leftpatientFactorsNo' )->check ();
+		$this->getElement ( 'leftpatientFactorsNo' )->click ();
 	}
 	public function LeftPatientFactorDetails($comments) {
 		$this->getElement ( 'leftpatientFactorDetails' )->setValue ( $comments );
@@ -515,10 +523,10 @@ class TherapyApplication extends OpenEyesPage {
 		$this->getElement ( 'leftPatientCRT>=400Yes' )->click ();
 	}
 	public function rightOcularConditionRareYes() {
-		$this->getElement ( 'rightOcularConditionRareYes' )->check ();
+		$this->getElement ( 'rightOcularConditionRareYes' )->click ();
 	}
 	public function rightOcularConditionRareNo() {
-		$this->getElement ( 'rightOcularConditionRareNo' )->check ();
+		$this->getElement ( 'rightOcularConditionRareNo' )->click ();
 	}
 	public function rightIncidenceDetails($comments) {
 		$this->getElement ( 'rightIncidenceDetails' )->setValue ( $comments );
