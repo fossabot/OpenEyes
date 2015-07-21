@@ -17,69 +17,75 @@ namespace services;
 
 class PracticeService extends ModelService
 {
-	static protected $operations = array(self::OP_READ, self::OP_UPDATE, self::OP_DELETE, self::OP_CREATE, self::OP_SEARCH);
+    protected static $operations = array(self::OP_READ, self::OP_UPDATE, self::OP_DELETE, self::OP_CREATE, self::OP_SEARCH);
 
-	static protected $search_params = array(
-		'id' => self::TYPE_TOKEN,
-		'identifier' => self::TYPE_TOKEN,
-	);
+    protected static $search_params = array(
+        'id' => self::TYPE_TOKEN,
+        'identifier' => self::TYPE_TOKEN,
+    );
 
-	static protected $primary_model = 'Practice';
+    protected static $primary_model = 'Practice';
 
-	public function search(array $params)
-	{
-		$model = $this->getSearchModel();
-		if (isset($params['id'])) $model->id = $id;
-		if (isset($params['identifier'])) $model->code = $params['identifier'];
+    public function search(array $params)
+    {
+        $model = $this->getSearchModel();
+        if (isset($params['id'])) {
+            $model->id = $id;
+        }
+        if (isset($params['identifier'])) {
+            $model->code = $params['identifier'];
+        }
 
-		return $this->getResourcesFromDataProvider($model->search());
-	}
+        return $this->getResourcesFromDataProvider($model->search());
+    }
 
-	public function modelToResource($practice)
-	{
-		$res = parent::modelToResource($practice);
-		$res->code = $practice->code;
-		$res->primary_phone = $practice->phone;
-		if ($practice->contact->address) $res->address = Address::fromModel($practice->contact->address);
-		return $res;
-	}
+    public function modelToResource($practice)
+    {
+        $res = parent::modelToResource($practice);
+        $res->code = $practice->code;
+        $res->primary_phone = $practice->phone;
+        if ($practice->contact->address) {
+            $res->address = Address::fromModel($practice->contact->address);
+        }
+        return $res;
+    }
 
-	public function resourceToModel($res, $prac)
-	{
-		$prac->code = $res->code;
-		$prac->phone = $res->primary_phone;
-		$this->saveModel($prac);
+    public function resourceToModel($res, $prac)
+    {
+        $prac->code = $res->code;
+        $prac->phone = $res->primary_phone;
+        $this->saveModel($prac);
 
-		$contact = $prac->contact;
-		$contact->primary_phone = $res->primary_phone;
-		$this->saveModel($contact);
+        $contact = $prac->contact;
+        $contact->primary_phone = $res->primary_phone;
+        $this->saveModel($contact);
 
-		if ($res->address) {
-			if (!($address = $contact->address)) {
-				$address = new \Address;
-				$address->contact_id = $contact->id;
-			}
+        if ($res->address) {
+            if (!($address = $contact->address)) {
+                $address = new \Address;
+                $address->contact_id = $contact->id;
+            }
 
-			$res->address->toModel($address);
-			$this->saveModel($address);
-		}
-	}
+            $res->address->toModel($address);
+            $this->saveModel($address);
+        }
+    }
 
-	/**
-	 * Delete the practice from the database, first unassociating it with any patients
-	 *
-	 * @param int $id
-	 */
-	public function delete($id)
-	{
-		if (!($prac = $this->model->findByPk($id))) {
-			throw new NotFound("Practice with ID '$id' not found");
-		}
+    /**
+     * Delete the practice from the database, first unassociating it with any patients
+     *
+     * @param int $id
+     */
+    public function delete($id)
+    {
+        if (!($prac = $this->model->findByPk($id))) {
+            throw new NotFound("Practice with ID '$id' not found");
+        }
 
-		$crit = new \CDbCriteria;
-		$crit->compare('practice_id', $id);
-		\Patient::model()->updateAll(array('practice_id' => null), $crit);
+        $crit = new \CDbCriteria;
+        $crit->compare('practice_id', $id);
+        \Patient::model()->updateAll(array('practice_id' => null), $crit);
 
-		$prac->delete();
-	}
+        $prac->delete();
+    }
 }

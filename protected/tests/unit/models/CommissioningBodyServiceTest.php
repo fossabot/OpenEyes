@@ -19,38 +19,37 @@
 
 class CommissioningBodyServiceTest extends PHPUnit_Framework_TestCase
 {
-	/**
-	 * @covers CommissioningBodyService::getCorrespondenceName()
-	 */
-	public function testgetCorrespondenceAddress_nostatic()
-	{
-		$cbs_name = 'Test Name';
-		$cbs_type = new CommissioningBodyServiceType();
-		$cbs_type->correspondence_name = null;
+    /**
+     * @covers CommissioningBodyService::getCorrespondenceName()
+     */
+    public function testgetCorrespondenceAddress_nostatic()
+    {
+        $cbs_name = 'Test Name';
+        $cbs_type = new CommissioningBodyServiceType();
+        $cbs_type->correspondence_name = null;
 
-		$cbs = new CommissioningBodyService();
-		$cbs->name = $cbs_name;
-		$cbs->type = $cbs_type;
+        $cbs = new CommissioningBodyService();
+        $cbs->name = $cbs_name;
+        $cbs->type = $cbs_type;
 
-		$this->assertEquals(array($cbs_name), $cbs->getCorrespondenceName(), 'Correspondence Name should be retrieved from contact when type correspondence name is null');
-	}
+        $this->assertEquals(array($cbs_name), $cbs->getCorrespondenceName(), 'Correspondence Name should be retrieved from contact when type correspondence name is null');
+    }
 
-	/**
-	 * @covers CommissioningBodyService::getCorrespondenceName()
-	 */
-	public function testgetCorrespondenceAddress_withstatic()
-	{
-		$cbs_name = 'Test Name';
-		$cbs_type_name = 'CBS Type Test Name';
+    /**
+     * @covers CommissioningBodyService::getCorrespondenceName()
+     */
+    public function testgetCorrespondenceAddress_withstatic()
+    {
+        $cbs_name = 'Test Name';
+        $cbs_type_name = 'CBS Type Test Name';
 
-		$cbs_type = new CommissioningBodyServiceType();
-		$cbs_type->correspondence_name = $cbs_type_name;
+        $cbs_type = new CommissioningBodyServiceType();
+        $cbs_type->correspondence_name = $cbs_type_name;
 
-		$cbs = new CommissioningBodyService();
-		$cbs->name = $cbs_name;
-		$cbs->type = $cbs_type;
+        $cbs = new CommissioningBodyService();
+        $cbs->name = $cbs_name;
+        $cbs->type = $cbs_type;
 
-		$this->assertEquals(array($cbs_name, $cbs_type_name), $cbs->getCorrespondenceName(), 'Correspondence Name should have type name appended when available in the CBS type');
-	}
-
+        $this->assertEquals(array($cbs_name, $cbs_type_name), $cbs->getCorrespondenceName(), 'Correspondence Name should have type name appended when available in the CBS type');
+    }
 }

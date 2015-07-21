@@ -24,14 +24,14 @@
 		</div>
 	</div>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'adminform',
-		'enableAjaxValidation'=>false,
-		'layoutColumns'=>array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'adminform',
+        'enableAjaxValidation'=>false,
+        'layoutColumns'=>array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
 	<div>Are you sure you want to delete '<?= $agent->name ?>' anaesthetic agent?</div>
 	<?php echo $form->formActions(array('submit' => 'delete', 'cancel-uri'=>'/admin/viewAnaestheticAgent'))?>
 	<?php $this->endWidget()?>

@@ -38,7 +38,6 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
  */
 class Zend_Gdata_HttpAdapterStreamingSocket extends Zend_Http_Client_Adapter_Socket
 {
-
     /**
      * The amount read from a stream source at a time.
      *
@@ -79,10 +78,14 @@ class Zend_Gdata_HttpAdapterStreamingSocket extends Zend_Http_Client_Adapter_Soc
 
         // Build request headers
         $path = $uri->getPath();
-        if ($uri->getQuery()) $path .= '?' . $uri->getQuery();
+        if ($uri->getQuery()) {
+            $path .= '?' . $uri->getQuery();
+        }
         $request = "{$method} {$path} HTTP/{$http_ver}\r\n";
         foreach ($headers as $k => $v) {
-            if (is_string($k)) $v = ucfirst($k) . ": $v";
+            if (is_string($k)) {
+                $v = ucfirst($k) . ": $v";
+            }
             $request .= "$v\r\n";
         }
 
@@ -97,7 +100,7 @@ class Zend_Gdata_HttpAdapterStreamingSocket extends Zend_Http_Client_Adapter_Soc
 
         //read from $body, write to socket
         $chunk = $body->read(self::CHUNK_SIZE);
-        while ($chunk !== FALSE) {
+        while ($chunk !== false) {
             if (! @fwrite($this->socket, $chunk)) {
                 require_once 'Zend/Http/Client/Adapter/Exception.php';
                 throw new Zend_Http_Client_Adapter_Exception(

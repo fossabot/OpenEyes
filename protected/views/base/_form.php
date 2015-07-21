@@ -21,29 +21,30 @@
 $uri = preg_replace('/^\//', '', preg_replace('/\/$/', '', $_SERVER['REQUEST_URI']));
 
 if (!Yii::app()->user->isGuest) {
-	$user = User::model()->findByPk(Yii::app()->user->id);
-	if (!preg_match('/^profile\//', $uri)) {
-		if (!$user->has_selected_firms && !$user->global_firm_rights && empty(Yii::app()->session['shown_reminder'])) {
-			Yii::app()->session['shown_reminder'] = true;
-			$this->widget('SiteAndFirmWidgetReminder');
-		} else {
-			if (!empty(Yii::app()->session['confirm_site_and_firm'])) {
-				?>
+    $user = User::model()->findByPk(Yii::app()->user->id);
+    if (!preg_match('/^profile\//', $uri)) {
+        if (!$user->has_selected_firms && !$user->global_firm_rights && empty(Yii::app()->session['shown_reminder'])) {
+            Yii::app()->session['shown_reminder'] = true;
+            $this->widget('SiteAndFirmWidgetReminder');
+        } else {
+            if (!empty(Yii::app()->session['confirm_site_and_firm'])) {
+                ?>
 				<script type="text/javascript">
 					$(document).ready(function(){
 						$('.change-firm a').trigger('click');
 					});
 				</script>
 				<?php
-			}
-		}
-	}
-	if (empty(Yii::app()->session['user'])) {
-		Yii::app()->session['user'] = User::model()->findByPk(Yii::app()->user->id);
-	}
-	$user = Yii::app()->session['user'];
-	$menuHelper = new MenuHelper(Yii::app()->params['menu_bar_items'], Yii::app()->user, $uri);
-	?>
+
+            }
+        }
+    }
+    if (empty(Yii::app()->session['user'])) {
+        Yii::app()->session['user'] = User::model()->findByPk(Yii::app()->user->id);
+    }
+    $user = Yii::app()->session['user'];
+    $menuHelper = new MenuHelper(Yii::app()->params['menu_bar_items'], Yii::app()->user, $uri);
+    ?>
 
 	<div class="panel user">
 		<?= $menuHelper->render() ?>
@@ -52,25 +53,35 @@ if (!Yii::app()->user->isGuest) {
 				<div class="user-id">
 					You are logged in as:
 					<div class="user-name">
-						<?php if (Yii::app()->params['profile_user_can_edit']) { ?>
-							<a href="<?php echo Yii::app()->createUrl('/profile'); ?>">
+						<?php if (Yii::app()->params['profile_user_can_edit']) {
+    ?>
+							<a href="<?php echo Yii::app()->createUrl('/profile');
+    ?>">
 								<span class="icon-user-panel-cog"></span>
-								<strong><?php echo $user->first_name . ' ' . $user->last_name; ?></strong>
+								<strong><?php echo $user->first_name . ' ' . $user->last_name;
+    ?></strong>
 							</a>
-						<?php } else { ?>
+						<?php 
+} else {
+    ?>
 							<strong><?php echo $user->first_name ?> <?php echo $user->last_name ?></strong>
-						<?php } ?>
+						<?php 
+}
+    ?>
 					</div>
 				</div>
 			</div>
 			<div class="large-9 column">
 				<div class="user-firm text-right">
-					Site: <strong><?php echo Site::model()->findByPk($this->selectedSiteId)->short_name; ?></strong>,
+					Site: <strong><?php echo Site::model()->findByPk($this->selectedSiteId)->short_name;
+    ?></strong>,
 					Firm:
-					<strong><?php echo Firm::model()->findByPk($this->selectedFirmId)->getNameAndSubspecialty(); ?></strong>
+					<strong><?php echo Firm::model()->findByPk($this->selectedFirmId)->getNameAndSubspecialty();
+    ?></strong>
 					<span class="change-firm">(<a href="#">Change</a>)</span>
 				</div>
 			</div>
 		</div>
 	</div>
-<?php } ?>
+<?php 
+} ?>

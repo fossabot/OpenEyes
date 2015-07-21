@@ -20,15 +20,15 @@
 return array(
                          'contactlabel1' => array(
                                                   'id'=> 1,
-                                                  'name' => 'contactlabel 1',  
+                                                  'name' => 'contactlabel 1',
                          ),
                          'contactlabel2' => array(
                                                   'id'=> 2,
-                                                  'name' => 'contactlabel 2' , 
+                                                  'name' => 'contactlabel 2' ,
                          ),
                          'contactlabel3' => array(
                                                   'id'=> 3,
-                                                  'name' => 'contactlabel 3', 
+                                                  'name' => 'contactlabel 3',
                                                   
                                                  
                          ),

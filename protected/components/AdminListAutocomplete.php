@@ -19,141 +19,140 @@
  */
 class AdminListAutocomplete extends Admin
 {
-	/**
-	 * @var string
-	 */
-	protected $customDeleteURL;
-	/**
-	 * @var string
-	 */
-	protected  $customSetDefaultURL;
+    /**
+     * @var string
+     */
+    protected $customDeleteURL;
+    /**
+     * @var string
+     */
+    protected $customSetDefaultURL;
 
-	/**
-	 *
-	 */
-	protected  $customRemoveDefaultURL;
-	/**
-	 * @var string
-	 */
-	protected $customSaveURL;
+    /**
+     *
+     */
+    protected $customRemoveDefaultURL;
+    /**
+     * @var string
+     */
+    protected $customSaveURL;
 
-	/**
-	 * @var array
-	 */
-	protected $autocompleteField = array();
+    /**
+     * @var array
+     */
+    protected $autocompleteField = array();
 
-	/**
-	 * @var array
-	 */
-	protected $filterFields = array();
+    /**
+     * @var array
+     */
+    protected $filterFields = array();
 
-	/**
-	 * @param $filters
-	 */
-	public function setFilterFields($filters)
-	{
-		$this->filterFields = $filters;
-	}
+    /**
+     * @param $filters
+     */
+    public function setFilterFields($filters)
+    {
+        $this->filterFields = $filters;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getFilterFields()
-	{
-		return $this->filterFields;
-	}
+    /**
+     * @return array
+     */
+    public function getFilterFields()
+    {
+        return $this->filterFields;
+    }
 
-	/**
-	 * @param $acdata
-	 */
-	public function setAutocompleteField($acdata)
-	{
-		$this->autocompleteField = $acdata;
-	}
+    /**
+     * @param $acdata
+     */
+    public function setAutocompleteField($acdata)
+    {
+        $this->autocompleteField = $acdata;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getAutocompleteField()
-	{
-		return $this->autocompleteField;
-	}
+    /**
+     * @return array
+     */
+    public function getAutocompleteField()
+    {
+        return $this->autocompleteField;
+    }
 
-	/**
-	 * @param $deleteURL
-	 */
-	public function setCustomDeleteURL($deleteURL)
-	{
-		$this->customDeleteURL = $deleteURL;
-	}
+    /**
+     * @param $deleteURL
+     */
+    public function setCustomDeleteURL($deleteURL)
+    {
+        $this->customDeleteURL = $deleteURL;
+    }
 
-	/**
-	 * @param $setDefaultURL
-	 */
-	public function setCustomSetDefaultURL($setDefaultURL)
-	{
-		$this->customSetDefaultURL = $setDefaultURL;
-	}
+    /**
+     * @param $setDefaultURL
+     */
+    public function setCustomSetDefaultURL($setDefaultURL)
+    {
+        $this->customSetDefaultURL = $setDefaultURL;
+    }
 
-	/**
-	 * @param $removeDefaultURL
-	 */
-	public function setCustomRemoveDefaultURL($removeDefaultURL)
-	{
-		$this->customRemoveDefaultURL = $removeDefaultURL;
-	}
-
-
-
-	/**
-	 * @return string
-	 */
-	public function getCustomDeleteURL()
-	{
-		return $this->customDeleteURL;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getCustomSetDefaultURL()
-	{
-		return $this->customSetDefaultURL;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getCustomRemoveDefaultURL()
-	{
-		return $this->customRemoveDefaultURL;
-	}
+    /**
+     * @param $removeDefaultURL
+     */
+    public function setCustomRemoveDefaultURL($removeDefaultURL)
+    {
+        $this->customRemoveDefaultURL = $removeDefaultURL;
+    }
 
 
-	/**
-	 * @param $saveURL
-	 */
-	public function setCustomSaveURL($saveURL)
-	{
-		$this->customSaveURL = $saveURL;
-	}
 
-	/**
-	 * @return string
-	 */
-	public function getCustomSaveURL()
-	{
-		return $this->customSaveURL;
-	}
+    /**
+     * @return string
+     */
+    public function getCustomDeleteURL()
+    {
+        return $this->customDeleteURL;
+    }
 
-	/**
-	 * @param BaseActiveRecord $model
-	 * @param BaseAdminController $admin
-	 */
-	public function __construct($model, $admin)
-	{
-		parent::__construct($model, $admin);
-		$this->setListTemplate('//admin/generic/listAutocomplete');
-	}
+    /**
+     * @return string
+     */
+    public function getCustomSetDefaultURL()
+    {
+        return $this->customSetDefaultURL;
+    }
 
+    /**
+     * @return string
+     */
+    public function getCustomRemoveDefaultURL()
+    {
+        return $this->customRemoveDefaultURL;
+    }
+
+
+    /**
+     * @param $saveURL
+     */
+    public function setCustomSaveURL($saveURL)
+    {
+        $this->customSaveURL = $saveURL;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomSaveURL()
+    {
+        return $this->customSaveURL;
+    }
+
+    /**
+     * @param BaseActiveRecord $model
+     * @param BaseAdminController $admin
+     */
+    public function __construct($model, $admin)
+    {
+        parent::__construct($model, $admin);
+        $this->setListTemplate('//admin/generic/listAutocomplete');
+    }
 }

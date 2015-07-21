@@ -19,107 +19,105 @@
  */
 class ProcedureTest extends CDbTestCase
 {
+    public $model;
+    public $fixtures = array(
+        'procedures' => 'Procedure',
+    );
 
-	public $model;
-	public $fixtures = array(
-		'procedures' => 'Procedure',
-	);
+    public function setUp()
+    {
+        parent::setUp();
+        $this->model = new Procedure;
+    }
 
-	public function setUp()
-	{
-		parent::setUp();
-		$this->model = new Procedure;
-	}
+    public function dataProvider_ProcedureSearch()
+    {
+        return array(
+            array('Foo', array('Foobar Procedure')),
+            array('Foobar', array('Foobar Procedure')),
+            array('Fo', array('Foobar Procedure')),
+            array('UB', array('Foobar Procedure')),
+            array('Bla', array('Foobar Procedure', 'Test Procedure 2')),
+            array('wstfgl', array('Foobar Procedure')),
+            array('barfoo', array('Foobar Procedure')),
+            array('Test', array('Test Procedure', 'Test Procedure 2')),
+            array('Test Pro', array('Test Procedure', 'Test Procedure 2')),
+            array('Te', array('Test Procedure', 'Test Procedure 2')),
+            array('TP', array('Test Procedure')),
+            array('leh', array('Test Procedure')),
+            array('Pro', array('Foobar Procedure', 'Test Procedure', 'Test Procedure 2')),
+        );
+    }
 
-	public function dataProvider_ProcedureSearch()
-	{
-		return array(
-			array('Foo', array('Foobar Procedure')),
-			array('Foobar', array('Foobar Procedure')),
-			array('Fo', array('Foobar Procedure')),
-			array('UB', array('Foobar Procedure')),
-			array('Bla', array('Foobar Procedure', 'Test Procedure 2')),
-			array('wstfgl', array('Foobar Procedure')),
-			array('barfoo', array('Foobar Procedure')),
-			array('Test', array('Test Procedure', 'Test Procedure 2')),
-			array('Test Pro', array('Test Procedure', 'Test Procedure 2')),
-			array('Te', array('Test Procedure', 'Test Procedure 2')),
-			array('TP', array('Test Procedure')),
-			array('leh', array('Test Procedure')),
-			array('Pro', array('Foobar Procedure', 'Test Procedure', 'Test Procedure 2')),
-		);
-	}
+    /**
+     * @covers Procedure::attributeLabels
+     * @todo   Implement testAttributeLabels().
+     */
+    public function testAttributeLabels()
+    {
+        $expected = array(
+            'id' => 'ID',
+            'term' => 'Term',
+            'short_format' => 'Short Format',
+            'default_duration' => 'Default Duration',
+            'opcsCodes.name' => 'OPCS Code'
+        );
 
-	/**
-	 * @covers Procedure::attributeLabels
-	 * @todo   Implement testAttributeLabels().
-	 */
-	public function testAttributeLabels()
-	{
-		$expected = array(
-			'id' => 'ID',
-			'term' => 'Term',
-			'short_format' => 'Short Format',
-			'default_duration' => 'Default Duration',
-			'opcsCodes.name' => 'OPCS Code'
-		);
+        $this->assertEquals($expected, $this->model->attributeLabels());
+    }
 
-		$this->assertEquals($expected, $this->model->attributeLabels());
-	}
+    /**
+     * @covers Procedure::search
+     * @todo   Implement testSearch().
+     */
+    public function testSearch()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
 
-	/**
-	 * @covers Procedure::search
-	 * @todo   Implement testSearch().
-	 */
-	public function testSearch()
-	{
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet.'
-		);
-	}
+    /**
+     * @dataProvider dataProvider_ProcedureSearch
+     */
+    public function testGetList_ValidTerms_ReturnsValidResults($term, $data)
+    {
+        $results = Procedure::getList($term);
+        $this->assertEquals($data, $results);
+    }
 
-	/**
-	 * @dataProvider dataProvider_ProcedureSearch
-	 */
-	public function testGetList_ValidTerms_ReturnsValidResults($term, $data)
-	{
-		$results = Procedure::getList($term);
-		$this->assertEquals($data, $results);
-	}
+    public function testGetList_InvalidTerm_ReturnsEmptyResults()
+    {
+        $results = Procedure::getList('Qux');
+        $this->assertEquals(array(), $results);
+    }
 
-	public function testGetList_InvalidTerm_ReturnsEmptyResults()
-	{
-		$results = Procedure::getList('Qux');
-		$this->assertEquals(array(), $results);
-	}
+    public function testGetList_RestrictBooked()
+    {
+        $this->assertEquals(
+            array('Foobar Procedure'),
+            Procedure::getList('Proc', 'booked')
+        );
+    }
 
-	public function testGetList_RestrictBooked()
-	{
-		$this->assertEquals(
-			array('Foobar Procedure'),
-			Procedure::getList('Proc', 'booked')
-		);
-	}
+    public function testGetList_RestrictUnbooked()
+    {
+        $this->assertEquals(
+            array('Test Procedure', 'Test Procedure 2'),
+            Procedure::getList('Proc', 'unbooked')
+        );
+    }
 
-	public function testGetList_RestrictUnbooked()
-	{
-		$this->assertEquals(
-			array('Test Procedure', 'Test Procedure 2'),
-			Procedure::getList('Proc', 'unbooked')
-		);
-	}
-
-	/**
-	 * @covers Procedure::getListBySubspecialty
-	 * @todo   Implement testGetListBySubspecialty().
-	 */
-	public function testGetListBySubspecialty()
-	{
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet.'
-		);
-	}
-
+    /**
+     * @covers Procedure::getListBySubspecialty
+     * @todo   Implement testGetListBySubspecialty().
+     */
+    public function testGetListBySubspecialty()
+    {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+    }
 }

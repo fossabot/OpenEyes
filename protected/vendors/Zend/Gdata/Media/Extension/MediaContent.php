@@ -518,5 +518,4 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
         $this->_lang = $value;
         return $this;
     }
-
 }

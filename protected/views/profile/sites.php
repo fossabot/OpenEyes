@@ -31,13 +31,15 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($user->siteSelections as $i => $site) {?>
+                foreach ($user->siteSelections as $i => $site) {
+                    ?>
 					<tr data-attr-id="<?php echo $site->id?>">
 						<td><input type="checkbox" name="sites[]" value="<?php echo $site->id?>" /></td>
 						<td><?php echo $site->name?></td>
 						<td><?php echo $site->getLetterAddress(array('delimiter'=>', '))?>&nbsp;</td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 		</table>
 	</form>
@@ -48,13 +50,13 @@
 		</div>
 		<div class="large-6 column text-right table-actions">
 			<label for="profile_site_id" class="inline">Add site:</label>
-			<?php echo CHtml::dropDownList('profile_site_id','',CHtml::listData($user->getNotSelectedSiteList(),'id','name'),array('empty'=>'- Select -'))?>
-			<?php echo CHtml::link('Add all','#',array('id'=>'add_all', 'class' => 'field-info'))?>
+			<?php echo CHtml::dropDownList('profile_site_id', '', CHtml::listData($user->getNotSelectedSiteList(), 'id', 'name'), array('empty'=>'- Select -'))?>
+			<?php echo CHtml::link('Add all', '#', array('id'=>'add_all', 'class' => 'field-info'))?>
 		</div>
 	</div>
 </div>
 <div class="box admin">
-	<p>Note: you can also set the firms you work at, <?php echo CHtml::link('click here',Yii::app()->createUrl('/profile/firms'))?> to do so.</p>
+	<p>Note: you can also set the firms you work at, <?php echo CHtml::link('click here', Yii::app()->createUrl('/profile/firms'))?> to do so.</p>
 </div>
 
 <script type="text/javascript">

@@ -20,35 +20,43 @@ namespace services;
  */
 class PatientAddress extends Address
 {
-	static protected $fhir_type = 'Address';
+    protected static $fhir_type = 'Address';
 
-	static public function fromModel(\Address $address)
-	{
-		$pa = parent::fromModel($address);
-		if ($address->date_start) $pa->date_start = new Date($address->date_start);
-		if ($address->date_end) $pa->date_end = new Date($address->date_end);
-		if ($address->address_type_id == \AddressType::CORRESPOND) $pa->correspond = true;
-		if ($address->address_type_id == \AddressType::TRANSPORT) $pa->transport = true;
-		return $pa;
-	}
+    public static function fromModel(\Address $address)
+    {
+        $pa = parent::fromModel($address);
+        if ($address->date_start) {
+            $pa->date_start = new Date($address->date_start);
+        }
+        if ($address->date_end) {
+            $pa->date_end = new Date($address->date_end);
+        }
+        if ($address->address_type_id == \AddressType::CORRESPOND) {
+            $pa->correspond = true;
+        }
+        if ($address->address_type_id == \AddressType::TRANSPORT) {
+            $pa->transport = true;
+        }
+        return $pa;
+    }
 
-	public $date_start = null;
-	public $date_end = null;
-	public $correspond = false;
-	public $transport = false;
+    public $date_start = null;
+    public $date_end = null;
+    public $correspond = false;
+    public $transport = false;
 
-	public function toModel(\Address $address)
-	{
-		parent::toModel($address);
-		$address->date_start = $this->date_start;
-		$address->date_end = $this->date_end;
+    public function toModel(\Address $address)
+    {
+        parent::toModel($address);
+        $address->date_start = $this->date_start;
+        $address->date_end = $this->date_end;
 
-		if ($this->correspond) {
-			$address->address_type_id = \AddressType::CORRESPOND;
-		} elseif ($this->transport) {
-			$address->address_type_id = \AddressType::TRANSPORT;
-		} else {
-			$address->address_type_id = \AddressType::HOME;
-		}
-	}
+        if ($this->correspond) {
+            $address->address_type_id = \AddressType::CORRESPOND;
+        } elseif ($this->transport) {
+            $address->address_type_id = \AddressType::TRANSPORT;
+        } else {
+            $address->address_type_id = \AddressType::HOME;
+        }
+    }
 }

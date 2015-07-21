@@ -19,21 +19,21 @@
 
 class CheckBox extends BaseFieldWidget
 {
-	public $field;
-	public $labeltext;
-	public $columns = array();
-	public $checked = array();
+    public $field;
+    public $labeltext;
+    public $columns = array();
+    public $checked = array();
 
-	public function init()
-	{
-		if (empty($_POST)) {
-			if (isset($this->element->{$this->field})) {
-				$this->checked[$this->field] = (boolean) $this->element->{$this->field};
-			} else {
-				$this->checked[$this->field] = false;
-			}
-		} else {
-			$this->checked[$this->field] = (boolean) @$_POST[CHtml::modelName($this->element)][$this->field];
-		}
-	}
+    public function init()
+    {
+        if (empty($_POST)) {
+            if (isset($this->element->{$this->field})) {
+                $this->checked[$this->field] = (boolean) $this->element->{$this->field};
+            } else {
+                $this->checked[$this->field] = false;
+            }
+        } else {
+            $this->checked[$this->field] = (boolean) @$_POST[CHtml::modelName($this->element)][$this->field];
+        }
+    }
 }

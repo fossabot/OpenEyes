@@ -107,7 +107,6 @@ require_once 'Zend/Gdata/Books/Extension/Viewability.php';
  */
 class Zend_Gdata_Books_VolumeEntry extends Zend_Gdata_Entry
 {
-
     const THUMBNAIL_LINK_REL = 'http://schemas.google.com/books/2008/thumbnail';
     const PREVIEW_LINK_REL = 'http://schemas.google.com/books/2008/preview';
     const INFO_LINK_REL = 'http://schemas.google.com/books/2008/info';
@@ -640,7 +639,7 @@ class Zend_Gdata_Books_VolumeEntry extends Zend_Gdata_Entry
             require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception('Slash not found in atom:id');
         } else {
-            return substr($fullId, strrpos($fullId,'/') + 1);
+            return substr($fullId, strrpos($fullId, '/') + 1);
         }
     }
 
@@ -683,5 +682,4 @@ class Zend_Gdata_Books_VolumeEntry extends Zend_Gdata_Entry
     {
         return $this->getLink(self::ANNOTATION_LINK_REL);
     }
-
 }

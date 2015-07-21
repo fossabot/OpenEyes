@@ -19,11 +19,10 @@
 
 class OEWebUser extends CWebUser
 {
-	protected function changeIdentity($id,$name,$states)
-	{
-		//force regeneration of session id to avoid bug in CWebUser where empty phpsessionid will not be regenerated
-		session_regenerate_id(true);
-		parent::changeIdentity($id,$name,$states);
-	}
-
+    protected function changeIdentity($id, $name, $states)
+    {
+        //force regeneration of session id to avoid bug in CWebUser where empty phpsessionid will not be regenerated
+        session_regenerate_id(true);
+        parent::changeIdentity($id, $name, $states);
+    }
 }

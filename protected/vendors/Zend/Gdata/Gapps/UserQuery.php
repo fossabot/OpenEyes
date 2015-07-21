@@ -42,7 +42,6 @@ require_once('Zend/Gdata/Gapps/Query.php');
  */
 class Zend_Gdata_Gapps_UserQuery extends Zend_Gdata_Gapps_Query
 {
-
     /**
      * If not null, specifies the username of the user who should be
      * retrieved by this query.
@@ -143,5 +142,4 @@ class Zend_Gdata_Gapps_UserQuery extends Zend_Gdata_Gapps_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
-
 }

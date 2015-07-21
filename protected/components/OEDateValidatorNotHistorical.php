@@ -20,21 +20,21 @@
 
 class OEDateValidatorNotHistorical extends OEDateValidator
 {
+    public function validateValue($value)
+    {
+        $now = date('Y-m-d');
+        if (strtotime($value) < strtotime($now)) {
+            return false;
+        }
+        return true;
+    }
 
-	public function validateValue($value) {
-		$now = date('Y-m-d');
-		if(strtotime($value) < strtotime($now)) {
-			return false;
-		}
-		return true;
-	}
-
-	public function validateAttribute($object, $attribute)
-	{
-		if(parent::validateAttribute($object, $attribute)) {
-			if ($this->validateValue($object->{$attribute})) {
-				$this->addError($object, $attribute, $object->getAttributeLabel($attribute).' cannot be in the past.');
-			}
-		}
-	}
+    public function validateAttribute($object, $attribute)
+    {
+        if (parent::validateAttribute($object, $attribute)) {
+            if ($this->validateValue($object->{$attribute})) {
+                $this->addError($object, $attribute, $object->getAttributeLabel($attribute).' cannot be in the past.');
+            }
+        }
+    }
 }

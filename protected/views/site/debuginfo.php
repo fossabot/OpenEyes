@@ -19,28 +19,28 @@
 ?>
 <?php
 if (!empty(Yii::app()->session['user'])) {
-	$user = Yii::app()->session['user'];
+    $user = Yii::app()->session['user'];
 } else {
-	$user = User::model()->findByPk(Yii::app()->user->id);
+    $user = User::model()->findByPk(Yii::app()->user->id);
 }
 $firm = Firm::model()->findByPk($this->selectedFirmId);
 
 if (file_exists("/etc/hostname")) {
-	$hostname = trim(file_get_contents("/etc/hostname"));
+    $hostname = trim(file_get_contents("/etc/hostname"));
 } else {
-	$hostname = trim(`hostname`);
+    $hostname = trim(`hostname`);
 }
 
 if (is_object($user)) {
-	$username = "$user->username ($user->id)";
-	$firm = "$firm->name ($firm->id)";
+    $username = "$user->username ($user->id)";
+    $firm = "$firm->name ($firm->id)";
 } else {
-	$username = 'Not logged in';
-	$firm = 'Not logged in';
+    $username = 'Not logged in';
+    $firm = 'Not logged in';
 }
 
-$commit = preg_replace('/[\s\t].*$/s','',@file_get_contents(Yii::app()->basePath."/../.git/FETCH_HEAD"));
-$ex = explode('/',file_get_contents(".git/HEAD"));
+$commit = preg_replace('/[\s\t].*$/s', '', @file_get_contents(Yii::app()->basePath."/../.git/FETCH_HEAD"));
+$ex = explode('/', file_get_contents(".git/HEAD"));
 $branch = array_pop($ex);
 ?>
 <div id="debug-info-modal">

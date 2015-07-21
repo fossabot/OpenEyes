@@ -20,42 +20,48 @@
 
 <?php
 $form = $this->beginWidget('CActiveForm', array(
-	'id' => 'site-and-firm-form',
-	'action' => Yii::app()->createUrl('/site/changesiteandfirm'),
+    'id' => 'site-and-firm-form',
+    'action' => Yii::app()->createUrl('/site/changesiteandfirm'),
 ));
 ?>
-	<?php echo CHtml::hiddenField('returnUrl',$this->returnUrl)?>
+	<?php echo CHtml::hiddenField('returnUrl', $this->returnUrl)?>
 
-	<?php if ($this->subspecialty) {?>
-		<?php echo CHtml::hiddenField('subspecialty_id',$this->subspecialty->id)?>
+	<?php if ($this->subspecialty) {
+    ?>
+		<?php echo CHtml::hiddenField('subspecialty_id', $this->subspecialty->id)?>
 		<p>
 			To add an event to this episode you must switch to a <?php echo $this->subspecialty->name?> firm.
 		</p>
-	<?php }?>
+	<?php 
+}?>
 
-	<?php if ($this->support_services) {?>
-		<?php echo CHtml::hiddenField('support_services',1)?>
+	<?php if ($this->support_services) {
+    ?>
+		<?php echo CHtml::hiddenField('support_services', 1)?>
 		<p>
 			To add an event to this episode you must switch to a support services firm.
 		</p>
-	<?php }?>
+	<?php 
+}?>
 
-	<?php if ($this->patient) {?>
-		<?php echo CHtml::hiddenField('patient_id',$this->patient->id)?>
-	<?php }?>
+	<?php if ($this->patient) {
+    ?>
+		<?php echo CHtml::hiddenField('patient_id', $this->patient->id)?>
+	<?php 
+}?>
 
 	<?php
-	if ($errors = $form->errorSummary($model)) {
-		echo '<div>' . $errors . '</div>';
-	}
-	?>
+    if ($errors = $form->errorSummary($model)) {
+        echo '<div>' . $errors . '</div>';
+    }
+    ?>
 
 	<div class="field-row row">
 		<div class="large-3 column text-right">
 			<?php echo $form->labelEx($model, 'site_id'); ?>
 		</div>
 		<div class="large-9 column">
-			<?php echo $form->dropDownList($model,'site_id', $sites); ?>
+			<?php echo $form->dropDownList($model, 'site_id', $sites); ?>
 		</div>
 	</div>
 
@@ -64,7 +70,7 @@ $form = $this->beginWidget('CActiveForm', array(
 			<?php echo $form->labelEx($model, 'firm_id'); ?>
 		</div>
 		<div class="large-9 column">
-			<?php echo $form->dropDownList($model,'firm_id', $firms); ?>
+			<?php echo $form->dropDownList($model, 'firm_id', $firms); ?>
 		</div>
 	</div>
 
@@ -75,8 +81,8 @@ $form = $this->beginWidget('CActiveForm', array(
 	</div>
 
 <?php
-if (Yii::app()->components['user']->loginRequiredAjaxResponse){
-	Yii::app()->clientScript->registerScript('ajaxLoginRequired', '
+if (Yii::app()->components['user']->loginRequiredAjaxResponse) {
+    Yii::app()->clientScript->registerScript('ajaxLoginRequired', '
             jQuery("body").ajaxComplete(
                 function(event, request, options) {
                     if (request.responseText == "'.Yii::app()->components['user']->loginRequiredAjaxResponse.'") {

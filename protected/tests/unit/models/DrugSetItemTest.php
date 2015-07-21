@@ -19,67 +19,66 @@
  */
 class DrugSetItemTest extends CDbTestCase
 {
-	/**
-	 * @var DrugSetItem
-	 */
-	protected $model;
-	public $fixtures = array(
-		'drugsetitems' => 'DrugSetItem',
-	);
+    /**
+     * @var DrugSetItem
+     */
+    protected $model;
+    public $fixtures = array(
+        'drugsetitems' => 'DrugSetItem',
+    );
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new DrugSetItem;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new DrugSetItem;
+    }
 
-	/**
-	 * @covers DrugForm::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('DrugSetItem', get_class(DrugSetItem::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers DrugForm::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('DrugSetItem', get_class(DrugSetItem::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers DrugForm::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('drug_set_item', $this->model->tableName());
-	}
+    /**
+     * @covers DrugForm::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('drug_set_item', $this->model->tableName());
+    }
 
-	/**
-	 * @covers DrugForm::rules
-	 */
-	public function testRules()
-	{
-		$this->assertTrue($this->drugsetitems('drugsetitem1')->validate());
-		$this->assertEmpty($this->drugsetitems('drugsetitem2')->errors);
-	}
+    /**
+     * @covers DrugForm::rules
+     */
+    public function testRules()
+    {
+        $this->assertTrue($this->drugsetitems('drugsetitem1')->validate());
+        $this->assertEmpty($this->drugsetitems('drugsetitem2')->errors);
+    }
 
-	/**
-	 * @covers DrugSetItem::search
-	 */
-	public function testSearch()
-	{
-		$this->model->setAttributes($this->drugsetitems('drugsetitem1')->getAttributes());
-		$results = $this->model->search();
-		$data = $results->getData();
+    /**
+     * @covers DrugSetItem::search
+     */
+    public function testSearch()
+    {
+        $this->model->setAttributes($this->drugsetitems('drugsetitem1')->getAttributes());
+        $results = $this->model->search();
+        $data = $results->getData();
 
-		$expectedKeys = array('drugsetitem1');
-		$expectedResults = array();
-		if (!empty($expectedKeys)) {
-			foreach ($expectedKeys as $key) {
-				$expectedResults[] = $this->drugsetitems($key);
-			}
-		}
-		$this->assertEquals(1, $results->getItemCount());
-		$this->assertEquals($expectedResults, $data);
-	}
-
+        $expectedKeys = array('drugsetitem1');
+        $expectedResults = array();
+        if (!empty($expectedKeys)) {
+            foreach ($expectedKeys as $key) {
+                $expectedResults[] = $this->drugsetitems($key);
+            }
+        }
+        $this->assertEquals(1, $results->getItemCount());
+        $this->assertEquals($expectedResults, $data);
+    }
 }

@@ -111,7 +111,6 @@ require_once 'Zend/Gdata/Media/Extension/MediaTitle.php';
  */
 class Zend_Gdata_Media_Extension_MediaGroup extends Zend_Gdata_Extension
 {
-
     protected $_rootElement = 'group';
     protected $_rootNamespace = 'media';
 
@@ -562,5 +561,4 @@ class Zend_Gdata_Media_Extension_MediaGroup extends Zend_Gdata_Extension
         $this->_mediaText = $value;
         return $this;
     }
-
 }

@@ -30,16 +30,22 @@
 			<div class="panel">
 				<ul class="inline-list">
 					<li><strong>Need help?</strong></li>
-					<?php if (Yii::app()->params['helpdesk_email']) { ?>
+					<?php if (Yii::app()->params['helpdesk_email']) {
+    ?>
 						<li><?php echo Yii::app()->params['helpdesk_email'] ?></li>
-					<?php } ?>
-					<?php if (Yii::app()->params['helpdesk_phone']) { ?>
+					<?php 
+} ?>
+					<?php if (Yii::app()->params['helpdesk_phone']) {
+    ?>
 						<li><strong><?php echo Yii::app()->params['helpdesk_phone'] ?></strong></li>
-					<?php } ?>
-					<?php if (Yii::app()->params['help_url']) { ?>
+					<?php 
+} ?>
+					<?php if (Yii::app()->params['help_url']) {
+    ?>
 						<li><?php echo CHtml::link('Help Documentation', Yii::app()->params['help_url'],
-								array('target' => '_blank')) ?></li>
-					<?php } ?>
+                                array('target' => '_blank')) ?></li>
+					<?php 
+} ?>
 				</ul>
 			</div>
 		</div>

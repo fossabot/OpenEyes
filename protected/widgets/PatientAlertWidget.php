@@ -17,7 +17,8 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-class PatientAlertWidget extends CWidget {
-	public $patient;
-	public $expand = false;
+class PatientAlertWidget extends CWidget
+{
+    public $patient;
+    public $expand = false;
 }

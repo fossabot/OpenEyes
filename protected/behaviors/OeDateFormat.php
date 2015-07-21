@@ -22,35 +22,34 @@
  */
 class OeDateFormat extends CActiveRecordBehavior
 {
-	public $date_columns = array();
+    public $date_columns = array();
 
-	/**
-	 * Converts OE (e.g. 5-Dec-2011) dates to ISO 9075 before save
-	 */
-	public function beforeSave($event)
-	{
-		foreach ($this->date_columns as $date_column) {
-			$date = $this->Owner->{$date_column};
-			if (preg_match(Helper::NHS_DATE_REGEX, $date) && strtotime($date)) {
-				$this->Owner->{$date_column} = date('Y-m-d',strtotime($date));
-			}
-		}
-	}
+    /**
+     * Converts OE (e.g. 5-Dec-2011) dates to ISO 9075 before save
+     */
+    public function beforeSave($event)
+    {
+        foreach ($this->date_columns as $date_column) {
+            $date = $this->Owner->{$date_column};
+            if (preg_match(Helper::NHS_DATE_REGEX, $date) && strtotime($date)) {
+                $this->Owner->{$date_column} = date('Y-m-d', strtotime($date));
+            }
+        }
+    }
 
-	/**
-	 * Converts ISO 9075 dates to OE (e.g. 5-Dec-2011) after read from database
-	 */
-	public function afterFind($event)
-	{
-		foreach ($this->date_columns as $date_column) {
-			$date = $this->Owner->{$date_column};
-			// Don't convert blank dates
-			if ($date && $date != '0000-00-00') {
-				$this->Owner->{$date_column} = date(Helper::NHS_DATE_FORMAT, strtotime($date));
-			} else {
-				$this->Owner->{$date_column} = '';
-			}
-		}
-	}
-
+    /**
+     * Converts ISO 9075 dates to OE (e.g. 5-Dec-2011) after read from database
+     */
+    public function afterFind($event)
+    {
+        foreach ($this->date_columns as $date_column) {
+            $date = $this->Owner->{$date_column};
+            // Don't convert blank dates
+            if ($date && $date != '0000-00-00') {
+                $this->Owner->{$date_column} = date(Helper::NHS_DATE_FORMAT, strtotime($date));
+            } else {
+                $this->Owner->{$date_column} = '';
+            }
+        }
+    }
 }

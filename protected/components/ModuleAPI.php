@@ -19,50 +19,51 @@
 
 class ModuleAPI extends CApplicationComponent
 {
-	public function get($moduleName)
-	{
-		if ($module = Yii::app()->getModule($moduleName)) {
-			if ($et = EventType::model()->find('class_name = ?', array($moduleName))) {
-				// if the module has been inherited from, and has its own API, should return that instead
-				if ($child = EventType::model()->find('parent_event_type_id = ?', array($et->id))) {
-					if ($child_api = self::get($child->class_name)) {
-						return $child_api;
-					}
-				}
-			}
+    public function get($moduleName)
+    {
+        if ($module = Yii::app()->getModule($moduleName)) {
+            if ($et = EventType::model()->find('class_name = ?', array($moduleName))) {
+                // if the module has been inherited from, and has its own API, should return that instead
+                if ($child = EventType::model()->find('parent_event_type_id = ?', array($et->id))) {
+                    if ($child_api = self::get($child->class_name)) {
+                        return $child_api;
+                    }
+                }
+            }
 
-			if (file_exists(Yii::getPathOfAlias("application.modules.{$moduleName}.components") . DIRECTORY_SEPARATOR . "{$moduleName}_API.php")) {
-				$APIClass_prefix = '';
-				$ns_components = explode('\\', get_class($module));
-				if (count($ns_components) > 1) {
-					// we're namespaced so the class for the api will also be namespaced.
-					$APIClass_prefix = implode('\\', array_slice($ns_components, 0, count($ns_components)-1)) . '\components\\';
-				}
+            if (file_exists(Yii::getPathOfAlias("application.modules.{$moduleName}.components") . DIRECTORY_SEPARATOR . "{$moduleName}_API.php")) {
+                $APIClass_prefix = '';
+                $ns_components = explode('\\', get_class($module));
+                if (count($ns_components) > 1) {
+                    // we're namespaced so the class for the api will also be namespaced.
+                    $APIClass_prefix = implode('\\', array_slice($ns_components, 0, count($ns_components)-1)) . '\components\\';
+                }
 
-				$APIClass = $APIClass_prefix . $moduleName.'_API';
-				if (class_exists($APIClass)) {
-					return new $APIClass;
-				}
-			}
-		}
+                $APIClass = $APIClass_prefix . $moduleName.'_API';
+                if (class_exists($APIClass)) {
+                    return new $APIClass;
+                }
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	protected $_module_class_map;
+    protected $_module_class_map;
 
-	/**
-	 * Simple mapping function from module class name to it's id.
-	 *
-	 * @param $class_name
-	 * @return mixed
-	 */
-	public function moduleIDFromClass($class_name) {
-		if (!$this->_module_class_map) {
-			foreach (Yii::app()->getModules() as $id => $mc) {
-				$this->_module_class_map[$mc['class']] = $id;
-			}
-		}
-		return @$this->_module_class_map[$class_name];
-	}
+    /**
+     * Simple mapping function from module class name to it's id.
+     *
+     * @param $class_name
+     * @return mixed
+     */
+    public function moduleIDFromClass($class_name)
+    {
+        if (!$this->_module_class_map) {
+            foreach (Yii::app()->getModules() as $id => $mc) {
+                $this->_module_class_map[$mc['class']] = $id;
+            }
+        }
+        return @$this->_module_class_map[$class_name];
+    }
 }

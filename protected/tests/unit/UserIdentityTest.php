@@ -25,113 +25,113 @@ require_once('Zend/Ldap.php');
 
 class UserIdentityTest extends CDbTestCase
 {
-	public $fixtures = array(
-		'users' => 'User'
-	);
+    public $fixtures = array(
+        'users' => 'User'
+    );
 
-	public function testInvalidAuthSource()
-	{
-		Yii::app()->params['auth_source'] = 'INVALID_AUTH_SOURCE';
+    public function testInvalidAuthSource()
+    {
+        Yii::app()->params['auth_source'] = 'INVALID_AUTH_SOURCE';
 
-		$userIdentity = new UserIdentity(
-			'JoeBloggs',
-			'password'
-		);
+        $userIdentity = new UserIdentity(
+            'JoeBloggs',
+            'password'
+        );
 
-		try {
-			$this->assertFalse($userIdentity->authenticate());
-		} catch (Exception $e) {
-			return;
-		}
+        try {
+            $this->assertFalse($userIdentity->authenticate());
+        } catch (Exception $e) {
+            return;
+        }
 
-		$this->fail('Failed to recognise invalid auth_source.');
-	}
+        $this->fail('Failed to recognise invalid auth_source.');
+    }
 
-	public function testInvalidUser()
-	{
-		Yii::app()->params['auth_source'] = 'BASIC';
+    public function testInvalidUser()
+    {
+        Yii::app()->params['auth_source'] = 'BASIC';
 
-		$userIdentity = new UserIdentity(
-			'wronguser',
-			'password'
-		);
+        $userIdentity = new UserIdentity(
+            'wronguser',
+            'password'
+        );
 
-		$this->assertFalse($userIdentity->authenticate());
-		$this->assertEquals(
-			$userIdentity->errorCode,
-			UserIdentity::ERROR_USERNAME_INVALID
-		);
-	}
+        $this->assertFalse($userIdentity->authenticate());
+        $this->assertEquals(
+            $userIdentity->errorCode,
+            UserIdentity::ERROR_USERNAME_INVALID
+        );
+    }
 
-	public function testInvalidPassword()
-	{
-		Yii::app()->params['auth_source'] = 'BASIC';
+    public function testInvalidPassword()
+    {
+        Yii::app()->params['auth_source'] = 'BASIC';
 
-		$userIdentity = new UserIdentity(
-			'JoeBloggs',
-			'wrongpassword'
-		);
+        $userIdentity = new UserIdentity(
+            'JoeBloggs',
+            'wrongpassword'
+        );
 
-		$this->assertFalse($userIdentity->authenticate());
-		$this->assertEquals(
-			$userIdentity->errorCode,
-			UserIdentity::ERROR_PASSWORD_INVALID
-		);
-	}
+        $this->assertFalse($userIdentity->authenticate());
+        $this->assertEquals(
+            $userIdentity->errorCode,
+            UserIdentity::ERROR_PASSWORD_INVALID
+        );
+    }
 
-	public function testUserInactive()
-	{
-		Yii::app()->params['auth_source'] = 'BASIC';
+    public function testUserInactive()
+    {
+        Yii::app()->params['auth_source'] = 'BASIC';
 
-		$userIdentity = new UserIdentity(
-			'icabod',
-			'password'
-		);
+        $userIdentity = new UserIdentity(
+            'icabod',
+            'password'
+        );
 
-		$this->assertFalse($userIdentity->authenticate());
-		$this->assertEquals(
-			$userIdentity->errorCode,
-			UserIdentity::ERROR_USER_INACTIVE
-		);
-	}
+        $this->assertFalse($userIdentity->authenticate());
+        $this->assertEquals(
+            $userIdentity->errorCode,
+            UserIdentity::ERROR_USER_INACTIVE
+        );
+    }
 
-	public function testBasicLogin_WithGlobalFirmRights()
-	{
-		Yii::app()->params['auth_source'] = 'BASIC';
+    public function testBasicLogin_WithGlobalFirmRights()
+    {
+        Yii::app()->params['auth_source'] = 'BASIC';
 
-		$userIdentity = new UserIdentity(
-			'demo',
-			'demo'
-		);
+        $userIdentity = new UserIdentity(
+            'demo',
+            'demo'
+        );
 
-		$this->assertTrue((bool) $this->users['user1']['global_firm_rights']);
+        $this->assertTrue((bool) $this->users['user1']['global_firm_rights']);
 
-		$this->assertTrue($userIdentity->authenticate());
-	}
+        $this->assertTrue($userIdentity->authenticate());
+    }
 
-	public function testBasicLogin_WithoutGlobalFirmRights()
-	{
-		Yii::app()->params['auth_source'] = 'BASIC';
+    public function testBasicLogin_WithoutGlobalFirmRights()
+    {
+        Yii::app()->params['auth_source'] = 'BASIC';
 
-		$user = $this->users('user1');
-		$user->global_firm_rights = false;
-		$user->save(false);
+        $user = $this->users('user1');
+        $user->global_firm_rights = false;
+        $user->save(false);
 
-		$userIdentity = new UserIdentity(
-			'JoeBloggs',
-			'secret'
-		);
+        $userIdentity = new UserIdentity(
+            'JoeBloggs',
+            'secret'
+        );
 
-		$this->assertFalse((bool) $user->global_firm_rights);
+        $this->assertFalse((bool) $user->global_firm_rights);
 
-		$this->assertTrue($userIdentity->authenticate());
-	}
+        $this->assertTrue($userIdentity->authenticate());
+    }
 
-	public function testLdapLogin()
-	{
-		Yii::app()->params['auth_source'] = 'LDAP';
+    public function testLdapLogin()
+    {
+        Yii::app()->params['auth_source'] = 'LDAP';
 
-		$ZendLdapStub = $this->getMock('Zend_Ldap', array(), array(), '', FALSE);
+        $ZendLdapStub = $this->getMock('Zend_Ldap', array(), array(), '', false);
 
         $ZendLdapStub->expects($this->any())
              ->method('bind')
@@ -140,24 +140,24 @@ class UserIdentityTest extends CDbTestCase
         $ZendLdapStub->expects($this->any())
              ->method('getEntry')
              ->will($this->returnValue(array(
-				 'givenname' => array('stub'),
-				 'sn' => array('stub'),
-				 'mail' => array('stub@stub.com')
-			 )));
+                 'givenname' => array('stub'),
+                 'sn' => array('stub'),
+                 'mail' => array('stub@stub.com')
+             )));
 
-		$userIdentity = $this->getMock('UserIdentity', array('getLdap'),array('JoeBloggs', 'password'));
-		$userIdentity->expects($this->any())
+        $userIdentity = $this->getMock('UserIdentity', array('getLdap'), array('JoeBloggs', 'password'));
+        $userIdentity->expects($this->any())
                 ->method('getLdap')
                 ->will($this->returnValue($ZendLdapStub));
 
-		$this->assertTrue($userIdentity->authenticate());
-	}
+        $this->assertTrue($userIdentity->authenticate());
+    }
 
-	public function testInvalidLdapLogin()
-	{
-		Yii::app()->params['auth_source'] = 'LDAP';
+    public function testInvalidLdapLogin()
+    {
+        Yii::app()->params['auth_source'] = 'LDAP';
 
-		$ZendLdapStub = $this->getMock('Zend_Ldap', array(), array(), '', FALSE);
+        $ZendLdapStub = $this->getMock('Zend_Ldap', array(), array(), '', false);
         $ZendLdapStub->expects($this->any())
              ->method('bind')
              ->will($this->throwException(new Exception));
@@ -165,33 +165,33 @@ class UserIdentityTest extends CDbTestCase
         $ZendLdapStub->expects($this->any())
              ->method('getEntry')
              ->will($this->returnValue(array(
-				 'givenname' => array('stub'),
-				 'sn' => array('stub'),
-				 'mail' => array('stub@stub.com')
-			 )));
+                 'givenname' => array('stub'),
+                 'sn' => array('stub'),
+                 'mail' => array('stub@stub.com')
+             )));
 
-		$userIdentity = $this->getMock('UserIdentity',array('getLdap'), array('JoeBloggs', 'password'));
-		$userIdentity->expects($this->any())
+        $userIdentity = $this->getMock('UserIdentity', array('getLdap'), array('JoeBloggs', 'password'));
+        $userIdentity->expects($this->any())
                 ->method('getLdap')
                 ->will($this->returnValue($ZendLdapStub));
 
-		$this->assertFalse($userIdentity->authenticate());
-		$this->assertEquals(
-			$userIdentity->errorCode,
-			UserIdentity::ERROR_USERNAME_INVALID
-		);
-	}
+        $this->assertFalse($userIdentity->authenticate());
+        $this->assertEquals(
+            $userIdentity->errorCode,
+            UserIdentity::ERROR_USERNAME_INVALID
+        );
+    }
 
-	public function testGetId()
-	{
-		Yii::app()->params['auth_source'] = 'BASIC';
+    public function testGetId()
+    {
+        Yii::app()->params['auth_source'] = 'BASIC';
 
-		$userIdentity = new UserIdentity(
-			'JoeBloggs',
-			'secret'
-		);
+        $userIdentity = new UserIdentity(
+            'JoeBloggs',
+            'secret'
+        );
 
-		$this->assertTrue($userIdentity->authenticate());
-		$this->assertEquals($this->users['user1']['id'], $userIdentity->getId());
-	}
+        $this->assertTrue($userIdentity->authenticate());
+        $this->assertEquals($this->users['user1']['id'], $userIdentity->getId());
+    }
 }

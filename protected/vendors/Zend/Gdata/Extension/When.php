@@ -42,7 +42,6 @@ require_once 'Zend/Gdata/Extension/Reminder.php';
  */
 class Zend_Gdata_Extension_When extends Zend_Gdata_Extension
 {
-
     protected $_rootElement = 'when';
     protected $_reminders = array();
     protected $_startTime = null;
@@ -114,9 +113,9 @@ class Zend_Gdata_Extension_When extends Zend_Gdata_Extension
 
     public function __toString()
     {
-        if ($this->_valueString)
+        if ($this->_valueString) {
             return $this->_valueString;
-        else {
+        } else {
             return 'Starts: ' . $this->getStartTime() . ' ' .
                    'Ends: ' .  $this->getEndTime();
         }
@@ -165,5 +164,4 @@ class Zend_Gdata_Extension_When extends Zend_Gdata_Extension
         $this->_reminders = $value;
         return $this;
     }
-
 }

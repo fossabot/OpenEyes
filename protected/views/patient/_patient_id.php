@@ -18,14 +18,18 @@
  */
 ?>
 <?php
-	$clinical = $this->checkAccess('OprnViewClinical');
-	$warnings = $this->patient->getWarnings($clinical);
+    $clinical = $this->checkAccess('OprnViewClinical');
+    $warnings = $this->patient->getWarnings($clinical);
 ?>
 
 <div class="panel patient<?php if ($warnings): echo " warning"; endif; ?>" id="patientID">
 	<div class="patient-details">
-		<?php echo CHtml::link($this->patient->getDisplayName(),array('/patient/view/'.$this->patient->id)) ?>
-		<span class="patient-age">(<?php if ($this->patient->isDeceased()) { ?>Deceased<?php } else { echo $this->patient->getAge(); } ?>)</span>
+		<?php echo CHtml::link($this->patient->getDisplayName(), array('/patient/view/'.$this->patient->id)) ?>
+		<span class="patient-age">(<?php if ($this->patient->isDeceased()) {
+    ?>Deceased<?php 
+} else {
+    echo $this->patient->getAge();
+} ?>)</span>
 	</div>
 	<div class="hospital-number">
 		<span>
@@ -50,31 +54,34 @@
 			</span>
 
 			<?php
-			$widgets = Yii::app()->params['patient_summary_id_widgets'];
-			if (is_array($widgets)) {
-				foreach ($widgets as $w) {
-					$this->widget($w['class'], array(
-									'patient' => $this->patient,
-							));
-				}
-			}
-			?>
+            $widgets = Yii::app()->params['patient_summary_id_widgets'];
+            if (is_array($widgets)) {
+                foreach ($widgets as $w) {
+                    $this->widget($w['class'], array(
+                                    'patient' => $this->patient,
+                            ));
+                }
+            }
+            ?>
 
 			<!-- Warnings -->
 			<?php if (is_array($warnings)) {
-				$msgs = array();
-				foreach ($warnings as $warn) {
-					$msgs[] = $warn['short_msg'];
-				}?>
+    $msgs = array();
+    foreach ($warnings as $warn) {
+        $msgs[] = $warn['short_msg'];
+    }
+    ?>
 				<span class="warning">
 					<span class="icon icon-alert icon-alert-warning"></span>
-					<span class="messages"><?php echo implode(', ', $msgs); ?></span>
+					<span class="messages"><?php echo implode(', ', $msgs);
+    ?></span>
 				</span>
-			<?php } ?>
+			<?php 
+} ?>
 
 		</div>
 		<div class="large-4 column text-right patient-summary-anchor">
-			<?php echo CHtml::link('Patient Summary',array('/patient/view/'.$this->patient->id)); ?>
+			<?php echo CHtml::link('Patient Summary', array('/patient/view/'.$this->patient->id)); ?>
 		</div>
 	</div>
 </div>

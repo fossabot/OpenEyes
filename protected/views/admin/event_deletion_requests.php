@@ -25,12 +25,12 @@
 		</div>
 		<div class="large-4 column">
 			<?php
-			$form = $this->beginWidget('BaseEventTypeCActiveForm',array(
-				'id' => 'searchform',
-				'enableAjaxValidation' => false,
-				'focus' => '#search',
-				'action' => Yii::app()->createUrl('/admin/eventDeletionRequests'),
-			))?>
+            $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+                'id' => 'searchform',
+                'enableAjaxValidation' => false,
+                'focus' => '#search',
+                'action' => Yii::app()->createUrl('/admin/eventDeletionRequests'),
+            ))?>
 			<?php $this->endWidget()?>
 		</div>
 	</div>
@@ -48,9 +48,10 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($events as $i => $event) {?>
+                foreach ($events as $i => $event) {
+                    ?>
 					<tr data-id="<?php echo $event->id?>" data-uri="admin/viewDeletionRequest/<?php echo $event->id?>">
-						<td><?php echo $event->NHSDate('last_modified_date')?> <?php echo substr($event->last_modified_date,11,5)?></td>
+						<td><?php echo $event->NHSDate('last_modified_date')?> <?php echo substr($event->last_modified_date, 11, 5)?></td>
 						<td><?php echo $event->usermodified->fullName?></td>
 						<td><a href="<?php echo Yii::app()->createUrl('/'.$event->eventType->class_name.'/default/view/'.$event->id)?>"><?php echo $event->eventType->name?> <?php echo $event->id?></a></td>
 						<td><?php echo $event->delete_reason?></td>
@@ -59,7 +60,8 @@
 							<?php echo EventAction::button('Reject', 'reject', null, array('class' => 'small'))->toHtml()?>
 						</td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 		</table>
 	</form>

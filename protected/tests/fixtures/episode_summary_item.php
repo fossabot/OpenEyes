@@ -14,16 +14,16 @@
  */
 
 return array(
-	'foo' => array(
-		'event_type_id' => 1002,
-		'name' => 'Foo',
-	),
-	'bar' => array(
-		'event_type_id' => 1002,
-		'name' => 'Bar',
-	),
-	'baz' => array(
-		'event_type_id' => 1002,
-		'name' => 'Baz',
-	),
+    'foo' => array(
+        'event_type_id' => 1002,
+        'name' => 'Foo',
+    ),
+    'bar' => array(
+        'event_type_id' => 1002,
+        'name' => 'Bar',
+    ),
+    'baz' => array(
+        'event_type_id' => 1002,
+        'name' => 'Baz',
+    ),
 );

@@ -45,7 +45,9 @@ class Zend_Ldap_Converter
             $char = substr($string, $i, 1);
             if (ord($char)<32) {
                 $hex = dechex(ord($char));
-                if (strlen($hex) == 1) $hex = '0' . $hex;
+                if (strlen($hex) == 1) {
+                    $hex = '0' . $hex;
+                }
                 $string = str_replace($char, '\\' . $hex, $string);
             }
         }

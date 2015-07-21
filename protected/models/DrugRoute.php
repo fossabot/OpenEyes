@@ -27,44 +27,44 @@
  */
 class DrugRoute extends BaseActiveRecordVersioned
 {
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'drug_route';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'drug_route';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-			array('name', 'required'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+            array('name', 'required'),
+        );
+    }
 
-	public function behaviors()
-	{
-		return array(
-			'LookupTable' => 'LookupTable',
-		);
-	}
+    public function behaviors()
+    {
+        return array(
+            'LookupTable' => 'LookupTable',
+        );
+    }
 
-	/**
-	 * Get active options for this route
-	 *
-	 * @param int $id Also retrieve the option matching this id if passed
-	 * @return DrugRouteOption[]
-	 */
-	public function getOptions($id = null)
-	{
-		$crit = new CDbCriteria;
-		$crit->compare('active', true);
-		$crit->compare('id', $id, false, 'OR');
-		$crit->compare('drug_route_id', $this->id);
+    /**
+     * Get active options for this route
+     *
+     * @param int $id Also retrieve the option matching this id if passed
+     * @return DrugRouteOption[]
+     */
+    public function getOptions($id = null)
+    {
+        $crit = new CDbCriteria;
+        $crit->compare('active', true);
+        $crit->compare('id', $id, false, 'OR');
+        $crit->compare('drug_route_id', $this->id);
 
-		return DrugRouteOption::model()->findAll($crit);
-	}
+        return DrugRouteOption::model()->findAll($crit);
+    }
 }

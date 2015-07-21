@@ -15,18 +15,18 @@
 
 abstract class EpisodeSummaryWidget extends CWidget
 {
-	public $episode;
-	public $event_type;
+    public $episode;
+    public $event_type;
 
-	/**
-	 * Can this summary block be collapsed?
-	 * @var boolean
-	 */
-	public $collapsible = false;
+    /**
+     * Can this summary block be collapsed?
+     * @var boolean
+     */
+    public $collapsible = false;
 
-	/**
-	 * Is this summary block open on page load? This is only used for collapsible blocks.
-	 * @var boolean
-	 */
-	public $openOnPageLoad = false;
+    /**
+     * Is this summary block open on page load? This is only used for collapsible blocks.
+     * @var boolean
+     */
+    public $openOnPageLoad = false;
 }

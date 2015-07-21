@@ -33,7 +33,8 @@
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach (AnaestheticAgent::model()->findAll(array('order'=>'display_order asc')) as $i => $anaestheticAgent) {?>
+			<?php foreach (AnaestheticAgent::model()->findAll(array('order'=>'display_order asc')) as $i => $anaestheticAgent) {
+    ?>
 				<tr>
 					<td><?php echo $anaestheticAgent->name?></td>
 					<td>
@@ -42,7 +43,8 @@
 						<a href="/admin/deleteAnaestheticAgent/<?= $anaestheticAgent->id ?>">Delete</a>
 					</td>
 				</tr>
-			<?php }?>
+			<?php 
+}?>
 			</tbody>
 			<tfoot class="pagination-container">
 			<tr>

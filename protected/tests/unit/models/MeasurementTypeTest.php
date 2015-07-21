@@ -15,15 +15,15 @@
 
 class MeasurementTypeTest extends CDbTestCase
 {
-	public $fixtures = array(
-		'measurement_type' => 'MeasurementType',
-	);
+    public $fixtures = array(
+        'measurement_type' => 'MeasurementType',
+    );
 
-	public function testfindByClassName()
-	{
-		$this->assertEquals(
-			$this->measurement_type('height'),
-			MeasurementType::model()->findByClassName('MeasurementTest_HeightMeasurement')
-		);
-	}
+    public function testfindByClassName()
+    {
+        $this->assertEquals(
+            $this->measurement_type('height'),
+            MeasurementType::model()->findByClassName('MeasurementTest_HeightMeasurement')
+        );
+    }
 }

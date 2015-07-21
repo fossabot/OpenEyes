@@ -23,7 +23,8 @@
  * @property boolean $result was the result correct or incorrect
  * @property mixed $tables array containing list of tables and total rows exported, returns null by default
  */
-class OEMigrationResult {
-	public $result = false;
-	public $tables = null;
+class OEMigrationResult
+{
+    public $result = false;
+    public $tables = null;
 }

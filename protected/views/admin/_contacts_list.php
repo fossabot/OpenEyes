@@ -34,7 +34,8 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($contacts['contacts'] as $i => $contact) {?>
+                foreach ($contacts['contacts'] as $i => $contact) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $contact->id?>" data-uri="admin/editContact?contact_id=<?php echo $contact->id?>">
 						<td><?php echo $contact->id?></td>
 						<td><?php echo $contact->title?></td>
@@ -43,15 +44,16 @@
 						<td><?php echo $contact->qualifications?></td>
 						<td><?php echo $contact->label ? $contact->label->name : 'None'?></td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 			<tfoot class="pagination-container">
 				<tr>
 					<td colspan="6" class="clearfix">
 						<?php echo EventAction::button('Add', 'add', null, array('class' => 'small'))->toHtml()?>
-						<?php echo $this->renderPartial('//admin/_pagination',array(
-							'pagination' => $contacts['pagination'],
-						))?>
+						<?php echo $this->renderPartial('//admin/_pagination', array(
+                            'pagination' => $contacts['pagination'],
+                        ))?>
 					</td>
 				</tr>
 			</tfoot>

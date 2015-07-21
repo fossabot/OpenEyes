@@ -37,61 +37,61 @@ return array(
                          'drugfrequency1' => array(
                                                   'id'=> 1,
                                                   'name' => '5/day',
-		  'long_name' => 'five times a day',
-		  'display_order' => 0
+          'long_name' => 'five times a day',
+          'display_order' => 0
                          ),
                          'drugfrequency2' => array(
                                                   'id'=> 2,
                                                   'name' => '2 hourly' ,
-		  'long_name' => 'every two hours',
-		  'display_order' => 0
+          'long_name' => 'every two hours',
+          'display_order' => 0
                          ),
                          'drugfrequency3' => array(
                                                   'id'=> 3,
                                                   'name' => 'bd',
-		  'long_name' => 'twice a day',
-		  'display_order' => 0
+          'long_name' => 'twice a day',
+          'display_order' => 0
                          ),
-	  'drugfrequency4' => array(
+      'drugfrequency4' => array(
                                                   'id'=> 4,
                                                   'name' => 'hourly',
-		  'long_name' => 'every hour',
-		  'display_order' => 0
+          'long_name' => 'every hour',
+          'display_order' => 0
                          ),
                          'drugfrequency5' => array(
                                                   'id'=> 5,
                                                   'name' => 'nocte' ,
-		  'long_name' => 'nightly',
-		  'display_order' => 0
+          'long_name' => 'nightly',
+          'display_order' => 0
                          ),
                          'drugfrequency6' => array(
                                                   'id'=> 6,
                                                   'name' => 'od',
-		  'long_name' => 'once a day',
-		  'display_order' => 0
+          'long_name' => 'once a day',
+          'display_order' => 0
                          ),
-	 'drugfrequency7' => array(
+     'drugfrequency7' => array(
                                                   'id'=> 7,
                                                   'name' => 'prn',
-		  'long_name' => 'as directed',
-		  'display_order' => 0
+          'long_name' => 'as directed',
+          'display_order' => 0
                          ),
                          'drugfrequency8' => array(
                                                   'id'=> 8,
                                                   'name' => 'qid' ,
-		  'long_name' => 'four times a day',
-		  'display_order' => 0
+          'long_name' => 'four times a day',
+          'display_order' => 0
                          ),
                          'drugfrequency9' => array(
                                                   'id'=> 9,
                                                   'name' => 'tid',
-		  'long_name' => 'three times a day',
-		  'display_order' => 0
+          'long_name' => 'three times a day',
+          'display_order' => 0
                          ),
-	  'drugfrequency10' => array(
+      'drugfrequency10' => array(
                                                   'id'=> 10,
                                                   'name' => '1/week',
-		  'long_name' => 'once a week',
-		  'display_order' => 0
-                         ), 
+          'long_name' => 'once a week',
+          'display_order' => 0
+                         ),
 );

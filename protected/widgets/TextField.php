@@ -19,5 +19,5 @@
 
 class TextField extends BaseFieldWidget
 {
-	public $links = array();
+    public $links = array();
 }

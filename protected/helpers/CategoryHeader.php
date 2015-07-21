@@ -18,54 +18,54 @@
  */
 class CategoryHeader
 {
-	static public function load()
-	{
-		return self::parse(@$_SERVER['HTTP_CATEGORY']);
-	}
+    public static function load()
+    {
+        return self::parse(@$_SERVER['HTTP_CATEGORY']);
+    }
 
-	/**
-	 * @param string $header
-	 */
-	static public function parse($header)
-	{
-		$categories = array();
+    /**
+     * @param string $header
+     */
+    public static function parse($header)
+    {
+        $categories = array();
 
-		if (!empty($header)) {
-			foreach (preg_split('/,(?=(?:[^"]*"[^"]*")*[^"]*$)/', $header) as $category) {
-				$bits = preg_split('/;(?=(?:[^"]*"[^"]*")*[^"]*$)/', $category);
+        if (!empty($header)) {
+            foreach (preg_split('/,(?=(?:[^"]*"[^"]*")*[^"]*$)/', $header) as $category) {
+                $bits = preg_split('/;(?=(?:[^"]*"[^"]*")*[^"]*$)/', $category);
 
-				$term = trim(array_shift($bits));
-				$scheme = "";
+                $term = trim(array_shift($bits));
+                $scheme = "";
 
-				foreach ($bits as $bit) {
-					if (preg_match('/scheme=(.*)/', $bit, $m)) {
-						$scheme = trim($m[1], '"');
-					}
-				}
+                foreach ($bits as $bit) {
+                    if (preg_match('/scheme=(.*)/', $bit, $m)) {
+                        $scheme = trim($m[1], '"');
+                    }
+                }
 
-				$categories[$scheme][] = $term;
-			}
-		}
+                $categories[$scheme][] = $term;
+            }
+        }
 
-		return new self($categories);
-	}
+        return new self($categories);
+    }
 
-	protected $categories;
+    protected $categories;
 
-	/**
-	 * @param array $categories
-	 */
-	public function __construct(array $categories)
-	{
-		$this->categories = $categories;
-	}
+    /**
+     * @param array $categories
+     */
+    public function __construct(array $categories)
+    {
+        $this->categories = $categories;
+    }
 
-	/**
-	 * @param string $scheme
-	 * @return array
-	 */
-	public function get($scheme = "")
-	{
-		return isset($this->categories[$scheme]) ? $this->categories[$scheme] : array();
-	}
+    /**
+     * @param string $scheme
+     * @return array
+     */
+    public function get($scheme = "")
+    {
+        return isset($this->categories[$scheme]) ? $this->categories[$scheme] : array();
+    }
 }

@@ -38,12 +38,14 @@
 <div class="view">
 <?php
 foreach ($this->tableSchema->columns as $column) {
-	if($column->isPrimaryKey)
-		continue;
-	if(in_array($column->name, $ignore))
-		continue;
-	echo "\t<b><?php echo CHtml::encode(\$data->getAttributeLabel('{$column->name}')); ?>:</b>\n";
-	echo "\t<?php echo CHtml::encode(\$data->{$column->name}); ?>\n\t<br />\n";
+    if ($column->isPrimaryKey) {
+        continue;
+    }
+    if (in_array($column->name, $ignore)) {
+        continue;
+    }
+    echo "\t<b><?php echo CHtml::encode(\$data->getAttributeLabel('{$column->name}')); ?>:</b>\n";
+    echo "\t<?php echo CHtml::encode(\$data->{$column->name}); ?>\n\t<br />\n";
 }
 ?>
 </div>

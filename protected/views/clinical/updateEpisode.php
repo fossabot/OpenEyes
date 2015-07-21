@@ -23,19 +23,19 @@ $this->event_actions[] = EventAction::link('Cancel', Yii::app()->createUrl('/pat
 $this->event_actions[] = EventAction::button('Save', 'save', array('id' => 'episode_save', 'level' => 'save'));
 
 if ($episode->diagnosis) {
-	$eye = $episode->eye ? $episode->eye->name : 'None';
-	$diagnosis = $episode->diagnosis ? $episode->diagnosis->term : 'none';
+    $eye = $episode->eye ? $episode->eye->name : 'None';
+    $diagnosis = $episode->diagnosis ? $episode->diagnosis->term : 'none';
 } else {
-	$eye = 'No diagnosis';
-	$diagnosis = 'No diagnosis';
+    $eye = 'No diagnosis';
+    $diagnosis = 'No diagnosis';
 }
 
-$episode->audit('episode summary','view');
+$episode->audit('episode summary', 'view');
 
 $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'update-episode',
-		'enableAjaxValidation'=>false,
-		'action'=>array('patient/updateepisode/'.$episode->id),
+        'id'=>'update-episode',
+        'enableAjaxValidation'=>false,
+        'action'=>array('patient/updateepisode/'.$episode->id),
 ));
 ?>
 
@@ -44,7 +44,8 @@ $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
 		<h3><?php echo $episode->firm->serviceSubspecialtyAssignment->subspecialty->name?></h3>
 	</div>
 
-	<?php if ($error) {?>
+	<?php if ($error) {
+    ?>
 		<div id="clinical-create_es_" class="alert-box alert with-icon">
 			<p>Please fix the following input errors:</p>
 			<ul>
@@ -53,40 +54,43 @@ $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
 				</li>
 			</ul>
 		</div>
-	<?php }?>
+	<?php 
+}?>
 
 	<section class="element element-data">
 		<h3 class="data-title">Principal diagnosis:</h3>
 		<div class="row">
 			<div class="large-5 column end">
 				<?php
-				$form->widget('application.widgets.DiagnosisSelection',array(
-						'field' => 'disorder_id',
-						'options' => CommonOphthalmicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
-						'code' => 130,
-						'layout' => 'episodeSummary',
-				));
-				?>
+                $form->widget('application.widgets.DiagnosisSelection', array(
+                        'field' => 'disorder_id',
+                        'options' => CommonOphthalmicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
+                        'code' => 130,
+                        'layout' => 'episodeSummary',
+                ));
+                ?>
 			</div>
 		</div>
 	</section>
 
 	<?php
-	if (!empty($_POST)) {
-		$eye_id = @$_POST['eye_id'];
-	} else {
-		$eye_id = $episode->eye_id;
-	}
-	?>
+    if (!empty($_POST)) {
+        $eye_id = @$_POST['eye_id'];
+    } else {
+        $eye_id = $episode->eye_id;
+    }
+    ?>
 	<section class="element element-data">
 		<fieldset>
 			<legend class="data-title">Principal eye:</legend>
-			<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $eye) {?>
+			<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $eye) {
+    ?>
 				<label class="inline">
-					<?php echo CHtml::radioButton('eye_id', ($eye->id == $eye_id), array('value' => $eye->id,'class'=>'episodeSummaryRadio'))?>
+					<?php echo CHtml::radioButton('eye_id', ($eye->id == $eye_id), array('value' => $eye->id, 'class'=>'episodeSummaryRadio'))?>
 					<?php echo $eye->name?>
 				</label>
-			<?php }?>
+			<?php 
+}?>
 		</fieldset>
 	</section>
 
@@ -117,17 +121,17 @@ $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
 	</section>
 
 	<?php
-	try {
-		echo $this->renderPartial('/clinical/episodeSummaries/' . $episode->firm->serviceSubspecialtyAssignment->subspecialty_id, array('episode' => $episode));
-	} catch (Exception $e) {
-		// If there is no extra episode summary detail page for this subspecialty we don't care
-	}
-	?>
+    try {
+        echo $this->renderPartial('/clinical/episodeSummaries/' . $episode->firm->serviceSubspecialtyAssignment->subspecialty_id, array('episode' => $episode));
+    } catch (Exception $e) {
+        // If there is no extra episode summary detail page for this subspecialty we don't care
+    }
+    ?>
 
 	<div class="metadata">
 		<span class="info">
 			<?php echo $episode->firm->serviceSubspecialtyAssignment->subspecialty->name?>: created by <span class="user"><?php echo $episode->user->fullName?></span>
-			on <?php echo $episode->NHSDate('created_date')?> at <?php echo substr($episode->created_date,11,5)?>
+			on <?php echo $episode->NHSDate('created_date')?> at <?php echo substr($episode->created_date, 11, 5)?>
 		</span>
 	</div>
 
@@ -146,11 +150,12 @@ $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
 	<div class="metadata">
 		<span class="info">
 			Status last changed by <span class="user"><?php echo $episode->usermodified->fullName?></span>
-			on <?php echo $episode->NHSDate('last_modified_date')?> at <?php echo substr($episode->last_modified_date,11,5)?>
+			on <?php echo $episode->NHSDate('last_modified_date')?> at <?php echo substr($episode->last_modified_date, 11, 5)?>
 		</span>
 	</div>
 
-	<?php if ($error) {?>
+	<?php if ($error) {
+    ?>
 		<div id="clinical-create_es_" class="alert-box alert with-icon">
 			<p>Please fix the following input errors:</p>
 			<ul>
@@ -159,7 +164,8 @@ $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
 				</li>
 			</ul>
 		</div>
-	<?php }?>
+	<?php 
+}?>
 
 <?php $this->endWidget()?>
 
@@ -194,7 +200,8 @@ $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
 	});
 </script>
 
-<?php if (empty($episode->end_date)) {?>
+<?php if (empty($episode->end_date)) {
+    ?>
 	<div style="text-align:right; position:relative;">
 		<!--button id="close-episode" type="submit" value="submit" class="wBtn_close-episode ir">Close Episode</button-->
 
@@ -244,4 +251,5 @@ $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
 			$('#update-episode').submit();
 		});
 	</script>
-<?php }?>
+<?php 
+}?>

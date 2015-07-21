@@ -19,34 +19,34 @@
 
 class CheckBoxArray extends BaseFieldWidget
 {
-	public $fields;
-	public $columns = array();
-	public $checked = array();
-	public $labeltext;
-	public $options;
+    public $fields;
+    public $columns = array();
+    public $checked = array();
+    public $labeltext;
+    public $options;
 
-	public function init()
-	{
-		foreach ($this->fields as $field) {
-			if (empty($_POST)) {
-				if (isset($this->element->{$field})) {
-					$this->checked[$field] = (boolean) $this->element->{$field};
-				}
-			} else {
-				$this->checked[$field] = (boolean) @$_POST[get_class($this->element)][$field];
-			}
-		}
+    public function init()
+    {
+        foreach ($this->fields as $field) {
+            if (empty($_POST)) {
+                if (isset($this->element->{$field})) {
+                    $this->checked[$field] = (boolean) $this->element->{$field};
+                }
+            } else {
+                $this->checked[$field] = (boolean) @$_POST[get_class($this->element)][$field];
+            }
+        }
 
-		if (isset($this->options['column_length'])) {
-			$column = 0;
+        if (isset($this->options['column_length'])) {
+            $column = 0;
 
-			foreach ($this->fields as $field) {
-				$this->columns[$column][] = $field;
+            foreach ($this->fields as $field) {
+                $this->columns[$column][] = $field;
 
-				if (count($this->columns[$column]) >= $this->options['column_length']) {
-					$column++;
-				}
-			}
-		}
-	}
+                if (count($this->columns[$column]) >= $this->options['column_length']) {
+                    $column++;
+                }
+            }
+        }
+    }
 }

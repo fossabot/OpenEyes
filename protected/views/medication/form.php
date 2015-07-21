@@ -13,7 +13,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-$form = $this->beginWidget('FormLayout', array('layoutColumns' => array('label' => 3, 'field' => 9),));
+$form = $this->beginWidget('FormLayout', array('layoutColumns' => array('label' => 3, 'field' => 9), ));
 
 ?>
 <fieldset class="field-row">
@@ -34,30 +34,30 @@ $form = $this->beginWidget('FormLayout', array('layoutColumns' => array('label' 
 			<div class="field-row data-value" id="medication_drug_name"><?= CHtml::encode($medication->getDrugLabel()) ?></div>
 
 			<div class="field-row">
-				<?= CHtml::dropDownList('drug_select','', Drug::model()->listBySubspecialtyWithCommonMedications($firm->getSubspecialtyID()), array('empty' => '- Select -'))?>
+				<?= CHtml::dropDownList('drug_select', '', Drug::model()->listBySubspecialtyWithCommonMedications($firm->getSubspecialtyID()), array('empty' => '- Select -'))?>
 			</div>
 
 			<div class="field-row">
 				<div class="label"></div>
 				<?php
 
-				$this->widget('zii.widgets.jui.CJuiAutoComplete',
-					array(
-						'name' => 'drug_autocomplete',
-						'source' => new CJavaScriptExpression(
-							'function (req, res) { $.getJSON(' . json_encode($this->createUrl('medication/finddrug')) . ', req, res); }'
-						),
-						'options' => array(
-							'minLength' => 3,
-							'focus' => "js:function(e,ui) {
+                $this->widget('zii.widgets.jui.CJuiAutoComplete',
+                    array(
+                        'name' => 'drug_autocomplete',
+                        'source' => new CJavaScriptExpression(
+                            'function (req, res) { $.getJSON(' . json_encode($this->createUrl('medication/finddrug')) . ', req, res); }'
+                        ),
+                        'options' => array(
+                            'minLength' => 3,
+                            'focus' => "js:function(e,ui) {
 								$('#drug_autocomplete').val(ui.item.label);
 								e.preventDefault();
 							}"
-						),
-						'htmlOptions' => array('placeholder' => 'or search'),
-					)
-				);
-				?>
+                        ),
+                        'htmlOptions' => array('placeholder' => 'or search'),
+                    )
+                );
+                ?>
 			</div>
 		</div>
 	</div>
@@ -67,7 +67,9 @@ $form = $this->beginWidget('FormLayout', array('layoutColumns' => array('label' 
 	<?php $form->widget('application.widgets.DropDownList', array('element' => $medication, 'field' => 'route_id', 'data' => 'DrugRoute', 'htmlOptions' => array('name' => 'route_id', 'empty' => '- Select -'))); ?>
 
 	<div id="medication_route_option">
-		<?php if ($medication->route) $this->renderPartial('route_option', array('medication' => $medication, 'route' => $medication->route)); ?>
+		<?php if ($medication->route) {
+    $this->renderPartial('route_option', array('medication' => $medication, 'route' => $medication->route));
+} ?>
 	</div>
 
 	<?php $form->widget('application.widgets.DropDownList', array('element' => $medication, 'field' => 'frequency_id', 'data' => 'DrugFrequency', 'htmlOptions' => array('name' => 'frequency_id', 'empty' => '- Select -'))); ?>
@@ -88,10 +90,10 @@ $form = $this->beginWidget('FormLayout', array('layoutColumns' => array('label' 
 		<input type="hidden" name="end_date">
 		<?php
 
-		$this->renderPartial('/patient/_fuzzy_date', array('form' => $form, 'date' => $medication->end_date, 'class' => 'medication_end_date', 'label' => 'Date to'));
-		$this->renderPartial('stop_reason', array('form' => $form, 'medication' => $medication));
+        $this->renderPartial('/patient/_fuzzy_date', array('form' => $form, 'date' => $medication->end_date, 'class' => 'medication_end_date', 'label' => 'Date to'));
+        $this->renderPartial('stop_reason', array('form' => $form, 'medication' => $medication));
 
-		?>
+        ?>
 	</div>
 
 	<div id="medication_form_errors" class="alert-box alert hide"></div>

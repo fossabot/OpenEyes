@@ -18,115 +18,145 @@
  */
 class AuthRules
 {
-	/**
-	 * @param Firm $firm
-	 * @param Episode $episode
-	 * @return boolean
-	 */
-	public function canEditEpisode(Firm $firm, Episode $episode)
-	{
-		if ($episode->legacy) return false;
+    /**
+     * @param Firm $firm
+     * @param Episode $episode
+     * @return boolean
+     */
+    public function canEditEpisode(Firm $firm, Episode $episode)
+    {
+        if ($episode->legacy) {
+            return false;
+        }
 
-		if ($episode->support_services) return $firm->isSupportServicesFirm();
+        if ($episode->support_services) {
+            return $firm->isSupportServicesFirm();
+        }
 
-		return ($firm->getSubspecialtyID() === $episode->getSubspecialtyID());
-	}
+        return ($firm->getSubspecialtyID() === $episode->getSubspecialtyID());
+    }
 
-	/**
-	 * @param Firm $firm
-	 * @param Episode $episode
-	 * @param EventType $event_type
-	 * @return boolean
-	 */
-	public function canCreateEvent(Firm $firm = null, Episode $episode = null, EventType $event_type = null)
-	{
-		if ($event_type) {
-			if ($event_type->disabled) return false;
+    /**
+     * @param Firm $firm
+     * @param Episode $episode
+     * @param EventType $event_type
+     * @return boolean
+     */
+    public function canCreateEvent(Firm $firm = null, Episode $episode = null, EventType $event_type = null)
+    {
+        if ($event_type) {
+            if ($event_type->disabled) {
+                return false;
+            }
 
-			if (!$event_type->support_services && !$firm->getSubspecialtyID()) {
-				// Can't create a non-support service event for a support-service firm
-				return false;
-			}
-		}
+            if (!$event_type->support_services && !$firm->getSubspecialtyID()) {
+                // Can't create a non-support service event for a support-service firm
+                return false;
+            }
+        }
 
-		if ($firm && $episode) {
-			return $this->canEditEpisode($firm, $episode);
-		}
+        if ($firm && $episode) {
+            return $this->canEditEpisode($firm, $episode);
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * @param Firm $firm
-	 * @param Event $event
-	 * @return boolean
-	 */
-	public function canEditEvent(Firm $firm, Event $event)
-	{
-		if ($event->delete_pending) return false;
+    /**
+     * @param Firm $firm
+     * @param Event $event
+     * @return boolean
+     */
+    public function canEditEvent(Firm $firm, Event $event)
+    {
+        if ($event->delete_pending) {
+            return false;
+        }
 
-		if (!$this->canModifyEvent($firm, $event)) return false;
-		if (!$this->isEventUnlocked($event)) return false;
+        if (!$this->canModifyEvent($firm, $event)) {
+            return false;
+        }
+        if (!$this->isEventUnlocked($event)) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * @param User $user
-	 * @param Firm $firm
-	 * @param Event $event
-	 * @return boolean
-	 */
-	public function canDeleteEvent(User $user, Firm $firm, Event $event)
-	{
-		if (!($event->created_user_id == $user->id || Yii::app()->user->checkAccess('admin'))) return false;
+    /**
+     * @param User $user
+     * @param Firm $firm
+     * @param Event $event
+     * @return boolean
+     */
+    public function canDeleteEvent(User $user, Firm $firm, Event $event)
+    {
+        if (!($event->created_user_id == $user->id || Yii::app()->user->checkAccess('admin'))) {
+            return false;
+        }
 
-		if (!$this->canModifyEvent($firm, $event)) return false;
-		if (!$this->isEventUnlocked($event)) return false;
+        if (!$this->canModifyEvent($firm, $event)) {
+            return false;
+        }
+        if (!$this->isEventUnlocked($event)) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * @param Firm $firm
-	 * @param Event $event
-	 * @return boolean
-	 */
-	public function canRequestEventDeletion(Firm $firm, Event $event)
-	{
-		if ($event->delete_pending) return false;
-		if ($event->showDeleteIcon() === false) return false;
+    /**
+     * @param Firm $firm
+     * @param Event $event
+     * @return boolean
+     */
+    public function canRequestEventDeletion(Firm $firm, Event $event)
+    {
+        if ($event->delete_pending) {
+            return false;
+        }
+        if ($event->showDeleteIcon() === false) {
+            return false;
+        }
 
-		if (!$this->canModifyEvent($firm, $event)) return false;
+        if (!$this->canModifyEvent($firm, $event)) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * Common check for all rules that involve editing/deleting events
-	 *
-	 * @param Firm $firm
-	 * @param Event $event
-	 * @return boolean
-	 */
-	private function canModifyEvent(Firm $firm, Event $event)
-	{
-		if ($event->episode->patient->date_of_death) return false;
-		return $this->canEditEpisode($firm, $event->episode);
-	}
+    /**
+     * Common check for all rules that involve editing/deleting events
+     *
+     * @param Firm $firm
+     * @param Event $event
+     * @return boolean
+     */
+    private function canModifyEvent(Firm $firm, Event $event)
+    {
+        if ($event->episode->patient->date_of_death) {
+            return false;
+        }
+        return $this->canEditEpisode($firm, $event->episode);
+    }
 
-	/**
-	 * Event locking check
-	 *
-	 * @param Event $event
-	 * @return boolean
-	 */
-	private function isEventUnlocked(Event $event)
-	{
-		if (Yii::app()->params['event_lock_disable'] || Yii::app()->user->checkAccess('admin')) return true;
+    /**
+     * Event locking check
+     *
+     * @param Event $event
+     * @return boolean
+     */
+    private function isEventUnlocked(Event $event)
+    {
+        if (Yii::app()->params['event_lock_disable'] || Yii::app()->user->checkAccess('admin')) {
+            return true;
+        }
 
-		if (($module_allows_editing = $event->moduleAllowsEditing()) !== null) return $module_allows_editing;
+        if (($module_allows_editing = $event->moduleAllowsEditing()) !== null) {
+            return $module_allows_editing;
+        }
 
-		return (date('Ymd') < date('Ymd', strtotime($event->created_date) + (86400 * (Yii::app()->params['event_lock_days'] + 1))));
-	}
+        return (date('Ymd') < date('Ymd', strtotime($event->created_date) + (86400 * (Yii::app()->params['event_lock_days'] + 1))));
+    }
 }

@@ -29,101 +29,101 @@
  */
 class PatientShortcode extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return PatientShortcode the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return PatientShortcode the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'patient_shortcode';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'patient_shortcode';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('code, default_code, method, description, event_type_id', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('code, default_code, method, description, event_type_id', 'safe'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('id, name', 'safe', 'on'=>'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'eventType' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'eventType' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'id' => 'ID',
+            'name' => 'Name',
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
+        $criteria->compare('id', $this->id, true);
+        $criteria->compare('name', $this->name, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
-	public function replaceText($text, $patient, $ucfirst=false)
-	{
-		$code = $ucfirst ? ucfirst($this->code) : $this->code;
+    public function replaceText($text, $patient, $ucfirst=false)
+    {
+        $code = $ucfirst ? ucfirst($this->code) : $this->code;
 
-		if ($this->eventType) {
-			if ($api = Yii::app()->moduleAPI->get($this->eventType->class_name)) {
-				if (method_exists($api,$this->method)) {
-					return preg_replace('/\['.$code.'\]/',$api->{$this->method}($patient),$text);
-				}
-				throw new Exception("Unknown API method in {$this->eventType->class_name}: $this->method");
-			}
-		} else {
-			if (property_exists($patient, $this->code) || method_exists($patient, 'get'.ucfirst($this->code))) {
-				if ($ucfirst) {
-					return preg_replace('/\['.$code.'\]/',ucfirst($patient->{$this->code}),$text);
-				}
+        if ($this->eventType) {
+            if ($api = Yii::app()->moduleAPI->get($this->eventType->class_name)) {
+                if (method_exists($api, $this->method)) {
+                    return preg_replace('/\['.$code.'\]/', $api->{$this->method}($patient), $text);
+                }
+                throw new Exception("Unknown API method in {$this->eventType->class_name}: $this->method");
+            }
+        } else {
+            if (property_exists($patient, $this->code) || method_exists($patient, 'get'.ucfirst($this->code))) {
+                if ($ucfirst) {
+                    return preg_replace('/\['.$code.'\]/', ucfirst($patient->{$this->code}), $text);
+                }
 
-				return preg_replace('/\['.$code.'\]/',$patient->{$this->code},$text);
-			}
-		}
+                return preg_replace('/\['.$code.'\]/', $patient->{$this->code}, $text);
+            }
+        }
 
-		return $text;
-	}
+        return $text;
+    }
 }

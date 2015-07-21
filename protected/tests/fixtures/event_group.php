@@ -19,54 +19,54 @@
 
 
 return array(
-	'event_group1' => array(
-		'id' => 1,
-		'name' => "Clinical events",
-		'code' => "Ci",
-	),
-	'event_group2' => array(
-		'id' => 2,
-		'name' => "Communication events",
-		'code' => "Co",
-	),
-	'event_group3' => array(
-		'id' => 3,
-		'name' => "Investigation events",
-		'code' => "In",
-	),
-	'event_group4' => array(
-		'id' => 4,
-		'name' => "Image events",
-		'code' => "Im",
-	),
-	'event_group5' => array(
-		'id' => 5,
-		'name' => "Treatment events",
-		'code' => "Tr",
-	),
-	'event_group6' => array(
-		'id' => 6,
-		'name' => "Drug events",
-		'code' => "Dr",
-	),
-	'event_group7' => array(
-		'id' => 7,
-		'name' => "Miscellaneous",
-		'code' => "Mi",
-	),
-	'event_group8' => array(
-		'id' => 8,
-		'name' => "Legacy data",
-		'code' => "Le",
-	),
-	'event_group9' => array(
-		'id' => 9,
-		'name' => "Outcomes",
-		'code' => "Ou",
-	),
-	'event_group10' => array(
-		'id' => 10,
-		'name' => "Nursing",
-		'code' => "Nu",
-	),
+    'event_group1' => array(
+        'id' => 1,
+        'name' => "Clinical events",
+        'code' => "Ci",
+    ),
+    'event_group2' => array(
+        'id' => 2,
+        'name' => "Communication events",
+        'code' => "Co",
+    ),
+    'event_group3' => array(
+        'id' => 3,
+        'name' => "Investigation events",
+        'code' => "In",
+    ),
+    'event_group4' => array(
+        'id' => 4,
+        'name' => "Image events",
+        'code' => "Im",
+    ),
+    'event_group5' => array(
+        'id' => 5,
+        'name' => "Treatment events",
+        'code' => "Tr",
+    ),
+    'event_group6' => array(
+        'id' => 6,
+        'name' => "Drug events",
+        'code' => "Dr",
+    ),
+    'event_group7' => array(
+        'id' => 7,
+        'name' => "Miscellaneous",
+        'code' => "Mi",
+    ),
+    'event_group8' => array(
+        'id' => 8,
+        'name' => "Legacy data",
+        'code' => "Le",
+    ),
+    'event_group9' => array(
+        'id' => 9,
+        'name' => "Outcomes",
+        'code' => "Ou",
+    ),
+    'event_group10' => array(
+        'id' => 10,
+        'name' => "Nursing",
+        'code' => "Nu",
+    ),
 );

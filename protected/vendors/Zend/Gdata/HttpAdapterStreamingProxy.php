@@ -101,7 +101,9 @@ class Zend_Gdata_HttpAdapterStreamingProxy extends Zend_Http_Client_Adapter_Prox
 
         // Add all headers to the request string
         foreach ($headers as $k => $v) {
-            if (is_string($k)) $v = "$k: $v";
+            if (is_string($k)) {
+                $v = "$k: $v";
+            }
             $request .= "$v\r\n";
         }
 

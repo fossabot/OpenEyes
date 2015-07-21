@@ -20,29 +20,29 @@
 ?>
 <div class="box admin">
 	<h2>Add contact</h2>
-	<?php echo $this->renderPartial('_form_errors',array('errors'=>$errors))?>
+	<?php echo $this->renderPartial('_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'adminform',
-		'enableAjaxValidation'=>false,
-		'focus'=>'#contactname',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
-		<?php echo $form->textField($contact,'title', array('autocomplete' => Yii::app()->params['html_autocomplete']), null, array('field' => 2))?>
-		<?php echo $form->textField($contact,'first_name',array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'last_name',array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'nick_name',array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'primary_phone',array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->textField($contact,'qualifications',array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
-		<?php echo $form->dropDownList($contact,'contact_label_id',CHtml::listData(ContactLabel::model()->active()->findAll(array('order'=>'name')),'id','name'),array('empty'=>'- None -'))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'adminform',
+        'enableAjaxValidation'=>false,
+        'focus'=>'#contactname',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
+		<?php echo $form->textField($contact, 'title', array('autocomplete' => Yii::app()->params['html_autocomplete']), null, array('field' => 2))?>
+		<?php echo $form->textField($contact, 'first_name', array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'last_name', array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'nick_name', array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'primary_phone', array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->textField($contact, 'qualifications', array('autocomplete' => Yii::app()->params['html_autocomplete']))?>
+		<?php echo $form->dropDownList($contact, 'contact_label_id', CHtml::listData(ContactLabel::model()->active()->findAll(array('order'=>'name')), 'id', 'name'), array('empty'=>'- None -'))?>
 
 		<?php /* TODO */ ?>
 		<div class="row field-row hide">
 			<div class="large-5 large-offset-2 column">
-				<?php echo EventAction::button('Add label','add_label',array(), array('class' => 'small'))->toHtml()?>
+				<?php echo EventAction::button('Add label', 'add_label', array(), array('class' => 'small'))->toHtml()?>
 			</div>
 		</div>
 		<?php /* TODO */ ?>

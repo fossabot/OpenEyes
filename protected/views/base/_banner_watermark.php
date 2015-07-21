@@ -18,15 +18,21 @@
  */
 ?>
 
-<?php if (Yii::app()->user->checkAccess('admin') && Yii::app()->params['watermark_admin']) {?>
+<?php if (Yii::app()->user->checkAccess('admin') && Yii::app()->params['watermark_admin']) {
+    ?>
 	<div class="alert-box watermark admin banner">
-		<?php echo (Yii::app()->params['watermark_admin'])?>
+		<?php echo(Yii::app()->params['watermark_admin'])?>
 	</div>
-<?php } else if (Yii::app()->params['watermark']) {?>
+<?php 
+} elseif (Yii::app()->params['watermark']) {
+    ?>
 	<div class="alert-box watermark banner">
 		<?php echo Yii::app()->params['watermark']?>
 	</div>
-<?php }?>
-<?php if (@$description && Yii::app()->params['watermark_description']) {?>
+<?php 
+}?>
+<?php if (@$description && Yii::app()->params['watermark_description']) {
+    ?>
 	<div class="alert-box watermark description"><p><?php echo Yii::app()->params['watermark_description']?></p></div>
-<?php }?>
+<?php 
+}?>

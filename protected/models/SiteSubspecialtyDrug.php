@@ -28,47 +28,46 @@
  */
 class SiteSubspecialtyDrug extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return SiteSubspecialtyDrug the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return SiteSubspecialtyDrug the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'site_subspecialty_drug';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'site_subspecialty_drug';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-			/*
-			 * Could be useful to add relations into the connected objects as well (but not necessary at the moment)
-			 */
-			'sites' => array(self::BELONGS_TO, 'Site', 'site_id'),
-			'subspecialties' => array(self::BELONGS_TO, 'Subspecialty', 'subspecialty_id'),
-			'drugs' => array(self::BELONGS_TO, 'Drug', 'drug_id')
-		);
-	}
-
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            /*
+             * Could be useful to add relations into the connected objects as well (but not necessary at the moment)
+             */
+            'sites' => array(self::BELONGS_TO, 'Site', 'site_id'),
+            'subspecialties' => array(self::BELONGS_TO, 'Subspecialty', 'subspecialty_id'),
+            'drugs' => array(self::BELONGS_TO, 'Drug', 'drug_id')
+        );
+    }
 }

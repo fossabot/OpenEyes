@@ -19,22 +19,21 @@
 
 class SiteAndFirmForm extends CFormModel
 {
-	public $site_id;
-	public $firm_id;
+    public $site_id;
+    public $firm_id;
 
-	public function rules()
-	{
-		return array(
-			array('firm_id, site_id', 'required'),
-		);
-	}
+    public function rules()
+    {
+        return array(
+            array('firm_id, site_id', 'required'),
+        );
+    }
 
-	public function attributeLabels()
-	{
-		return array(
-			'firm_id' => 'Firm',
-			'site_id' => 'Site',
-		);
-	}
-
+    public function attributeLabels()
+    {
+        return array(
+            'firm_id' => 'Firm',
+            'site_id' => 'Site',
+        );
+    }
 }

@@ -19,50 +19,80 @@
 ?>
 <?php $class_field = "{$class}_{$field}"; ?>
 
-<?php if (!$nowrapper) {?>
+<?php if (!$nowrapper) {
+    ?>
 <div class="row field-row diagnosis-selection">
-	<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {?> hide<?php }?>">
-		<label for="<?php echo $class_field ;?>">Diagnosis:</label>
+	<div class="large-<?php echo $layoutColumns['label'];
+    ?> column<?php if (!$label) {
+    ?> hide<?php 
+}
+    ?>">
+		<label for="<?php echo $class_field ;
+    ?>">Diagnosis:</label>
 	</div>
-	<div class="large-<?php echo $layoutColumns['field'];?> column end">
-		<?php }?>
+	<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+		<?php 
+}?>
 		<?php
-		$list_options = array('empty' => 'Select a commonly used diagnosis');
-		echo CHtml::dropDownList("{$class}[$field]", '', array(), $list_options);
-		if (!$nowrapper) {?>
+        $list_options = array('empty' => 'Select a commonly used diagnosis');
+        echo CHtml::dropDownList("{$class}[$field]", '', array(), $list_options);
+        if (!$nowrapper) {
+            ?>
 	</div>
 </div>
-<?php }?>
+<?php 
+        }?>
 
-	<?php if (!$nowrapper) {?>
+	<?php if (!$nowrapper) {
+    ?>
 		<div id="div_<?php echo "{$class_field}_secondary_to"?>" class="row field-row hidden">
-		<?php if (!$nowrapper) {?>
-			<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {?> hide<?php }?>">
-				<label for="<?php echo "{$class_field}_secondary_to";?>">Associated diagnosis:</label>
+		<?php if (!$nowrapper) {
+    ?>
+			<div class="large-<?php echo $layoutColumns['label'];
+    ?> column<?php if (!$label) {
+    ?> hide<?php 
+}
+    ?>">
+				<label for="<?php echo "{$class_field}_secondary_to";
+    ?>">Associated diagnosis:</label>
 			</div>
-		<?php }?>
-		<div class="large-<?php echo $layoutColumns['field'];?> column end">
-	<?php }?>
+		<?php 
+}
+    ?>
+		<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+	<?php 
+}?>
 	<?php echo CHtml::dropDownList("{$class}[{$field}_secondary_to]", '', array(), array())?>
-	<?php if (!$nowrapper) {?>
+	<?php if (!$nowrapper) {
+    ?>
 		</div>
 		</div>
-	<?php }?>
+	<?php 
+}?>
 
-<?php if (!$nowrapper) {?>
+<?php if (!$nowrapper) {
+    ?>
 <div class="row field-row">
-		<div class="large-<?php echo $layoutColumns['label'];?> column<?php if (!$label) {?> hide<?php }?>">
+		<div class="large-<?php echo $layoutColumns['label'];
+    ?> column<?php if (!$label) {
+    ?> hide<?php 
+}
+    ?>">
 			<label></label>
 		</div>
-	<div class="large-<?php echo $layoutColumns['field'];?> column end">
-<?php }?>
+	<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+<?php 
+}?>
 		<div class="autocomplete-row" id="div_<?php echo "{$class}_{$field}_autocomplete_row"?>">
 			<?php
-			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-					'name' => "{$class}[$field]",
-					'id' => "{$class_field}_0",
-					'value'=>'',
-					'source'=>"js:function(request, response) {
+            $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                    'name' => "{$class}[$field]",
+                    'id' => "{$class_field}_0",
+                    'value'=>'',
+                    'source'=>"js:function(request, response) {
 						$.ajax({
 							'url': '" . Yii::app()->createUrl('/disorder/autocomplete') . "',
 							'type':'GET',
@@ -88,9 +118,9 @@
 							}
 						});
 					}",
-					'options' => array(
-						'minLength'=>'3',
-						'select' => "js:function(event, ui) {
+                    'options' => array(
+                        'minLength'=>'3',
+                        'select' => "js:function(event, ui) {
 							currFirst = getSelectedObj(firstSelection);
 							DiagnosisSelection_addCondition(currFirst);
 							".($callback ? $callback."('disorder', ui.item.id, ui.item.value);" : '')."
@@ -102,17 +132,19 @@
 							});
 							return false;
 						}",
-					),
-					'htmlOptions' => array(
-						'placeholder' => $placeholder,
-					),
-				));
-			?>
+                    ),
+                    'htmlOptions' => array(
+                        'placeholder' => $placeholder,
+                    ),
+                ));
+            ?>
 		</div>
-		<?php if (!$nowrapper) {?>
+		<?php if (!$nowrapper) {
+    ?>
 	</div>
 </div>
-<?php }?>
+<?php 
+}?>
 <script type="text/javascript">
 	var selectionConfig = <?= CJSON::encode($options); ?>;
 	var firstSelection = $('#<?= $class_field ?>');
@@ -295,9 +327,11 @@
 	function DiagnosisSelection_updateSelections()
 	{
 		var filterConditions = [];
-		<?php if (@$filterCallback) {?>
+		<?php if (@$filterCallback) {
+    ?>
 			filterConditions = <?= @$filterCallback . "();" ?>
-		<?php }?>
+		<?php 
+}?>
 		var firstVal = firstSelection.val();
 		$('#div_<?= "{$class_field}_secondary_to"?>').slideUp(function() {
 			updateFirstList(filterConditions);
@@ -316,10 +350,10 @@
 	{
 		if (condition.id) {
 			<?php if (@$callback) {
-				echo $callback . "(condition.type, condition.id, condition.label);";
-			} else {
-				echo "console.log('NO CALLBACK SPECIFIED');";
-			}?>
+    echo $callback . "(condition.type, condition.id, condition.label);";
+} else {
+    echo "console.log('NO CALLBACK SPECIFIED');";
+}?>
 		}
 	}
 
@@ -352,9 +386,11 @@
 
 	$('#<?php echo $class?>_<?php echo $field?>').on('change', function() {
 		var filterConditions = [];
-		<?php if (@$filterCallback) {?>
+		<?php if (@$filterCallback) {
+    ?>
 		filterConditions = <?= @$filterCallback . "();" ?>
-		<?php }?>
+		<?php 
+}?>
 		curr = getSelectedObj(firstSelection);
 		if (hasSecondList(curr, filterConditions)) {
 			$('#div_<?= "{$class_field}_secondary_to"?>').slideUp(function() {

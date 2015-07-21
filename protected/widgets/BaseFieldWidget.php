@@ -19,10 +19,10 @@
 
 class BaseFieldWidget extends BaseCWidget
 {
-	public $name;
+    public $name;
 
-	public $layoutColumns = array(
-		'label' => 2,
-		'field' => 10
-	);
+    public $layoutColumns = array(
+        'label' => 2,
+        'field' => 10
+    );
 }

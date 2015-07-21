@@ -18,18 +18,24 @@
  */
 ?>
 <section
-	class="<?php if (@$child) {?>sub-<?php }?>element <?php echo get_class($element)?>"
+	class="<?php if (@$child) {
+    ?>sub-<?php 
+}?>element <?php echo get_class($element)?>"
 	data-element-type-id="<?php echo $element->elementType->id?>"
 	data-element-type-class="<?php echo $element->elementType->class_name?>"
 	data-element-type-name="<?php echo $element->elementType->name?>"
 	data-element-display-order="<?php echo $element->elementType->display_order?>">
 	<div class="details">
 		<!-- Element title -->
-		<?php if (!@$child) {?>
+		<?php if (!@$child) {
+    ?>
 			<h3 class="element-title"><?php echo $element->elementType->name?></h3>
-		<?php }else{?>
+		<?php 
+} else {
+    ?>
 			<h4 class="sub-element-title"><?php echo $element->elementType->name?></h4>
-		<?php }?>
+		<?php 
+}?>
 
 		<?php echo $content ;?>
 		<div class="sub-elements">

@@ -17,12 +17,12 @@ namespace services;
 
 class ProcessingNotSupported extends ServiceException
 {
-	public $httpStatus = 422;
+    public $httpStatus = 422;
 
-	public function toFhirOutcome()
-	{
-		return FhirOutcome::singleIssue(
-			\FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_PROCESSING_NOT_SUPPORTED, $this->message
-		);
-	}
+    public function toFhirOutcome()
+    {
+        return FhirOutcome::singleIssue(
+            \FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_PROCESSING_NOT_SUPPORTED, $this->message
+        );
+    }
 }

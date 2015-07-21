@@ -19,14 +19,14 @@
 
 class SecondaryToImportCommand extends CConsoleCommand
 {
-	public function getName()
-	{
-		return 'Secondary To Common Ophthalmic Disorder Import Command.';
-	}
+    public function getName()
+    {
+        return 'Secondary To Common Ophthalmic Disorder Import Command.';
+    }
 
-	public function getHelp()
-	{
-		return <<<EOH
+    public function getHelp()
+    {
+        return <<<EOH
 Import data from csv that defines disorders to appear as "secondary to" options for common ophthalmic disorders. Primarily this is useful
 for importing secondary to options where data has already been set up for the common opthalmic disoders. The secondary to feature was a later
 addition to the drop down list short cut in diagnosis selection.
@@ -34,23 +34,23 @@ addition to the drop down list short cut in diagnosis selection.
 if reset_parent is set to true, then all current common disorders for any subspecialty in the import file will be removed.
 
 EOH;
-	}
+    }
 
-	public $reset_parent = false;
-	public $defaultAction = 'import';
+    public $reset_parent = false;
+    public $defaultAction = 'import';
 
-	public function actionImport($args)
-	{
-		$filename = $args[0];
-		if (!$filename) {
-			$this->usageError('Import filename required');
-		}
+    public function actionImport($args)
+    {
+        $filename = $args[0];
+        if (!$filename) {
+            $this->usageError('Import filename required');
+        }
 
-		if (!file_exists($filename)) {
-			$this->usageError("Cannot find import file " . $filename);
-		}
+        if (!file_exists($filename)) {
+            $this->usageError("Cannot find import file " . $filename);
+        }
 
-		$sti = new SecondaryToImport;
-		$sti->import($filename, $this->reset_parent);
-	}
+        $sti = new SecondaryToImport;
+        $sti->import($filename, $this->reset_parent);
+    }
 }

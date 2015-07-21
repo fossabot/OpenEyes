@@ -51,7 +51,6 @@ require_once 'Zend/Gdata/Photos/PhotoEntry.php';
  */
 class Zend_Gdata_Photos_PhotoFeed extends Zend_Gdata_Feed
 {
-
     /**
      * gphoto:id element
      *
@@ -262,8 +261,8 @@ class Zend_Gdata_Photos_PhotoFeed extends Zend_Gdata_Feed
                 foreach ($categories as $category) {
                     if ($category->scheme == Zend_Gdata_Photos::KIND_PATH &&
                         $this->_entryKindClassMapping[$category->term] != "") {
-                            $entryClassName = $this->_entryKindClassMapping[$category->term];
-                            break;
+                        $entryClassName = $this->_entryKindClassMapping[$category->term];
+                        break;
                     } else {
                         require_once 'Zend/Gdata/App/Exception.php';
                         throw new Zend_Gdata_App_Exception('Entry is missing kind declaration.');
@@ -555,5 +554,4 @@ class Zend_Gdata_Photos_PhotoFeed extends Zend_Gdata_Feed
         $this->_mediaGroup = $value;
         return $this;
     }
-
 }

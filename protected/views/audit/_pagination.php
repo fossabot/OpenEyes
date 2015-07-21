@@ -20,17 +20,25 @@
 <div class="panel logs-pagination">
 	<div class="pages">
 		<?php
-		if ($data['page'] >1) {?>
-			<a href="#" class="changePage" id="page<?php echo ($data['page']-1)?>">&laquo; previous</a>&nbsp;&nbsp;
-		<?php } else {?>
+        if ($data['page'] >1) {
+            ?>
+			<a href="#" class="changePage" id="page<?php echo($data['page']-1)?>">&laquo; previous</a>&nbsp;&nbsp;
+		<?php 
+        } else {
+            ?>
 			&laquo; previous&nbsp;&nbsp;
-		<?php }
-		echo $data['page'].'&nbsp;&nbsp;';
-		if ($data['page'] < $data['pages']) {?>
-			<a href="#" class="changePage" id="page<?php echo ($data['page']+1)?>">next &raquo;</a>&nbsp;&nbsp;
-		<?php } else {?>
+		<?php 
+        }
+        echo $data['page'].'&nbsp;&nbsp;';
+        if ($data['page'] < $data['pages']) {
+            ?>
+			<a href="#" class="changePage" id="page<?php echo($data['page']+1)?>">next &raquo;</a>&nbsp;&nbsp;
+		<?php 
+        } else {
+            ?>
 			next &raquo;&nbsp;&nbsp;
-		<?php }
-		?>
+		<?php 
+        }
+        ?>
 	</div>
 </div>

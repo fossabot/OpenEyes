@@ -19,47 +19,46 @@
  */
 class DrugRouteTest extends CDbTestCase
 {
+    /**
+     * @var DrugRoute
+     */
+    protected $model;
+    public $fixtures = array(
+        'drugroutes' => 'DrugRoute',
+    );
 
-	/**
-	 * @var DrugRoute
-	 */
-	protected $model;
-	public $fixtures = array(
-		'drugroutes' => 'DrugRoute',
-	);
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new DrugRoute;
+    }
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new DrugRoute;
-	}
+    /**
+     * @covers DrugForm::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('DrugRoute', get_class(DrugRoute::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers DrugForm::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('DrugRoute', get_class(DrugRoute::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers DrugForm::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('drug_route', $this->model->tableName());
+    }
 
-	/**
-	 * @covers DrugForm::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('drug_route', $this->model->tableName());
-	}
-
-	/**
-	 * @covers DrugForm::rules
-	 */
-	public function testRules()
-	{
-		$this->assertTrue($this->drugroutes('drugroute1')->validate());
-		$this->assertEmpty($this->drugroutes('drugroute2')->errors);
-	}
+    /**
+     * @covers DrugForm::rules
+     */
+    public function testRules()
+    {
+        $this->assertTrue($this->drugroutes('drugroute1')->validate());
+        $this->assertEmpty($this->drugroutes('drugroute2')->errors);
+    }
 }

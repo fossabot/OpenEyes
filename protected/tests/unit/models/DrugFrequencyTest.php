@@ -19,67 +19,66 @@
  */
 class DrugFrequencyTest extends CDbTestCase
 {
-	/**
-	 * @var DrugFrequency
-	 */
-	protected $model;
-	public $fixtures = array(
-		'drugfrequencies' => 'DrugFrequency',
-	);
+    /**
+     * @var DrugFrequency
+     */
+    protected $model;
+    public $fixtures = array(
+        'drugfrequencies' => 'DrugFrequency',
+    );
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new DrugFrequency;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new DrugFrequency;
+    }
 
-	/**
-	 * @covers DrugForm::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('DrugFrequency', get_class(DrugFrequency::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers DrugForm::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('DrugFrequency', get_class(DrugFrequency::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers DrugForm::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('drug_frequency', $this->model->tableName());
-	}
+    /**
+     * @covers DrugForm::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('drug_frequency', $this->model->tableName());
+    }
 
-	/**
-	 * @covers DrugForm::rules
-	 */
-	public function testRules()
-	{
-		$this->assertTrue($this->drugfrequencies('drugfrequency1')->validate());
-		$this->assertEmpty($this->drugfrequencies('drugfrequency2')->errors);
-	}
+    /**
+     * @covers DrugForm::rules
+     */
+    public function testRules()
+    {
+        $this->assertTrue($this->drugfrequencies('drugfrequency1')->validate());
+        $this->assertEmpty($this->drugfrequencies('drugfrequency2')->errors);
+    }
 
-	/**
-	 * @covers DrugFrequency::search
-	 */
-	public function testSearch()
-	{
-		$this->model->setAttributes($this->drugfrequencies('drugfrequency1')->getAttributes());
-		$results = $this->model->search();
-		$data = $results->getData();
+    /**
+     * @covers DrugFrequency::search
+     */
+    public function testSearch()
+    {
+        $this->model->setAttributes($this->drugfrequencies('drugfrequency1')->getAttributes());
+        $results = $this->model->search();
+        $data = $results->getData();
 
-		$expectedKeys = array('drugfrequency1');
-		$expectedResults = array();
-		if (!empty($expectedKeys)) {
-			foreach ($expectedKeys as $key) {
-				$expectedResults[] = $this->drugfrequencies($key);
-			}
-		}
-		$this->assertEquals(1, $results->getItemCount());
-		$this->assertEquals($expectedResults, $data);
-	}
-
+        $expectedKeys = array('drugfrequency1');
+        $expectedResults = array();
+        if (!empty($expectedKeys)) {
+            foreach ($expectedKeys as $key) {
+                $expectedResults[] = $this->drugfrequencies($key);
+            }
+        }
+        $this->assertEquals(1, $results->getItemCount());
+        $this->assertEquals($expectedResults, $data);
+    }
 }

@@ -19,27 +19,27 @@
 
 class RadioButtonList extends SelectionWidget
 {
-	public $selected_item;
-	public $maxwidth;
-	public $no_element = false;
-	public $label_above = false;
+    public $selected_item;
+    public $maxwidth;
+    public $no_element = false;
+    public $label_above = false;
 
-	public function init()
-	{
-		parent::init();
+    public function init()
+    {
+        parent::init();
 
-		if (empty($_POST)) {
-			if ($this->selected_item !== null) {
-				$this->value = $this->selected_item;
-			} else if (isset($this->element->{$this->field})) {
-				$this->value = $this->element->{$this->field};
-			}
-		} else {
-			$this->value = @$_POST[CHtml::modelName($this->element)][$this->field];
-		}
+        if (empty($_POST)) {
+            if ($this->selected_item !== null) {
+                $this->value = $this->selected_item;
+            } elseif (isset($this->element->{$this->field})) {
+                $this->value = $this->element->{$this->field};
+            }
+        } else {
+            $this->value = @$_POST[CHtml::modelName($this->element)][$this->field];
+        }
 
-		if ($this->no_element) {
-			$this->name = $this->field;
-		}
-	}
+        if ($this->no_element) {
+            $this->name = $this->field;
+        }
+    }
 }

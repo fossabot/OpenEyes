@@ -19,71 +19,71 @@
  */
 class MedicationController extends BaseAdminController
 {
-	/**
-	 * @var string
-	 */
-	public $layout = 'admin';
+    /**
+     * @var string
+     */
+    public $layout = 'admin';
 
-	/**
-	 * @var int
-	 */
-	public $itemsPerPage = 100;
+    /**
+     * @var int
+     */
+    public $itemsPerPage = 100;
 
-	/**
-	 * Lists medications
-	 *
-	 * @throws CHttpException
-	 */
-	public function actionList()
-	{
-		$admin = new Admin(MedicationDrug::model(), $this);
-		$admin->setListFields(array(
-			'id',
-			'name',
-			'external_code',
-			'external_source',
-			'aliases'
-		));
-		$admin->searchAll();
-		$admin->getSearch()->setItemsPerPage($this->itemsPerPage);
-		$admin->listModel();
-	}
+    /**
+     * Lists medications
+     *
+     * @throws CHttpException
+     */
+    public function actionList()
+    {
+        $admin = new Admin(MedicationDrug::model(), $this);
+        $admin->setListFields(array(
+            'id',
+            'name',
+            'external_code',
+            'external_source',
+            'aliases'
+        ));
+        $admin->searchAll();
+        $admin->getSearch()->setItemsPerPage($this->itemsPerPage);
+        $admin->listModel();
+    }
 
-	/**
-	 * Edits or adds medications
-	 *
-	 * @param bool|int $id
-	 * @throws CHttpException
-	 */
-	public function actionEdit($id = false)
-	{
-		$admin = new Admin(MedicationDrug::model(), $this);
-		if ($id) {
-			$admin->setModelId($id);
-		}
-		$admin->setEditFields(array(
-			'name' => 'text',
-			'aliases' => 'text',
-			'external_source' => array(
-				'widget' => 'DropDownList',
-				'options' => CHtml::listData(MedicationDrug::model()->findAll(new CDbCriteria(array('group' => 'external_source'))),
-					'external_source', 'external_source'),
-				'htmlOptions' => null,
-				'hidden' => false,
-				'layoutColumns' => null
-			),
-			'external_code' => 'text'
-		));
-		$admin->editModel();
-	}
+    /**
+     * Edits or adds medications
+     *
+     * @param bool|int $id
+     * @throws CHttpException
+     */
+    public function actionEdit($id = false)
+    {
+        $admin = new Admin(MedicationDrug::model(), $this);
+        if ($id) {
+            $admin->setModelId($id);
+        }
+        $admin->setEditFields(array(
+            'name' => 'text',
+            'aliases' => 'text',
+            'external_source' => array(
+                'widget' => 'DropDownList',
+                'options' => CHtml::listData(MedicationDrug::model()->findAll(new CDbCriteria(array('group' => 'external_source'))),
+                    'external_source', 'external_source'),
+                'htmlOptions' => null,
+                'hidden' => false,
+                'layoutColumns' => null
+            ),
+            'external_code' => 'text'
+        ));
+        $admin->editModel();
+    }
 
 
-	/**
-	 * Deletes rows for the model
-	 */
-	public function actionDelete()
-	{
-		$admin = new Admin(MedicationDrug::model(), $this);
-		$admin->deleteModel();
-	}
+    /**
+     * Deletes rows for the model
+     */
+    public function actionDelete()
+    {
+        $admin = new Admin(MedicationDrug::model(), $this);
+        $admin->deleteModel();
+    }
 }

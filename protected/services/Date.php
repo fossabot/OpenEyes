@@ -17,13 +17,13 @@ namespace services;
 
 class Date extends \DateTime implements FhirCompatible
 {
-	static public function fromFhir($value)
-	{
-		return new self($value);
-	}
+    public static function fromFhir($value)
+    {
+        return new self($value);
+    }
 
-	public function toFhir()
-	{
-		return $this->format('Y-m-d');
-	}
+    public function toFhir()
+    {
+        return $this->format('Y-m-d');
+    }
 }

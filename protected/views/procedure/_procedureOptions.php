@@ -18,10 +18,10 @@
  */
 
 echo CHtml::tag('option',
-	array('value'=>''),
-	CHtml::encode('Select a commonly used procedure'), true);
+    array('value'=>''),
+    CHtml::encode('Select a commonly used procedure'), true);
 foreach ($procedures as $procedure) {
-	echo CHtml::tag('option',
-		array('value'=>$procedure->id),
-		CHtml::encode($procedure->term), true);
+    echo CHtml::tag('option',
+        array('value'=>$procedure->id),
+        CHtml::encode($procedure->term), true);
 }

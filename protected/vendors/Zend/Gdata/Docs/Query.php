@@ -39,7 +39,6 @@ require_once('Zend/Gdata/Query.php');
  */
 class Zend_Gdata_Docs_Query extends Zend_Gdata_Query
 {
-
     /**
      * The base URL for retrieving a document list
      *
@@ -218,5 +217,4 @@ class Zend_Gdata_Docs_Query extends Zend_Gdata_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
-
 }

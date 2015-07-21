@@ -18,106 +18,106 @@
 */
 
 $config = array(
-	'components' => array(
-		'db' => array(
-			'connectionString' => 'mysql:host=127.0.0.1;port=3306;dbname=openeyes',
-			'username' => 'root',
-			'password' => '',
-		),
-		'session' => array(
-			'timeout' => 86400
-		),
-		'mailer' => array(
-			// Setting the mailer mode to null will suppress email
-			//'mode' => null
-			// Mail can be diverted by setting the divert array
-			//'divert' => array('foo@example.org', 'bar@example.org')
-		),
-		/*
-		'cacheBuster' => array(
-			'time' => '2013062101',
-		),
-		'log' => array(
-			'routes' => array(
-				 // SQL logging
-				'system' => array(
-					'class' => 'CFileLogRoute',
-					'levels' => 'trace, info, warning, error',
-					'categories' => 'system.db.CDbCommand',
-					'logFile' => 'sql.log',
-				),
-				// System logging
-				'system' => array(
-					'class' => 'CFileLogRoute',
-					'levels' => 'trace, info, warning, error',
-					'categories' => 'system.*',
-					'logFile' => 'system.log',
-				),
-				// Profiling
-				'profile' => array(
-					'class' => 'CFileLogRoute',
-					'levels' => 'profile',
-					'logFile' => 'profile.log',
-				),
-				// User activity logging
-				'user' => array(
-					'class' => 'CFileLogRoute',
-					'levels' => 'user',
-					'logfile' => 'user.log',
-					'filter' => array(
-						'class' => 'CLogFilter',
-						'prefixSession' => false,
-						'prefixUser' => true,
-						'logUser' => true,
-						'logVars' => array('_GET','_POST'),
-					),
-				),
-				// Log to browser
-				'browser' => array(
-					'class' => 'CWebLogRoute',
-				),
-			),
-		),
-		*/
-	),
+    'components' => array(
+        'db' => array(
+            'connectionString' => 'mysql:host=127.0.0.1;port=3306;dbname=openeyes',
+            'username' => 'root',
+            'password' => '',
+        ),
+        'session' => array(
+            'timeout' => 86400
+        ),
+        'mailer' => array(
+            // Setting the mailer mode to null will suppress email
+            //'mode' => null
+            // Mail can be diverted by setting the divert array
+            //'divert' => array('foo@example.org', 'bar@example.org')
+        ),
+        /*
+        'cacheBuster' => array(
+            'time' => '2013062101',
+        ),
+        'log' => array(
+            'routes' => array(
+                 // SQL logging
+                'system' => array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'trace, info, warning, error',
+                    'categories' => 'system.db.CDbCommand',
+                    'logFile' => 'sql.log',
+                ),
+                // System logging
+                'system' => array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'trace, info, warning, error',
+                    'categories' => 'system.*',
+                    'logFile' => 'system.log',
+                ),
+                // Profiling
+                'profile' => array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'profile',
+                    'logFile' => 'profile.log',
+                ),
+                // User activity logging
+                'user' => array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'user',
+                    'logfile' => 'user.log',
+                    'filter' => array(
+                        'class' => 'CLogFilter',
+                        'prefixSession' => false,
+                        'prefixUser' => true,
+                        'logUser' => true,
+                        'logVars' => array('_GET','_POST'),
+                    ),
+                ),
+                // Log to browser
+                'browser' => array(
+                    'class' => 'CWebLogRoute',
+                ),
+            ),
+        ),
+        */
+    ),
 
-	'modules' => array(
-		'eyedraw',
-		'OphCiExamination' => array( 'class' => '\OEModule\OphCiExamination\OphCiExaminationModule', ),
-		'OphCoCorrespondence',
-		'OphCiPhasing',
-		'OphDrPrescription',
-		'OphOuAnaestheticsatisfactionaudits',
-		'OphTrConsent',
-		'OphTrOperationnote',
-		'OphTrOperationbooking',
-		'OphTrIntravitrealinjection',
-		'OphTrLaser',
-		'PatientTicketing' => array( 'class' => '\OEModule\PatientTicketing\PatientTicketingModule', ),
-		'OphInVisualfields',
-		'OphInBiometry',
-		'OphCoTherapyapplication',
-	),
+    'modules' => array(
+        'eyedraw',
+        'OphCiExamination' => array( 'class' => '\OEModule\OphCiExamination\OphCiExaminationModule', ),
+        'OphCoCorrespondence',
+        'OphCiPhasing',
+        'OphDrPrescription',
+        'OphOuAnaestheticsatisfactionaudits',
+        'OphTrConsent',
+        'OphTrOperationnote',
+        'OphTrOperationbooking',
+        'OphTrIntravitrealinjection',
+        'OphTrLaser',
+        'PatientTicketing' => array( 'class' => '\OEModule\PatientTicketing\PatientTicketingModule', ),
+        'OphInVisualfields',
+        'OphInBiometry',
+        'OphCoTherapyapplication',
+    ),
 
-	'params'=>array(
-		//'pseudonymise_patient_details' => false,
-		//'ab_testing' => false,
-		'auth_source' => 'LDAP',
-		// This is used in contact page
-		'ldap_server' => 'ldap.example.com',
-		//'ldap_port' => '',
-		'ldap_admin_dn' => 'CN=openeyes,CN=Users,dc=example,dc=com',
-		'ldap_password' => '',
-		'ldap_dn' => 'CN=Users,dc=example,dc=com',
-		'environment' => 'live',
-		'google_analytics_account' => '',
-		'local_users' => array('admin','username'),
-		//'log_events' => true,
-		'specialty_codes' => array(130),
-		//'default_site_code' => '',
-		'specialty_sort' => array(130, 'SUP'),
-		'OphCoTherapyapplication_sender_email' => array('email@example.com' => 'Test'),
-	),
+    'params'=>array(
+        //'pseudonymise_patient_details' => false,
+        //'ab_testing' => false,
+        'auth_source' => 'LDAP',
+        // This is used in contact page
+        'ldap_server' => 'ldap.example.com',
+        //'ldap_port' => '',
+        'ldap_admin_dn' => 'CN=openeyes,CN=Users,dc=example,dc=com',
+        'ldap_password' => '',
+        'ldap_dn' => 'CN=Users,dc=example,dc=com',
+        'environment' => 'live',
+        'google_analytics_account' => '',
+        'local_users' => array('admin','username'),
+        //'log_events' => true,
+        'specialty_codes' => array(130),
+        //'default_site_code' => '',
+        'specialty_sort' => array(130, 'SUP'),
+        'OphCoTherapyapplication_sender_email' => array('email@example.com' => 'Test'),
+    ),
 );
 
 return $config;

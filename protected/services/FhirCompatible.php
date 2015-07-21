@@ -20,18 +20,18 @@ namespace services;
  */
 interface FhirCompatible
 {
-	/**
-	 * Convert the given FHIR object into an instance of this class
-	 *
-	 * @param mixed $fhirObject
-	 * @return FhirCompatible
-	 */
-	static public function fromFhir($fhirObject);
+    /**
+     * Convert the given FHIR object into an instance of this class
+     *
+     * @param mixed $fhirObject
+     * @return FhirCompatible
+     */
+    public static function fromFhir($fhirObject);
 
-	/**
-	 * Convert this object to FHIR format
-	 *
-	 * @return StdClass
-	 */
-	public function toFhir();
+    /**
+     * Convert this object to FHIR format
+     *
+     * @return StdClass
+     */
+    public function toFhir();
 }

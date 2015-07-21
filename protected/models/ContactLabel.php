@@ -27,116 +27,116 @@
  */
 class ContactLabel extends BaseActiveRecordVersioned
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return ContactLabel the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return ContactLabel the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'contact_label';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'contact_label';
+    }
 
-	public function defaultScope()
-	{
-		return array('order' => $this->getTableAlias(true, false) . '.name');
-	}
+    public function defaultScope()
+    {
+        return array('order' => $this->getTableAlias(true, false) . '.name');
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>40),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
+            array('name', 'required'),
+            array('name', 'length', 'max'=>40),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('id, name', 'safe', 'on'=>'search'),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'letter_template_only' => 'Letter Template Only',
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'id' => 'ID',
+            'name' => 'Name',
+            'letter_template_only' => 'Letter Template Only',
+        );
+    }
 
-	public function behaviors()
-	{
-		return array(
-			'LookupTable' => 'LookupTable',
-		);
-	}
+    public function behaviors()
+    {
+        return array(
+            'LookupTable' => 'LookupTable',
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
+        $criteria->compare('id', $this->id, true);
+        $criteria->compare('name', $this->name, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
-	public static function staffType()
-	{
-		if ($site = Site::model()->findByPk(Yii::app()->session['selected_site_id'])) {
-			return ($site->institution->short_name ? $site->institution->short_name : $site->institution->name) . ' staff';
-		}
-		return 'Staff';
-	}
+    public static function staffType()
+    {
+        if ($site = Site::model()->findByPk(Yii::app()->session['selected_site_id'])) {
+            return ($site->institution->short_name ? $site->institution->short_name : $site->institution->name) . ' staff';
+        }
+        return 'Staff';
+    }
 
-	public static function getList()
-	{
-		$list = array();
+    public static function getList()
+    {
+        $list = array();
 
-		if (!empty(Yii::app()->params['contact_labels'])) {
-			foreach (Yii::app()->params['contact_labels'] as $label) {
-				if (preg_match('/{SPECIALTY}/',$label)) {
-					if (!$specialty = Specialty::model()->find('code=?',array(Yii::app()->params['institution_specialty']))) {
-						throw new Exception("Institution specialty not configured");
-					}
-					$list['nonspecialty'] = preg_replace('/{SPECIALTY}/',$specialty->adjective,$label);
-				} else {
-					$list[$label] = $label;
-				}
-			}
-		}
+        if (!empty(Yii::app()->params['contact_labels'])) {
+            foreach (Yii::app()->params['contact_labels'] as $label) {
+                if (preg_match('/{SPECIALTY}/', $label)) {
+                    if (!$specialty = Specialty::model()->find('code=?', array(Yii::app()->params['institution_specialty']))) {
+                        throw new Exception("Institution specialty not configured");
+                    }
+                    $list['nonspecialty'] = preg_replace('/{SPECIALTY}/', $specialty->adjective, $label);
+                } else {
+                    $list[$label] = $label;
+                }
+            }
+        }
 
-		return $list;
-	}
+        return $list;
+    }
 }

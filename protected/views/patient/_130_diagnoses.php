@@ -38,23 +38,31 @@
 			<tr>
 				<th>Date</th>
 				<th>Diagnosis</th>
-				<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) { ?><th>Actions</th><?php } ?>
+				<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) {
+    ?><th>Actions</th><?php 
+} ?>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($this->patient->ophthalmicDiagnoses as $diagnosis) {?>
+			<?php foreach ($this->patient->ophthalmicDiagnoses as $diagnosis) {
+    ?>
 				<tr>
 					<td><?php echo $diagnosis->dateText?></td>
 					<td><?php echo $diagnosis->eye->adjective?> <?php echo $diagnosis->disorder->term?></td>
-					<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) { ?>
+					<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) {
+    ?>
 						<td><a href="#" class="removeDiagnosis" rel="<?php echo $diagnosis->id?>">Remove</a></td>
-					<?php } ?>
+					<?php 
+}
+    ?>
 				</tr>
-			<?php }?>
+			<?php 
+}?>
 			</tbody>
 		</table>
 
-		<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) { ?>
+		<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) {
+    ?>
 			<div class="box-actions">
 				<button id='btn-add_new_ophthalmic_diagnosis' class="secondary small">
 					Add Ophthalmic Diagnosis
@@ -64,35 +72,37 @@
 			<div id="add_new_ophthalmic_diagnosis" style="display: none;">
 
 				<?php
-				$form = $this->beginWidget('FormLayout', array(
-					'id'=>'add-ophthalmic-diagnosis',
-					'enableAjaxValidation'=>false,
-					'action'=>array('patient/adddiagnosis'),
-					'layoutColumns'=>array(
-						'label' => 3,
-						'field' => 9
-					),
-					'htmlOptions'=>array(
-						'class' => 'form add-data'
-					)
-				))?>
+                $form = $this->beginWidget('FormLayout', array(
+                    'id'=>'add-ophthalmic-diagnosis',
+                    'enableAjaxValidation'=>false,
+                    'action'=>array('patient/adddiagnosis'),
+                    'layoutColumns'=>array(
+                        'label' => 3,
+                        'field' => 9
+                    ),
+                    'htmlOptions'=>array(
+                        'class' => 'form add-data'
+                    )
+                ))?>
 
 					<fieldset class="field-row">
 
 						<legend><strong>Add ophthalmic diagnosis</strong></legend>
 
-						<?php $form->widget('application.widgets.DiagnosisSelection',array(
-							'field' => 'ophthalmic_disorder_id',
-							'label' => 'Diagnosis',
-							'options' => CommonOphthalmicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
-							'code' => 130,
-							'default' => false,
-							'layout' => 'patientSummary',
-							'loader' => 'add_ophthalmic_diagnosis_loader',
-						))?>
+						<?php $form->widget('application.widgets.DiagnosisSelection', array(
+                            'field' => 'ophthalmic_disorder_id',
+                            'label' => 'Diagnosis',
+                            'options' => CommonOphthalmicDisorder::getList(Firm::model()->findByPk($this->selectedFirmId)),
+                            'code' => 130,
+                            'default' => false,
+                            'layout' => 'patientSummary',
+                            'loader' => 'add_ophthalmic_diagnosis_loader',
+                        ))?>
 
 						<div class="row field-row hide" id="add_ophthalmic_diagnosis_loader">
-							<p class="large-offset-<?php echo $form->layoutColumns['label'];?> large-<?php echo $form->layoutColumns['field'];?> column end">
+							<p class="large-offset-<?php echo $form->layoutColumns['label'];
+    ?> large-<?php echo $form->layoutColumns['field'];
+    ?> column end">
 								<img class="loader" src="<?php echo Yii::app()->assetManager->createUrl('img/ajax-loader.gif')?>" />
 									searching...
 							</p>
@@ -101,15 +111,23 @@
 						<input type="hidden" name="patient_id" value="<?php echo $this->patient->id?>" />
 
 						<fieldset class="diagnosis_eye row field-row">
-							<legend class="<?php echo $form->columns('label');?>">
+							<legend class="<?php echo $form->columns('label');
+    ?>">
 								Eye:
 							</legend>
-							<div class="<?php echo $form->columns('field');?>">
-								<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $i => $eye) {?>
+							<div class="<?php echo $form->columns('field');
+    ?>">
+								<?php foreach (Eye::model()->findAll(array('order'=>'display_order')) as $i => $eye) {
+    ?>
 									<label class="inline">
-										<input type="radio" name="diagnosis_eye" class="diagnosis_eye" value="<?php echo $eye->id?>"<?php if ($i==0) {?> checked="checked"<?php }?> /> <?php echo $eye->name?>
+										<input type="radio" name="diagnosis_eye" class="diagnosis_eye" value="<?php echo $eye->id?>"<?php if ($i==0) {
+    ?> checked="checked"<?php 
+}
+    ?> /> <?php echo $eye->name?>
 									</label>
-								<?php }?>
+								<?php 
+}
+    ?>
 							</div>
 						</fieldset>
 
@@ -130,10 +148,12 @@
 					</fieldset>
 				<?php $this->endWidget()?>
 			</div>
-		<?php } ?>
+		<?php 
+} ?>
 	</div>
 </section>
-<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) { ?>
+<?php if ($this->checkAccess('OprnEditOtherOphDiagnosis')) {
+    ?>
 	<!-- Confirm deletion dialog -->
 	<div id="confirm_remove_diagnosis_dialog" title="Confirm remove diagnosis" style="display: none;">
 		<div id="delete_diagnosis">
@@ -190,4 +210,5 @@
 		});
 
 	</script>
-<?php } ?>
+<?php 
+} ?>

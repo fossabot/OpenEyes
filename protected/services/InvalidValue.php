@@ -17,12 +17,12 @@ namespace services;
 
 class InvalidValue extends ServiceException
 {
-	public $httpStatus = 422;
+    public $httpStatus = 422;
 
-	public function toFhirOutcome()
-	{
-		return FhirOutcome::singleIssue(
-			\FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_INVALID_VALUE, $this->message
-		);
-	}
+    public function toFhirOutcome()
+    {
+        return FhirOutcome::singleIssue(
+            \FhirValueSet::ISSUESEVERITY_FATAL, \FhirValueSet::ISSUETYPE_INVALID_VALUE, $this->message
+        );
+    }
 }

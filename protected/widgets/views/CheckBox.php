@@ -19,35 +19,61 @@
 ?>
 
 
-<?php if (!@$htmlOptions['nowrapper']) {?>
-	<div id="div_<?php echo CHtml::modelName($element)?>_<?php echo $field?>" class="row field-row"<?php if (@$htmlOptions['hide']) {?> style="display: none;"<?php }?>>
-		<div class="large-<?php echo $layoutColumns['label'];?> column">
-			<?php if (!@$htmlOptions['no-label']) {?>
-				<label for="<?php echo CHtml::modelName($element)."_".$field;?>">
-					<?php if (!@$htmlOptions['text-align']) {?>
+<?php if (!@$htmlOptions['nowrapper']) {
+    ?>
+	<div id="div_<?php echo CHtml::modelName($element)?>_<?php echo $field?>" class="row field-row"<?php if (@$htmlOptions['hide']) {
+    ?> style="display: none;"<?php 
+}
+    ?>>
+		<div class="large-<?php echo $layoutColumns['label'];
+    ?> column">
+			<?php if (!@$htmlOptions['no-label']) {
+    ?>
+				<label for="<?php echo CHtml::modelName($element)."_".$field;
+    ?>">
+					<?php if (!@$htmlOptions['text-align']) {
+    ?>
 						<?php echo CHtml::encode($element->getAttributeLabel($field))?>:
-					<?php }?>
+					<?php 
+}
+    ?>
 				</label>
-			<?php }?>
+			<?php 
+}
+    ?>
 		</div>
-		<div class="large-<?php echo $layoutColumns['field'];?> column end">
-			<?php echo CHtml::hiddenField(CHtml::modelName($element)."[$field]",'0',array('id' => CHtml::modelName($element)."_".$field."_hidden"))?>
-			<?php echo CHtml::checkBox(CHtml::modelName($element)."[$field]",$checked[$field],$htmlOptions)?>
-			<?php if (@$htmlOptions['text-align'] == 'right') {?>
-				<label for="<?php echo CHtml::modelName($element)."_".$field;?>" class="inline">
+		<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+			<?php echo CHtml::hiddenField(CHtml::modelName($element)."[$field]", '0', array('id' => CHtml::modelName($element)."_".$field."_hidden"))?>
+			<?php echo CHtml::checkBox(CHtml::modelName($element)."[$field]", $checked[$field], $htmlOptions)?>
+			<?php if (@$htmlOptions['text-align'] == 'right') {
+    ?>
+				<label for="<?php echo CHtml::modelName($element)."_".$field;
+    ?>" class="inline">
 					<?php echo CHtml::encode($element->getAttributeLabel($field))?>
 				</label>
-			<?php }?>
+			<?php 
+}
+    ?>
 		</div>
 	</div>
-<?php } else { ?>
-	<?php echo CHtml::hiddenField(CHtml::modelName($element)."[$field]",'0',array('id' => CHtml::modelName($element)."_".$field."_hidden"))?>
-	<?php if (!@$htmlOptions['no-label']) {?>
+<?php 
+} else {
+    ?>
+	<?php echo CHtml::hiddenField(CHtml::modelName($element)."[$field]", '0', array('id' => CHtml::modelName($element)."_".$field."_hidden"))?>
+	<?php if (!@$htmlOptions['no-label']) {
+    ?>
 	<label>
-	<?php }?>
-		<?php echo CHtml::checkBox(CHtml::modelName($element)."[$field]",$checked[$field],$htmlOptions)?>
-	<?php if (!@$htmlOptions['no-label']) {?>
+	<?php 
+}
+    ?>
+		<?php echo CHtml::checkBox(CHtml::modelName($element)."[$field]", $checked[$field], $htmlOptions)?>
+	<?php if (!@$htmlOptions['no-label']) {
+    ?>
 		<?php echo CHtml::encode($element->getAttributeLabel($field))?>
 	</label>
-	<?php }?>
-<?php }?>
+	<?php 
+}
+    ?>
+<?php 
+}?>

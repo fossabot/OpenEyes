@@ -19,17 +19,17 @@
 ?>
 <div class="box admin">
 	<h2>Edit setting</h2>
-	<?php echo $this->renderPartial('_form_errors',array('errors'=>$errors))?>
+	<?php echo $this->renderPartial('_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'settingsform',
-		'enableAjaxValidation'=>false,
-		'focus'=>'#username',
-		'layoutColumns' => array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'settingsform',
+        'enableAjaxValidation'=>false,
+        'focus'=>'#username',
+        'layoutColumns' => array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
 		<div class="row field-row">
 			<div class="large-3 column">
 				<label for="<?php echo $metadata->key?>">
@@ -37,7 +37,7 @@
 				</label>
 			</div>
 			<div class="large-3 column end">
-				<?php $this->renderPartial('_admin_setting_'.strtolower(str_replace(' ','_',$metadata->field_type->name)),array('metadata' => $metadata))?>
+				<?php $this->renderPartial('_admin_setting_'.strtolower(str_replace(' ', '_', $metadata->field_type->name)), array('metadata' => $metadata))?>
 			</div>
 		</div>
 		<?php echo $form->formActions()?>

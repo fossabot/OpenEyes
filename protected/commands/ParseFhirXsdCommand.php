@@ -19,58 +19,58 @@
  */
 class ParseFhirXsdCommand extends CConsoleCommand
 {
-	public function getOptionHelp()
-	{
-		return array('<schema path>');
-	}
+    public function getOptionHelp()
+    {
+        return array('<schema path>');
+    }
 
-	public function run($args)
-	{
-		if (count($args) != 1) {
-			$this->usageError("Please supply the path to fhir-single.xsd");
-		}
+    public function run($args)
+    {
+        if (count($args) != 1) {
+            $this->usageError("Please supply the path to fhir-single.xsd");
+        }
 
-		$output_dir = Yii::app()->basePath . "/components/fhir_schema";
-		system("mkdir -p " . escapeshellarg($output_dir));
+        $output_dir = Yii::app()->basePath . "/components/fhir_schema";
+        system("mkdir -p " . escapeshellarg($output_dir));
 
-		$doc = new DOMDocument;
-		$doc->load($args[0]);
+        $doc = new DOMDocument;
+        $doc->load($args[0]);
 
-		$xpath = new DOMXPath($doc);
-		$xpath->registerNamespace("xs", "http://www.w3.org/2001/XMLSchema");
+        $xpath = new DOMXPath($doc);
+        $xpath->registerNamespace("xs", "http://www.w3.org/2001/XMLSchema");
 
-		$types = array();
+        $types = array();
 
-		foreach ($xpath->query('xs:complexType') as $complexType) {
-			$type = $complexType->getAttribute("name");
-			$types[$type] = array();
+        foreach ($xpath->query('xs:complexType') as $complexType) {
+            $type = $complexType->getAttribute("name");
+            $types[$type] = array();
 
-			$base = $xpath->evaluate('string(.//xs:extension/@base)', $complexType);
-			if ($base && isset($types[$base])) {
-				$types[$type] = $types[$base];
-			}
+            $base = $xpath->evaluate('string(.//xs:extension/@base)', $complexType);
+            if ($base && isset($types[$base])) {
+                $types[$type] = $types[$base];
+            }
 
-			foreach ($xpath->query('.//*[@maxOccurs]', $complexType) as $item) {
-				$plural = ($item->getAttribute("maxOccurs") != "1");
+            foreach ($xpath->query('.//*[@maxOccurs]', $complexType) as $item) {
+                $plural = ($item->getAttribute("maxOccurs") != "1");
 
-				if ($item->tagName == 'xs:element') {
-					$elements = array($item);
-				} else {
-					$elements = $xpath->query('.//xs:element', $item);
-				}
+                if ($item->tagName == 'xs:element') {
+                    $elements = array($item);
+                } else {
+                    $elements = $xpath->query('.//xs:element', $item);
+                }
 
-				foreach ($elements as $element) {
-					$el_name = $element->getAttribute("name") ?: $element->getAttribute("ref");
-					$el_type = $element->getAttribute("type") ?: $element->getAttribute("ref");
+                foreach ($elements as $element) {
+                    $el_name = $element->getAttribute("name") ?: $element->getAttribute("ref");
+                    $el_type = $element->getAttribute("type") ?: $element->getAttribute("ref");
 
-					$types[$type][$el_name] = array(
-						'type' => $el_type,
-						'plural' => $plural,
-					);
-				}
-			}
+                    $types[$type][$el_name] = array(
+                        'type' => $el_type,
+                        'plural' => $plural,
+                    );
+                }
+            }
 
-			file_put_contents("$output_dir/{$type}.json", json_encode($types[$type], JSON_FORCE_OBJECT));
-		}
-	}
+            file_put_contents("$output_dir/{$type}.json", json_encode($types[$type], JSON_FORCE_OBJECT));
+        }
+    }
 }

@@ -17,19 +17,19 @@ namespace services;
 
 class FhirOutcome extends Resource
 {
-	static protected $fhir_type = 'OperationOutcome';
+    protected static $fhir_type = 'OperationOutcome';
 
-	/**
-	 * @param string $severity
-	 * @param string $type
-	 * @param string $details
-	 * @return FhirOutcome
-	 */
-	static public function singleIssue($severity, $type = null, $details = null)
-	{
-		$issue = new FhirOutcomeIssue(array('severity' => $severity, 'type' => $type, 'details' => $details));
-		return new self(array('issues' => array($issue)));
-	}
+    /**
+     * @param string $severity
+     * @param string $type
+     * @param string $details
+     * @return FhirOutcome
+     */
+    public static function singleIssue($severity, $type = null, $details = null)
+    {
+        $issue = new FhirOutcomeIssue(array('severity' => $severity, 'type' => $type, 'details' => $details));
+        return new self(array('issues' => array($issue)));
+    }
 
-	public $issues;
+    public $issues;
 }

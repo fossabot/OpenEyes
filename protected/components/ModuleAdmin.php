@@ -22,40 +22,39 @@
  */
 class ModuleAdmin
 {
-	public static function getAll()
-	{
-		$module_admin = array();
+    public static function getAll()
+    {
+        $module_admin = array();
 
-		$module_classes = array();
+        $module_classes = array();
 
-		foreach (EventType::model()->findAll(array('order'=>'name')) as $event_type) {
-			foreach (Yii::app()->params['admin_menu'] as $item => $uri) {
-				if( is_array($uri)){
-					foreach($uri as $key => $value){
-						if($event_type->class_name == 'OphCiExamination') {
-							$module_admin[$event_type->name][$item] = $value;
-						}
-					}
-				}
-				else if (preg_match('/^\/'.$event_type->class_name.'\//',$uri))
-				{
-					$module_admin[$event_type->name][$item] = $uri;
-				}
-			}
-			$module_classes[] = $event_type->class_name;
-		}
+        foreach (EventType::model()->findAll(array('order'=>'name')) as $event_type) {
+            foreach (Yii::app()->params['admin_menu'] as $item => $uri) {
+                if (is_array($uri)) {
+                    foreach ($uri as $key => $value) {
+                        if ($event_type->class_name == 'OphCiExamination') {
+                            $module_admin[$event_type->name][$item] = $value;
+                        }
+                    }
+                } elseif (preg_match('/^\/'.$event_type->class_name.'\//', $uri)) {
+                    $module_admin[$event_type->name][$item] = $uri;
+                }
+            }
+            $module_classes[] = $event_type->class_name;
+        }
 
-		foreach (Yii::app()->modules as $module => $stuff) {
-			if (!in_array($module,$module_classes)) {
-				foreach (Yii::app()->params['admin_menu'] as $item => $uri) {
-					if(!is_array($uri))
-					if (preg_match('/^\/'.$module.'\//',$uri)) {
-						$module_admin[$module][$item] = $uri;
-					}
-				}
-			}
-		}
+        foreach (Yii::app()->modules as $module => $stuff) {
+            if (!in_array($module, $module_classes)) {
+                foreach (Yii::app()->params['admin_menu'] as $item => $uri) {
+                    if (!is_array($uri)) {
+                        if (preg_match('/^\/'.$module.'\//', $uri)) {
+                            $module_admin[$module][$item] = $uri;
+                        }
+                    }
+                }
+            }
+        }
 
-		return $module_admin;
-	}
+        return $module_admin;
+    }
 }

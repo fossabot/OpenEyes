@@ -19,21 +19,21 @@
 
 class PDFFooterTag extends BaseActiveRecordVersioned
 {
-	public function tableName()
-	{
-		return 'pdf_footer_tag';
-	}
+    public function tableName()
+    {
+        return 'pdf_footer_tag';
+    }
 
-	public function rules()
-	{
-		return array(
-		);
-	}
+    public function rules()
+    {
+        return array(
+        );
+    }
 
-	public function relations()
-	{
-		return array(
-			'event_type' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
-		);
-	}
+    public function relations()
+    {
+        return array(
+            'event_type' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
+        );
+    }
 }

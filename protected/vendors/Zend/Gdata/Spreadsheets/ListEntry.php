@@ -42,7 +42,6 @@ require_once 'Zend/Gdata/Spreadsheets/Extension/Custom.php';
  */
 class Zend_Gdata_Spreadsheets_ListEntry extends Zend_Gdata_Entry
 {
-
     protected $_entryClassName = 'Zend_Gdata_Spreadsheets_ListEntry';
 
     /**
@@ -204,5 +203,4 @@ class Zend_Gdata_Spreadsheets_ListEntry extends Zend_Gdata_Entry
         }
         return $this;
     }
-
 }

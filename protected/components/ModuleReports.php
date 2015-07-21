@@ -22,31 +22,31 @@
  */
 class ModuleReports
 {
-	public static function getAll()
-	{
-		$reports = array();
+    public static function getAll()
+    {
+        $reports = array();
 
-		$module_classes = array();
+        $module_classes = array();
 
-		foreach (EventType::model()->findAll(array('order'=>'name')) as $event_type) {
-			foreach (Yii::app()->params['reports'] as $item => $uri) {
-				if (preg_match('/^\/'.$event_type->class_name.'\//',$uri)) {
-					$reports[$event_type->name][$item] = $uri;
-				}
-			}
-			$module_classes[] = $event_type->class_name;
-		}
+        foreach (EventType::model()->findAll(array('order'=>'name')) as $event_type) {
+            foreach (Yii::app()->params['reports'] as $item => $uri) {
+                if (preg_match('/^\/'.$event_type->class_name.'\//', $uri)) {
+                    $reports[$event_type->name][$item] = $uri;
+                }
+            }
+            $module_classes[] = $event_type->class_name;
+        }
 
-		foreach (Yii::app()->modules as $module => $stuff) {
-			if (!in_array($module,$module_classes)) {
-				foreach (Yii::app()->params['reports'] as $item => $uri) {
-					if (preg_match('/^\/'.$module.'\//',$uri)) {
-						$reports[$module][$item] = $uri;
-					}
-				}
-			}
-		}
+        foreach (Yii::app()->modules as $module => $stuff) {
+            if (!in_array($module, $module_classes)) {
+                foreach (Yii::app()->params['reports'] as $item => $uri) {
+                    if (preg_match('/^\/'.$module.'\//', $uri)) {
+                        $reports[$module][$item] = $uri;
+                    }
+                }
+            }
+        }
 
-		return $reports;
-	}
+        return $reports;
+    }
 }

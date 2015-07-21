@@ -25,12 +25,12 @@
 		</div>
 		<div class="large-4 column">
 			<?php
-			$form = $this->beginWidget('BaseEventTypeCActiveForm',array(
-				'id' => 'searchform',
-				'enableAjaxValidation' => false,
-				'focus' => '#search',
-				'action' => Yii::app()->createUrl('/admin/sites'),
-			))?>
+            $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+                'id' => 'searchform',
+                'enableAjaxValidation' => false,
+                'focus' => '#search',
+                'action' => Yii::app()->createUrl('/admin/sites'),
+            ))?>
 				<div class="row">
 					<div class="large-12 column">
 						<input type="text" autocomplete="<?php echo Yii::app()->params['html_autocomplete']?>" name="search" id="search" placeholder="Enter search query..." value="<?php echo strip_tags(@$_POST['search'])?>" />
@@ -51,22 +51,24 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($sites as $i => $site) {?>
+                foreach ($sites as $i => $site) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $site->id?>" data-uri="admin/editsite?site_id=<?php echo $site->id?>">
 						<td><?php echo $site->id?></td>
 						<td><?php echo $site->remote_id?></td>
 						<td><?php echo $site->name?></td>
 						<td><?php echo $site->getLetterAddress(array('delimiter'=>', '))?></td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 			<tfoot class="pagination-container">
 				<tr>
 					<td colspan="4">
 						<?php echo EventAction::button('Add', 'add', array(), array('class' => 'small'))->toHtml()?>
-						<?php echo $this->renderPartial('_pagination',array(
-							'pagination' => $pagination
-						))?>
+						<?php echo $this->renderPartial('_pagination', array(
+                            'pagination' => $pagination
+                        ))?>
 					</td>
 				</tr>
 			</tfoot>

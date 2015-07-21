@@ -83,7 +83,6 @@ require_once 'Zend/Gdata/App/Extension/Category.php';
  */
 class Zend_Gdata_Photos_UserEntry extends Zend_Gdata_Entry
 {
-
     protected $_entryClassName = 'Zend_Gdata_Photos_UserEntry';
 
     /**
@@ -362,5 +361,4 @@ class Zend_Gdata_Photos_UserEntry extends Zend_Gdata_Entry
         $this->_gphotoUser = $value;
         return $this;
     }
-
 }

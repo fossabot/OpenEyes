@@ -69,7 +69,7 @@ return array(
                                                   'id'=> 3,
                                                   'name' => 'Device',
                          ),
-	  'drugform4' => array(
+      'drugform4' => array(
                                                   'id'=> 4,
                                                   'name' => 'Drop',
                          ),
@@ -81,7 +81,7 @@ return array(
                                                   'id'=> 6,
                                                   'name' => 'Gas',
                          ),
-	 'drugform7' => array(
+     'drugform7' => array(
                                                   'id'=> 7,
                                                   'name' => 'Gel',
                          ),
@@ -93,8 +93,8 @@ return array(
                                                   'id'=> 9,
                                                   'name' => 'Infusion',
                          ),
-	  'drugform10' => array(
+      'drugform10' => array(
                                                   'id'=> 10,
-                                                  'name' => 'Inhalation', 
-                         ), 
+                                                  'name' => 'Inhalation',
+                         ),
 );

@@ -59,7 +59,6 @@ require_once 'Zend/Uri/Http.php';
  */
 class Zend_Gdata_App
 {
-
     /** Default major protocol version.
       *
       * @see _majorProtocolVersion
@@ -340,7 +339,6 @@ class Zend_Gdata_App
             throw new Zend_Gdata_App_InvalidArgumentException(
                     'You cannot enable gzipped responses if the zlib module ' .
                     'is not enabled in your PHP installation.');
-
         }
         self::$_gzipEnabled = $enabled;
     }
@@ -552,7 +550,7 @@ class Zend_Gdata_App
         if ($method != 'DELETE' && (
                 !array_key_exists('If-Match', $headers) &&
                 !array_key_exists('If-None-Match', $headers)
-                ) ) {
+                )) {
             $allowWeak = $method == 'GET';
             if ($ifMatchHeader = $this->generateIfMatchHeaderData(
                     $data, $allowWeak)) {
@@ -613,8 +611,8 @@ class Zend_Gdata_App
         // check the overridden method
         if (($method == 'POST' || $method == 'PUT') && $body === null &&
             $headers['x-http-method-override'] != 'DELETE') {
-                require_once 'Zend/Gdata/App/InvalidArgumentException.php';
-                throw new Zend_Gdata_App_InvalidArgumentException(
+            require_once 'Zend/Gdata/App/InvalidArgumentException.php';
+            throw new Zend_Gdata_App_InvalidArgumentException(
                         'You must specify the data to post as either a ' .
                         'string or a child of Zend_Gdata_App_Entry');
         }
@@ -815,8 +813,8 @@ class Zend_Gdata_App
         $minorProtocolVersion = null)
     {
         if (!class_exists($className, false)) {
-          require_once 'Zend/Loader.php';
-          @Zend_Loader::loadClass($className);
+            require_once 'Zend/Loader.php';
+            @Zend_Loader::loadClass($className);
         }
 
         // Load the feed as an XML DOMDocument object
@@ -973,8 +971,8 @@ class Zend_Gdata_App
         $extraHeaders = array())
     {
         if (!class_exists($className, false)) {
-          require_once 'Zend/Loader.php';
-          @Zend_Loader::loadClass($className);
+            require_once 'Zend/Loader.php';
+            @Zend_Loader::loadClass($className);
         }
 
         $response = $this->post($data, $uri, null, null, $extraHeaders);
@@ -1014,8 +1012,8 @@ class Zend_Gdata_App
         }
 
         if (!class_exists($className, false)) {
-          require_once 'Zend/Loader.php';
-          @Zend_Loader::loadClass($className);
+            require_once 'Zend/Loader.php';
+            @Zend_Loader::loadClass($className);
         }
 
         $response = $this->put($data, $uri, null, null, $extraHeaders);
@@ -1049,18 +1047,18 @@ class Zend_Gdata_App
             $class = $matches[1];
             $foundClassName = null;
             foreach ($this->_registeredPackages as $name) {
-                 try {
-                     // Autoloading disabled on next line for compatibility
+                try {
+                    // Autoloading disabled on next line for compatibility
                      // with magic factories. See ZF-6660.
                      if (!class_exists($name . '_' . $class, false)) {
-                        require_once 'Zend/Loader.php';
-                        @Zend_Loader::loadClass($name . '_' . $class);
+                         require_once 'Zend/Loader.php';
+                         @Zend_Loader::loadClass($name . '_' . $class);
                      }
-                     $foundClassName = $name . '_' . $class;
-                     break;
-                 } catch (Zend_Exception $e) {
-                     // package wasn't here- continue searching
-                 }
+                    $foundClassName = $name . '_' . $class;
+                    break;
+                } catch (Zend_Exception $e) {
+                    // package wasn't here- continue searching
+                }
             }
             if ($foundClassName != null) {
                 $reflectionObj = new ReflectionClass($foundClassName);
@@ -1096,7 +1094,8 @@ class Zend_Gdata_App
      * @return mixed A new feed of the same type as the one originally
      *          passed in, containing all relevent entries.
      */
-    public function retrieveAllEntriesForFeed($feed) {
+    public function retrieveAllEntriesForFeed($feed)
+    {
         $feedClass = get_class($feed);
         $reflectionObj = new ReflectionClass($feedClass);
         $result = $reflectionObj->newInstance();
@@ -1111,8 +1110,7 @@ class Zend_Gdata_App
             } else {
                 $feed = null;
             }
-        }
-        while ($feed != null);
+        } while ($feed != null);
         return $result;
     }
 
@@ -1230,11 +1228,10 @@ class Zend_Gdata_App
      */
     public function useObjectMapping($value)
     {
-        if ($value === True) {
+        if ($value === true) {
             $this->_useObjectMapping = true;
         } else {
             $this->_useObjectMapping = false;
         }
     }
-
 }

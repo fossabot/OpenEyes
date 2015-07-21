@@ -18,60 +18,60 @@
  */
 
 return array(
-	'params' => array(
-		'admin_structure' => array(
-			'System' => array(
-				'Settings' => '/admin/settings',
-			),
-			'Core' => array(
-				'Users' => '/admin/users',
-				'Firms' => '/admin/firms',
-				'Contacts' => '/admin/contacts',
-				'Contact labels' => '/admin/contactlabels',
-				'Data sources' => '/admin/datasources',
-				'Allergies' => '/admin/allergies',
-				'Institutions' => '/admin/institutions',
-				'Sites' => '/admin/sites',
-				'Commissioning bodies' => '/admin/commissioning_bodies',
-				'Commissioning body types' => '/admin/commissioning_body_types',
-				'Commissioning body services' => '/admin/commissioning_body_services',
-				'Commissioning body service types' => '/admin/commissioning_body_service_types',
-				'Event deletion requests' => '/admin/eventDeletionRequests',
-				'Custom episode summaries' => '/admin/episodeSummaries',
-				'Medication Stop Reason' => '/admin/editmedicationstopreason',
-				'Previous Ophthalmic Surgery' => '/admin/editpreviousoperation',
-				'Social History' => '/admin/socialhistory',
-				'Findings' => '/admin/managefindings',
-				'Anaesthetic Agent' => '/admin/viewAnaestheticAgent',
-				'Anaesthetic Agent Mapping' => '/oeadmin/AnaestheticAgentMapping/list',
-				'Anaesthetic Agent Defaults' => '/oeadmin/AnaestheticAgentDefaults/list',
-				'Risks' => '/oeadmin/risk/list'
-			),
-			'Procedure Management' => array(
-				'Procedures' => '/oeadmin/procedure/list',
-				'Benefits' => '/oeadmin/benefit/list',
-				'Complications' => '/oeadmin/complication/list',
-				'OPCS Codes' => '/oeadmin/opcsCode/list'
-			),
-			'Drugs' => array(
-				'Common Drugs List' => array('OphDrPrescription' => '/OphDrPrescription/commonDrugAdmin/list'),
-				'Drug Sets' => array('OphDrPrescription' => '/OphDrPrescription/DrugSetAdmin/DrugSets'),
-				'Common Medications List ' => '/oeadmin/commonMedications/list',
-				'Medication List' => '/oeadmin/medication/list',
-				'Formulary Drugs' => '/oeadmin/formularyDrugs/list',
-				'Per Op Drugs' => array('OphTrOperationnote' => '/OphTrOperationnote/admin/viewPostOpDrugs'),
-				'Per Op Drug Mappings' => array('OphTrOperationnote' => '/oeadmin/PostOpDrugMappings/list'),
-			),
-			'Disorders' => array(
-				'Common Ophthalmic Disorder Groups' => '/admin/editcommonophthalmicdisordergroups',
-				'Common Ophthalmic Disorders' => '/admin/editcommonophthalmicdisorder',
-				'Secondary Common Ophthalmic Disorders' => '/admin/editsecondarytocommonophthalmicdisorder',
-				'Common Systemic Disorders' => '/oeadmin/CommonSystemicDisorder/list'
-			),
-			'Consent' => array(
-				'Leaflets' => array('OphTrConsent' => '/oeadmin/Leaflets/list'),
-				'Leaflet Subspecialty and Firm Assignment' => array('OphTrConsent' => '/oeadmin/LeafletSubspecialtyFirm/list')
-			),
-		)
-	)
+    'params' => array(
+        'admin_structure' => array(
+            'System' => array(
+                'Settings' => '/admin/settings',
+            ),
+            'Core' => array(
+                'Users' => '/admin/users',
+                'Firms' => '/admin/firms',
+                'Contacts' => '/admin/contacts',
+                'Contact labels' => '/admin/contactlabels',
+                'Data sources' => '/admin/datasources',
+                'Allergies' => '/admin/allergies',
+                'Institutions' => '/admin/institutions',
+                'Sites' => '/admin/sites',
+                'Commissioning bodies' => '/admin/commissioning_bodies',
+                'Commissioning body types' => '/admin/commissioning_body_types',
+                'Commissioning body services' => '/admin/commissioning_body_services',
+                'Commissioning body service types' => '/admin/commissioning_body_service_types',
+                'Event deletion requests' => '/admin/eventDeletionRequests',
+                'Custom episode summaries' => '/admin/episodeSummaries',
+                'Medication Stop Reason' => '/admin/editmedicationstopreason',
+                'Previous Ophthalmic Surgery' => '/admin/editpreviousoperation',
+                'Social History' => '/admin/socialhistory',
+                'Findings' => '/admin/managefindings',
+                'Anaesthetic Agent' => '/admin/viewAnaestheticAgent',
+                'Anaesthetic Agent Mapping' => '/oeadmin/AnaestheticAgentMapping/list',
+                'Anaesthetic Agent Defaults' => '/oeadmin/AnaestheticAgentDefaults/list',
+                'Risks' => '/oeadmin/risk/list'
+            ),
+            'Procedure Management' => array(
+                'Procedures' => '/oeadmin/procedure/list',
+                'Benefits' => '/oeadmin/benefit/list',
+                'Complications' => '/oeadmin/complication/list',
+                'OPCS Codes' => '/oeadmin/opcsCode/list'
+            ),
+            'Drugs' => array(
+                'Common Drugs List' => array('OphDrPrescription' => '/OphDrPrescription/commonDrugAdmin/list'),
+                'Drug Sets' => array('OphDrPrescription' => '/OphDrPrescription/DrugSetAdmin/DrugSets'),
+                'Common Medications List ' => '/oeadmin/commonMedications/list',
+                'Medication List' => '/oeadmin/medication/list',
+                'Formulary Drugs' => '/oeadmin/formularyDrugs/list',
+                'Per Op Drugs' => array('OphTrOperationnote' => '/OphTrOperationnote/admin/viewPostOpDrugs'),
+                'Per Op Drug Mappings' => array('OphTrOperationnote' => '/oeadmin/PostOpDrugMappings/list'),
+            ),
+            'Disorders' => array(
+                'Common Ophthalmic Disorder Groups' => '/admin/editcommonophthalmicdisordergroups',
+                'Common Ophthalmic Disorders' => '/admin/editcommonophthalmicdisorder',
+                'Secondary Common Ophthalmic Disorders' => '/admin/editsecondarytocommonophthalmicdisorder',
+                'Common Systemic Disorders' => '/oeadmin/CommonSystemicDisorder/list'
+            ),
+            'Consent' => array(
+                'Leaflets' => array('OphTrConsent' => '/oeadmin/Leaflets/list'),
+                'Leaflet Subspecialty and Firm Assignment' => array('OphTrConsent' => '/oeadmin/LeafletSubspecialtyFirm/list')
+            ),
+        )
+    )
 );

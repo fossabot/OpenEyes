@@ -19,12 +19,11 @@
  */
 class LeafletsController extends BaseAdminController
 {
-
-	/**
-	 * @throws Exception
-	 */
-	public function actionList()
-	{
-		$this->genericAdmin('Leaflets', 'OphTrConsent_Leaflet');
-	}
+    /**
+     * @throws Exception
+     */
+    public function actionList()
+    {
+        $this->genericAdmin('Leaflets', 'OphTrConsent_Leaflet');
+    }
 }

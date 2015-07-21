@@ -22,60 +22,60 @@
  */
 class BenefitController extends BaseAdminController
 {
-	/**
-	 * @var string
-	 */
-	public $layout = 'admin';
+    /**
+     * @var string
+     */
+    public $layout = 'admin';
 
-	/**
-	 * @var int
-	 */
-	public $itemsPerPage = 100;
+    /**
+     * @var int
+     */
+    public $itemsPerPage = 100;
 
-	/**
-	 * Lists procedures
-	 *
-	 * @throws CHttpException
-	 */
-	public function actionList()
-	{
-		$admin = new Admin(Benefit::model(), $this);
-		$admin->setListFields(array(
-							'id',
-							'name',
-							'active'
-		));
-		$admin->searchAll();
-		$admin->getSearch()->addActiveFilter();
-		$admin->getSearch()->setItemsPerPage($this->itemsPerPage);
-		$admin->listModel();
-	}
+    /**
+     * Lists procedures
+     *
+     * @throws CHttpException
+     */
+    public function actionList()
+    {
+        $admin = new Admin(Benefit::model(), $this);
+        $admin->setListFields(array(
+                            'id',
+                            'name',
+                            'active'
+        ));
+        $admin->searchAll();
+        $admin->getSearch()->addActiveFilter();
+        $admin->getSearch()->setItemsPerPage($this->itemsPerPage);
+        $admin->listModel();
+    }
 
-	/**
-	 * Edits or adds a Procedure
-	 *
-	 * @param bool|int $id
-	 * @throws CHttpException
-	 */
-	public function actionEdit($id = false)
-	{
-		$admin = new Admin(Benefit::model(), $this);
-		if($id){
-			$admin->setModelId($id);
-		}
-		$admin->setEditFields(array(
-			'name' => 'text',
-			'active' => 'checkbox'
-		));
-		$admin->editModel();
-	}
+    /**
+     * Edits or adds a Procedure
+     *
+     * @param bool|int $id
+     * @throws CHttpException
+     */
+    public function actionEdit($id = false)
+    {
+        $admin = new Admin(Benefit::model(), $this);
+        if ($id) {
+            $admin->setModelId($id);
+        }
+        $admin->setEditFields(array(
+            'name' => 'text',
+            'active' => 'checkbox'
+        ));
+        $admin->editModel();
+    }
 
-	/**
-	 * Deletes rows for the model
-	 */
-	public function actionDelete()
-	{
-		$admin = new Admin(Benefit::model(), $this);
-		$admin->deleteModel();
-	}
+    /**
+     * Deletes rows for the model
+     */
+    public function actionDelete()
+    {
+        $admin = new Admin(Benefit::model(), $this);
+        $admin->deleteModel();
+    }
 }

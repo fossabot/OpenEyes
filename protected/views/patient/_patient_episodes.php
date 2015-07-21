@@ -26,9 +26,12 @@
 			<strong>open <?php echo $episodes_open?> &nbsp;|&nbsp;closed <?php echo $episodes_closed?></strong>
 		</div>
 	</header>
-	<?php if (empty($episodes)) {?>
+	<?php if (empty($episodes)) {
+    ?>
 		<div class="summary">No episodes</div>
-	<?php } else {?>
+	<?php 
+} else {
+    ?>
 	<table class="patient-episodes grid">
 		<thead>
 			<tr>
@@ -41,70 +44,84 @@
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach ($ordered_episodes as $specialty_episodes) {?>
+		<?php foreach ($ordered_episodes as $specialty_episodes) {
+    ?>
 			<tr class="speciality">
 				<td colspan="6"><?php echo $specialty_episodes['specialty'] ?></td>
 			</tr>
-			<?php foreach ($specialty_episodes['episodes'] as $i => $episode) {?>
-				<tr id="<?php echo $episode->id?>" class="clickable all-episode <?php if ($episode->end_date !== null) {?> closed<?php }?>">
-					<td><?php echo $episode->NHSDate('start_date'); ?></td>
-					<td><?php echo $episode->NHSDate('end_date'); ?></td>
-					<td><?php echo $episode->firm ? CHtml::encode($episode->firm->name) : 'N/A'; ?></td>
+			<?php foreach ($specialty_episodes['episodes'] as $i => $episode) {
+    ?>
+				<tr id="<?php echo $episode->id?>" class="clickable all-episode <?php if ($episode->end_date !== null) {
+    ?> closed<?php 
+}
+    ?>">
+					<td><?php echo $episode->NHSDate('start_date');
+    ?></td>
+					<td><?php echo $episode->NHSDate('end_date');
+    ?></td>
+					<td><?php echo $episode->firm ? CHtml::encode($episode->firm->name) : 'N/A';
+    ?></td>
 					<td><?php echo CHtml::encode($episode->getSubspecialtyText())?></td>
 					<td><?php echo ($episode->diagnosis) ? $episode->eye->name : 'No diagnosis' ?></td>
 					<td><?php echo ($episode->diagnosis) ? $episode->diagnosis->term : 'No diagnosis' ?></td>
 				</tr>
-			<?php }?>
-		<?php }?>
+			<?php 
+}
+    ?>
+		<?php 
+}
+    ?>
 		</tbody>
 	</table>
-	<?php }?>
+	<?php 
+}?>
 </section>
 <?php
 if ($episode = $this->patient->getEpisodeForCurrentSubspecialty()) {
-	$latest = $episode->getLatestEvent();
-	$subspecialty = $episode->getSubspecialty();
+    $latest = $episode->getLatestEvent();
+    $subspecialty = $episode->getSubspecialty();
 }
 
 $msg = null;
 
 if (@$latest) {
-	$msg = "Latest Event";
-	if ($subspecialty) {
-		// might not be a subspecialty for legacy
-		$msg .= " in " . $subspecialty->name;
-	}
-	$msg .= ": <strong>" . $latest->eventType->name . "</strong> <span class='small'>(" . $latest->NHSDate('event_date') . ")</span>";
-	echo '<div class="box patient-info episode-links">' . CHtml::link($msg,Yii::app()->createUrl('/'.$latest->eventType->class_name.'/default/view/'.$latest->id)) . '</div>';
-}
-else if ($this->checkAccess('OprnCreateEpisode')) {
-	$msg = "Create episode / add event";
-	echo '<div class="box patient-info episode-links">' . CHtml::link($msg,Yii::app()->createUrl('patient/episodes/'.$this->patient->id)) . '</div>';
+    $msg = "Latest Event";
+    if ($subspecialty) {
+        // might not be a subspecialty for legacy
+        $msg .= " in " . $subspecialty->name;
+    }
+    $msg .= ": <strong>" . $latest->eventType->name . "</strong> <span class='small'>(" . $latest->NHSDate('event_date') . ")</span>";
+    echo '<div class="box patient-info episode-links">' . CHtml::link($msg, Yii::app()->createUrl('/'.$latest->eventType->class_name.'/default/view/'.$latest->id)) . '</div>';
+} elseif ($this->checkAccess('OprnCreateEpisode')) {
+    $msg = "Create episode / add event";
+    echo '<div class="box patient-info episode-links">' . CHtml::link($msg, Yii::app()->createUrl('patient/episodes/'.$this->patient->id)) . '</div>';
 }
 
 try {
-	echo $this->renderPartial('custom/info');
+    echo $this->renderPartial('custom/info');
 } catch (Exception $e) {
-	// This is our default layout
-	$codes = $this->patient->getSpecialtyCodes();
-	// specialist diagnoses
-	foreach ($codes as $code) {
-		try {
-			echo $this->renderPartial('_' . $code . '_diagnoses');
-		} catch (Exception $e) {}
-	}
-	$this->renderPartial('_systemic_diagnoses');
-	$this->renderPartial('_previous_operations');
-	$this->renderPartial('_medications');
-	// specialist extra data
-	foreach ($codes as $code) {
-		try {
-			echo $this->renderPartial('_' . $code . '_info');
-		} catch (Exception $e) {}
-	}
-	$this->renderPartial('_allergies');
-	$this->renderPartial('_risks');
-	$this->renderPartial('_family_history');
-	$this->renderPartial('_social_history');
+    // This is our default layout
+    $codes = $this->patient->getSpecialtyCodes();
+    // specialist diagnoses
+    foreach ($codes as $code) {
+        try {
+            echo $this->renderPartial('_' . $code . '_diagnoses');
+        } catch (Exception $e) {
+        }
+    }
+    $this->renderPartial('_systemic_diagnoses');
+    $this->renderPartial('_previous_operations');
+    $this->renderPartial('_medications');
+    // specialist extra data
+    foreach ($codes as $code) {
+        try {
+            echo $this->renderPartial('_' . $code . '_info');
+        } catch (Exception $e) {
+        }
+    }
+    $this->renderPartial('_allergies');
+    $this->renderPartial('_risks');
+    $this->renderPartial('_family_history');
+    $this->renderPartial('_social_history');
 }
 ?>

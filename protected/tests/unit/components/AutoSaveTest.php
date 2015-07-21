@@ -15,41 +15,37 @@
 
 class AutoSaveTest extends PHPUnit_Framework_TestCase
 {
+    public function testAutoSave()
+    {
+        $key = 'test_key';
+        $value = 'test_value';
 
-	public function testAutoSave()
-	{
-		$key = 'test_key';
-		$value = 'test_value';
+        AutoSave::add($key, $value);
 
-		AutoSave::add($key,$value);
+        $this->assertEquals(Autosave::get($key), $value);
+    }
 
-		$this->assertEquals(Autosave::get($key) ,$value);
-	}
+    public function testAutoSaveRemove()
+    {
+        $key = 'test_key';
+        $value = 'test_value';
 
-	public function testAutoSaveRemove()
-	{
-		$key = 'test_key';
-		$value = 'test_value';
+        AutoSave::add($key, $value);
+        AutoSave::remove($key);
 
-		AutoSave::add($key,$value);
-		AutoSave::remove($key);
+        $this->assertNull(Autosave::get($key));
+    }
 
-		$this->assertNull(Autosave::get($key));
-	}
+    public function testAutoSaveRemoveByPrefix()
+    {
+        AutoSave::add('red', 'value');
+        AutoSave::add('really', 'value');
+        AutoSave::add('reaper', 'value');
 
-	public function testAutoSaveRemoveByPrefix()
-	{
-		AutoSave::add('red','value');
-		AutoSave::add('really','value');
-		AutoSave::add('reaper','value');
+        AutoSave::removeAllByPrefix('rea');
 
-		AutoSave::removeAllByPrefix('rea');
-
-		$this->assertEquals(Autosave::get('red'), 'value');
-		$this->assertNull(Autosave::get('really'));
-		$this->assertNull(Autosave::get('reaper'));
-
-	}
-
-
+        $this->assertEquals(Autosave::get('red'), 'value');
+        $this->assertNull(Autosave::get('really'));
+        $this->assertNull(Autosave::get('reaper'));
+    }
 }

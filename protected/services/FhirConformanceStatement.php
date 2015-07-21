@@ -17,12 +17,12 @@ namespace services;
 
 class FhirConformanceStatement extends Resource
 {
-	static protected $fhir_type = 'Conformance';
+    protected static $fhir_type = 'Conformance';
 
-	public $publisher;
-	public $date;
-	public $description;
-	public $url;
-	public $profiles;
-	public $server_resources;
+    public $publisher;
+    public $date;
+    public $description;
+    public $url;
+    public $profiles;
+    public $server_resources;
 }

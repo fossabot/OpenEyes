@@ -97,7 +97,6 @@ require_once 'Zend/Gdata/YouTube/Extension/Location.php';
  */
 class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
 {
-
     const YOUTUBE_DEVELOPER_TAGS_SCHEMA = 'http://gdata.youtube.com/schemas/2007/developertags.cat';
     const YOUTUBE_CATEGORY_SCHEMA = 'http://gdata.youtube.com/schemas/2007/categories.cat';
     protected $_entryClassName = 'Zend_Gdata_YouTube_VideoEntry';
@@ -232,7 +231,7 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
             }
         }
         if ($this->_where != null) {
-           $element->appendChild($this->_where->getDOM(
+            $element->appendChild($this->_where->getDOM(
                 $element->ownerDocument));
         }
         return $element;
@@ -599,9 +598,9 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
     {
         $recorded = $this->getRecorded();
         if ($recorded != null) {
-          return $recorded->getText();
+            return $recorded->getText();
         } else {
-          return null;
+            return null;
         }
     }
 
@@ -732,7 +731,6 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
     {
         $this->ensureMediaGroupIsNotNull();
         if ($this->getMediaGroup()->getThumbnail() != null) {
-
             $thumbnailArray = array();
 
             foreach ($this->getMediaGroup()->getThumbnail() as $thumbnailObj) {
@@ -759,10 +757,10 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
     {
         $this->ensureMediaGroupIsNotNull();
         foreach ($this->getMediaGroup()->getContent() as $content) {
-                if ($content->getType() === 'application/x-shockwave-flash') {
-                    return $content->getUrl();
-                }
+            if ($content->getType() === 'application/x-shockwave-flash') {
+                return $content->getUrl();
             }
+        }
         return null;
     }
 
@@ -832,7 +830,6 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
     {
         $this->ensureMediaGroupIsNotNull();
         if ($this->getMediaGroup()->getKeywords() != null) {
-
             $keywords = $this->getMediaGroup()->getKeywords();
             $keywordsString = $keywords->getText();
             if (strlen(trim($keywordsString)) > 0) {
@@ -888,7 +885,6 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
         if ($this->getWhere() != null &&
             $this->getWhere()->getPoint() != null &&
             ($position = $this->getWhere()->getPoint()->getPos()) != null) {
-
             $positionString = $position->__toString();
 
             if (strlen(trim($positionString)) > 0) {
@@ -936,7 +932,7 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
         $this->ensureMediaGroupIsNotNull();
         $categories = $this->getMediaGroup()->getCategory();
         if ($categories != null) {
-            foreach($categories as $category) {
+            foreach ($categories as $category) {
                 if ($category->getScheme() == self::YOUTUBE_CATEGORY_SCHEMA) {
                     return $category->getText();
                 }
@@ -1014,7 +1010,7 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
      */
     public function setVideoDeveloperTags($developerTags)
     {
-        foreach($developerTags as $developerTag) {
+        foreach ($developerTags as $developerTag) {
             $this->addVideoDeveloperTag($developerTag);
         }
         return $this;
@@ -1032,7 +1028,6 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
         if ($control != null &&
             $control->getDraft() != null &&
             $control->getDraft()->getText() == 'yes') {
-
             return $control->getState();
         }
         return null;
@@ -1067,8 +1062,8 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
                 'Rating for video entry must be between 1 and 5 inclusive.');
         }
 
-         require_once 'Zend/Gdata/Extension/Rating.php';
-         $rating = new Zend_Gdata_Extension_Rating(null, 1, 5, null,
+        require_once 'Zend/Gdata/Extension/Rating.php';
+        $rating = new Zend_Gdata_Extension_Rating(null, 1, 5, null,
             $ratingValue);
         $this->setRating($rating);
         return $this;
@@ -1091,5 +1086,4 @@ class Zend_Gdata_YouTube_VideoEntry extends Zend_Gdata_YouTube_MediaEntry
         }
         return $commentsFeedUrl;
     }
-
 }

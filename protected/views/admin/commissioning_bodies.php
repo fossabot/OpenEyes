@@ -31,7 +31,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach (CommissioningBody::model()->findAll(array('order'=>'name asc')) as $i => $cb) {?>
+				<?php foreach (CommissioningBody::model()->findAll(array('order'=>'name asc')) as $i => $cb) {
+    ?>
 					<tr class="clickable" data-id="<?php echo $cb->id?>" data-uri="admin/editCommissioningBody?commissioning_body_id=<?php echo $cb->id?>">
 						<td><input type="checkbox" name="commissioning_body[]" value="<?php echo $cb->id?>" class="wards" /></td>
 						<td><?php echo $cb->code?></td>
@@ -39,7 +40,8 @@
 						<td><?php echo $cb->type->name?></td>
 						<td><?php echo $cb->address ? $cb->address->address1 : 'None'?></td>
 					</tr>
-				<?php }?>
+				<?php 
+}?>
 			</tbody>
 			<tfoot>
 				<tr>

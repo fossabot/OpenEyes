@@ -19,5 +19,4 @@
 
 class FieldImagesException extends Exception
 {
-
 }

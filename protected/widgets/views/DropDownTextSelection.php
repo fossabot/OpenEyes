@@ -18,33 +18,40 @@
  */
 ?>
 <?php
-	$no_wrapper = false;
-	if (@$htmlOptions['nowrapper']) {
-		$no_wrapper = true;
-		unset($htmlOptions['nowrapper']);
-	}
-	$htmlOptions['class'] = @$htmlOptions['class'];
-	$htmlOptions['class'] .= ' dropDownTextSelection';
-	if (@$htmlOptions['delimited']) {
-		$htmlOptions['class'] .= ' delimited';
-		unset($htmlOptions['delimited']);
-	}
-	$htmlOptions['id'] = 'dropDownTextSelection_'.CHtml::modelName($element).'_'.$field;
-	if (!@$htmlOptions['empty']) {
-		$htmlOptions['empty'] = '- Please select -';
-	}
+    $no_wrapper = false;
+    if (@$htmlOptions['nowrapper']) {
+        $no_wrapper = true;
+        unset($htmlOptions['nowrapper']);
+    }
+    $htmlOptions['class'] = @$htmlOptions['class'];
+    $htmlOptions['class'] .= ' dropDownTextSelection';
+    if (@$htmlOptions['delimited']) {
+        $htmlOptions['class'] .= ' delimited';
+        unset($htmlOptions['delimited']);
+    }
+    $htmlOptions['id'] = 'dropDownTextSelection_'.CHtml::modelName($element).'_'.$field;
+    if (!@$htmlOptions['empty']) {
+        $htmlOptions['empty'] = '- Please select -';
+    }
 ?>
-<?php if (!$no_wrapper) { ?>
+<?php if (!$no_wrapper) {
+    ?>
 <div id="div_<?php echo CHtml::modelName($element) ?>_<?php echo $field ?>_TextSelection" class="row field-row">
-	<div class="large-<?php echo $layoutColumns['label'];?> column">
-		<label for="<?php echo $htmlOptions['id'];?>">
+	<div class="large-<?php echo $layoutColumns['label'];
+    ?> column">
+		<label for="<?php echo $htmlOptions['id'];
+    ?>">
 			<?php echo CHtml::encode($element->getAttributeLabel($field)) ?>:
 		</label>
 	</div>
-	<div class="large-<?php echo $layoutColumns['field'];?> column end">
-		<?php }?>
+	<div class="large-<?php echo $layoutColumns['field'];
+    ?> column end">
+		<?php 
+}?>
 		<?php echo CHtml::dropDownList('', null, $options, $htmlOptions); ?>
-		<?php if (!$no_wrapper) { ?>
+		<?php if (!$no_wrapper) {
+    ?>
 	</div>
 </div>
-<?php } ?>
+<?php 
+} ?>

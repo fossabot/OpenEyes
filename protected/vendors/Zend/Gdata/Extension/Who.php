@@ -52,7 +52,6 @@ require_once 'Zend/Gdata/Extension/EntryLink.php';
  */
 class Zend_Gdata_Extension_Who extends Zend_Gdata_Extension
 {
-
     protected $_rootElement = 'who';
     protected $_email = null;
     protected $_rel = null;
@@ -180,8 +179,7 @@ class Zend_Gdata_Extension_Who extends Zend_Gdata_Extension
     {
         if ($this->_valueString != null) {
             return $this->_valueString;
-        }
-        else {
+        } else {
             return parent::__toString();
         }
     }
@@ -295,5 +293,4 @@ class Zend_Gdata_Extension_Who extends Zend_Gdata_Extension
         $this->_attendeeType = $value;
         return $this;
     }
-
 }

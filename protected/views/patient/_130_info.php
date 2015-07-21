@@ -40,8 +40,8 @@
 			</thead>
 			<tbody>
 				<?php
-				$info = $this->patient->getOPHInfo();
-				?>
+                $info = $this->patient->getOPHInfo();
+                ?>
 				<tr>
 					<td><?php echo Helper::formatFuzzyDate($info->cvi_status_date); ?></td>
 					<td><?php echo $info->cvi_status->name; ?></td>
@@ -49,7 +49,8 @@
 			</tbody>
 		</table>
 
-		<?php if ($this->checkAccess('OprnEditOphInfo')) {?>
+		<?php if ($this->checkAccess('OprnEditOphInfo')) {
+    ?>
 
 			<div class="box-actions">
 				<button id="btn-edit_oph_info" class="secondary small">
@@ -62,27 +63,30 @@
 				<fieldset class="field-row">
 					<legend><strong>Edit CVI Status</strong></legend>
 					<?php
-				$form = $this->beginWidget('FormLayout', array(
-						'id'=>'edit-oph_info',
-						'htmlOptions' => array('class'=>'form add-data'),
-						'layoutColumns'=>array(
-							'label' => 3,
-							'field' => 9
-						),
-					))?>
+                $form = $this->beginWidget('FormLayout', array(
+                        'id'=>'edit-oph_info',
+                        'htmlOptions' => array('class'=>'form add-data'),
+                        'layoutColumns'=>array(
+                            'label' => 3,
+                            'field' => 9
+                        ),
+                    ))?>
 
 					<div class="field-row row">
-						<div class="<?php echo $form->columns('label');?>">
+						<div class="<?php echo $form->columns('label');
+    ?>">
 							<label for="PatientOphInfo_cvi_status_id">Status:</label>
 						</div>
-						<div class="<?php echo $form->columns('field');?>">
-							<?php echo CHtml::activeDropDownList($info, 'cvi_status_id', CHtml::listData(PatientOphInfoCviStatus::model()->active()->findAll(array('order'=>'display_order')),'id','name')) ?>
-							<?php echo $form->error($info, 'cvi_status_date'); ?>
+						<div class="<?php echo $form->columns('field');
+    ?>">
+							<?php echo CHtml::activeDropDownList($info, 'cvi_status_id', CHtml::listData(PatientOphInfoCviStatus::model()->active()->findAll(array('order'=>'display_order')), 'id', 'name')) ?>
+							<?php echo $form->error($info, 'cvi_status_date');
+    ?>
 						</div>
 					</div>
 
 					<?php
-					$this->renderPartial('_fuzzy_date', array('form'=>$form, 'date' => $info->cvi_status_date))?>
+                    $this->renderPartial('_fuzzy_date', array('form'=>$form, 'date' => $info->cvi_status_date))?>
 
 					<input type="hidden" name="patient_id" value="<?php echo $this->patient->id?>" />
 
@@ -97,10 +101,12 @@
 						</button>
 					</div>
 
-					<?php $this->endWidget(); ?>
+					<?php $this->endWidget();
+    ?>
 				</fieldset>
 			</div>
-		<?php }?>
+		<?php 
+}?>
 	</div>
 
 </section>

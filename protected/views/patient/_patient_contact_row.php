@@ -19,7 +19,11 @@
 
 $contact = $pca->location ? $pca->location->contact : $pca->contact;
 ?>
-<tr data-attr-pca-id="<?php echo $pca->id?>"<?php if ($pca->location) {?> data-attr-location-id="<?php echo $pca->location_id?>"<?php } if ($pca->contact) {?> data-attr-contact-id="<?php echo $pca->contact_id?>"<?php }?>>
+<tr data-attr-pca-id="<?php echo $pca->id?>"<?php if ($pca->location) {
+    ?> data-attr-location-id="<?php echo $pca->location_id?>"<?php 
+} if ($pca->contact) {
+    ?> data-attr-contact-id="<?php echo $pca->contact_id?>"<?php 
+}?>>
 	<td>
 		<?php echo CHtml::encode($contact->fullName)?> <br />
 		<?php echo CHtml::encode($contact->qualifications)?>
@@ -31,16 +35,21 @@ $contact = $pca->location ? $pca->location->contact : $pca->contact;
 		<?php echo CHtml::encode($contact->label->name)?>
 	</td>
 	<td>
-		<?php if ($this->checkAccess('OprnEditContact')) {?>
-			<?php if ($pca->location) {?>
+		<?php if ($this->checkAccess('OprnEditContact')) {
+    ?>
+			<?php if ($pca->location) {
+    ?>
 				<a class="editContact" rel="<?php echo $pca->id?>" href="#">
 					Edit
 				</a>
 				<br/>
-			<?php }?>
+			<?php 
+}
+    ?>
 			<a class="removeContact small" rel="<?php echo $pca->id?>" href="#">
 				Remove
 			</a>
-		<?php }?>
+		<?php 
+}?>
 	</td>
 </tr>

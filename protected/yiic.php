@@ -9,16 +9,15 @@ $config= $dirname .'/config/console.php';
 
 $n = 2;
 while (!file_exists($yiic)) {
-	$yiic= $dirname .str_repeat('/..',$n++).'/yii/framework/yiic.php';
+    $yiic= $dirname .str_repeat('/..', $n++).'/yii/framework/yiic.php';
 
-	if ($n >= 15) {
-		$yiic = $dirname .'/../vendor/yiisoft/yii/framework/yiic.php';
-		if(!file_exists($yiic)){
-			echo "Couldn't find yiic.php.\n";
-			exit;
-		}
-
-	}
+    if ($n >= 15) {
+        $yiic = $dirname .'/../vendor/yiisoft/yii/framework/yiic.php';
+        if (!file_exists($yiic)) {
+            echo "Couldn't find yiic.php.\n";
+            exit;
+        }
+    }
 }
 
 require_once($yiic);

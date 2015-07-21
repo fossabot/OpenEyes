@@ -37,7 +37,6 @@ require_once 'Zend/Gdata/App/Extension.php';
  */
 class Zend_Gdata_Extension extends Zend_Gdata_App_Extension
 {
-
     protected $_rootNamespace = 'gd';
 
     public function __construct()
@@ -54,5 +53,4 @@ class Zend_Gdata_Extension extends Zend_Gdata_App_Extension
 
         parent::__construct();
     }
-
 }

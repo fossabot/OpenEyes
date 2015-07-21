@@ -23,17 +23,17 @@
 			<h2>Anaesthetic Agents</h2>
 		</div>
 	</div>
-	<?php echo $this->renderPartial('//admin/_form_errors',array('errors'=>$errors))?>
+	<?php echo $this->renderPartial('//admin/_form_errors', array('errors'=>$errors))?>
 	<?php
-	$form = $this->beginWidget('BaseEventTypeCActiveForm', array(
-		'id'=>'adminform',
-		'enableAjaxValidation'=>false,
-		'layoutColumns'=>array(
-			'label' => 2,
-			'field' => 5
-		)
-	))?>
-	<?php echo $form->textField($agent,'name')?>
+    $form = $this->beginWidget('BaseEventTypeCActiveForm', array(
+        'id'=>'adminform',
+        'enableAjaxValidation'=>false,
+        'layoutColumns'=>array(
+            'label' => 2,
+            'field' => 5
+        )
+    ))?>
+	<?php echo $form->textField($agent, 'name')?>
 	<?php echo $form->formActions(array('cancel-uri'=>'/admin/viewAnaestheticAgent'))?>
 	<?php $this->endWidget()?>
 </div>

@@ -66,7 +66,7 @@ class Zend_Ldap_Dn implements ArrayAccess
     {
         if (is_array($dn)) {
             return self::fromArray($dn, $caseFold);
-        } else if (is_string($dn)) {
+        } elseif (is_string($dn)) {
             return self::fromString($dn, $caseFold);
         } else {
             /**
@@ -106,7 +106,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      */
     public static function fromArray(array $dn, $caseFold = null)
     {
-         return new self($dn, $caseFold);
+        return new self($dn, $caseFold);
     }
 
     /**
@@ -186,8 +186,7 @@ class Zend_Ldap_Dn implements ArrayAccess
         }
         if ($length === 1) {
             return self::_caseFoldRdn($this->_dn[$index], $caseFold);
-        }
-        else {
+        } else {
             return self::_caseFoldDn(array_slice($this->_dn, $index, $length, false), $caseFold);
         }
     }
@@ -513,7 +512,9 @@ class Zend_Ldap_Dn implements ArrayAccess
          */
         require_once 'Zend/Ldap/Converter.php';
 
-        if (!is_array($values)) $values = array($values);
+        if (!is_array($values)) {
+            $values = array($values);
+        }
         foreach ($values as $key => $val) {
             // Escaping of filter meta characters
             $val = str_replace(array('\\', ',', '+', '"', '<', '>', ';', '#', '=', ),
@@ -530,7 +531,9 @@ class Zend_Ldap_Dn implements ArrayAccess
                     $val = $val . '\20';
                 }
             }
-            if (null === $val) $val = '\0';  // apply escaped "null" if string is empty
+            if (null === $val) {
+                $val = '\0';
+            }  // apply escaped "null" if string is empty
             $values[$key] = $val;
         }
         return (count($values) == 1) ? $values[0] : $values;
@@ -555,7 +558,9 @@ class Zend_Ldap_Dn implements ArrayAccess
          */
         require_once 'Zend/Ldap/Converter.php';
 
-        if (!is_array($values)) $values = array($values);
+        if (!is_array($values)) {
+            $values = array($values);
+        }
         foreach ($values as $key => $val) {
             // strip slashes from special chars
             $val = str_replace(array('\\\\', '\,', '\+', '\"', '\<', '\>', '\;', '\#', '\='),
@@ -606,12 +611,16 @@ class Zend_Ldap_Dn implements ArrayAccess
                     $multi[$key] = $val;
                 }
                 $ret[] = $multi;
-            } else if (is_string($k[$i]) && is_string($v[$i])) {
+            } elseif (is_string($k[$i]) && is_string($v[$i])) {
                 $ret[] = array($k[$i] => $v[$i]);
             }
         }
-        if (!is_null($keys)) $keys = $k;
-        if (!is_null($vals)) $vals = $v;
+        if (!is_null($keys)) {
+            $keys = $k;
+        }
+        if (!is_null($vals)) {
+            $vals = $v;
+        }
         return $ret;
     }
 
@@ -646,8 +655,11 @@ class Zend_Ldap_Dn implements ArrayAccess
                 case 1: // collect key
                     if ($ch === '=') {
                         $key = trim(substr($dn, $ko, $di - $ko));
-                        if ($caseFold == self::ATTR_CASEFOLD_LOWER) $key = strtolower($key);
-                        else if ($caseFold == self::ATTR_CASEFOLD_UPPER) $key = strtoupper($key);
+                        if ($caseFold == self::ATTR_CASEFOLD_LOWER) {
+                            $key = strtolower($key);
+                        } elseif ($caseFold == self::ATTR_CASEFOLD_UPPER) {
+                            $key = strtoupper($key);
+                        }
                         if (is_array($multi)) {
                             $keyId = strtolower($key);
                             if (in_array($keyId, $multi)) {
@@ -660,14 +672,14 @@ class Zend_Ldap_Dn implements ArrayAccess
                         }
                         $state = 2;
                         $vo = $di + 1;
-                    } else if ($ch === ',' || $ch === ';' || $ch === '+') {
+                    } elseif ($ch === ',' || $ch === ';' || $ch === '+') {
                         return false;
                     }
                     break;
                 case 2: // collect value
                     if ($ch === '\\') {
                         $state = 3;
-                    } else if ($ch === ',' || $ch === ';' || $ch === 0 || $ch === '+') {
+                    } elseif ($ch === ',' || $ch === ';' || $ch === 0 || $ch === '+') {
                         $value = self::unescapeValue(trim(substr($dn, $vo, $di - $vo)));
                         if (is_array($multi)) {
                             $va[count($va)-1][] = $value;
@@ -682,10 +694,10 @@ class Zend_Ldap_Dn implements ArrayAccess
                             $ka[] = array($lastKey);
                             $va[] = array($lastVal);
                             $multi = array(strtolower($lastKey));
-                        } else if ($ch === ','|| $ch === ';' || $ch === 0) {
+                        } elseif ($ch === ','|| $ch === ';' || $ch === 0) {
                             $multi = false;
                         }
-                    } else if ($ch === '=') {
+                    } elseif ($ch === '=') {
                         return false;
                     }
                     break;
@@ -779,15 +791,18 @@ class Zend_Ldap_Dn implements ArrayAccess
             } else {
                 $pdn = self::explodeDn($parentDn, $keys, $vals, Zend_Ldap_Dn::ATTR_CASEFOLD_LOWER);
             }
-        }
-        catch (Zend_Ldap_Exception $e) {
+        } catch (Zend_Ldap_Exception $e) {
             return false;
         }
 
         $startIndex = count($cdn)-count($pdn);
-        if ($startIndex<0) return false;
+        if ($startIndex<0) {
+            return false;
+        }
         for ($i = 0; $i<count($pdn); $i++) {
-            if ($cdn[$i+$startIndex] != $pdn[$i]) return false;
+            if ($cdn[$i+$startIndex] != $pdn[$i]) {
+                return false;
+            }
         }
         return true;
     }

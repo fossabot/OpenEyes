@@ -17,19 +17,20 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 // display pagination
-if(isset($pagination)){
-	$this->widget('LinkPager', array(
-		'pages' => $pagination,
-		'maxButtonCount' => 13,
-		'cssFile' => false,
-		'selectedPageCssClass' => 'current',
-		'hiddenPageCssClass' => 'unavailable',
-		'footer' => @$footer,
-		'htmlOptions' => array(
-			'class' => 'pagination'
-		)
-	));
-	if(($pagination->getItemCount()) && $pagination->getItemCount() < $pagination->getPageSize()){
-		?><span>Showing 1 to <?= $pagination->getItemCount() ?> of <?= $pagination->getItemCount() ?> </span><?php
-	}
+if (isset($pagination)) {
+    $this->widget('LinkPager', array(
+        'pages' => $pagination,
+        'maxButtonCount' => 13,
+        'cssFile' => false,
+        'selectedPageCssClass' => 'current',
+        'hiddenPageCssClass' => 'unavailable',
+        'footer' => @$footer,
+        'htmlOptions' => array(
+            'class' => 'pagination'
+        )
+    ));
+    if (($pagination->getItemCount()) && $pagination->getItemCount() < $pagination->getPageSize()) {
+        ?><span>Showing 1 to <?= $pagination->getItemCount() ?> of <?= $pagination->getItemCount() ?> </span><?php
+
+    }
 }

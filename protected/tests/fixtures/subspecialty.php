@@ -19,16 +19,16 @@
 
 
 return array(
-	'subspecialty1' => array(
-		'id' => 1,
-		'name' => 'Subspecialty 1',
-		'ref_spec' => 'SS1',
-		'specialty_id' => 109,
-	),
-	'subspecialty2' => array(
-			'id' => 2,
-			'name' => 'Subspecialty 2',
-			'ref_spec' => 'SS2',
-			'specialty_id' => 109,
-	),
+    'subspecialty1' => array(
+        'id' => 1,
+        'name' => 'Subspecialty 1',
+        'ref_spec' => 'SS1',
+        'specialty_id' => 109,
+    ),
+    'subspecialty2' => array(
+            'id' => 2,
+            'name' => 'Subspecialty 2',
+            'ref_spec' => 'SS2',
+            'specialty_id' => 109,
+    ),
 );

@@ -19,12 +19,12 @@
 
 
 return array(
-	'service1' => array(
-		'id' => 1,
-		'name' => 'Service 1'
-	),
-	'service2' => array(
-		'id' => 2,
-		'name' => 'Service 2'
-	),
+    'service1' => array(
+        'id' => 1,
+        'name' => 'Service 1'
+    ),
+    'service2' => array(
+        'id' => 2,
+        'name' => 'Service 2'
+    ),
 );

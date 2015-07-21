@@ -242,9 +242,13 @@ class Zend_Ldap_Filter extends Zend_Ldap_Filter_String
     private static function _createFilterString($attr, $value, $filtertype, $prepend = null, $append = null)
     {
         $str = $attr . $filtertype;
-        if (!is_null($prepend)) $str .= $prepend;
+        if (!is_null($prepend)) {
+            $str .= $prepend;
+        }
         $str .= self::escapeValue($value);
-        if (!is_null($append)) $str .= $append;
+        if (!is_null($append)) {
+            $str .= $append;
+        }
         return $str;
     }
 

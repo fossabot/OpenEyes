@@ -42,7 +42,6 @@ require_once('Zend/Gdata/Gapps/Query.php');
  */
 class Zend_Gdata_Gapps_EmailListRecipientQuery extends Zend_Gdata_Gapps_Query
 {
-
     /**
      * If not null, specifies the name of the email list which
      * should be requested by this query.
@@ -135,7 +134,6 @@ class Zend_Gdata_Gapps_EmailListRecipientQuery extends Zend_Gdata_Gapps_Query
      */
     public function getQueryUrl()
     {
-
         $uri = $this->getBaseUrl();
         $uri .= Zend_Gdata_Gapps::APPS_EMAIL_LIST_PATH;
         if ($this->_emailListName !== null) {
@@ -149,5 +147,4 @@ class Zend_Gdata_Gapps_EmailListRecipientQuery extends Zend_Gdata_Gapps_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
-
 }

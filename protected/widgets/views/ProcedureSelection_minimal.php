@@ -22,31 +22,37 @@
  * @todo : refactor the html
  */
 ?>
-<div class="eventDetail<?php if ($last) {?> eventDetailLast<?php }?>" id="typeProcedure"<?php if ($hidden) {?> style="display: none;"<?php }?>>
+<div class="eventDetail<?php if ($last) {
+    ?> eventDetailLast<?php 
+}?>" id="typeProcedure"<?php if ($hidden) {
+    ?> style="display: none;"<?php 
+}?>>
 	<div class="label"><?php echo $label?>:</div>
 	<div class="data split limitWidth">
 		<div class="left">
-			<?php if ($headertext) {?>
+			<?php if ($headertext) {
+    ?>
 				<h5 class="normal"><em><?php echo $headertext?></em></h5>
-			<?php }?>
+			<?php 
+}?>
 			<h5 class="normal"><em>Add a procedure:</em></h5>
 
 			<?php
-			if (!empty($subsections) || !empty($procedures)) {
-				if (!empty($subsections)) {
-					echo CHtml::dropDownList('subsection_id_'.$identifier, '', $subsections, array('empty' => 'Select a subsection', 'style' => 'width: 90%; margin-bottom:10px;'));
-					echo CHtml::dropDownList('select_procedure_id_'.$identifier, '', array(), array('empty' => 'Select a commonly used procedure', 'style' => 'display: none; width: 90%; margin-bottom:10px;'));
-				} else {
-					echo CHtml::dropDownList('select_procedure_id_'.$identifier, '', $procedures, array('empty' => 'Select a commonly used procedure', 'style' => 'width: 90%; margin-bottom:10px;'));
-				}
-			}
-			?>
+            if (!empty($subsections) || !empty($procedures)) {
+                if (!empty($subsections)) {
+                    echo CHtml::dropDownList('subsection_id_'.$identifier, '', $subsections, array('empty' => 'Select a subsection', 'style' => 'width: 90%; margin-bottom:10px;'));
+                    echo CHtml::dropDownList('select_procedure_id_'.$identifier, '', array(), array('empty' => 'Select a commonly used procedure', 'style' => 'display: none; width: 90%; margin-bottom:10px;'));
+                } else {
+                    echo CHtml::dropDownList('select_procedure_id_'.$identifier, '', $procedures, array('empty' => 'Select a commonly used procedure', 'style' => 'width: 90%; margin-bottom:10px;'));
+                }
+            }
+            ?>
 
 			<?php
-				$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-					'name'=>'procedure_id_'.$identifier,
-					'id'=>'autocomplete_procedure_id_'.$identifier,
-					'source'=>"js:function(request, response) {
+                $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                    'name'=>'procedure_id_'.$identifier,
+                    'id'=>'autocomplete_procedure_id_'.$identifier,
+                    'source'=>"js:function(request, response) {
 						var existingProcedures = [];
 						$('#procedureList_$identifier').children('h4').children('div.procedureItem').map(function() {
 							var text = $.trim($(this).children('span:nth-child(2)').text());
@@ -73,9 +79,9 @@
 							}
 						});
 					}",
-					'options'=>array(
-						'minLength'=>'2',
-						'select'=>"js:function(event, ui) {
+                    'options'=>array(
+                        'minLength'=>'2',
+                        'select'=>"js:function(event, ui) {
 							".($callback ? $callback."(ui.item.id, ui.item.value);" : '')."
 							if (typeof(window.callbackVerifyAddProcedure) == 'function') {
 								window.callbackVerifyAddProcedure(ui.item.value,".($durations?'1':'0').",function(result) {
@@ -89,9 +95,9 @@
 								ProcedureSelectionSelectByName(ui.item.value,true,'$identifier');
 							}
 						}",
-					),
-				'htmlOptions'=>array('style'=>'width: 90%;','placeholder'=>'or enter procedure here')
-			)); ?>
+                    ),
+                'htmlOptions'=>array('style'=>'width: 90%;', 'placeholder'=>'or enter procedure here')
+            )); ?>
 
 		</div>
 	</div>
@@ -131,15 +137,19 @@
 
 		element.parent().parent().remove();
 
-		<?php if ($durations) {?>
+		<?php if ($durations) {
+    ?>
 			updateTotalDuration(identifier);
-		<?php }?>
+		<?php 
+}?>
 
 		if (len <= 1) {
 			$('#procedureList_'+identifier).hide();
-			<?php if ($durations) {?>
+			<?php if ($durations) {
+    ?>
 				$('#procedureList_'+identifier).find('.durations').hide();
-			<?php }?>
+			<?php 
+}?>
 		}
 
 		if (typeof(window.callbackRemoveProcedure) == 'function') {
@@ -225,9 +235,11 @@
 		var procedure = $('select[name=select_procedure_id_'+m[1]+'] option:selected').text();
 		if (procedure != 'Select a commonly used procedure') {
 
-		<?php if ($callback) {?>
+		<?php if ($callback) {
+    ?>
 			<?php echo $callback?>($(this).children('option:selected').val(), $(this).children('option:selected').text());
-		<?php }?>
+		<?php 
+}?>
 
 			if (typeof(window.callbackVerifyAddProcedure) == 'function') {
 				window.callbackVerifyAddProcedure(procedure,".($durations?'1':'0').",function(result) {

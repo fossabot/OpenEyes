@@ -23,11 +23,11 @@ Fake transaction stub class to facilitate disabling transactions via configurati
 
 class OETransactionStub
 {
-	public function commit()
-	{
-	}
+    public function commit()
+    {
+    }
 
-	public function rollback()
-	{
-	}
+    public function rollback()
+    {
+    }
 }

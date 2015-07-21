@@ -20,10 +20,12 @@
 <script type="text/javascript">
 	var remap_<?php echo CHtml::modelName($element)?>_<?php echo $field?> = {};
 	<?php if (is_array($remap_values) && !empty($remap_values)) {
-		foreach ($remap_values as $remap_value => $remap) {?>
+    foreach ($remap_values as $remap_value => $remap) {
+        ?>
 			remap_<?php echo CHtml::modelName($element)?>_<?php echo $field?>['<?php echo $remap_value?>'] = '<?php echo $remap?>';
-		<?php }
-	}?>
+		<?php 
+    }
+}?>
 	var widgetSlider_<?php echo CHtml::modelName($element)?>_<?php echo $field?> = new WidgetSlider({
 		'prefix_positive': '<?php echo $prefix_positive?>',
 		'range_id': '<?php echo CHtml::modelName($element)?>_<?php echo $field?>',
@@ -42,7 +44,9 @@
 		<div class="field-row">
 			<span class="widgetSliderValue slider-value" id="<?php echo CHtml::modelName($element)?>_<?php echo $field?>_value_span"><?php echo $value_display?><?php echo $append?></span>
 			<input
-				class="widgetSlider slider-input<?php if (@$htmlOptions['class']) {?> <?php echo $htmlOptions['class']?><?php }?>"
+				class="widgetSlider slider-input<?php if (@$htmlOptions['class']) {
+    ?> <?php echo $htmlOptions['class']?><?php 
+}?>"
 				type="range"
 				id="<?php echo CHtml::modelName($element)?>_<?php echo $field?>"
 				name="<?php echo CHtml::modelName($element)?>[<?php echo $field?>]"
@@ -50,13 +54,18 @@
 				max="<?php echo $max?>"
 				value="<?php echo $value?>"
 				step="<?php echo $step?>"
-				style="<?php if ($width) {?>width:<?php echo $width;?><?php }?>"
+				style="<?php if ($width) {
+    ?>width:<?php echo $width;
+    ?><?php 
+}?>"
 				/>
 		</div>
-		<?php if ($painScale) {?>
+		<?php if ($painScale) {
+    ?>
 			<div class="field-row">
 				<img class="field_key" id="pain_key" src="<?php echo $painScale?>" />
 			</div>
-		<?php }?>
+		<?php 
+}?>
 	</div>
 </div>

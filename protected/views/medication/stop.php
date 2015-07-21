@@ -27,10 +27,10 @@ $form = $this->beginWidget('FormLayout', array('layoutColumns' => array('label' 
 	</div>
 	<?php
 
-	$this->renderPartial('/patient/_fuzzy_date', array('form' => $form, 'date' => date('Y-m-d'), 'class' => 'medication_end_date', 'label' => 'Date stopped'));
-	$this->renderPartial('/medication/stop_reason', array('form' => $form, 'medication' => new Medication));
+    $this->renderPartial('/patient/_fuzzy_date', array('form' => $form, 'date' => date('Y-m-d'), 'class' => 'medication_end_date', 'label' => 'Date stopped'));
+    $this->renderPartial('/medication/stop_reason', array('form' => $form, 'medication' => new Medication));
 
-	?>
+    ?>
 	<div class="buttons">
 		<button type="button" class="medication_save secondary small">Stop</button>
 		<button type="button" class="medication_cancel warning small">Cancel</button>

@@ -24,7 +24,9 @@
 	<div class="large-<?php echo $layoutColumns['field'];?> column end">
 
 		<!-- Here we show the selected diagnosis -->
-		<div id="enteredDiagnosisText" class="panel diagnosis<?php if (!$label) {?> hide<?php }?>">
+		<div id="enteredDiagnosisText" class="panel diagnosis<?php if (!$label) {
+    ?> hide<?php 
+}?>">
 			<?php echo $label?>
 		</div>
 
@@ -33,10 +35,10 @@
 		</div>
 		<div class="field-row">
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-				'name' => "{$class}[$field]",
-				'id' => "{$class}_{$field}_0",
-				'value'=>'',
-				'source'=>"js:function(request, response) {
+                'name' => "{$class}[$field]",
+                'id' => "{$class}_{$field}_0",
+                'value'=>'',
+                'source'=>"js:function(request, response) {
 					$.ajax({
 						'url': '" . Yii::app()->createUrl('/disorder/autocomplete') . "',
 						'type':'GET',
@@ -47,9 +49,9 @@
 						}
 					});
 				}",
-				'options' => array(
-					'minLength'=>'3',
-					'select' => "js:function(event, ui) {
+                'options' => array(
+                    'minLength'=>'3',
+                    'select' => "js:function(event, ui) {
 						$('#".$class."_".$field."_0').val('');
 						$('#enteredDiagnosisText').html(ui.item.value);
 						$('#enteredDiagnosisText').show();
@@ -57,12 +59,12 @@
 						$('#".$class."_".$field."').focus();
 						return false;
 					}",
-				),
-				'htmlOptions' => array(
-					'placeholder' => 'or type the first few characters of a diagnosis',
-				),
-			));
-			?>
+                ),
+                'htmlOptions' => array(
+                    'placeholder' => 'or type the first few characters of a diagnosis',
+                ),
+            ));
+            ?>
 			<input type="hidden" name="<?php echo $class?>[<?php echo $field?>]"
 				   id="savedDiagnosis" value="<?php echo $value?>" />
 		</div>

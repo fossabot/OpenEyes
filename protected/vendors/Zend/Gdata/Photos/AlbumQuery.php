@@ -42,7 +42,6 @@ require_once('Zend/Gdata/Photos/UserQuery.php');
  */
 class Zend_Gdata_Photos_AlbumQuery extends Zend_Gdata_Photos_UserQuery
 {
-
     /**
      * The name of the album to query for. Mutually exclusive with AlbumId.
      *
@@ -145,5 +144,4 @@ class Zend_Gdata_Photos_AlbumQuery extends Zend_Gdata_Photos_UserQuery
         $uri .= $incomingUri;
         return parent::getQueryUrl($uri);
     }
-
 }

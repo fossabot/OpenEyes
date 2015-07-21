@@ -19,30 +19,30 @@
 
 class OECommandBuilder extends CDbCommandBuilder
 {
-	public function createInsertFromTableCommand($table_version,$table,$criteria)
-	{
-		$this->ensureTable($table);
-		$this->ensureTable($table_version);
+    public function createInsertFromTableCommand($table_version, $table, $criteria)
+    {
+        $this->ensureTable($table);
+        $this->ensureTable($table_version);
 
-		$columns = array();
+        $columns = array();
 
-		foreach (array_keys($table_version->columns) as $column) {
-			if (!in_array($column,array('version_date','version_id'))) {
-				$columns[] = $column;
-			}
-		}
+        foreach (array_keys($table_version->columns) as $column) {
+            if (!in_array($column, array('version_date', 'version_id'))) {
+                $columns[] = $column;
+            }
+        }
 
-		$sql="INSERT INTO {$table_version->rawName} (`".implode("`,`",$columns)."`,`version_date`,`version_id`) " .
-			"SELECT {$table->rawName}.*, " . $this->dbConnection->quoteValue(date('Y-m-d H:i:s')) . ", NULL FROM {$table->rawName}";
+        $sql="INSERT INTO {$table_version->rawName} (`".implode("`,`", $columns)."`,`version_date`,`version_id`) " .
+            "SELECT {$table->rawName}.*, " . $this->dbConnection->quoteValue(date('Y-m-d H:i:s')) . ", NULL FROM {$table->rawName}";
 
-		$sql=$this->applyJoin($sql,$criteria->join);
-		$sql=$this->applyCondition($sql,$criteria->condition);
-		$sql=$this->applyOrder($sql,$criteria->order);
-		$sql=$this->applyLimit($sql,$criteria->limit,$criteria->offset);
+        $sql=$this->applyJoin($sql, $criteria->join);
+        $sql=$this->applyCondition($sql, $criteria->condition);
+        $sql=$this->applyOrder($sql, $criteria->order);
+        $sql=$this->applyLimit($sql, $criteria->limit, $criteria->offset);
 
-		$command=$this->getDbConnection()->createCommand($sql);
-		$this->bindValues($command,$criteria->params);
+        $command=$this->getDbConnection()->createCommand($sql);
+        $this->bindValues($command, $criteria->params);
 
-		return $command;
-	}
+        return $command;
+    }
 }

@@ -18,14 +18,22 @@
  */
 ?>
 <div class="row diagnosis-selection<?php echo !$nowrapper?' field-row':'';?>">
-	<?php if (!$nowrapper && $label) {?>
-		<div class="large-<?php echo $layoutColumns['label'];?> column">
-			<label for="<?php echo "{$class}_{$field}";?>">
+	<?php if (!$nowrapper && $label) {
+    ?>
+		<div class="large-<?php echo $layoutColumns['label'];
+    ?> column">
+			<label for="<?php echo "{$class}_{$field}";
+    ?>">
 				<?php echo $element->getAttributeLabel($field)?>:
 			</label>
 		</div>
-	<?php }?>
-	<div class="large-<?php if ($label) { echo $layoutColumns['field']; }else{?>12<?php }?> column end">
+	<?php 
+}?>
+	<div class="large-<?php if ($label) {
+    echo $layoutColumns['field'];
+} else {
+    ?>12<?php 
+}?> column end">
 		<div class="row collapse">
 			<div class="large-10 column">
 				<div class="dropdown-row">
@@ -33,11 +41,11 @@
 				</div>
 				<div class="autocomplete-row hide">
 					<?php
-					$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-							'name' => "ignore_{$class}[$field]",
-							'id' => "{$class}_{$field}_searchbox",
-							'value'=>'',
-							'source'=>"js:function(request, response) {
+                    $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+                            'name' => "ignore_{$class}[$field]",
+                            'id' => "{$class}_{$field}_searchbox",
+                            'value'=>'',
+                            'source'=>"js:function(request, response) {
 								$.ajax({
 									'url': '" . Yii::app()->createUrl('/disorder/autocomplete') . "',
 									'type':'GET',
@@ -63,9 +71,9 @@
 									}
 								});
 							}",
-							'options' => array(
-									'minLength'=>'3',
-									'select' => "js:function(event, ui) {
+                            'options' => array(
+                                    'minLength'=>'3',
+                                    'select' => "js:function(event, ui) {
 										".($callback ? $callback."(ui.item.id, ui.item.value);" : '')."
 										$('#".$class."_".$field."_searchbox').val('').parent().addClass('hide');
 										var matched = false;
@@ -80,12 +88,12 @@
 										$('#".$class."_".$field."').val(ui.item.id).trigger('change');
 										return false;
 									}",
-							),
-							'htmlOptions' => array(
-								'placeholder' => 'search for diagnosis',
-							),
-					));
-					?>
+                            ),
+                            'htmlOptions' => array(
+                                'placeholder' => 'search for diagnosis',
+                            ),
+                    ));
+                    ?>
 				</div>
 			</div>
 			<div class="large-2 column">

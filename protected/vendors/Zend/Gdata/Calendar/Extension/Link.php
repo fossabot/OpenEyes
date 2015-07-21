@@ -42,7 +42,6 @@ require_once 'Zend/Gdata/Calendar/Extension/WebContent.php';
  */
 class Zend_Gdata_Calendar_Extension_Link extends Zend_Gdata_App_Extension_Link
 {
-
     protected $_webContent = null;
 
     /**
@@ -119,7 +118,4 @@ class Zend_Gdata_Calendar_Extension_Link extends Zend_Gdata_App_Extension_Link
         $this->_webContent = $value;
         return $this;
     }
-
-
 }
-

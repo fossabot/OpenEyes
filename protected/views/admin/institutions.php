@@ -35,22 +35,24 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($institutions as $i => $institution) {?>
+                foreach ($institutions as $i => $institution) {
+                    ?>
 					<tr class="clickable" data-id="<?php echo $institution->id?>" data-uri="admin/editinstitution?institution_id=<?php echo $institution->id?>">
 						<td><?php echo $institution->id?></td>
 						<td><?php echo $institution->name?></td>
 						<td><?php echo $institution->remote_id?></td>
 						<td><?php echo $institution->short_name?></td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 			<tfoot class="pagination-container">
 				<tr>
 					<td colspan="4">
 						<?php echo EventAction::button('Add', 'add', array(), array('class'=> 'small'))->toHtml()?>
-						<?php echo $this->renderPartial('_pagination',array(
-							'pagination' => $pagination
-						))?>
+						<?php echo $this->renderPartial('_pagination', array(
+                            'pagination' => $pagination
+                        ))?>
 					</td>
 				</tr>
 			</tfoot>

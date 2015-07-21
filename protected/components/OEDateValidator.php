@@ -20,37 +20,34 @@
 
 class OEDateValidator extends CValidator
 {
+    public function validateValue($value)
+    {
+        $check_date = null;
 
-	public function validateValue($value)
-	{
-		$check_date = null;
+        if ($m = preg_match('/^\d\d\d\d-\d\d{0,1}-\d\d{0,1}( \d\d:\d\d:\d\d){0,1}$/', $value)) {
+            $check_date = date_parse_from_format('Y-m-d', $value);
+        }
 
-		if ($m = preg_match('/^\d\d\d\d-\d\d{0,1}-\d\d{0,1}( \d\d:\d\d:\d\d){0,1}$/', $value)) {
-			$check_date = date_parse_from_format('Y-m-d',$value);
-		}
+        if (!$check_date || !checkdate($check_date['month'], $check_date['day'], $check_date['year'])) {
+            return false;
+        }
 
-		if (!$check_date || !checkdate($check_date['month'], $check_date['day'], $check_date['year'])) {
-			return false;
-		}
+        return true;
+    }
 
-		return true;
-	}
+    public function validateAttribute($object, $attribute)
+    {
+        if (isset($object->{$attribute}) && !empty($object->{$attribute})) {
+            if (!$this->validateValue($object->{$attribute})) {
+                if (strtotime($object->{$attribute})!=false) {
+                    $this->addError($object, $attribute, $object->getAttributeLabel($attribute).' is not in valid format: ' . $object->$attribute);
+                } else {
+                    $this->addError($object, $attribute, $object->getAttributeLabel($attribute).' is not a valid date: ' . $object->$attribute);
+                }
+                return false;
+            }
 
-	public function validateAttribute($object, $attribute)
-	{
-		if(isset($object->{$attribute}) && !empty($object->{$attribute})){
-
-			if (!$this->validateValue($object->{$attribute})) {
-				if(strtotime($object->{$attribute})!=false){
-					$this->addError($object, $attribute,$object->getAttributeLabel($attribute).' is not in valid format: ' . $object->$attribute);
-				}
-				else {
-					$this->addError($object, $attribute,$object->getAttributeLabel($attribute).' is not a valid date: ' . $object->$attribute);
-				}
-				return false;
-			}
-
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 }

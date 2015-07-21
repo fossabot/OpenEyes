@@ -33,13 +33,15 @@
 				<div class="data-value"><?php echo ($this->patient->gp) ? $this->patient->gp->contact->fullName : 'Unknown'; ?></div>
 			</div>
 		</div>
-		<?php if (Yii::app()->user->checkAccess('admin')) { ?>
+		<?php if (Yii::app()->user->checkAccess('admin')) {
+    ?>
 		<div class="row data-row highlight">
 			<div class="large-4 column">
 				<div class="data-label">GP Address:</div>
 			</div>
 			<div class="large-8 column">
-				<div class="data-value"><?php echo ($this->patient->gp && $this->patient->gp->contact->address) ? $this->patient->gp->contact->address->letterLine : 'Unknown'; ?></div>
+				<div class="data-value"><?php echo ($this->patient->gp && $this->patient->gp->contact->address) ? $this->patient->gp->contact->address->letterLine : 'Unknown';
+    ?></div>
 			</div>
 		</div>
 		<div class="row data-row highlight">
@@ -47,10 +49,12 @@
 				<div class="data-label">GP Telephone:</div>
 			</div>
 			<div class="large-8 column">
-				<div class="data-value"><?php echo ($this->patient->gp && $this->patient->gp->contact->primary_phone) ? $this->patient->gp->contact->primary_phone : 'Unknown'; ?></div>
+				<div class="data-value"><?php echo ($this->patient->gp && $this->patient->gp->contact->primary_phone) ? $this->patient->gp->contact->primary_phone : 'Unknown';
+    ?></div>
 			</div>
 		</div>
-		<?php } ?>
+		<?php 
+} ?>
 		<div class="row data-row">
 			<div class="large-4 column">
 				<div class="data-label">Practice Address:</div>

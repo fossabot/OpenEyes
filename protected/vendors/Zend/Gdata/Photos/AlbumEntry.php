@@ -103,7 +103,6 @@ require_once 'Zend/Gdata/App/Extension/Category.php';
  */
 class Zend_Gdata_Photos_AlbumEntry extends Zend_Gdata_Entry
 {
-
     protected $_entryClassName = 'Zend_Gdata_Photos_AlbumEntry';
 
     /**

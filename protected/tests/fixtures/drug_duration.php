@@ -49,7 +49,7 @@ return array(
                                                   'name' => '10 days',
                                                   'display_order' => 8
                          ),
-	  'drugduration4' => array(
+      'drugduration4' => array(
                                                   'id'=> 4,
                                                   'name' => '14 days',
                                                   'display_order' => 9
@@ -64,7 +64,7 @@ return array(
                                                   'name' => '24 hours',
                                                   'display_order' => 1
                          ),
-	 'drugduration7' => array(
+     'drugduration7' => array(
                                                   'id'=> 7,
                                                   'name' => '48 hours',
                                                   'display_order' => 2
@@ -79,7 +79,7 @@ return array(
                                                   'name' => '3 days',
                                                   'display_order' => 4
                          ),
-	  'drugduration10' => array(
+      'drugduration10' => array(
                                                   'id'=> 10,
                                                   'name' => '4 days',
                                                   'display_order' => 5

@@ -37,7 +37,6 @@ require_once 'Zend/Gdata/Extension.php';
  */
 class Zend_Gdata_YouTube_Extension_State extends Zend_Gdata_Extension
 {
-
     protected $_rootNamespace = 'yt';
     protected $_rootElement = 'state';
     protected $_name = null;
@@ -189,5 +188,4 @@ class Zend_Gdata_YouTube_Extension_State extends Zend_Gdata_Extension
     {
         return $this->_text;
     }
-
 }

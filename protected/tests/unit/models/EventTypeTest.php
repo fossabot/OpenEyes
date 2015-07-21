@@ -4,234 +4,234 @@
  */
 class EventTypeTest extends CDbTestCase
 {
-	public $fixtures = array(
-		'event_types' => 'EventType',
-		'element_types' => 'ElementType',
-		'events' => 'Event',
-		'episodes' => 'Episode',
-	);
+    public $fixtures = array(
+        'event_types' => 'EventType',
+        'element_types' => 'ElementType',
+        'events' => 'Event',
+        'episodes' => 'Episode',
+    );
 
-	/**
-	 * @var EventType
-	 */
-	protected $object;
+    /**
+     * @var EventType
+     */
+    protected $object;
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->object = new EventType;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->object = new EventType;
+    }
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 */
-	protected function tearDown()
-	{
-		parent::tearDown();
-	}
+    /**
+     * Tears down the fixture, for example, closes a network connection.
+     * This method is called after a test is executed.
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+    }
 
-	/**
-	 * @covers EventType::model
-	 * @todo   Implement testModel().
-	 */
-	public function testModel()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::model
+     * @todo   Implement testModel().
+     */
+    public function testModel()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::tableName
-	 * @todo   Implement testTableName().
-	 */
-	public function testTableName()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::tableName
+     * @todo   Implement testTableName().
+     */
+    public function testTableName()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::rules
-	 * @todo   Implement testRules().
-	 */
-	public function testRules()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::rules
+     * @todo   Implement testRules().
+     */
+    public function testRules()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::relations
-	 * @todo   Implement testRelations().
-	 */
-	public function testRelations()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::relations
+     * @todo   Implement testRelations().
+     */
+    public function testRelations()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::attributeLabels
-	 * @todo   Implement testAttributeLabels().
-	 */
-	public function testAttributeLabels()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::attributeLabels
+     * @todo   Implement testAttributeLabels().
+     */
+    public function testAttributeLabels()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::getEventTypeModules
-	 * @todo   Implement testGetEventTypeModules().
-	 */
-	public function testGetEventTypeModules()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::getEventTypeModules
+     * @todo   Implement testGetEventTypeModules().
+     */
+    public function testGetEventTypeModules()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::search
-	 * @todo   Implement testSearch().
-	 */
-	public function testSearch()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::search
+     * @todo   Implement testSearch().
+     */
+    public function testSearch()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::getSpecialty
-	 * @todo   Implement testGetSpecialty().
-	 */
-	public function testGetSpecialty()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::getSpecialty
+     * @todo   Implement testGetSpecialty().
+     */
+    public function testGetSpecialty()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::getEvent_group
-	 * @todo   Implement testGetEvent_group().
-	 */
-	public function testGetEvent_group()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::getEvent_group
+     * @todo   Implement testGetEvent_group().
+     */
+    public function testGetEvent_group()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::getDisabled
-	 * @todo   Implement testGetDisabled().
-	 */
-	public function testGetDisabled()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::getDisabled
+     * @todo   Implement testGetDisabled().
+     */
+    public function testGetDisabled()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::getDisabled_title
-	 * @todo   Implement testGetDisabled_title().
-	 */
-	public function testGetDisabled_title()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::getDisabled_title
+     * @todo   Implement testGetDisabled_title().
+     */
+    public function testGetDisabled_title()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::getDisabled_detail
-	 * @todo   Implement testGetDisabled_detail().
-	 */
-	public function testGetDisabled_detail()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::getDisabled_detail
+     * @todo   Implement testGetDisabled_detail().
+     */
+    public function testGetDisabled_detail()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	/**
-	 * @covers EventType::getApi
-	 * @todo   Implement testGetApi().
-	 */
-	public function testGetApi()
-	{
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-			);
-	}
+    /**
+     * @covers EventType::getApi
+     * @todo   Implement testGetApi().
+     */
+    public function testGetApi()
+    {
+        // Remove the following lines when you implement this test.
+            $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+            );
+    }
 
-	public function testgetParentEventTypes()
-	{
-		$test = $this->event_types('event_type12');
-		$this->assertEquals(array($this->event_types('event_type3')), $test->getParentEventTypes());
-	}
+    public function testgetParentEventTypes()
+    {
+        $test = $this->event_types('event_type12');
+        $this->assertEquals(array($this->event_types('event_type3')), $test->getParentEventTypes());
+    }
 
-	public function testgetAllElementTypes()
-	{
-		$test = $this->event_types('event_type12');
-		$this->assertEquals(array(
-			$this->element_types('history'),
-			$this->element_types('pasthistory'),
-			$this->element_types('visualfunction'),
-			$this->element_types('va'),
-			$this->element_types('inherited_event_element'),
-			), $test->getAllElementTypes());
-	}
+    public function testgetAllElementTypes()
+    {
+        $test = $this->event_types('event_type12');
+        $this->assertEquals(array(
+            $this->element_types('history'),
+            $this->element_types('pasthistory'),
+            $this->element_types('visualfunction'),
+            $this->element_types('va'),
+            $this->element_types('inherited_event_element'),
+            ), $test->getAllElementTypes());
+    }
 
-	public function testGetEventTypeInUseList()
-	{
-		$list = array(
-			1003 => 'Consent form 2',
-			1007 => 'Correspondence 2',
-			1002 => 'Examination 2',
-			1012 => 'Legacy letters',
-			1001 => 'Operation booking 2'
-		);
+    public function testGetEventTypeInUseList()
+    {
+        $list = array(
+            1003 => 'Consent form 2',
+            1007 => 'Correspondence 2',
+            1002 => 'Examination 2',
+            1012 => 'Legacy letters',
+            1001 => 'Operation booking 2'
+        );
 
-		$this->assertEquals($list, EventType::model()->getEventTypeInUseList());
-	}
+        $this->assertEquals($list, EventType::model()->getEventTypeInUseList());
+    }
 
-	public function testGetActiveList()
-	{
-		$list = array();
+    public function testGetActiveList()
+    {
+        $list = array();
 
-		foreach ($this->event_types as $event_type) {
-			if (isset(Yii::app()->modules[$event_type['class_name']])) {
-				$list[$event_type['id']] = $event_type['name'];
-			}
-		}
+        foreach ($this->event_types as $event_type) {
+            if (isset(Yii::app()->modules[$event_type['class_name']])) {
+                $list[$event_type['id']] = $event_type['name'];
+            }
+        }
 
-		$this->assertEquals($list, EventType::model()->getActiveList());
-	}
+        $this->assertEquals($list, EventType::model()->getActiveList());
+    }
 }

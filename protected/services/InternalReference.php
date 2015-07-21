@@ -20,89 +20,89 @@ namespace services;
  */
 class InternalReference extends ResourceReference
 {
-	// NB these are internal types and IDs, not FHIR/API ones
-	private $service_name;
-	private $id;
+    // NB these are internal types and IDs, not FHIR/API ones
+    private $service_name;
+    private $id;
 
-	/**
-	 * @params string $service_name
-	 * @param scalar $id
-	 */
-	public function __construct($service_name, $id)
-	{
-		$this->service_name = $service_name;
-		$this->id = $id;
-	}
+    /**
+     * @params string $service_name
+     * @param scalar $id
+     */
+    public function __construct($service_name, $id)
+    {
+        $this->service_name = $service_name;
+        $this->id = $id;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getServiceName()
-	{
-		return $this->service_name;
-	}
+    /**
+     * @return string
+     */
+    public function getServiceName()
+    {
+        return $this->service_name;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getVersionId()
-	{
-		return $this->getService()->getLastModified($this->id);
-	}
+    /**
+     * @return int
+     */
+    public function getVersionId()
+    {
+        return $this->getService()->getLastModified($this->id);
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getLastModified()
-	{
-		return $this->getService()->getLastModified($this->id);
-	}
+    /**
+     * @return int
+     */
+    public function getLastModified()
+    {
+        return $this->getService()->getLastModified($this->id);
+    }
 
-	/**
-	 * @return Resource
-	 */
-	public function resolve()
-	{
-		return $this->getService()->read($this->id);
-	}
+    /**
+     * @return Resource
+     */
+    public function resolve()
+    {
+        return $this->getService()->read($this->id);
+    }
 
-	/**
-	 * @return bool
-	 */
-	public function delete()
-	{
-		return $this->getService()->delete($this->id);
-	}
+    /**
+     * @return bool
+     */
+    public function delete()
+    {
+        return $this->getService()->delete($this->id);
+    }
 
-	/**
-	 * @param StdClass $fhirObject
-	 */
-	public function fhirUpdate(\StdClass $fhirObject)
-	{
-		$this->getService()->fhirUpdate($this->id, $fhirObject);
-	}
+    /**
+     * @param StdClass $fhirObject
+     */
+    public function fhirUpdate(\StdClass $fhirObject)
+    {
+        $this->getService()->fhirUpdate($this->id, $fhirObject);
+    }
 
-	/**
-	 * @return StdClass
-	 */
-	public function toFhir()
-	{
-		return (object)array("reference" => \Yii::app()->service->referenceToFhirUrl($this));
-	}
+    /**
+     * @return StdClass
+     */
+    public function toFhir()
+    {
+        return (object)array("reference" => \Yii::app()->service->referenceToFhirUrl($this));
+    }
 
-	/**
-	 * @return Service
-	 */
-	protected function getService()
-	{
-		return \Yii::app()->service->{$this->service_name};
-	}
+    /**
+     * @return Service
+     */
+    protected function getService()
+    {
+        return \Yii::app()->service->{$this->service_name};
+    }
 }

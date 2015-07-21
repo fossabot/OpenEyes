@@ -63,7 +63,8 @@
 		</div>
 
 		<div class="row data-row">
-			<?php if ($this->patient->date_of_death) { ?>
+			<?php if ($this->patient->date_of_death) {
+    ?>
 				<div class="large-4 column">
 					<div class="data-label">Date of Death:</div>
 				</div>
@@ -72,7 +73,9 @@
 						<?php echo $this->patient->NHSDate('date_of_death') . ' (Age '.$this->patient->getAge().')' ?>
 					</div>
 				</div>
-			<?php } else {?>
+			<?php 
+} else {
+    ?>
 				<div class="large-4 column">
 					<div class="data-label">Age:</div>
 				</div>
@@ -81,7 +84,8 @@
 						<?php echo $this->patient->getAge()?>
 					</div>
 				</div>
-			<?php }?>
+			<?php 
+}?>
 		</div>
 		<div class="row data-row">
 			<div class="large-4 column">

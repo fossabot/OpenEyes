@@ -19,5 +19,4 @@
 
 class OEMigrationException extends Exception
 {
-
 }

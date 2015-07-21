@@ -18,12 +18,12 @@
  */
 
 return array(
-		'rtt1' => array(
-				'id' => 1,
-				'referral_id' => 1,
-				'active' => 1,
-				'referral_type_id' => 1,
-				'received_date' => date('Y-m-d', strtotime('-20 days')),
-				'referrer' => 'TEST'
-		),
+        'rtt1' => array(
+                'id' => 1,
+                'referral_id' => 1,
+                'active' => 1,
+                'referral_type_id' => 1,
+                'received_date' => date('Y-m-d', strtotime('-20 days')),
+                'referrer' => 'TEST'
+        ),
 );

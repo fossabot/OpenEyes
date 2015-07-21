@@ -16,29 +16,29 @@
  */
 
 return array(
-	'ex_finding1' => array(
-		'id' => 1,
-		'name' => 'Finding 1',
-		'display_order' => 1,
-		'active'=>1
-	),
-	'ex_finding2' => array(
-		'id' => 2,
-		'name' => 'Finding 2',
-		'display_order' => 2,
-		'active'=>1,
-	),
-	'ex_finding3' => array(
-		'id' => 3,
-		'name' => 'Finding 3',
-		'display_order' => 3,
-		'active'=>1,
-		'requires_description' => 1,
-	),
-	'ex_finding4' => array(
-		'id' => 4,
-		'name' => 'Finding 4',
-		'display_order' => 4,
-		'active'=>1,
-	),
+    'ex_finding1' => array(
+        'id' => 1,
+        'name' => 'Finding 1',
+        'display_order' => 1,
+        'active'=>1
+    ),
+    'ex_finding2' => array(
+        'id' => 2,
+        'name' => 'Finding 2',
+        'display_order' => 2,
+        'active'=>1,
+    ),
+    'ex_finding3' => array(
+        'id' => 3,
+        'name' => 'Finding 3',
+        'display_order' => 3,
+        'active'=>1,
+        'requires_description' => 1,
+    ),
+    'ex_finding4' => array(
+        'id' => 4,
+        'name' => 'Finding 4',
+        'display_order' => 4,
+        'active'=>1,
+    ),
 );

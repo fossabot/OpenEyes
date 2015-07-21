@@ -13,11 +13,12 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-namespace BaseEventTypeElementTestNS\models {
+namespace BaseEventTypeElementTestNS\models;
 
-	class NamespacedElement extends \BaseEventTypeElement
-	{
-		public function __construct()
-		{}
-	}
+class BaseEventNamespacedElement extends \BaseEventTypeElement
+{
+    public function __construct()
+    {
+    }
 }
+

@@ -20,6 +20,6 @@
 <div class="container content event">
 	<?php $this->renderOpenElements('print');?>
 	<?php $this->renderPartial('//print/event_metadata', array(
-		'hide_modified' => @$hide_modified
-	));?>
+        'hide_modified' => @$hide_modified
+    ));?>
 </div>

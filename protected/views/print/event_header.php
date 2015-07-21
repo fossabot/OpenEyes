@@ -32,8 +32,8 @@ $event_type = $event->eventType->name;
 			<strong><?php echo $this->patient->contact->fullName?></strong>
 			<br />
 			<?php echo $this->patient->getLetterAddress(array(
-				'delimiter' => '<br/>',
-			))?>
+                'delimiter' => '<br/>',
+            ))?>
 			<br />
 			<br />
 			Hospital No: <strong><?php echo $this->patient->hos_num ?></strong>
@@ -43,9 +43,11 @@ $event_type = $event->eventType->name;
 			DOB: <strong><?php echo Helper::convertDate2NHS($this->patient->dob) ?> (<?php echo $this->patient->getAge()?>)</strong>
 		</div>
 		<div class="large-4 column firm">
-			<?php if ($consultant = $this->event->episode->firm->consultant) {?>
+			<?php if ($consultant = $this->event->episode->firm->consultant) {
+    ?>
 			<p><strong><?php echo $consultant->contact->getFullName() ?></strong></p>
-			<?php }?>
+			<?php 
+}?>
 			<p>Service: <strong><?php echo $this->event->episode->firm->getSubspecialtyText() ?></strong></p>
 		</div>
 		<div class="dates" style="width: 33.33333%;float: left;">

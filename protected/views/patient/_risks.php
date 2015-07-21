@@ -34,44 +34,52 @@ Yii::app()->assetManager->registerScriptFile('js/risks.js');
 	<div class="js-toggle-body">
 
 		<p class="risk-status-unknown" <?php if (!(empty($this->patient->riskAssignments)) || $this->patient->no_risks_date) {
-			echo 'style="display: none;"';
-		} ?>>Patient risk status is unknown</p>
+    echo 'style="display: none;"';
+} ?>>Patient risk status is unknown</p>
 
 		<p class="risk-status-none" <?php if (!$this->patient->no_risks_date) {
-			echo 'style="display: none;"';
-		} ?>>Patient has no known risks</p>
+    echo 'style="display: none;"';
+} ?>>Patient has no known risks</p>
 
 		<table class="plain patient-data" id="currentRisks" <?php if (empty($this->patient->riskAssignments)) {
-			echo 'style="display: none;"';
-		} ?>>
+    echo 'style="display: none;"';
+} ?>>
 			<thead>
 			<tr>
 				<th>Risks</th>
 				<th>Comments</th>
-				<?php if ($this->checkAccess('OprnEditAllergy')) { ?>
-					<th>Actions</th><?php } ?>
+				<?php if ($this->checkAccess('OprnEditAllergy')) {
+    ?>
+					<th>Actions</th><?php 
+} ?>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($this->patient->riskAssignments as $ra) { ?>
+			<?php foreach ($this->patient->riskAssignments as $ra) {
+    ?>
 				<tr data-assignment-id="<?= $ra->id ?>" data-risk-id="<?= $ra->risk->id ?>"
 					data-risk-name="<?= $ra->risk->name ?>">
 					<td><?= CHtml::encode($ra->name) ?></td>
 					<td><?= CHtml::encode($ra->comments) ?></td>
-					<?php if ($this->checkAccess('OprnEditAllergy')) { ?>
+					<?php if ($this->checkAccess('OprnEditAllergy')) {
+    ?>
 						<td>
 							<a href="#" rel="<?php echo $ra->id ?>" class="small removeRisk">
 								Remove
 							</a>
 						</td>
-					<?php } ?>
+					<?php 
+}
+    ?>
 				</tr>
-			<?php } ?>
+			<?php 
+} ?>
 			</tbody>
 		</table>
 		<?php
 
-		if ($this->checkAccess('OprnEditAllergy')) { ?>
+        if ($this->checkAccess('OprnEditAllergy')) {
+            ?>
 			<div class="box-actions">
 				<button id="btn-add_risk" class="secondary small">
 					Edit
@@ -80,27 +88,31 @@ Yii::app()->assetManager->registerScriptFile('js/risks.js');
 
 			<div id="add_risk" style="display: none;">
 				<?php
-				$form = $this->beginWidget('FormLayout', array(
-					'id' => 'add-risk',
-					'enableAjaxValidation' => false,
-					'htmlOptions' => array('class' => 'form add-data'),
-					'action' => array('patient/addRisk'),
-					'layoutColumns' => array(
-						'label' => 3,
-						'field' => 9
-					),
-				)) ?>
+                $form = $this->beginWidget('FormLayout', array(
+                    'id' => 'add-risk',
+                    'enableAjaxValidation' => false,
+                    'htmlOptions' => array('class' => 'form add-data'),
+                    'action' => array('patient/addRisk'),
+                    'layoutColumns' => array(
+                        'label' => 3,
+                        'field' => 9
+                    ),
+                )) ?>
 
 				<div
 					class="risks_confirm_no field-row row" <?php if ($this->patient->hasRiskStatus() && !$this->patient->no_risks_date) {
-					echo 'style="display: none;"';
-				} ?>>
+    echo 'style="display: none;"';
+}
+            ?>>
 					<div class="risks">
-						<div class="<?php echo $form->columns('label'); ?>">
+						<div class="<?php echo $form->columns('label');
+            ?>">
 							<label for="no_risks">Confirm patient has no risks:</label>
 						</div>
-						<div class="<?php echo $form->columns('field'); ?>">
-							<?php echo CHtml::checkBox('no_risks', $this->patient->no_risks_date ? true : false); ?>
+						<div class="<?php echo $form->columns('field');
+            ?>">
+							<?php echo CHtml::checkBox('no_risks', $this->patient->no_risks_date ? true : false);
+            ?>
 						</div>
 					</div>
 				</div>
@@ -109,34 +121,43 @@ Yii::app()->assetManager->registerScriptFile('js/risks.js');
 				<input type="hidden" name="patient_id" value="<?php echo $this->patient->id ?>"/>
 
 				<div class="row field-row risk_field" <?php if ($this->patient->no_risks_date) {
-					echo 'style="display: none;"';
-				} ?>>
-					<div class="<?php echo $form->columns('label'); ?>">
+    echo 'style="display: none;"';
+}
+            ?>>
+					<div class="<?php echo $form->columns('label');
+            ?>">
 						<label for="risk_id">Add risk:</label>
 					</div>
-					<div class="<?php echo $form->columns('field'); ?>">
+					<div class="<?php echo $form->columns('field');
+            ?>">
 						<?php echo CHtml::dropDownList('risk_id', null,
-							CHtml::listData($this->riskList(), 'id', 'name'), array('empty' => '-- Select --')) ?>
+                            CHtml::listData($this->riskList(), 'id', 'name'), array('empty' => '-- Select --')) ?>
 					</div>
 				</div>
 				<div id="risk_other" class="row field-row hidden">
-					<div class="<?php echo $form->columns('label'); ?>">
+					<div class="<?php echo $form->columns('label');
+            ?>">
 						<label for="risk_id">Other risk:</label>
 					</div>
-					<div class="<?php echo $form->columns('field'); ?>">
+					<div class="<?php echo $form->columns('field');
+            ?>">
 						<?= CHtml::textField('other', '',
-							array('autocomplete' => Yii::app()->params['html_autocomplete'])); ?>
+                            array('autocomplete' => Yii::app()->params['html_autocomplete']));
+            ?>
 					</div>
 				</div>
 				<div class="field-row row risk_field" <?php if ($this->patient->no_risks_date) {
-					echo 'style="display: none;"';
-				} ?>>
-					<div class="<?php echo $form->columns('label'); ?>">
+    echo 'style="display: none;"';
+}
+            ?>>
+					<div class="<?php echo $form->columns('label');
+            ?>">
 						<label for="comments">Comments:</label>
 					</div>
-					<div class="<?php echo $form->columns('field'); ?>">
+					<div class="<?php echo $form->columns('field');
+            ?>">
 						<?php echo CHtml::textField('comments', '',
-							array('autocomplete' => Yii::app()->params['html_autocomplete'])) ?>
+                            array('autocomplete' => Yii::app()->params['html_autocomplete'])) ?>
 					</div>
 				</div>
 
@@ -149,11 +170,13 @@ Yii::app()->assetManager->registerScriptFile('js/risks.js');
 
 				<?php $this->endWidget() ?>
 			</div>
-		<?php } ?>
+		<?php 
+        } ?>
 	</div>
 </section>
 
-<?php if (BaseController::checkAccess('OprnEditAllergy')) { ?>
+<?php if (BaseController::checkAccess('OprnEditAllergy')) {
+    ?>
 
 	<!-- Confirm deletion dialog -->
 	<div id="confirm_remove_risk_dialog" title="Confirm remove risk" style="display: none;">
@@ -174,4 +197,5 @@ Yii::app()->assetManager->registerScriptFile('js/risks.js');
 			</div>
 		</div>
 	</div>
-<?php } ?>
+<?php 
+} ?>

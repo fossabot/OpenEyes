@@ -14,17 +14,17 @@
  */
 
 return array(
-	array(
-		'item_id' => 2,
-		'display_order' => 1,
-	),
-	array(
-		'item_id' => 1,
-		'display_order' => 2,
-	),
-	array(
-		'item_id' => 3,
-		'subspecialty_id' => 1,
-		'display_order' => 1,
-	),
+    array(
+        'item_id' => 2,
+        'display_order' => 1,
+    ),
+    array(
+        'item_id' => 1,
+        'display_order' => 2,
+    ),
+    array(
+        'item_id' => 3,
+        'subspecialty_id' => 1,
+        'display_order' => 1,
+    ),
 );

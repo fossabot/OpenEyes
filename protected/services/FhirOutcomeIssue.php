@@ -17,8 +17,8 @@ namespace services;
 
 class FhirOutcomeIssue extends DataObject
 {
-	public $severity;
-	public $type;
-	public $details;
-	public $location;
+    public $severity;
+    public $type;
+    public $details;
+    public $location;
 }

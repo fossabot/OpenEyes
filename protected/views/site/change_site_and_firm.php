@@ -18,11 +18,11 @@
  */
 ?>
 <?php
-	$this->widget('SiteAndFirmWidget', array(
-		'returnUrl' => $returnUrl,
-		'subspecialty' => @$subspecialty,
-		'support_services' => @$support_services,
-		'patient' => @$patient,
-		'title' => 'Select a new Site and/or Firm',
-	));
+    $this->widget('SiteAndFirmWidget', array(
+        'returnUrl' => $returnUrl,
+        'subspecialty' => @$subspecialty,
+        'support_services' => @$support_services,
+        'patient' => @$patient,
+        'title' => 'Select a new Site and/or Firm',
+    ));
 ?>

@@ -19,91 +19,92 @@
  */
 class ElementTypeTest extends CDbTestCase
 {
-	/**
-	 * @var ElementType
-	 */
-	protected $model;
-	public $fixtures = array(
-		'event_type' => 'EventType',
-		'elementtypes' => 'ElementType',
-	);
+    /**
+     * @var ElementType
+     */
+    protected $model;
+    public $fixtures = array(
+        'event_type' => 'EventType',
+        'elementtypes' => 'ElementType',
+    );
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp() {
-		parent::setUp();
-		$this->model = new ElementType;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new ElementType;
+    }
 
-	/**
-	 * @covers ElementType::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('ElementType', get_class(ElementType::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers ElementType::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('ElementType', get_class(ElementType::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers ElementType::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('element_type', $this->model->tableName());
-	}
+    /**
+     * @covers ElementType::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('element_type', $this->model->tableName());
+    }
 
-	/**
-	 * @covers ElementType::rules
-	 */
-	public function testRules()
-	{
-		$this->assertTrue($this->elementtypes('history')->validate());
-		$this->assertEmpty($this->elementtypes('history')->errors);
-	}
+    /**
+     * @covers ElementType::rules
+     */
+    public function testRules()
+    {
+        $this->assertTrue($this->elementtypes('history')->validate());
+        $this->assertEmpty($this->elementtypes('history')->errors);
+    }
 
-	/**
-	 * @covers ElementType::attributeLabels
-	 */
-	public function testAttributeLabels()
-	{
-		$expected = array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'class_name' => 'Class Name',);
+    /**
+     * @covers ElementType::attributeLabels
+     */
+    public function testAttributeLabels()
+    {
+        $expected = array(
+            'id' => 'ID',
+            'name' => 'Name',
+            'class_name' => 'Class Name',);
 
-		$this->assertEquals($expected, $this->model->attributeLabels());
-	}
+        $this->assertEquals($expected, $this->model->attributeLabels());
+    }
 
-	/**
-	 * @covers ElementType::getDescendents
-	 * @todo   Implement testGetDescendents().
-	 */
-	public function testGetDescendents()
-	{
-		$result = $this->model->getDescendents();
+    /**
+     * @covers ElementType::getDescendents
+     * @todo   Implement testGetDescendents().
+     */
+    public function testGetDescendents()
+    {
+        $result = $this->model->getDescendents();
 
-		$expected = array();
+        $expected = array();
 
-		$this->assertEquals($expected, $result);
-	}
+        $this->assertEquals($expected, $result);
+    }
 
-	/**
-	 * @covers ElementType::search
-	 */
-	public function testSearch()
-	{
-		$this->model->setAttributes($this->elementtypes('history')->getAttributes());
-		$results = $this->model->search();
-		$data = $results->getData();
+    /**
+     * @covers ElementType::search
+     */
+    public function testSearch()
+    {
+        $this->model->setAttributes($this->elementtypes('history')->getAttributes());
+        $results = $this->model->search();
+        $data = $results->getData();
 
-		$expectedKeys = array('history', 'pasthistory');
-		$expectedResults = array();
-		if (!empty($expectedKeys)) {
-			foreach ($expectedKeys as $key) {
-				$expectedResults[] = $this->elementtypes($key);
-			}
-		}
-		$this->assertEquals($expectedResults, $data);
-	}
+        $expectedKeys = array('history', 'pasthistory');
+        $expectedResults = array();
+        if (!empty($expectedKeys)) {
+            foreach ($expectedKeys as $key) {
+                $expectedResults[] = $this->elementtypes($key);
+            }
+        }
+        $this->assertEquals($expectedResults, $data);
+    }
 }

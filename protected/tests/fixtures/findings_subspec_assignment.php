@@ -16,20 +16,20 @@
  */
 
 return array(
-	'ex_findings_subspec_ass1' => array(
-		'id' => 1,
-		'finding_id' => 2,
-		'subspecialty_id' => 1
-	),
-	'ex_findings_subspec_ass2' => array(
-		'id' => 2,
-		'finding_id' => 3,
-		'subspecialty_id' => 2
-	),
-	'ex_findings_subspec_ass3' => array(
-		'id' => 3,
-		'finding_id' => 3,
-		'subspecialty_id' => 2
-	),
+    'ex_findings_subspec_ass1' => array(
+        'id' => 1,
+        'finding_id' => 2,
+        'subspecialty_id' => 1
+    ),
+    'ex_findings_subspec_ass2' => array(
+        'id' => 2,
+        'finding_id' => 3,
+        'subspecialty_id' => 2
+    ),
+    'ex_findings_subspec_ass3' => array(
+        'id' => 3,
+        'finding_id' => 3,
+        'subspecialty_id' => 2
+    ),
 
 );

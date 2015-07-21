@@ -27,12 +27,15 @@
 	<div class="large-12 column">
 		<div class="box generic">
 			<?php
-			if (empty($data['items'])) {?>
+            if (empty($data['items'])) {
+                ?>
 				<div class="alert-box">
 					No audit logs match the search criteria.
 				</div>
 			<?php
-			} else {?>
+
+            } else {
+                ?>
 				<div class="pagination"></div>
 				<table class="grid audit-logs">
 					<thead>
@@ -50,12 +53,14 @@
 					</thead>
 					<tbody id="auditListData">
 						<?php foreach ($data['items'] as $i => $log) {
-							$this->renderPartial('_list_row',array('i'=>$i,'log'=>$log));
-						}?>
+    $this->renderPartial('_list_row', array('i'=>$i, 'log'=>$log));
+}
+                ?>
 					</tbody>
 				</table>
 				<div class="pagination last"></div>
-			<?php }?>
+			<?php 
+            }?>
 		</div>
 	</div>
 </div>

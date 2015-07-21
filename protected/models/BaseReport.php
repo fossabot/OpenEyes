@@ -18,40 +18,40 @@
 
 class BaseReport extends CModel
 {
-	public $view;
+    public $view;
 
-	public function getView()
-	{
-		if ($this->view) {
-			return $this->view;
-		}
+    public function getView()
+    {
+        if ($this->view) {
+            return $this->view;
+        }
 
-		$model = CHtml::modelName($this);
+        $model = CHtml::modelName($this);
 
-		if (strstr($model,'_')) {
-			$segments = explode('_',$model);
+        if (strstr($model, '_')) {
+            $segments = explode('_', $model);
 
-			$model = array_pop(explode('_',$model));
-		}
+            $model = array_pop(explode('_', $model));
+        }
 
-		return '_' . strtolower(preg_replace('/^Report/','',$model));
-	}
+        return '_' . strtolower(preg_replace('/^Report/', '', $model));
+    }
 
-	public function attributeNames()
-	{
-	}
+    public function attributeNames()
+    {
+    }
 
-	protected function array2Csv(array $data)
-	{
-		if (count($data) == 0) {
-			return null;
-		}
-		ob_start();
-		$df = fopen("php://output", 'w');
-		foreach ($data as $row) {
-			fputcsv($df, $row);
-		}
-		fclose($df);
-		return ob_get_clean();
-	}
+    protected function array2Csv(array $data)
+    {
+        if (count($data) == 0) {
+            return null;
+        }
+        ob_start();
+        $df = fopen("php://output", 'w');
+        foreach ($data as $row) {
+            fputcsv($df, $row);
+        }
+        fclose($df);
+        return ob_get_clean();
+    }
 }

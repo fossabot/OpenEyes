@@ -42,7 +42,6 @@ require_once('Zend/Gdata/Gapps/Query.php');
  */
 class Zend_Gdata_Gapps_EmailListQuery extends Zend_Gdata_Gapps_Query
 {
-
     /**
      * A string which, if not null, indicates which email list should
      * be retrieved by this query.
@@ -110,8 +109,7 @@ class Zend_Gdata_Gapps_EmailListQuery extends Zend_Gdata_Gapps_Query
     {
         if ($value !== null) {
             $this->_params['recipient'] = $value;
-        }
-        else {
+        } else {
             unset($this->_params['recipient']);
         }
     }
@@ -174,7 +172,6 @@ class Zend_Gdata_Gapps_EmailListQuery extends Zend_Gdata_Gapps_Query
      */
     public function getQueryUrl()
     {
-
         $uri = $this->getBaseUrl();
         $uri .= Zend_Gdata_Gapps::APPS_EMAIL_LIST_PATH;
         if ($this->_emailListName !== null) {
@@ -183,5 +180,4 @@ class Zend_Gdata_Gapps_EmailListQuery extends Zend_Gdata_Gapps_Query
         $uri .= $this->getQueryString();
         return $uri;
     }
-
 }

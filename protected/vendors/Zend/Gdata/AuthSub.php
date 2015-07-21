@@ -45,7 +45,6 @@ require_once 'Zend/Version.php';
  */
 class Zend_Gdata_AuthSub
 {
-
     const AUTHSUB_REQUEST_URI      = 'https://www.google.com/accounts/AuthSubRequest';
 
     const AUTHSUB_SESSION_TOKEN_URI = 'https://www.google.com/accounts/AuthSubSessionToken';
@@ -244,5 +243,4 @@ class Zend_Gdata_AuthSub
         $client->setAuthSubToken($token);
         return $client;
     }
-
 }

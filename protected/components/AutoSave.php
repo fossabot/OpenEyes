@@ -16,40 +16,39 @@
 
 class AutoSave
 {
-	public static function get($key)
-	{
-		if($auto_save = Yii::app()->session['autosave']){
-			if(isset($auto_save[$key])){
-				return $auto_save[$key];
-			}
-		}
-		return;
-	}
+    public static function get($key)
+    {
+        if ($auto_save = Yii::app()->session['autosave']) {
+            if (isset($auto_save[$key])) {
+                return $auto_save[$key];
+            }
+        }
+        return;
+    }
 
-	public static function add($key, $data)
-	{
-		$auto_save = Yii::app()->session['autosave'];
-		$auto_save[$key] = $data;
-		Yii::app()->session['autosave'] = $auto_save;
-	}
+    public static function add($key, $data)
+    {
+        $auto_save = Yii::app()->session['autosave'];
+        $auto_save[$key] = $data;
+        Yii::app()->session['autosave'] = $auto_save;
+    }
 
-	public static function remove($key)
-	{
-		$auto_save = Yii::app()->session['autosave'];
-		unset($auto_save[$key]);
-		Yii::app()->session['autosave'] = $auto_save;
-	}
+    public static function remove($key)
+    {
+        $auto_save = Yii::app()->session['autosave'];
+        unset($auto_save[$key]);
+        Yii::app()->session['autosave'] = $auto_save;
+    }
 
-	public static function removeAllByPrefix($prefix)
-	{
-		if($auto_save = Yii::app()->session['autosave'])
-		{
-			foreach ($auto_save as $key => $value){
-				if(substr($key,0,strlen($prefix))===$prefix){
-					unset($auto_save[$key]);
-				}
-			}
-			Yii::app()->session['autosave'] = $auto_save;
-		}
-	}
+    public static function removeAllByPrefix($prefix)
+    {
+        if ($auto_save = Yii::app()->session['autosave']) {
+            foreach ($auto_save as $key => $value) {
+                if (substr($key, 0, strlen($prefix))===$prefix) {
+                    unset($auto_save[$key]);
+                }
+            }
+            Yii::app()->session['autosave'] = $auto_save;
+        }
+    }
 }

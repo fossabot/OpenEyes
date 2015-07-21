@@ -42,7 +42,6 @@ require_once 'Zend/Gdata/App/MediaEntry.php';
  */
 class Zend_Gdata_Entry extends Zend_Gdata_App_MediaEntry
 {
-
     protected $_entryClassName = 'Zend_Gdata_Entry';
 
     public function __construct($element = null)
@@ -117,8 +116,7 @@ class Zend_Gdata_Entry extends Zend_Gdata_App_MediaEntry
             $etag = $attribute->nodeValue;
             if ($this->_etag === null) {
                 $this->_etag = $etag;
-            }
-            elseif ($this->_etag != $etag) {
+            } elseif ($this->_etag != $etag) {
                 require_once('Zend/Gdata/App/IOException.php');
                 throw new Zend_Gdata_App_IOException("ETag mismatch");
             }
@@ -128,5 +126,4 @@ class Zend_Gdata_Entry extends Zend_Gdata_App_MediaEntry
             break;
         }
     }
-
 }

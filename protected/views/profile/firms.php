@@ -31,13 +31,15 @@
 			</thead>
 			<tbody>
 				<?php
-				foreach ($user->firmSelections as $i => $firm) {?>
+                foreach ($user->firmSelections as $i => $firm) {
+                    ?>
 					<tr data-attr-id="<?php echo $firm->id?>">
 						<td><input type="checkbox" name="firms[]" value="<?php echo $firm->id?>" /></td>
 						<td><?php echo $firm->name?></td>
 						<td><?php echo $firm->subspecialtyText?></td>
 					</tr>
-				<?php }?>
+				<?php 
+                }?>
 			</tbody>
 		</table>
 	</form>
@@ -48,15 +50,15 @@
 		</div>
 		<div class="large-6 column text-right table-actions">
 			<label for="profile_firm_id" class="inline">Add firm:</label>
-			<?php echo CHtml::dropDownList('profile_firm_id','',$user->getNotSelectedFirmList(),array('empty'=>'- Select -'))?>
-			<?php echo CHtml::link('Add all','#',array('id'=>'add_all','class'=>'field-info'))?>
+			<?php echo CHtml::dropDownList('profile_firm_id', '', $user->getNotSelectedFirmList(), array('empty'=>'- Select -'))?>
+			<?php echo CHtml::link('Add all', '#', array('id'=>'add_all', 'class'=>'field-info'))?>
 		</div>
 	</div>
 
 </div>
 
 <div class="box admin">
-	<p>Note: you can also set the sites you work at, <?php echo CHtml::link('click here',Yii::app()->createUrl('/profile/sites'))?> to do so.</p>
+	<p>Note: you can also set the sites you work at, <?php echo CHtml::link('click here', Yii::app()->createUrl('/profile/sites'))?> to do so.</p>
 </div>
 
 <script type="text/javascript">

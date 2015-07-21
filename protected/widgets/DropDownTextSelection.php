@@ -21,5 +21,5 @@
 
 class DropDownTextSelection extends BaseFieldWidget
 {
-	public $options;
+    public $options;
 }

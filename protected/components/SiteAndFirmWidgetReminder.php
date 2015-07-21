@@ -19,20 +19,20 @@
 
 class SiteAndFirmWidgetReminder extends CWidget
 {
-	public $title = 'You need to set your sites and firms';
-	public $subspecialty;
-	public $patient;
-	public $returnUrl;
+    public $title = 'You need to set your sites and firms';
+    public $subspecialty;
+    public $patient;
+    public $returnUrl;
 
-	public function init()
-	{
-		if (!$this->returnUrl) {
-			$this->returnUrl = Yii::app()->request->url;
-		}
-	}
+    public function init()
+    {
+        if (!$this->returnUrl) {
+            $this->returnUrl = Yii::app()->request->url;
+        }
+    }
 
-	public function run()
-	{
-		$this->render('SiteAndFirmWidgetReminder');
-	}
+    public function run()
+    {
+        $this->render('SiteAndFirmWidgetReminder');
+    }
 }

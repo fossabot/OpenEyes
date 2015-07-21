@@ -37,7 +37,6 @@ require_once 'Zend/Gdata/Extension.php';
  */
 class Zend_Gdata_YouTube_Extension_Statistics extends Zend_Gdata_Extension
 {
-
     protected $_rootNamespace = 'yt';
     protected $_rootElement = 'statistics';
 
@@ -305,5 +304,4 @@ class Zend_Gdata_YouTube_Extension_Statistics extends Zend_Gdata_Extension
             ' LastWebAccess=' . $this->_lastWebAccess .
             ' FavoriteCount=' . $this->_favoriteCount;
     }
-
 }

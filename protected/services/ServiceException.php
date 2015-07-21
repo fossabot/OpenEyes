@@ -17,10 +17,10 @@ namespace services;
 
 abstract class ServiceException extends \Exception
 {
-	public $httpStatus;
+    public $httpStatus;
 
-	/**
-	 * @return FhirOutcome
-	 */
-	abstract public function toFhirOutcome();
+    /**
+     * @return FhirOutcome
+     */
+    abstract public function toFhirOutcome();
 }

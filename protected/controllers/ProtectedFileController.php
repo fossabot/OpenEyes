@@ -19,86 +19,85 @@
 
 class ProtectedFileController extends BaseController
 {
-	public function accessRules()
-	{
-		return array(
-				array('allow',
-					'actions' => array('download', 'view', 'thumbnail'),
-					'roles' => array('OprnViewProtectedFile'),
-				),
-				array('allow',
-					'actions' => array('import'),
-					'roles' => array('admin'),
-				)
-		);
-	}
+    public function accessRules()
+    {
+        return array(
+                array('allow',
+                    'actions' => array('download', 'view', 'thumbnail'),
+                    'roles' => array('OprnViewProtectedFile'),
+                ),
+                array('allow',
+                    'actions' => array('import'),
+                    'roles' => array('admin'),
+                )
+        );
+    }
 
-	public function actionDownload($id)
-	{
-		if (!$file = ProtectedFile::model()->findByPk($id)) {
-			throw new CHttpException(404, "File not found");
-		}
-		if (!file_exists($file->getPath())) {
-			throw new CException("File not found on filesystem: ".$file->getPath());
-		}
-		header('Content-Description: File Transfer');
-		header('Content-Type: ' . $file->mimetype);
-		header('Content-Disposition: attachment; filename="' . $file->name . '"');
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate');
-		header('Content-Length: ' . $file->size);
-		ob_clean();
-		flush();
-		readfile($file->getPath());
-	}
+    public function actionDownload($id)
+    {
+        if (!$file = ProtectedFile::model()->findByPk($id)) {
+            throw new CHttpException(404, "File not found");
+        }
+        if (!file_exists($file->getPath())) {
+            throw new CException("File not found on filesystem: ".$file->getPath());
+        }
+        header('Content-Description: File Transfer');
+        header('Content-Type: ' . $file->mimetype);
+        header('Content-Disposition: attachment; filename="' . $file->name . '"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Content-Length: ' . $file->size);
+        ob_clean();
+        flush();
+        readfile($file->getPath());
+    }
 
-	public function actionView($id, $name)
-	{
-		if (!$file = ProtectedFile::model()->findByPk($id)) {
-			throw new CHttpException(404, "File not found");
-		}
+    public function actionView($id, $name)
+    {
+        if (!$file = ProtectedFile::model()->findByPk($id)) {
+            throw new CHttpException(404, "File not found");
+        }
         $filepath = $file->getPath();
         if (!file_exists($file->getPath())) {
-			throw new CException("File not found on filesystem: ".$file->getPath());
-		}
-		header('Content-Type: ' . $file->mimetype);
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate');
-		header('Content-Length: ' . $file->size);
-		ob_clean();
-		flush();
+            throw new CException("File not found on filesystem: ".$file->getPath());
+        }
+        header('Content-Type: ' . $file->mimetype);
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Content-Length: ' . $file->size);
+        ob_clean();
+        flush();
         readfile($filepath);
-	}
+    }
 
-	public function actionThumbnail($id, $dimensions, $name)
-	{
-		if (!$file = ProtectedFile::model()->findByPk($id)) {
-			throw new CHttpException(404, "File not found");
-		}
-		if (!$thumbnail = $file->getThumbnail($dimensions, true)) {
-			throw new CHttpException(404, "Thumbnail not available");
-		}
-		header('Content-Type: ' . $file->mimetype);
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate');
-		header('Content-Length: ' . $thumbnail['size']);
-		ob_clean();
-		flush();
-		readfile($thumbnail['path']);
-	}
+    public function actionThumbnail($id, $dimensions, $name)
+    {
+        if (!$file = ProtectedFile::model()->findByPk($id)) {
+            throw new CHttpException(404, "File not found");
+        }
+        if (!$thumbnail = $file->getThumbnail($dimensions, true)) {
+            throw new CHttpException(404, "Thumbnail not available");
+        }
+        header('Content-Type: ' . $file->mimetype);
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Content-Length: ' . $thumbnail['size']);
+        ob_clean();
+        flush();
+        readfile($thumbnail['path']);
+    }
 
-	public function actionImport()
-	{
-		echo "<h1>Importing files:</h1>";
-		foreach (glob(Yii::app()->basePath.'/data/test/*') as $src_file) {
-			$file = ProtectedFile::createFromFile($src_file);
-			if (!$file->save()) {
-				throw new CException('Cannot save file'.print_r($file->getErrors(), true));
-			}
-			unlink($src_file);
-			echo("<p>Imported ".$file->uid . ' - '. $file->name."</p>");
-		}
-		echo "<p>Done!</p>";
-	}
-
+    public function actionImport()
+    {
+        echo "<h1>Importing files:</h1>";
+        foreach (glob(Yii::app()->basePath.'/data/test/*') as $src_file) {
+            $file = ProtectedFile::createFromFile($src_file);
+            if (!$file->save()) {
+                throw new CException('Cannot save file'.print_r($file->getErrors(), true));
+            }
+            unlink($src_file);
+            echo("<p>Imported ".$file->uid . ' - '. $file->name."</p>");
+        }
+        echo "<p>Done!</p>";
+    }
 }

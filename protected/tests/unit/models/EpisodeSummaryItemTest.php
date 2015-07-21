@@ -15,86 +15,86 @@
 
 class EpisodeSummaryItemTest extends CDbTestCase
 {
-	public $fixtures = array(
-		'EventType',
-		'subspecialty' => 'Subspecialty',
-		'EpisodeSummaryItem' => 'EpisodeSummaryItem',
-		':episode_summary',
-	);
+    public $fixtures = array(
+        'EventType',
+        'subspecialty' => 'Subspecialty',
+        'EpisodeSummaryItem' => 'EpisodeSummaryItem',
+        ':episode_summary',
+    );
 
-	public function testEnabled_Default()
-	{
-		$this->assertEquals(
-			array($this->EpisodeSummaryItem('bar'), $this->EpisodeSummaryItem('foo')),
-			EpisodeSummaryItem::model()->enabled()->findAll()
-		);
-	}
+    public function testEnabled_Default()
+    {
+        $this->assertEquals(
+            array($this->EpisodeSummaryItem('bar'), $this->EpisodeSummaryItem('foo')),
+            EpisodeSummaryItem::model()->enabled()->findAll()
+        );
+    }
 
-	public function testEnabled_Subspecialty()
-	{
-		$this->assertEquals(
-			array($this->EpisodeSummaryItem('baz')),
-			EpisodeSummaryItem::model()->enabled(1)->findAll()
-		);
-	}
+    public function testEnabled_Subspecialty()
+    {
+        $this->assertEquals(
+            array($this->EpisodeSummaryItem('baz')),
+            EpisodeSummaryItem::model()->enabled(1)->findAll()
+        );
+    }
 
-	public function testAvailable_Default()
-	{
-		$this->assertEquals(
-			array($this->EpisodeSummaryItem('baz')),
-			EpisodeSummaryItem::model()->available()->findAll()
-		);
-	}
+    public function testAvailable_Default()
+    {
+        $this->assertEquals(
+            array($this->EpisodeSummaryItem('baz')),
+            EpisodeSummaryItem::model()->available()->findAll()
+        );
+    }
 
-	public function testAvailable_Subspecialty()
-	{
-		$this->assertEquals(
-			array($this->EpisodeSummaryItem('bar'), $this->EpisodeSummaryItem('foo')),
-			EpisodeSummaryItem::model()->available(1)->findAll()
-		);
-	}
+    public function testAvailable_Subspecialty()
+    {
+        $this->assertEquals(
+            array($this->EpisodeSummaryItem('bar'), $this->EpisodeSummaryItem('foo')),
+            EpisodeSummaryItem::model()->available(1)->findAll()
+        );
+    }
 
-	public function testAssign_Default()
-	{
-		EpisodeSummaryItem::model()->assign(array(3));
-		$this->assertEquals(
-			array($this->EpisodeSummaryItem('baz')),
-			EpisodeSummaryItem::model()->enabled()->findAll()
-		);
-	}
+    public function testAssign_Default()
+    {
+        EpisodeSummaryItem::model()->assign(array(3));
+        $this->assertEquals(
+            array($this->EpisodeSummaryItem('baz')),
+            EpisodeSummaryItem::model()->enabled()->findAll()
+        );
+    }
 
-	public function testAssign_Subspecialty()
-	{
-		EpisodeSummaryItem::model()->assign(array(1, 2), $this->subspecialty('subspecialty1')->id);
-		$this->assertEquals(
-			array($this->EpisodeSummaryItem('foo'), $this->EpisodeSummaryItem('bar')),
-			EpisodeSummaryItem::model()->enabled(1)->findAll()
-		);
-	}
+    public function testAssign_Subspecialty()
+    {
+        EpisodeSummaryItem::model()->assign(array(1, 2), $this->subspecialty('subspecialty1')->id);
+        $this->assertEquals(
+            array($this->EpisodeSummaryItem('foo'), $this->EpisodeSummaryItem('bar')),
+            EpisodeSummaryItem::model()->enabled(1)->findAll()
+        );
+    }
 
-	public function testAssign_Default_Empty()
-	{
-		EpisodeSummaryItem::model()->assign(array());
-		$this->assertEquals(
-			array(),
-			EpisodeSummaryItem::model()->enabled()->findAll()
-		);
-	}
+    public function testAssign_Default_Empty()
+    {
+        EpisodeSummaryItem::model()->assign(array());
+        $this->assertEquals(
+            array(),
+            EpisodeSummaryItem::model()->enabled()->findAll()
+        );
+    }
 
-	public function testAssign_Subspecialty_Empty()
-	{
-		EpisodeSummaryItem::model()->assign(array(), 1);
-		$this->assertEquals(
-			array(),
-			EpisodeSummaryItem::model()->enabled(1)->findAll()
-		);
-	}
+    public function testAssign_Subspecialty_Empty()
+    {
+        EpisodeSummaryItem::model()->assign(array(), 1);
+        $this->assertEquals(
+            array(),
+            EpisodeSummaryItem::model()->enabled(1)->findAll()
+        );
+    }
 
-	public function testGetClassName()
-	{
-		$this->assertEquals(
-			'OphCiExamination_Episode_Foo',
-			$this->EpisodeSummaryItem('foo')->getClassName()
-		);
-	}
+    public function testGetClassName()
+    {
+        $this->assertEquals(
+            'OphCiExamination_Episode_Foo',
+            $this->EpisodeSummaryItem('foo')->getClassName()
+        );
+    }
 }

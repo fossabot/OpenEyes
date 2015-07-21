@@ -20,75 +20,75 @@
  */
 class AllergyTest extends CDbTestCase
 {
-	/**
-	 * @var AddressType
-	 */
-	public $model;
-	public $fixtures = array(
-		'allergy' => 'Allergy',
-	);
+    /**
+     * @var AddressType
+     */
+    public $model;
+    public $fixtures = array(
+        'allergy' => 'Allergy',
+    );
 
-	public function dataProvider_Search()
-	{
-		return array(
-			array(array('id' => 1, 'name' => 'allergy 1'), 1, array('allergy1')),
-			array(array('id' => 2, 'name' => 'allergy 2'), 1, array('allergy2')),
-		);
-	}
+    public function dataProvider_Search()
+    {
+        return array(
+            array(array('id' => 1, 'name' => 'allergy 1'), 1, array('allergy1')),
+            array(array('id' => 2, 'name' => 'allergy 2'), 1, array('allergy2')),
+        );
+    }
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
-		$this->model = new Allergy;
-	}
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->model = new Allergy;
+    }
 
-	/**
-	 * @covers Allergy::model
-	 */
-	public function testModel()
-	{
-		$this->assertEquals('Allergy', get_class(Allergy::model()), 'Class name should match model.');
-	}
+    /**
+     * @covers Allergy::model
+     */
+    public function testModel()
+    {
+        $this->assertEquals('Allergy', get_class(Allergy::model()), 'Class name should match model.');
+    }
 
-	/**
-	 * @covers Allergy::tableName
-	 */
-	public function testTableName()
-	{
-		$this->assertEquals('allergy', $this->model->tableName());
-	}
+    /**
+     * @covers Allergy::tableName
+     */
+    public function testTableName()
+    {
+        $this->assertEquals('allergy', $this->model->tableName());
+    }
 
-	/**
-	 * @covers Allergy::attributeLabels
-	 */
-	public function testAttributeLabels()
-	{
-		$expected = array();
-		$this->assertEquals($expected, $this->model->attributeLabels());
-	}
+    /**
+     * @covers Allergy::attributeLabels
+     */
+    public function testAttributeLabels()
+    {
+        $expected = array();
+        $this->assertEquals($expected, $this->model->attributeLabels());
+    }
 
-	/**
-	 * @dataProvider dataProvider_Search
-	 */
-	public function testSearch_WithValidTerms_ReturnsExpectedResults($searchTerms, $numResults, $expectedKeys)
-	{
-		$allergy = new Allergy;
-		$allergy->setAttributes($searchTerms);
-		$allergyresults = $allergy->search();
-		$allergydata = $allergyresults->getData();
+    /**
+     * @dataProvider dataProvider_Search
+     */
+    public function testSearch_WithValidTerms_ReturnsExpectedResults($searchTerms, $numResults, $expectedKeys)
+    {
+        $allergy = new Allergy;
+        $allergy->setAttributes($searchTerms);
+        $allergyresults = $allergy->search();
+        $allergydata = $allergyresults->getData();
 
-		$expectedResults = array();
-		if (!empty($expectedKeys)) {
-			foreach ($expectedKeys as $key) {
-				$expectedResults[] = $this->allergy($key);
-			}
-		}
+        $expectedResults = array();
+        if (!empty($expectedKeys)) {
+            foreach ($expectedKeys as $key) {
+                $expectedResults[] = $this->allergy($key);
+            }
+        }
 
-		$this->assertEquals($numResults, $allergyresults->getItemCount());
-		$this->assertEquals($expectedResults, $allergydata);
-	}
+        $this->assertEquals($numResults, $allergyresults->getItemCount());
+        $this->assertEquals($expectedResults, $allergydata);
+    }
 }

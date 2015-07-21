@@ -24,7 +24,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 	<div class="row">
 		<div class="large-11 large-centered column">
 			<div class="panel login">
-				<p><?php echo str_replace("\n","<br/>",Yii::app()->params['required_user_agent_message'])?></p>
+				<p><?php echo str_replace("\n", "<br/>", Yii::app()->params['required_user_agent_message'])?></p>
 			</div>
 		</div>
 	</div>

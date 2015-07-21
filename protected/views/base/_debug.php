@@ -20,31 +20,31 @@
 <!---
 <?php
 if (!empty(Yii::app()->session['user'])) {
-	$user = Yii::app()->session['user'];
+    $user = Yii::app()->session['user'];
 } else {
-	$user = User::model()->findByPk(Yii::app()->user->id);
+    $user = User::model()->findByPk(Yii::app()->user->id);
 }
 $firm = Firm::model()->findByPk($this->selectedFirmId);
 
 if (file_exists("/etc/hostname")) {
-	$hostname = trim(file_get_contents("/etc/hostname"));
+    $hostname = trim(file_get_contents("/etc/hostname"));
 } else {
-	$hostname = trim(`hostname`);
+    $hostname = trim(`hostname`);
 }
 
 if (is_object($user)) {
-	$username = "$user->username ($user->id)";
-	if ($firm) {
-		$firm = "$firm->name ($firm->id)";
-	} else {
-		$firm = 'Not found'; // selectedFirmId seems to not be getting initialised sometimes
-	}
+    $username = "$user->username ($user->id)";
+    if ($firm) {
+        $firm = "$firm->name ($firm->id)";
+    } else {
+        $firm = 'Not found'; // selectedFirmId seems to not be getting initialised sometimes
+    }
 } else {
-	$username = 'Not logged in';
-	$firm = 'Not logged in';
+    $username = 'Not logged in';
+    $firm = 'Not logged in';
 }
 
-$commit = preg_replace('/[\s\t].*$/s','',@file_get_contents(@$_SERVER['DOCUMENT_ROOT']."/.git/FETCH_HEAD"));
+$commit = preg_replace('/[\s\t].*$/s', '', @file_get_contents(@$_SERVER['DOCUMENT_ROOT']."/.git/FETCH_HEAD"));
 ?>
 Server: <?php echo $hostname?>
 

@@ -139,8 +139,9 @@ class Swift_CharacterStream_NgCharacterStream implements Swift_CharacterStream
         $this->flushContents();
         $blocks=512;
         $os->setReadPointer(0);
-        while(false!==($read = $os->read($blocks)))
+        while (false!==($read = $os->read($blocks))) {
             $this->write($read);
+        }
     }
 
     /**
@@ -164,13 +165,13 @@ class Swift_CharacterStream_NgCharacterStream implements Swift_CharacterStream
     public function read($length)
     {
         if ($this->_currentPos>=$this->_charCount) {
-          return false;
+            return false;
         }
         $ret=false;
         $length = ($this->_currentPos+$length > $this->_charCount)
           ? $this->_charCount - $this->_currentPos
           : $length;
-          switch ($this->_mapType) {
+        switch ($this->_mapType) {
             case Swift_CharacterReader::MAP_TYPE_FIXED_LEN:
                 $len = $length*$this->_map;
                 $ret = substr($this->_datas,
@@ -186,7 +187,7 @@ class Swift_CharacterStream_NgCharacterStream implements Swift_CharacterStream
                     :$end;
                 $ret = '';
                 for (; $this->_currentPos < $length; ++$this->_currentPos) {
-                    if (isset ($this->_map[$this->_currentPos])) {
+                    if (isset($this->_map[$this->_currentPos])) {
                         $ret .= '?';
                     } else {
                         $ret .= $this->_datas[$this->_currentPos];

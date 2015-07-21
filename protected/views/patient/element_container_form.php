@@ -21,72 +21,102 @@
 $section_classes = array(CHtml::modelName($element->elementType->class_name));
 $section_classes[] = @$child ? 'sub-element' : 'element';
 if ($this->isRequired($element)) {
-	$section_classes[] = 'required';
+    $section_classes[] = 'required';
 }
 if ($this->isHiddenInUI($element)) {
-	$section_classes[] = 'hide';
+    $section_classes[] = 'hide';
 }
 ?>
 
-<?php if (!preg_match('/\[\-(.*)\-\]/', $element->elementType->name)) { ?>
+<?php if (!preg_match('/\[\-(.*)\-\]/', $element->elementType->name)) {
+    ?>
 <section
-	class="<?php echo implode(' ', $section_classes);?>"
+	class="<?php echo implode(' ', $section_classes);
+    ?>"
 	data-element-type-id="<?php echo $element->elementType->id?>"
 	data-element-type-class="<?php echo CHtml::modelName($element->elementType->class_name) ?>"
 	data-element-type-name="<?php echo $element->elementType->name?>"
 	data-element-display-order="<?php echo $element->elementType->display_order?>">
 
-	<header class="<?php if (@$child) {?>sub-<?php }?>element-header">
+	<header class="<?php if (@$child) {
+    ?>sub-<?php 
+}
+    ?>element-header">
 
 		<!-- Element title -->
-		<?php if (!@$child) {?>
+		<?php if (!@$child) {
+    ?>
 			<h3 class="element-title"><?php echo $element->elementType->name ?></h3>
-		<?php }else{?>
+		<?php 
+} else {
+    ?>
 			<h4 class="sub-element-title"><?php echo $element->elementType->name?></h4>
-		<?php }?>
+		<?php 
+}
+    ?>
 
 		<!-- Additional element title information -->
-		<?php if (isset($this->clips['element-title-additional'])){?>
+		<?php if (isset($this->clips['element-title-additional'])) {
+    ?>
 			<div class="element-title-additional">
 				<?php
-				$this->renderClip('element-title-additional');
-				// don't want the header clip to repeat in child elements
-				unset($this->clips['element-title-additional']);
-				?>
+                $this->renderClip('element-title-additional');
+                // don't want the header clip to repeat in child elements
+                unset($this->clips['element-title-additional']);
+    ?>
 			</div>
-		<?php }?>
+		<?php 
+}
+    ?>
 
 		<!-- Element actions -->
-		<div class="<?php if (@$child) {?>sub-<?php }?>element-actions">
+		<div class="<?php if (@$child) {
+    ?>sub-<?php 
+}
+    ?>element-actions">
 
 			<!-- Copy previous element -->
-			<?php if ($this->canCopy($element) || $this->canViewPrevious($element)) {?>
-				<a href="#" title="View Previous" class="viewPrevious<?php if (@$child) {?> subElement<?php }?>">
+			<?php if ($this->canCopy($element) || $this->canViewPrevious($element)) {
+    ?>
+				<a href="#" title="View Previous" class="viewPrevious<?php if (@$child) {
+    ?> subElement<?php 
+}
+    ?>">
 					<img src="<?php echo Yii::app()->assetManager->createUrl('img/_elements/btns/load.png')?>" />
 				</a>
-			<?php }?>
+			<?php 
+}
+    ?>
 
 			<!-- Remove element -->
-			<?php if (!@$child) {?>
+			<?php if (!@$child) {
+    ?>
 				<a href="#" class="button button-icon small js-remove-element <?=(!$this->isRequiredInUI($element)) ?: 'disabled' ?>" title="<?=(!$this->isRequiredInUI($element)) ?: 'mandatory' ?>">
 					<span class="icon-button-small-mini-cross"></span>
 					<span class="hide-offscreen">Remove element</span>
 				</a>
-			<?php }?>
+			<?php 
+}
+    ?>
 
 			<!-- Remove sub-element -->
-			<?php if (@$child) {?>
+			<?php if (@$child) {
+    ?>
 				<a href="#" class="button button-icon small js-remove-child-element <?=(!$this->isRequiredInUI($element)) ?: 'disabled' ?>" title="<?=(!$this->isRequiredInUI($element)) ?: 'mandatory' ?>">
 					<span class="icon-button-small-mini-cross"></span>
 					<span class="hide-offscreen">Remove sub-element</span>
 				</a>
-			<?php }?>
+			<?php 
+}
+    ?>
 		</div>
 	</header>
-	<?php echo $content; ?>
+	<?php echo $content;
+    ?>
 
 	<!-- Sub elements -->
-	<?php if (!@$child) {?>
+	<?php if (!@$child) {
+    ?>
 		<div class="sub-elements active">
 			<?php $this->renderChildOpenElements($element, $this->action->id, $form, $data)?>
 		</div>
@@ -95,20 +125,27 @@ if ($this->isHiddenInUI($element)) {
 				<?php $this->renderChildOptionalElements($element, $this->action->id, $form, $data)?>
 			</ul>
 		</div>
-	<?php } ?>
+	<?php 
+}
+    ?>
 </section>
-<?php } else { ?>
+<?php 
+} else {
+    ?>
 	<section
-		class="<?php echo implode(' ', $section_classes); ?> element-no-display"
+		class="<?php echo implode(' ', $section_classes);
+    ?> element-no-display"
 		data-element-type-id="<?php echo $element->elementType->id ?>"
 		data-element-type-class="<?php echo CHtml::modelName($element->elementType->class_name) ?>"
 		data-element-type-name="<?php echo $element->elementType->name ?>"
 		data-element-display-order="<?php echo $element->elementType->display_order ?>">
 
-		<?php echo $content; ?>
+		<?php echo $content;
+    ?>
 
 		<!-- Sub elements -->
-		<?php if (!@$child) { ?>
+		<?php if (!@$child) {
+    ?>
 			<div class="sub-elements active">
 				<?php $this->renderChildOpenElements($element, $this->action->id, $form, $data) ?>
 			</div>
@@ -117,7 +154,10 @@ if ($this->isHiddenInUI($element)) {
 					<?php $this->renderChildOptionalElements($element, $this->action->id, $form, $data) ?>
 				</ul>
 			</div>
-		<?php } ?>
+		<?php 
+}
+    ?>
 
 	</section>
-<?php } ?>
+<?php 
+} ?>

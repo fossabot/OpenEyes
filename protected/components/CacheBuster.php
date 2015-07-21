@@ -23,38 +23,38 @@
  */
 class CacheBuster extends CApplicationComponent
 {
-	/**
-	 * The time string to append to the URL.
-	 * @var string
-	 */
-	public $time;
+    /**
+     * The time string to append to the URL.
+     * @var string
+     */
+    public $time;
 
-	/**
-	 * Create a cache busted URL.
-	 * @param  string $url  The URL to cache bust.
-	 * @param  string $time The time string to append to the url.
-	 * @return String       The cache busted URL.
-	 */
-	public function createUrl($url = '', $time = null)
-	{
-		$time = $time ?: $this->time;
+    /**
+     * Create a cache busted URL.
+     * @param  string $url  The URL to cache bust.
+     * @param  string $time The time string to append to the url.
+     * @return String       The cache busted URL.
+     */
+    public function createUrl($url = '', $time = null)
+    {
+        $time = $time ?: $this->time;
 
-		if ($time) {
-			$joiner = $this->getJoiner($url);
-			$url .= $joiner.$time;
-		}
+        if ($time) {
+            $joiner = $this->getJoiner($url);
+            $url .= $joiner.$time;
+        }
 
-		return $url;
-	}
+        return $url;
+    }
 
-	/**
-	 * Determine the joiner required to append the cache busting string. This checks
-	 * if the URL contains query string params and returns the appropriate joiner.
-	 * @param  string $url The URL to check.
-	 * @return string      The joiner char (either '?' or '&')
-	 */
-	protected function getJoiner($url = '')
-	{
-		return preg_match('/\?/',$url) ? '&' : '?';
-	}
+    /**
+     * Determine the joiner required to append the cache busting string. This checks
+     * if the URL contains query string params and returns the appropriate joiner.
+     * @param  string $url The URL to check.
+     * @return string      The joiner char (either '?' or '&')
+     */
+    protected function getJoiner($url = '')
+    {
+        return preg_match('/\?/', $url) ? '&' : '?';
+    }
 }

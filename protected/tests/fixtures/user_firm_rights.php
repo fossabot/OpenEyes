@@ -14,8 +14,8 @@
  */
 
 return array(
-	array(
-		'user_id' => 3,
-		'firm_id' => 3,
-	),
+    array(
+        'user_id' => 3,
+        'firm_id' => 3,
+    ),
 );
