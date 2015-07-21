@@ -21,4 +21,3 @@ class BaseEventNamespacedElement extends \BaseEventTypeElement
     {
     }
 }
-
