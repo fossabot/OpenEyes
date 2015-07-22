@@ -74,7 +74,7 @@ class Prescription extends OpenEyesPage {
 					'xpath' => "//*[@data-taper='2']//*[@class='removeTaper']" 
 			),
 			'prescriptionValidationWarning' => array (
-					'xpath' => "//*[contains(text(),'Details: Items cannot be blank.')]" 
+					'xpath' => "//*[contains(text(),'Items cannot be blank.')]"
 			),
 			'standardSetRepeatDrug1' => array (
 					'xpath' => "//*[@class='prescription-item prescriptionItem even']//*[contains(text(),'atropine 1% eye drops')]" 

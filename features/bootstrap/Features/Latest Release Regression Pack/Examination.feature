@@ -307,6 +307,7 @@ Feature: Create New Examination Regression Tests
 
     Then I choose to expand the Diagnoses section
     And I choose a left eye diagnosis
+    Then I choose a principal diagnosis
 
     Then I choose to expand the Investigation section
     And I add an Investigation of "refraction, "
@@ -321,6 +322,7 @@ Feature: Create New Examination Regression Tests
     Then I select First Eye
 
     And I choose Straightforward case
+    Then I select a post operative refractive target in dioptres of "1"
 
     And the post operative target has been discussed with patient Yes
     Then I select a suitable for surgeon of "3"
@@ -457,6 +459,7 @@ Feature: Create New Examination Regression Tests
     Then I select First Eye
 
     And I choose Straightforward case
+    Then I select a post operative refractive target in dioptres of "1"
 
     And the post operative target has been discussed with patient No
     Then I select a suitable for surgeon of "3"
@@ -590,6 +593,7 @@ Feature: Create New Examination Regression Tests
     Then I select First Eye
 
     And I choose Straightforward case
+    Then I select a post operative refractive target in dioptres of "1"
 
     And the post operative target has been discussed with patient No
     Then I select a suitable for surgeon of "3"
@@ -1063,6 +1067,7 @@ Feature: Create New Examination Regression Tests
     Then I select First Eye
 
     And I choose Straightforward case
+    Then I select a post operative refractive target in dioptres of "1"
 
     And the post operative target has been discussed with patient No
     Then I select a suitable for surgeon of "3"

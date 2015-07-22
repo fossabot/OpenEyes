@@ -142,6 +142,7 @@ Feature: Create New Correspondence
 
     Then I Save the Correspondence Draft and confirm it has been created successfully
 
+  @COR_Scenario_5
   Scenario: Route 5:Login and fill in a Correspondence Event
             Site 1:  Queens
             Firm 3:  Anderson Glaucoma

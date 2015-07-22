@@ -81,13 +81,13 @@ class ConsentForm extends OpenEyesPage
 					'xpath' => "//*[@id='select_procedure_id_additional']" 
 			),
 			'benefitValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Benefits and risks: Benefits cannot be blank')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Benefits cannot be blank.')]" 
 			),
 			'riskValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Benefits and risks: Risks cannot be blank')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'Risks cannot be blank.')]" 
 			),
 			'procedureValidationError' => array (
-					'xpath' => "//*[@class='alert-box alert with-icon']//*[contains(text(),'Other: At least one procedure must be entered')]" 
+					'xpath' => "//*[@class='alert-box error with-icon']//*[contains(text(),'At least one procedure must be entered')]" 
 			),
 			'existingOperationBooking' => array (
 					'xpath' => "//*[@class='highlight booking']//*[contains(text(),'Extracapsular cataract extraction')]" 

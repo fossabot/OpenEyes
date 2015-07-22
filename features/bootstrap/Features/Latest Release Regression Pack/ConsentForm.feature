@@ -121,6 +121,7 @@ Feature: Create New Consent Form
 
     Then I save the Consent Form and confirm it has been created successfully
 
+  @Consent_Route5
   Scenario: Route 5: Login and create a new Consent Form
             Site 2: Kings
             Firm: Anderson Glaucoma

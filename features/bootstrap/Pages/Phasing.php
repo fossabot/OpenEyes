@@ -171,7 +171,7 @@ class Phasing extends OpenEyesPage {
 		}
 	}
 	protected function hasPhasingTimeErrorDisplayed() {
-		sleep(3);
+		sleep(4);
 		//return ( bool ) $this->find ( 'xpath', $this->getElement ( 'hasPhasingTimeErrorDisplayed' )->getXpath () ) && ( bool ) $this->find ( 'xpath', $this->getElement ( 'leftReadingTimeInvalid' )->getXpath () );
 		return ( bool ) $this->find ( 'xpath', $this->getElement ( 'leftReadingTimeInvalid' )->getXpath () );
 	}
