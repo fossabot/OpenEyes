@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cee809c3dfcb512dba3395039ced5dcf",
+    "hash": "a627eb67792a48138b25a6ecf8bc76fc",
     "packages": [
         {
             "name": "openeyes/eyedraw",
@@ -60,16 +60,16 @@
         },
         {
             "name": "openeyes/oph-ci-examination",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphCiExamination.git",
-                "reference": "44d2b0e7218562595ccad0c808824195981a87f7"
+                "reference": "8c890d1dbe54eaac8cc40808a0e90322d0fbaefa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphCiExamination/zipball/44d2b0e7218562595ccad0c808824195981a87f7",
-                "reference": "44d2b0e7218562595ccad0c808824195981a87f7",
+                "url": "https://api.github.com/repos/openeyes/OphCiExamination/zipball/8c890d1dbe54eaac8cc40808a0e90322d0fbaefa",
+                "reference": "8c890d1dbe54eaac8cc40808a0e90322d0fbaefa",
                 "shasum": ""
             },
             "require": {
@@ -78,20 +78,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Examination module for OpenEyes",
-            "time": "2015-07-16 10:22:29"
+            "time": "2015-07-22 13:02:13"
         },
         {
             "name": "openeyes/oph-ci-phasing",
-            "version": "dev-feature/phpcs",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphCiPhasing.git",
-                "reference": "14874d0b1fa6ef7f8f984e4d7913204111c69978"
+                "reference": "5d8ec047cd45146ad39f1fec22a113030dfb7fc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphCiPhasing/zipball/14874d0b1fa6ef7f8f984e4d7913204111c69978",
-                "reference": "14874d0b1fa6ef7f8f984e4d7913204111c69978",
+                "url": "https://api.github.com/repos/openeyes/OphCiPhasing/zipball/5d8ec047cd45146ad39f1fec22a113030dfb7fc3",
+                "reference": "5d8ec047cd45146ad39f1fec22a113030dfb7fc3",
                 "shasum": ""
             },
             "require": {
@@ -100,20 +100,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Phasing module for OpenEyes, allows recording of multiple timed IOP values in a single event",
-            "time": "2015-07-16 10:32:38"
+            "time": "2015-03-04 11:24:17"
         },
         {
             "name": "openeyes/oph-co-correspondence",
-            "version": "dev-feature/phpcs",
+            "version": "v1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphCoCorrespondence.git",
-                "reference": "81f3a30e664957a2d331d105d31f25068a06762c"
+                "reference": "7f6338a922e72ff6ff36d12476151e1db487130b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphCoCorrespondence/zipball/81f3a30e664957a2d331d105d31f25068a06762c",
-                "reference": "81f3a30e664957a2d331d105d31f25068a06762c",
+                "url": "https://api.github.com/repos/openeyes/OphCoCorrespondence/zipball/7f6338a922e72ff6ff36d12476151e1db487130b",
+                "reference": "7f6338a922e72ff6ff36d12476151e1db487130b",
                 "shasum": ""
             },
             "require": {
@@ -122,20 +122,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Correspondence module for OpenEyes, allows generation of letters",
-            "time": "2015-07-16 10:28:08"
+            "time": "2015-05-18 12:32:49"
         },
         {
             "name": "openeyes/oph-co-therapyapplication",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphCoTherapyapplication.git",
-                "reference": "e358067e11252d57e8faf053e8304030e6ea3a94"
+                "reference": "aa0ea7b96c952310293cae7151234ff140266f6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphCoTherapyapplication/zipball/e358067e11252d57e8faf053e8304030e6ea3a94",
-                "reference": "e358067e11252d57e8faf053e8304030e6ea3a94",
+                "url": "https://api.github.com/repos/openeyes/OphCoTherapyapplication/zipball/aa0ea7b96c952310293cae7151234ff140266f6e",
+                "reference": "aa0ea7b96c952310293cae7151234ff140266f6e",
                 "shasum": ""
             },
             "require": {
@@ -144,20 +144,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Generates applications for therapy for patients within OpenEyes",
-            "time": "2015-07-16 10:36:46"
+            "time": "2015-07-13 13:48:37"
         },
         {
             "name": "openeyes/oph-dr-prescription",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphDrPrescription.git",
-                "reference": "f557d41bbf9955bcc63e9bf157edd43f06efbb44"
+                "reference": "3a74874bb62811739eb49bcc4d4850636b961b86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphDrPrescription/zipball/f557d41bbf9955bcc63e9bf157edd43f06efbb44",
-                "reference": "f557d41bbf9955bcc63e9bf157edd43f06efbb44",
+                "url": "https://api.github.com/repos/openeyes/OphDrPrescription/zipball/3a74874bb62811739eb49bcc4d4850636b961b86",
+                "reference": "3a74874bb62811739eb49bcc4d4850636b961b86",
                 "shasum": ""
             },
             "require": {
@@ -166,20 +166,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module for generating prescriptions in OpenEyes",
-            "time": "2015-07-16 10:42:16"
+            "time": "2015-06-08 10:12:47"
         },
         {
             "name": "openeyes/oph-in-biometry",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphInBiometry.git",
-                "reference": "c78d04eb247232a3b69c0ff41d140712a9aa6420"
+                "reference": "38a85e7cee55c5b6fdff225b8fbc39f85fa6e05c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphInBiometry/zipball/c78d04eb247232a3b69c0ff41d140712a9aa6420",
-                "reference": "c78d04eb247232a3b69c0ff41d140712a9aa6420",
+                "url": "https://api.github.com/repos/openeyes/OphInBiometry/zipball/38a85e7cee55c5b6fdff225b8fbc39f85fa6e05c",
+                "reference": "38a85e7cee55c5b6fdff225b8fbc39f85fa6e05c",
                 "shasum": ""
             },
             "require": {
@@ -188,20 +188,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Biometry module for OpenEyes",
-            "time": "2015-07-16 11:12:06"
+            "time": "2015-06-26 14:31:05"
         },
         {
             "name": "openeyes/oph-in-visualfields",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphInVisualfields.git",
-                "reference": "62f2efba35ead9f8b4c9b6f979baf7a75f797dfc"
+                "reference": "6f8ded05835bff65b178a6a12261cbefc0227b1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphInVisualfields/zipball/62f2efba35ead9f8b4c9b6f979baf7a75f797dfc",
-                "reference": "62f2efba35ead9f8b4c9b6f979baf7a75f797dfc",
+                "url": "https://api.github.com/repos/openeyes/OphInVisualfields/zipball/6f8ded05835bff65b178a6a12261cbefc0227b1d",
+                "reference": "6f8ded05835bff65b178a6a12261cbefc0227b1d",
                 "shasum": ""
             },
             "require": {
@@ -210,20 +210,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module capable of communicating with Visual Fields machine to import images",
-            "time": "2015-07-16 11:07:56"
+            "time": "2015-07-10 13:36:34"
         },
         {
             "name": "openeyes/oph-ou-anaestheticsatisfactionaudit",
-            "version": "dev-feature/phpcs",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphOuAnaestheticsatisfactionaudit.git",
-                "reference": "ca85a60a1ea75980424ce238363f7d40c15dd7e0"
+                "reference": "943195f82b702c4f2e049bdf7983529ab6eb84f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphOuAnaestheticsatisfactionaudit/zipball/ca85a60a1ea75980424ce238363f7d40c15dd7e0",
-                "reference": "ca85a60a1ea75980424ce238363f7d40c15dd7e0",
+                "url": "https://api.github.com/repos/openeyes/OphOuAnaestheticsatisfactionaudit/zipball/943195f82b702c4f2e049bdf7983529ab6eb84f2",
+                "reference": "943195f82b702c4f2e049bdf7983529ab6eb84f2",
                 "shasum": ""
             },
             "require": {
@@ -232,20 +232,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module for auditing Anaesthetic Satisfaction in OpenEyes",
-            "time": "2015-07-16 10:46:48"
+            "time": "2015-03-05 15:31:31"
         },
         {
             "name": "openeyes/oph-tr-consent",
-            "version": "dev-feature/phpcs",
+            "version": "v1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphTrConsent.git",
-                "reference": "713a69c5b1dc0ede486df43922935b26072ae6a4"
+                "reference": "68730db9198d194976087e9be6a1bafda329991d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphTrConsent/zipball/713a69c5b1dc0ede486df43922935b26072ae6a4",
-                "reference": "713a69c5b1dc0ede486df43922935b26072ae6a4",
+                "url": "https://api.github.com/repos/openeyes/OphTrConsent/zipball/68730db9198d194976087e9be6a1bafda329991d",
+                "reference": "68730db9198d194976087e9be6a1bafda329991d",
                 "shasum": ""
             },
             "require": {
@@ -254,20 +254,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Generates consent forms for scheduled and unscheduled operations",
-            "time": "2015-07-16 10:49:01"
+            "time": "2015-05-18 12:36:38"
         },
         {
             "name": "openeyes/oph-tr-intravitrealinjection",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphTrIntravitrealinjection.git",
-                "reference": "5b9582a4133aa6cc7704156d7321bbc1abf821b8"
+                "reference": "eefd4a5259135ebf34b1324f4b60001a602f65de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphTrIntravitrealinjection/zipball/5b9582a4133aa6cc7704156d7321bbc1abf821b8",
-                "reference": "5b9582a4133aa6cc7704156d7321bbc1abf821b8",
+                "url": "https://api.github.com/repos/openeyes/OphTrIntravitrealinjection/zipball/eefd4a5259135ebf34b1324f4b60001a602f65de",
+                "reference": "eefd4a5259135ebf34b1324f4b60001a602f65de",
                 "shasum": ""
             },
             "require": {
@@ -276,20 +276,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Records intravitreal injection events for patients within OpenEyes",
-            "time": "2015-07-16 10:59:38"
+            "time": "2015-05-26 13:43:53"
         },
         {
             "name": "openeyes/oph-tr-laser",
-            "version": "dev-feature/phpcs",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphTrLaser.git",
-                "reference": "80e5f2a4e9566716ceaa2ee0dadf92698f9d5916"
+                "reference": "7b2a663026b6bb98226ffa4cf51ca4192e123b7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphTrLaser/zipball/80e5f2a4e9566716ceaa2ee0dadf92698f9d5916",
-                "reference": "80e5f2a4e9566716ceaa2ee0dadf92698f9d5916",
+                "url": "https://api.github.com/repos/openeyes/OphTrLaser/zipball/7b2a663026b6bb98226ffa4cf51ca4192e123b7c",
+                "reference": "7b2a663026b6bb98226ffa4cf51ca4192e123b7c",
                 "shasum": ""
             },
             "require": {
@@ -298,20 +298,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Laser Event module for OpenEyes, designed to record laser surgery events for patients.",
-            "time": "2015-07-16 11:01:40"
+            "time": "2015-03-04 11:46:06"
         },
         {
             "name": "openeyes/oph-tr-operationbooking",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphTrOperationbooking.git",
-                "reference": "8919f02f041b2cbdae3b4cf4ee36f3660186caac"
+                "reference": "2d69a769ff1abca4d9e6ca5ee7cd3955f05634f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphTrOperationbooking/zipball/8919f02f041b2cbdae3b4cf4ee36f3660186caac",
-                "reference": "8919f02f041b2cbdae3b4cf4ee36f3660186caac",
+                "url": "https://api.github.com/repos/openeyes/OphTrOperationbooking/zipball/2d69a769ff1abca4d9e6ca5ee7cd3955f05634f2",
+                "reference": "2d69a769ff1abca4d9e6ca5ee7cd3955f05634f2",
                 "shasum": ""
             },
             "require": {
@@ -320,20 +320,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Module for booking operations in OpenEyes",
-            "time": "2015-07-16 10:57:23"
+            "time": "2015-07-14 11:02:21"
         },
         {
             "name": "openeyes/oph-tr-operationnote",
-            "version": "dev-feature/phpcs",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphTrOperationnote.git",
-                "reference": "9ab35f55f1a595d15d2aba4a072b4466a0c94b22"
+                "reference": "ca3f1965e27f65b0c508e312beed1e07c706fd69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphTrOperationnote/zipball/9ab35f55f1a595d15d2aba4a072b4466a0c94b22",
-                "reference": "9ab35f55f1a595d15d2aba4a072b4466a0c94b22",
+                "url": "https://api.github.com/repos/openeyes/OphTrOperationnote/zipball/ca3f1965e27f65b0c508e312beed1e07c706fd69",
+                "reference": "ca3f1965e27f65b0c508e312beed1e07c706fd69",
                 "shasum": ""
             },
             "require": {
@@ -342,20 +342,20 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Operation note module for OpenEyes",
-            "time": "2015-07-16 10:53:56"
+            "time": "2015-07-22 12:59:28"
         },
         {
             "name": "openeyes/patient-ticketing",
-            "version": "dev-feature/phpcs",
+            "version": "v1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/PatientTicketing.git",
-                "reference": "b5bd25ea64accac41037fcb4bd5b7e1008f82444"
+                "reference": "960b9a966625be17932f9fe7596c0684fc1ece4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/PatientTicketing/zipball/b5bd25ea64accac41037fcb4bd5b7e1008f82444",
-                "reference": "b5bd25ea64accac41037fcb4bd5b7e1008f82444",
+                "url": "https://api.github.com/repos/openeyes/PatientTicketing/zipball/960b9a966625be17932f9fe7596c0684fc1ece4a",
+                "reference": "960b9a966625be17932f9fe7596c0684fc1ece4a",
                 "shasum": ""
             },
             "require": {
@@ -364,7 +364,7 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Provides a generic ticketing system to track patients through multiple pathways",
-            "time": "2015-07-16 11:05:14"
+            "time": "2015-05-18 12:41:18"
         },
         {
             "name": "yiisoft/yii",
@@ -1877,12 +1877,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4"
+                "reference": "e4f45be5dcfeb54c45f85b50cdbb3ef8a2bfbd81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4",
-                "reference": "c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e4f45be5dcfeb54c45f85b50cdbb3ef8a2bfbd81",
+                "reference": "e4f45be5dcfeb54c45f85b50cdbb3ef8a2bfbd81",
                 "shasum": ""
             },
             "require": {
@@ -1945,7 +1945,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-07-14 09:27:59"
+            "time": "2015-07-20 18:31:46"
         },
         {
             "name": "nikic/php-parser",
@@ -3753,12 +3753,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DependencyInjection.git",
-                "reference": "f279142fb6bc21e83fcd40e0a01a62ff527268be"
+                "reference": "4c1f684216b9dc349f4b1c617995c7ebf605f130"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/f279142fb6bc21e83fcd40e0a01a62ff527268be",
-                "reference": "f279142fb6bc21e83fcd40e0a01a62ff527268be",
+                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/4c1f684216b9dc349f4b1c617995c7ebf605f130",
+                "reference": "4c1f684216b9dc349f4b1c617995c7ebf605f130",
                 "shasum": ""
             },
             "require": {
@@ -3805,7 +3805,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-16 10:10:53"
+            "time": "2015-07-22 11:24:41"
         },
         {
             "name": "symfony/dom-crawler",
@@ -4394,32 +4394,38 @@
         {
             "name": "zendframework/zend-cache",
             "version": "2.2.10",
-            "target-dir": "Zend/Cache",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-cache.git",
-                "reference": "4e01c4e515bf62dfa2e93cd2977e039cf24b308c"
+                "reference": "ead910ec8b0aa464ede58c959665d0292d9482b0"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-cache/zipball/ead910ec8b0aa464ede58c959665d0292d9482b0",
-                "reference": "4e01c4e515bf62dfa2e93cd2977e039cf24b308c",
+                "reference": "ead910ec8b0aa464ede58c959665d0292d9482b0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-serializer": "self.version",
                 "zendframework/zend-servicemanager": "self.version",
                 "zendframework/zend-stdlib": "self.version"
             },
             "require-dev": {
-                "zendframework/zend-serializer": "self.version"
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-serializer": "self.version",
+                "zendframework/zend-session": "self.version"
             },
             "suggest": {
                 "ext-apc": "APC >= 3.1.6 to use the APC storage adapter",
                 "ext-dba": "DBA, to use the DBA storage adapter",
                 "ext-memcached": "Memcached >= 1.0.0 to use the Memcached storage adapter",
+                "ext-mongo": "Mongo, to use MongoDb storage adapter",
                 "ext-wincache": "WinCache, to use the WinCache storage adapter",
+                "mongofill/mongofill": "Alternative to ext-mongo - a pure PHP implementation designed as a drop in replacement",
                 "zendframework/zend-serializer": "Zend\\Serializer component",
                 "zendframework/zend-session": "Zend\\Session component"
             },
@@ -4431,8 +4437,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\Cache\\": ""
+                "psr-4": {
+                    "Zend\\Cache\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4440,32 +4446,43 @@
                 "BSD-3-Clause"
             ],
             "description": "provides a generic way to cache any data",
+            "homepage": "https://github.com/zendframework/zend-cache",
             "keywords": [
                 "cache",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-config",
             "version": "2.2.10",
-            "target-dir": "Zend/Config",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-config.git",
-                "reference": "21bb8030c84f60deca1756e2d69f80eca46c7256"
+                "reference": "2077985e6de29bf2bd7df16d4f385dcb53062394"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-config/zipball/2077985e6de29bf2bd7df16d4f385dcb53062394",
-                "reference": "21bb8030c84f60deca1756e2d69f80eca46c7256",
+                "reference": "2077985e6de29bf2bd7df16d4f385dcb53062394",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zend-stdlib": "self.version"
             },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-filter": "self.version",
+                "zendframework/zend-i18n": "self.version",
+                "zendframework/zend-json": "self.version",
+                "zendframework/zend-servicemanager": "self.version"
+            },
             "suggest": {
+                "zendframework/zend-filter": "Zend\\Filter component",
+                "zendframework/zend-i18n": "Zend\\I18n component",
                 "zendframework/zend-json": "Zend\\Json to use the Json reader or writer classes",
                 "zendframework/zend-servicemanager": "Zend\\ServiceManager for use with the Config Factory to retrieve reader and writer instances"
             },
@@ -4477,8 +4494,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\Config\\": ""
+                "psr-4": {
+                    "Zend\\Config\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4486,30 +4503,35 @@
                 "BSD-3-Clause"
             ],
             "description": "provides a nested object property based user interface for accessing this configuration data within application code",
+            "homepage": "https://github.com/zendframework/zend-config",
             "keywords": [
                 "config",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-eventmanager",
             "version": "2.2.10",
-            "target-dir": "Zend/EventManager",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-eventmanager.git",
-                "reference": "77f31b34c7fc78d58260282fd5e3cbc593b442b1"
+                "reference": "aa23086ec1d6d0dad7a33e4eaf3fc851c2bc851b"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-eventmanager/zipball/aa23086ec1d6d0dad7a33e4eaf3fc851c2bc851b",
-                "reference": "77f31b34c7fc78d58260282fd5e3cbc593b442b1",
+                "reference": "aa23086ec1d6d0dad7a33e4eaf3fc851c2bc851b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master"
             },
             "type": "library",
             "extra": {
@@ -4519,33 +4541,33 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\EventManager\\": ""
+                "psr-4": {
+                    "Zend\\EventManager\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
+            "homepage": "https://github.com/zendframework/zend-event-manager",
             "keywords": [
                 "eventmanager",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-filter",
             "version": "2.2.10",
-            "target-dir": "Zend/Filter",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-filter.git",
-                "reference": "cfead716e69651a3c931fc59e5e17fb71acc0806"
+                "reference": "790934a61b9bce2c00106ec75fbc024c029de4d0"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-filter/zipball/790934a61b9bce2c00106ec75fbc024c029de4d0",
-                "reference": "cfead716e69651a3c931fc59e5e17fb71acc0806",
+                "reference": "790934a61b9bce2c00106ec75fbc024c029de4d0",
                 "shasum": ""
             },
             "require": {
@@ -4553,11 +4575,17 @@
                 "zendframework/zend-stdlib": "self.version"
             },
             "require-dev": {
-                "zendframework/zend-crypt": "self.version"
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-crypt": "self.version",
+                "zendframework/zend-servicemanager": "self.version",
+                "zendframework/zend-uri": "self.version"
             },
             "suggest": {
                 "zendframework/zend-crypt": "Zend\\Crypt component",
                 "zendframework/zend-i18n": "Zend\\I18n component",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager component",
                 "zendframework/zend-uri": "Zend\\Uri component for UriNormalize filter",
                 "zendframework/zend-validator": "Zend\\Validator component"
             },
@@ -4569,8 +4597,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\Filter\\": ""
+                "psr-4": {
+                    "Zend\\Filter\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4578,36 +4606,51 @@
                 "BSD-3-Clause"
             ],
             "description": "provides a set of commonly needed data filters",
+            "homepage": "https://github.com/zendframework/zend-filter",
             "keywords": [
                 "filter",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-i18n",
             "version": "2.2.10",
-            "target-dir": "Zend/I18n",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-i18n.git",
-                "reference": "0a9ffb7586d5aeaf3afef4a0a02e3448bc46927a"
+                "reference": "6a5a65c1cdcf02877e2526c1b3e315de6a59bb8c"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-i18n/zipball/6a5a65c1cdcf02877e2526c1b3e315de6a59bb8c",
-                "reference": "0a9ffb7586d5aeaf3afef4a0a02e3448bc46927a",
+                "reference": "6a5a65c1cdcf02877e2526c1b3e315de6a59bb8c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zend-stdlib": "self.version"
             },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-cache": "self.version",
+                "zendframework/zend-config": "self.version",
+                "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-filter": "self.version",
+                "zendframework/zend-servicemanager": "self.version",
+                "zendframework/zend-validator": "self.version",
+                "zendframework/zend-view": "self.version"
+            },
             "suggest": {
                 "ext-intl": "Required for most features of Zend\\I18n; included in default builds of PHP",
+                "zendframework/zend-cache": "Zend\\Cache component",
+                "zendframework/zend-config": "Zend\\Config component",
                 "zendframework/zend-eventmanager": "You should install this package to use the events in the translator",
                 "zendframework/zend-filter": "You should install this package to use the provided filters",
                 "zendframework/zend-resources": "Translation resources",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager component",
                 "zendframework/zend-validator": "You should install this package to use the provided validators",
                 "zendframework/zend-view": "You should install this package to use the provided view helpers"
             },
@@ -4619,41 +4662,50 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\I18n\\": ""
+                "psr-4": {
+                    "Zend\\I18n\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
+            "homepage": "https://github.com/zendframework/zend-i18n",
             "keywords": [
                 "i18n",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-json",
             "version": "2.2.10",
-            "target-dir": "Zend/Json",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-json.git",
-                "reference": "96cf77eee14c32f6ca3b87084201f9c9f950aeaa"
+                "reference": "e0a2e72459b029c3d3785fe8a0b41312670bfd24"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-json/zipball/e0a2e72459b029c3d3785fe8a0b41312670bfd24",
-                "reference": "96cf77eee14c32f6ca3b87084201f9c9f950aeaa",
+                "reference": "e0a2e72459b029c3d3785fe8a0b41312670bfd24",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "zendframework/zend-stdlib": "self.version"
             },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-http": "self.version",
+                "zendframework/zend-server": "self.version"
+            },
             "suggest": {
-                "zendframework/zend-server": "Zend\\Server component"
+                "zendframework/zend-http": "Zend\\Http component",
+                "zendframework/zend-server": "Zend\\Server component",
+                "zendframework/zendxml": "To support Zend\\Json\\Json::fromXml() usage"
             },
             "type": "library",
             "extra": {
@@ -4663,8 +4715,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\Json\\": ""
+                "psr-4": {
+                    "Zend\\Json\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4672,29 +4724,34 @@
                 "BSD-3-Clause"
             ],
             "description": "provides convenience methods for serializing native PHP to JSON and decoding JSON to native PHP",
+            "homepage": "https://github.com/zendframework/zend-json",
             "keywords": [
                 "json",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-06 17:27:03"
         },
         {
             "name": "zendframework/zend-math",
             "version": "2.2.10",
-            "target-dir": "Zend/Math",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-math.git",
-                "reference": "1823c586dcb7ef0b022a85b865e1150021ebc850"
+                "reference": "0e5ba13e2bc64f6544f5508acf705dd2fc12d91d"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-math/zipball/0e5ba13e2bc64f6544f5508acf705dd2fc12d91d",
-                "reference": "1823c586dcb7ef0b022a85b865e1150021ebc850",
+                "reference": "0e5ba13e2bc64f6544f5508acf705dd2fc12d91d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master"
             },
             "suggest": {
                 "ext-bcmath": "If using the bcmath functionality",
@@ -4710,33 +4767,33 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\Math\\": ""
+                "psr-4": {
+                    "Zend\\Math\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
+            "homepage": "https://github.com/zendframework/zend-math",
             "keywords": [
                 "math",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-serializer",
             "version": "2.2.10",
-            "target-dir": "Zend/Serializer",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-serializer.git",
-                "reference": "f213b205030bf511364c13851758bf628648ca79"
+                "reference": "aabfa157039e0c8ca0627a002e8e8f13e62393a8"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-serializer/zipball/aabfa157039e0c8ca0627a002e8e8f13e62393a8",
-                "reference": "f213b205030bf511364c13851758bf628648ca79",
+                "reference": "aabfa157039e0c8ca0627a002e8e8f13e62393a8",
                 "shasum": ""
             },
             "require": {
@@ -4744,6 +4801,12 @@
                 "zendframework/zend-json": "self.version",
                 "zendframework/zend-math": "self.version",
                 "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-servicemanager": "self.version"
             },
             "suggest": {
                 "zendframework/zend-servicemanager": "To support plugin manager support"
@@ -4756,8 +4819,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\Serializer\\": ""
+                "psr-4": {
+                    "Zend\\Serializer\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4765,29 +4828,34 @@
                 "BSD-3-Clause"
             ],
             "description": "provides an adapter based interface to simply generate storable representation of PHP types by different facilities, and recover",
+            "homepage": "https://github.com/zendframework/zend-serializer",
             "keywords": [
                 "serializer",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-servicemanager",
             "version": "2.2.10",
-            "target-dir": "Zend/ServiceManager",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-servicemanager.git",
-                "reference": "cf1615c8bf000d9aefb9f1da32d3e634bb1033eb"
+                "reference": "b9eaf9e3268d2e10ddca807e3a2980b3e662a8e0"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/b9eaf9e3268d2e10ddca807e3a2980b3e662a8e0",
-                "reference": "cf1615c8bf000d9aefb9f1da32d3e634bb1033eb",
+                "reference": "b9eaf9e3268d2e10ddca807e3a2980b3e662a8e0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master"
             },
             "suggest": {
                 "zendframework/zend-di": "Zend\\Di component"
@@ -4800,40 +4868,51 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\ServiceManager\\": ""
+                "psr-4": {
+                    "Zend\\ServiceManager\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
+            "homepage": "https://github.com/zendframework/zend-service-manager",
             "keywords": [
                 "servicemanager",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zendframework/zend-stdlib",
             "version": "2.2.10",
-            "target-dir": "Zend/Stdlib",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-stdlib.git",
-                "reference": "69f7b2d620794482b9b355fa25376a5cc759ac22"
+                "reference": "b42d784bd142e916058a9d68eeafcc10ff63c12e"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/b42d784bd142e916058a9d68eeafcc10ff63c12e",
-                "reference": "69f7b2d620794482b9b355fa25376a5cc759ac22",
+                "reference": "b42d784bd142e916058a9d68eeafcc10ff63c12e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-filter": "self.version",
+                "zendframework/zend-serializer": "self.version",
+                "zendframework/zend-servicemanager": "self.version"
+            },
             "suggest": {
                 "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+                "zendframework/zend-filter": "To support naming strategy hydrator usage",
+                "zendframework/zend-serializer": "Zend\\Serializer component",
                 "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
             },
             "type": "library",
@@ -4844,19 +4923,20 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Zend\\Stdlib\\": ""
+                "psr-4": {
+                    "Zend\\Stdlib\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
+            "homepage": "https://github.com/zendframework/zend-stdlib",
             "keywords": [
                 "stdlib",
                 "zf2"
             ],
-            "time": "2015-02-17 20:01:36"
+            "time": "2014-03-05 17:29:35"
         },
         {
             "name": "zetacomponents/base",
@@ -4977,17 +5057,14 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "openeyes/oph-ci-examination": 20,
-        "openeyes/oph-co-correspondence": 20,
         "openeyes/oph-ci-phasing": 20,
         "openeyes/oph-co-therapyapplication": 20,
         "openeyes/oph-dr-prescription": 20,
         "openeyes/oph-ou-anaestheticsatisfactionaudit": 20,
-        "openeyes/oph-tr-consent": 20,
         "openeyes/oph-tr-operationnote": 20,
         "openeyes/oph-tr-operationbooking": 20,
         "openeyes/oph-tr-intravitrealinjection": 20,
         "openeyes/oph-tr-laser": 20,
-        "openeyes/patient-ticketing": 20,
         "openeyes/oph-in-visualfields": 20,
         "openeyes/oph-in-biometry": 20,
         "openeyes/eyedraw": 20,
