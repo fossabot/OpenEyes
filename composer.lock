@@ -64,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openeyes/OphCiExamination.git",
-                "reference": "a57794600df068b77edc618a3ac8dea70e585253"
+                "reference": "720a0e700b555537cc278cd41ef42b227007d484"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openeyes/OphCiExamination/zipball/a57794600df068b77edc618a3ac8dea70e585253",
-                "reference": "a57794600df068b77edc618a3ac8dea70e585253",
+                "url": "https://api.github.com/repos/openeyes/OphCiExamination/zipball/720a0e700b555537cc278cd41ef42b227007d484",
+                "reference": "720a0e700b555537cc278cd41ef42b227007d484",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
             "type": "openeyes-module",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Examination module for OpenEyes",
-            "time": "2015-07-30 10:06:32"
+            "time": "2015-07-30 16:05:16"
         },
         {
             "name": "openeyes/oph-ci-phasing",
