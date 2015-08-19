@@ -45,7 +45,8 @@ return array(
                 'Anaesthetic Agent' => '/admin/viewAnaestheticAgent',
                 'Anaesthetic Agent Mapping' => '/oeadmin/AnaestheticAgentMapping/list',
                 'Anaesthetic Agent Defaults' => '/oeadmin/AnaestheticAgentDefaults/list',
-                'Risks' => '/oeadmin/risk/list'
+                'Risks' => '/oeadmin/risk/list',
+                'Common Post-Op Complications' => '/admin/postOpComplications',
             ),
             'Procedure Management' => array(
                 'Procedures' => '/oeadmin/procedure/list',

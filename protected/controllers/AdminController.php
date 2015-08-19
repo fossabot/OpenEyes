@@ -1695,6 +1695,7 @@ class AdminController extends BaseAdminController
         );
     }
 
+    
     public function actionUpdateEpisodeSummary()
     {
         $item_ids = @$_POST['item_ids'] ? explode(',', $_POST['item_ids']) : array();
@@ -1708,6 +1709,32 @@ class AdminController extends BaseAdminController
     }
 
 
+    public function actionPostOpComplications($subspecialty_id = null)
+    {
+        $this->render(
+            '/admin/postOpComplications',
+            array(
+                'subspecialty_id' => $subspecialty_id,
+                'enabled_items' => PostOpComplicationsItem::model()->enabled($subspecialty_id)->findAll(),
+                'available_items' => PostOpComplicationsItem::model()->available($subspecialty_id)->findAll(),
+            )
+        );
+    }
+
+    
+    public function actionUpdatePostOpComplications()
+    {
+        $item_ids = @$_POST['item_ids'] ? explode(',', $_POST['item_ids']) : array();
+        $subspecialty_id = @$_POST['subspecialty_id'] ?: null;
+
+        $tx = Yii::app()->db->beginTransaction();
+        PostOpComplicationsItem::model()->assign($item_ids, $subspecialty_id);
+        $tx->commit();
+
+        $this->redirect(array('/admin/postOpComplications', 'subspecialty_id' => $subspecialty_id));
+    }
+    
+    
     public function actionSettings()
     {
         $this->render('/admin/settings');
