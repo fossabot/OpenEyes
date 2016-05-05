@@ -37,7 +37,8 @@ class PcrRiskReport extends Report implements ReportInterface
             'x' => 0,
             'y' => 50,
             'floating' => true,
-            'borderWidth' => 1
+            'borderWidth' => 1,
+            'maxHeight' => 200,
         ),
         'plotOptions' => array('spline' => array('marker' => array(
             'enabled' => false,
@@ -46,6 +47,7 @@ class PcrRiskReport extends Report implements ReportInterface
     );
 
     protected $totalOperations = 1000;
+
     /**
      * @param $surgeon
      * @param $dateFrom
@@ -88,7 +90,7 @@ class PcrRiskReport extends Report implements ReportInterface
         $adjustedPcrRate = 0;
 
         foreach($data as $case){
-            if(isset($case['complication']) && ($case['complication']== 'PC rupture' || $case['complication'] === 'PC rupture with vitreous loss' || $case['complication'] === 'PC rupture no vitreous loss')){
+            if(isset($case['complication']) && ($case['complication'] === 'PC rupture' || $case['complication'] === 'PC rupture with vitreous loss' || $case['complication'] === 'PC rupture no vitreous loss')){
                 $pcrCases++;
             }
             if(isset($case['risk']) && $case['risk'] != "" ){

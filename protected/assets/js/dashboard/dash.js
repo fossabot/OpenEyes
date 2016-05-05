@@ -119,7 +119,7 @@ Highcharts.setOptions({
 
 $(document).ready(function() {
     OpenEyes.Dash.init('#dash-grid');
-    OpenEyes.Dash.addBespokeReport('/report/ajaxReport?report=PcrRisk');
+    OpenEyes.Dash.addBespokeReport('/report/ajaxReport?report=AllSurgeonsPcrRisk');
     OpenEyes.Dash.addBespokeReport('/report/ajaxReport?report=CataractComplications');
     OpenEyes.Dash.addBespokeReport('/report/ajaxReport?report=\\OEModule\\OphCiExamination\\components\\VisualOutcome');
     OpenEyes.Dash.addBespokeReport('/report/ajaxReport?report=\\OEModule\\OphCiExamination\\components\\RefractiveOutcome');
