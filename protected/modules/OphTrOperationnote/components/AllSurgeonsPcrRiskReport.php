@@ -39,16 +39,6 @@ class AllSurgeonsPcrRiskReport extends PcrRiskReport
             'headerFormat' => '<b>{series.name}</b><br>',
             'pointFormat' => '<i>Operations</i>: {point.x} <br /> <i>PCR Avg</i>: {point.y:.2f}'
         ),
-        'legend' => array(
-            'align' => 'right',
-            'verticalAlign' => 'top',
-            'layout' => 'vertical',
-            'x' => 0,
-            'y' => 50,
-            'floating' => true,
-            'borderWidth' => 1,
-            'maxHeight' => 200,
-        ),
         'plotOptions' => array('spline' => array('marker' => array(
             'enabled' => false,
             'states' => array('hover' => array('enabled' => false))
