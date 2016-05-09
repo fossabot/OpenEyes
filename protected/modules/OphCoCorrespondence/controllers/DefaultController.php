@@ -17,6 +17,8 @@
 * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
 */
 
+
+
 class DefaultController extends BaseEventTypeController
 {
 	static protected $action_types = array(
@@ -34,6 +36,7 @@ class DefaultController extends BaseEventTypeController
 	/**
 	 * Adds direct line phone numbers to jsvars to be used in dropdown select
 	 */
+        
 	public function loadDirectLines()
 	{
 		$sfs = FirmSiteSecretary::model()->findAll('firm_id=?',array(Yii::app()->session['selected_firm_id']));
