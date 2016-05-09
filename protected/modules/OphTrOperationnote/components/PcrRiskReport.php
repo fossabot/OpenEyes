@@ -56,6 +56,7 @@ class PcrRiskReport extends Report implements ReportInterface
      */
     protected function queryData($surgeon, $dateFrom, $dateTo)
     {
+				$this->command->reset();
         $this->command->select('ophtroperationnote_cataract_complications.name as complication, pcr_risk as risk')
             ->from('et_ophtroperationnote_cataract')
             ->join('event', 'et_ophtroperationnote_cataract.event_id = event.id')
@@ -82,6 +83,7 @@ class PcrRiskReport extends Report implements ReportInterface
      */
     public function dataSet()
     {
+
         $data = $this->queryData($this->surgeon, $this->from, $this->to);
 
         $total = $this->getTotalOperations();
@@ -103,7 +105,7 @@ class PcrRiskReport extends Report implements ReportInterface
         if($total !== 0 && (int)$pcrRiskTotal !== 0){
             $adjustedPcrRate = (($pcrCases / $total) / ($pcrRiskTotal / $total)) * $this->average();
         }
-        
+
         // set the graph subtitle here, so we don't have to run this query more than once
         $this->graphConfig['subtitle']['text'] = "Total Operations: $total";
         if($total > 1000) {
