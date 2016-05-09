@@ -208,6 +208,17 @@
       var chart = OpenEyes.Dash.reports['PcrRiskReport'];
       chart.setTitle(null, {text: 'Total Operations: ' + data[0][0]});
     },
+		'AllSurgeonsPcrRiskReport': function (data) {
+			var chart = OpenEyes.Dash.reports['AllSurgeonsPcrRiskReport'];
+			var total = 0,
+				i;
+			for(i = 0; i < data.length; i++){
+				if(data[i].type === 'scatter'){
+					total += parseInt(data[i].data[0]);
+				}
+			}
+			chart.setTitle(null, {text: 'Total Operations: ' + total});
+		},
     'OEModule_OphCiExamination_components_RefractiveOutcomeReport': function (data) {
       var total = 0,
         plusOrMinusOne = 0,
