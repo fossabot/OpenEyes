@@ -19,7 +19,6 @@ class AllSurgeonsPcrRiskReport extends PcrRiskReport
             ->join('event', 'et_ophtroperationnote_cataract.event_id = event.id')
             ->join('et_ophtroperationnote_surgeon', 'et_ophtroperationnote_surgeon.event_id = event.id')
             ->join('user', 'surgeon_id = user.id')
-						->where('event.event_date >= DATE_SUB(NOW(),INTERVAL 1 YEAR)')
 						->group('surgeon_id');
 
         $surgeons = $this->command->queryAll();
