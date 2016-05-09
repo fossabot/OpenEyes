@@ -149,8 +149,10 @@ class AdminController extends \ModuleAdminController
                                     $shortNumber = $shortCodeArray[$i];
                                     $shortCode .= $alphabet[$shortNumber];
                                 }
+                                
                                 $macro->short_code = $shortCode;
                                 Audit::add('admin','create',$macro->id,null,array('module'=>'OphCoCorrespondence','model'=>'LetterMacro'));
+                                //Audit::add('admin','create',$macro->id,null,array('module'=>'OphCoCorrespondence','model'=>'LetterMacro'));
                                 $avatar=LetterMacro::model()->findByPk(array('id'=>$macroId));
                                 $avatar->attributes=array('short_code'=>$shortCode);
                                 $avatar->save(); 
