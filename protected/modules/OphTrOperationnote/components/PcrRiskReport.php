@@ -9,7 +9,7 @@
 class PcrRiskReport extends Report implements ReportInterface
 {
     protected $graphConfig = array(
-        'chart' => array('renderTo' => '', 'type' => 'spline'),
+        'chart' => array('renderTo' => '', 'type' => 'spline', 'zoomType' => 'xy',),
         'title' => array('text' => 'PCR Rate (risk adjusted)'),
         'subtitle' => array('text' => 'Total Operations: 0'),
         'xAxis' => array(
@@ -43,7 +43,7 @@ class PcrRiskReport extends Report implements ReportInterface
         'plotOptions' => array('spline' => array('marker' => array(
             'enabled' => false,
             'states' => array('hover' => array('enabled' => false))
-        )))
+        ))),
     );
 
     protected $totalOperations = 1000;
