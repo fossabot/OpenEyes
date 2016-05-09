@@ -13,7 +13,9 @@ class AllSurgeonsPcrRiskReport extends PcrRiskReport
      */
     protected $searchTemplate = 'application.modules.OphTrOperationnote.views.report.all_surgeons_search';
 
-    protected $site;
+    protected $site = '';
+
+	protected $operationCount = 0;
 
     protected $graphConfig = array(
         'chart' => array('renderTo' => '', 'type' => 'spline', 'zoomType' => 'xy',),
@@ -58,7 +60,7 @@ class AllSurgeonsPcrRiskReport extends PcrRiskReport
      */
     public function __construct($app)
     {
-        $this->site = $app->getRequest()->getQuery('site', 4);
+        $this->site = $app->getRequest()->getQuery('site', '');
 
         parent::__construct($app);
     }
@@ -101,6 +103,9 @@ class AllSurgeonsPcrRiskReport extends PcrRiskReport
             'data' => $this->upper95(),
             'color' => 'green',
         );
+
+			// set the graph subtitle here, so we don't have to run this query more than once
+			$this->graphConfig['subtitle']['text'] = 'Total Operations: ' . $this->operationCount;
 
         return json_encode($this->series);
     }
@@ -154,7 +159,6 @@ class AllSurgeonsPcrRiskReport extends PcrRiskReport
      */
     public function dataSet()
     {
-
         $data = $this->queryData($this->surgeon, $this->from, $this->to, $this->site);
 
         $total = $this->getTotalOperations($this->site);
@@ -177,14 +181,14 @@ class AllSurgeonsPcrRiskReport extends PcrRiskReport
             $adjustedPcrRate = (($pcrCases / $total) / ($pcrRiskTotal / $total)) * $this->average();
         }
 
-        // set the graph subtitle here, so we don't have to run this query more than once
-        $this->graphConfig['subtitle']['text'] = "Total Operations: $total";
+
         if ($total > 1000) {
             $this->totalOperations = $total;
         }
 
-        return array(array($total, $adjustedPcrRate));
+				$this->operationCount += $total;
 
+        return array(array($total, $adjustedPcrRate));
     }
 
     public function getTotalOperations($site = '')
