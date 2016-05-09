@@ -45,7 +45,7 @@ class VisualOutcomeReport extends \Report implements \ReportInterface
      * @var string
      */
     protected $searchTemplate = 'application.modules.OphCiExamination.views.reports.visual_acuity_search';
-    
+
     /**
      * @var int
      */
@@ -56,7 +56,7 @@ class VisualOutcomeReport extends \Report implements \ReportInterface
      */
     protected $graphConfig = array(
         'chart' => array(
-            'renderTo' => '', 
+            'renderTo' => '',
             'type' => 'bubble',
         ),
         'tooltip' => array(
@@ -245,70 +245,70 @@ class VisualOutcomeReport extends \Report implements \ReportInterface
             }
             $counts[$data[0].'_'.$data[1]]++;
         }
-         
+
         $matrix = array();
-        
+
         foreach($counts as $key => $count){
             $xAxsis = null;
             $yAxsis = null;
-            
+
             $points = explode('_', $key);
-            
+
             $xPoint = (float)$points[0];
             $yPoint = (float)$points[1];
-            
-            
+
+
             if( $xPoint <= 0 ){
                 $xAxsis = 5;
             }
-            
+
             if( $xPoint >= 0 && $xPoint <= 0.30 ){
                 $xAxsis = 4;
             }
-            
+
             if( $xPoint > 0.30 && $xPoint <= 0.60 ){
                 $xAxsis = 3;
             }
-                                    
+
             if( $xPoint > 0.60 && $xPoint <= 0.90 ){
                 $xAxsis = 2;
             }
-            
+
             if( $xPoint > 0.90 && $xPoint <= 1.2 ){
                 $xAxsis = 1;
             }
-            
+
             if( $xPoint > 1.2 ){
                 $xAxsis = 0;
             }
-            
+
             // yAxsis
-            
+
             if( $yPoint <= 0 ){
                 $yAxsis = 5;
             }
-            
+
             if( $yPoint >= 0 && $yPoint <= 0.30 ){
                 $yAxsis = 4;
             }
-            
+
             if( $yPoint > 0.30 && $yPoint <= 0.60 ){
                 $yAxsis = 3;
             }
-            
+
             if( $yPoint > 0.60 && $yPoint <= 0.90 ){
                 $yAxsis = 2;
             }
-            
+
             if( $yPoint > 0.90 && $yPoint <= 1.2 ){
                 $yAxsis = 1;
             }
-            
+
             if( $yPoint > 1.2 ){
                 $yAxsis = 0;
             }
-            
-            
+
+
             if( isset($matrix[$xAxsis][$yAxsis]) ){
                 $matrix[$xAxsis][$yAxsis] += $count;
             } else {
@@ -316,9 +316,9 @@ class VisualOutcomeReport extends \Report implements \ReportInterface
             }
 
         }
-        
+
         $returnData = array();
-        
+
         foreach($matrix as $xCoord => $bubbleX){
             foreach($bubbleX as $yCoord => $value){
                 $returnData[] = array(
@@ -326,7 +326,7 @@ class VisualOutcomeReport extends \Report implements \ReportInterface
                     $yCoord,
                     $value
                 );
-                
+
                 $this->totalEyes += $value;
             }
         }
@@ -364,7 +364,7 @@ class VisualOutcomeReport extends \Report implements \ReportInterface
             ),
         );
 
-        
+
         return json_encode($this->series);
     }
 

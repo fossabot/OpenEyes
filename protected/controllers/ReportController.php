@@ -27,13 +27,13 @@ class ReportController extends BaseReportController
                 'actions' => array('index', 'diagnoses', 'runReport', 'downloadReport', 'ajaxReport', 'reportData'),
                 'roles' => array('OprnGenerateReport'),
             ),
-            
+
             array(
                 'allow',
                 'actions' => array('ajaxReport', 'reportData'),
                 'expression' => 'Yii::app()->user->isSurgeon()'
             ),
-            
+
         );
     }
 
@@ -66,8 +66,9 @@ class ReportController extends BaseReportController
     public function actionReportData()
     {
         $reportObj = $this->loadReport();
-
-        $this->renderJSON($reportObj->dataSet());
+        header('Content-type: application/json');
+        echo $reportObj->seriesJson();
+				Yii::app()->end();
     }
 
     /**
