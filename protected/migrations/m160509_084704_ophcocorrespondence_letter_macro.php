@@ -10,6 +10,8 @@ class m160509_084704_ophcocorrespondence_letter_macro extends CDbMigration
 
 	public function down()
 	{
+            
+           //no drop query
 		
 	}
 

@@ -11,6 +11,9 @@ class m160509_121525_ophcocorrespondence_letter_macro_version extends CDbMigrati
 	public function down()
 	{
 		
+            
+           //no drop query
+		
 	}
 
 	/*
