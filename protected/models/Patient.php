@@ -1416,10 +1416,12 @@ class Patient extends BaseActiveRecordVersioned
         public function getLatestOperationNoteEventUniqueCode()
 	{
                 $event_type = EventType::model()->find('class_name=?',array('OphTrOperationnote'));
+                $episode = $this->getEpisodeForCurrentSubspecialty();
 		$criteria = new CDbCriteria();
 		$criteria->addCondition('episode.patient_id = :pid');
+                $criteria->addCondition('t.episode_id = :episode_id');
                 $criteria->addCondition('t.event_type_id = :event_type_id');
-		$criteria->params = array(':pid' => $this->id, ':event_type_id' => $event_type->id);
+		$criteria->params = array(':pid' => $this->id, ':event_type_id' => $event_type->id, ':episode_id' => $episode->id);
 		$criteria->order = "t.event_date DESC, t.created_date DESC";
 		$criteria->limit = 1;
                 $event = Event::model()->with('episode')->find($criteria);
@@ -1434,7 +1436,7 @@ class Patient extends BaseActiveRecordVersioned
                     ->from("unique_codes uc")
                     ->join("unique_codes_mapping ucm", "uc.id = ucm.unique_code_id")
                     ->where("ucm.event_id = $id")->queryAll() as $row) {
-                    return (!empty($row[$code]) ? $row['code'] : '');
+                            return (!empty($row['code']) ? $row['code'] : '');
                 }
             }     
             return '';
