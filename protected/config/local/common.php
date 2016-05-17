@@ -135,6 +135,8 @@ $config = array(
 		'event_print_method' => 'pdf',
 		'wkhtmltopdf_nice_level' => 19,
                 'salt' => 'SALTFORUNIQUECODES',
+                'portal_user'=>'portal_user',
+        
 	),
 );
 
