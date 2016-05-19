@@ -10,7 +10,7 @@ class m160510_142306_ophcocorrespondence_letter_macro_version extends CDbMigrati
 
 	public function down()
 	{
-		
+		$this->dropColumn('ophcocorrespondence_letter_macro_version', 'short_code');	
 	}
 
 	/*

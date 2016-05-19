@@ -137,6 +137,7 @@ $config = array(
                 'salt' => 'SALTFORUNIQUECODES',
                 'portal_user'=>'portal_user',
         
+            
 	),
 );
 

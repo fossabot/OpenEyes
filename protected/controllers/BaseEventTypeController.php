@@ -1702,16 +1702,24 @@ class BaseEventTypeController extends BaseModuleController
          */
         private function updateUniqueCode($event) 
         {
+            //var_dump($event);
             foreach($this->unique_code_elements as $unique) {
+              
                 if ($event->eventType->class_name === $unique['event']) {
+                    
                     foreach ($event->getElements() as $element) {
+                        echo Helper::getNSShortname($element);
+                        die();
                         if (in_array(Helper::getNSShortname($element), $unique['element'])) {
                                 $event_unique_code = UniqueCodeMapping::model()->findAllByAttributes(array('event_id' => $event->id));
                                 if(!$event_unique_code) {
                                         $event_unique_code = UniqueCodeMapping::model();
-                                        $event_unique_code->unique_code_id = $this->getActiveUnusedUniqueCode();
-                                        $event_unique_code->event_id = $event->id;
-                                        $event_unique_code->isNewRecord = true;
+                                        echo $event_unique_code->unique_code_id = $this->getActiveUnusedUniqueCode();
+                                        echo $event_unique_code->event_id = $event->id;
+                                        echo $event_unique_code->isNewRecord = true;
+                    
+                                       die();     
+                                        
                                         $event_unique_code->save();                                }
                         }
                     }
