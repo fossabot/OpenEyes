@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMartin-SourceCode%2FOpenEyes.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMartin-SourceCode%2FOpenEyes?ref=badge_shield)
+
 OpenEyes
 ========
 
@@ -58,3 +60,7 @@ Printing
 
 OpenEyes now supports full PDF printing using wkhtmltopdf, but it needs to be compiled with a patched QT library in order to work properly. As of version 1.12 a pre-compiled binary
 is shipped in the oe_installer repository. However, should you need to re-compile it, you can find instructions for doing this [here](https://github.com/openeyes/OpenEyes/wiki/Compiling-WKHtmlToPDF-to-enable-PDF-printing).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMartin-SourceCode%2FOpenEyes.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FMartin-SourceCode%2FOpenEyes?ref=badge_large)
